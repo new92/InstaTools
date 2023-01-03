@@ -77,7 +77,7 @@ This code of conduct and its related procedures also applies to unacceptable beh
 
 ## 10. Contact info
 
-Please feel free to contact me anytime at this email address: new92github@gmail.com
+Please feel free to contact me at anytime via <a href="mailto:new92github@gmail.com">email</a>
 
 ## 11. License and attribution
 
