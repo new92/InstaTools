@@ -72,7 +72,7 @@ if num == 1:
         print("[!] You must enter a password !")
         sleep(1)
         passw=input("[::] Please enter again your password: ")
-    print("-"*45)
+    print("|"+"-"*45+"|")
     try:
         loader.login(user,passw)
     except Exception as ex:
