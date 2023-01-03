@@ -145,7 +145,7 @@ if num == 1:
             f.write("[+] Username No"+str(i+1)+": "+str(MUTUALS[i]))
             f.write("\n")
         f.close()
-        print("[+] Saved mutual followers to a text file with the name: mutuals.txt")
+        print("[+] Saved mutual followers to a text file named: mutuals.txt")
 else:
     print("[+] Exiting...")
     quit(0)
