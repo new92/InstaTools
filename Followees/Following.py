@@ -1,4 +1,4 @@
-﻿"""
+"""
 Author: new92
 Github: @new92
 
@@ -140,12 +140,12 @@ if num == 1:
         print("[+] Exiting")
         quit(0)
     else:
-        f = open("mutuals.txt",'w')
+        f = open("mutualsf.txt",'w')
         for i in range(len(MUTUALS)):
             f.write("[+] Username No"+str(i+1)+": "+str(MUTUALS[i]))
             f.write("\n")
         f.close()
-        print("[+] Saved mutual followees to a text file named: mutuals.txt")
+        print("[+] Saved mutual followees to a text file named: mutualsf.txt")
 else:
     print("[+] Exiting...")
     quit(0)
