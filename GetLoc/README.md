@@ -1,4 +1,4 @@
-# Researcher
+# Researcher 🔍
 
 Python script for retrieving the location of a part of followers of a user.
 Works for both public and private accounts.
