@@ -1,7 +1,6 @@
 """
 Author: new92
 Github: @new92
-
 Python script for fetching the mutual followees between two accounts.
 """
 try:
