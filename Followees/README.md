@@ -3,6 +3,6 @@ Find the mutual followees (followings) and between two accounts. Works for both 
 
 ## Why Mutuals 🤔
 
-Mutuals is providing many features such as: percentage, speed, store (of the data), the number of followees and their usernames.
+Mutuals provides many features such as: percentage, speed, store (of the data), the number of followees and their usernames.
 Also there are more features coming the next weeks ! So stay tuned...
 
