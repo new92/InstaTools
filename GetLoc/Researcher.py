@@ -46,7 +46,7 @@ def ScriptInfo():
     language = 'Python'
     name = 'Researcher'
     api = None
-    lines = 207
+    lines = 211
     f = '/Instagram/GetLoc/Researcher.py'
     ptf = os.path.abspath(f)
     fsize = (os.stat(f)).st_size
@@ -66,6 +66,12 @@ def ScriptInfo():
 
 def checkUser(user):
     return user == None or len(user) > 30
+
+def nums():
+    print("[1] Find location")
+    print("[2] Show script info and exit")
+    print("[3] Uninstall script")
+    print("[4] Exit")
 
 def Uninstall() -> str:
     def rmdir(dire):
@@ -100,13 +106,12 @@ def main():
     print("\n")
     print("[+] Description: Python script for getting the possible location of the followers of a user.")
     print("\n")
-    print("[1] Find location")
-    print("[2] Print script's info and exit")
-    print("[3] Uninstall script")
-    print("[4] Exit")
+    nums()
     op=int(input("[::] Please enter a number (from the above ones): "))
     while op < 1 or op > 4 or op == None:
         print("[!] Invalid number !")
+        sleep(1)
+        nums()
         sleep(1)
         op=int(input("[::] Please enter a number (from the above ones): "))
     if op == 1:
