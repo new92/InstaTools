@@ -175,7 +175,7 @@ def main():
             user=str(input("[::] Please enter again your username: "))
         user = user.strip()
         user = user.lower()
-        resp = requests.get(f"https://www.instagram.com/{username}/")
+        resp = requests.get(f"https://www.instagram.com/{user}/")
         while resp.status_code == 404 or resp.status_code == 400:
             print("[!] User not found !")
             sleep(1)
