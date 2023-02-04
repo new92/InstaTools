@@ -1,5 +1,5 @@
 # Mutuals 🔍
-Find the mutual followees (followings) between two accounts. Works for both public and private accounts. **Works for both public and private accounts**
+Find the mutual followees (followings) between two accounts. **Works for both public and private accounts**
 
 ## Why Mutuals 🤔
 
