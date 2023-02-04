@@ -2,7 +2,6 @@
 
 Python script for retrieving the location of a part of followers of a user.
 **Works for both public and private accounts**.
-> Works for private accounts as long as the user follows them.
 
 ## Why Researcher ?
 
