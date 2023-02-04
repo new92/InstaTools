@@ -46,7 +46,7 @@ def ScriptInfo():
     language = 'Python'
     name = 'Researcher'
     api = None
-    lines = 211
+    lines = 279
     f = '/Instagram/GetLoc/Researcher.py'
     ptf = os.path.abspath(f)
     fsize = (os.stat(f)).st_size
@@ -126,6 +126,40 @@ def main():
             print("[!] Invalid username !")
             sleep(1)
             username=str(input("[::] Please enter again the username: "))
+        username = username.strip()
+        username = username.lower()
+        resp = requests.get(f"https://www.instagram.com/{username}/")
+        while resp.status_code == 404 or resp.status_code == 400:
+            print("[!] User not found !")
+            sleep(1)
+            print("[1] Try with another username")
+            print("[2] Return to menu")
+            print("[3] Uninstall and Exit")
+            opt=int(input("[::] Please enter a number (from the above ones): "))
+            while opt < 1 or opt > 3 or opt == None:
+                print("[!] Invalid number !")
+                sleep(1)
+                print("[1] Try with another username")
+                print("[2] Return to menu")
+                print("[3] Uninstall and Exit")
+                opt=int(input("[::] Please enter again a number (from the above ones): "))
+            if opt == 1:
+                username=str(input("[::] Please enter the username: "))
+                while username == None or len(username) > 30:
+                    print("[!] Invalid username !")
+                    sleep(1)
+                    username=str(input("[::] Please enter again the username: "))
+            elif opt == 2:
+                main()
+            else:
+                print(Uninstall())
+                print("[+] Thank you for using my script 😁")
+                sleep(2)
+                print("[+] Hope you enjoyed it ! ☺️")
+                sleep(2)
+                print("[+] Until next time 👋")
+                sleep(1)
+                exit(0)
         loc=str(input("[::] Please enter the location: "))
         while loc == None:
             print("[!] Invalid location !")
@@ -139,6 +173,40 @@ def main():
             print("[!] Invalid username !")
             sleep(1)
             user=str(input("[::] Please enter again your username: "))
+        user = user.strip()
+        user = user.lower()
+        resp = requests.get(f"https://www.instagram.com/{username}/")
+        while resp.status_code == 404 or resp.status_code == 400:
+            print("[!] User not found !")
+            sleep(1)
+            print("[1] Try with another username")
+            print("[2] Return to menu")
+            print("[3] Uninstall and Exit")
+            opt=int(input("[::] Please enter a number (from the above ones): "))
+            while opt < 1 or opt > 3 or opt == None:
+                print("[!] Invalid number !")
+                sleep(1)
+                print("[1] Try with another username")
+                print("[2] Return to menu")
+                print("[3] Uninstall and Exit")
+                opt=int(input("[::] Please enter again a number (from the above ones): "))
+            if opt == 1:
+                username=str(input("[::] Please enter the username: "))
+                while username == None or len(username) > 30:
+                    print("[!] Invalid username !")
+                    sleep(1)
+                    username=str(input("[::] Please enter again the username: "))
+            elif opt == 2:
+                main()
+            else:
+                print(Uninstall())
+                print("[+] Thank you for using my script 😁")
+                sleep(2)
+                print("[+] Hope you enjoyed it ! ☺️")
+                sleep(2)
+                print("[+] Until next time 👋")
+                sleep(1)
+                exit(0)
         passw=str(input("[::] Please enter your password: "))
         while passw == None:
             print("[!] You must enter a password !")
