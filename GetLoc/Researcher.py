@@ -46,13 +46,10 @@ def ScriptInfo():
     language = 'Python'
     name = 'Researcher'
     api = None
-    lines = 0
+    lines = 209
     f = '/Instagram/GetLoc/Researcher.py'
     ptf = os.path.abspath(f)
-    if os.path.exists(ptf):
-        fsize = (os.stat(f)).st_size
-    else:
-        fsize = 0
+    fsize = (os.stat(f)).st_size
     stars = 3
     forks = 1
     print("[+] Author: "+str(author))
@@ -137,11 +134,11 @@ def main():
             print("[!] Invalid username !")
             sleep(1)
             user=str(input("[::] Please enter again your username: "))
-        passw=input("[::] Please enter your password: ")
+        passw=str(input("[::] Please enter your password: "))
         while passw == None:
             print("[!] You must enter a password !")
             sleep(1)
-            passw=input("[::] Please enter again your password: ")
+            passw=str(input("[::] Please enter again your password: "))
         print("|"+"-"*45+"|")
         try:
             loader.login(user,passw)
