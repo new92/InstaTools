@@ -52,8 +52,10 @@ def ScriptInfo():
     api = None
     lines = 615
     f = '/Instagram/Mutuals/Mutuals.py'
-    ptf = os.path.abspath(f)
-    fsize = (os.stat(f)).st_size
+    if os.path.exists(os.path.abspath(f)):
+        fsize = (os.stat(f)).st_size
+    else:
+        fsize = 0
     stars = 3
     forks = 1
     print("[+] Author: "+str(author))
@@ -65,6 +67,7 @@ def ScriptInfo():
     print("[+] Program's name: "+str(name))
     print("[+] API(s) used: "+str(api))
     print("[+] File size: "+str(fsize)+" bytes")
+    print("[+] Path: "+str(os.path.abspath(f)))
     print("[+] Github repo stars: "+str(stars))
     print("[+] Github repo forks: "+str(forks))
 
@@ -95,8 +98,7 @@ def Uninstall() -> str:
         for i in range(len(DIRS)):
             os.rmdir(DIRS[i])
         os.rmdir(dire)
-    dir = os.path.abspath('IGFollowersIncreaser')
-    rmdir(dir)
+    rmdir(os.path.abspath('IGFollowersIncreaser'))
     return "[+] Files and dependencies uninstalled successfully !"
 
 def main():
@@ -109,7 +111,7 @@ def main():
     print("\n")
     nums()
     num=int(input("[::] Please enter a number (from the above ones): "))
-    while num < 1 or num > 4 or num == None:
+    while num < 1 or num > 4 or num == None or type(num) != int:
         if type(num) == int:
             print("[!] Invalid number !")
             sleep(1)
@@ -143,7 +145,7 @@ def main():
             print("[3] Exit")
             print("[4] Uninstall and Exit")
             opt=int(input("[::] Please enter a number (from the above ones): "))
-            while opt < 1 or opt > 4 or opt == None:
+            while opt < 1 or opt > 4 or opt == None or type(opt) != int:
                 if type(opt) == int:
                     print("[!] Invalid number !")
                     sleep(1)
@@ -194,8 +196,11 @@ def main():
                 sleep(2)
                 quit(0)
         psw=str(input("[::] Please enter your password: "))
-        while psw == None:
-            print("[!] This input can't be blank !")
+        while psw == None or type(psw) != str:
+            if psw == None:
+                print("[!] This input can't be blank !")
+            else:
+                print("[!] You must enter an integer !")
             sleep(1)
             psw=str(input("[::] Please enter again your password: "))
         print("|"+"-"*45+"|")
@@ -206,13 +211,15 @@ def main():
         print("[1] Find the mutual followers between 2 accounts")
         print("[2] Find the mutual followees between 2 accounts")
         t=int(input("[::] Please enter a number (from the above ones): "))
-        while t < 1 or t > 2 or t == None:
-            if type(t) == int:
+        while t < 1 or t > 2 or t == None or type(t) != int:
+            if t == None:
+                print("[!] This field can't be blank !")
+            elif type(t) != int and t != None:
+                print("[!] Number must be an integer !")
+            else:
                 print("[!] Invalid number !")
                 sleep(1)
                 print("[+] Acceptable numbers: [1,2]")
-            else:
-                print("[!] This input can't be blank !")
             sleep(1)
             print("[1] Find mutual followers")
             print("[2] Find mutual followees")
