@@ -1,7 +1,7 @@
 # Mutuals 🔍
 Find the mutual followers and/or followees(followings) between two accounts. **Works for both public and private accounts**.
 
-## Why Mutuals 🧐
+## Why Mutuals ? 🧐
 
 Mutuals provides many features such as: 
 - Speed 
