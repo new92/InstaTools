@@ -47,7 +47,7 @@ def ScriptInfo():
     language = 'Python'
     name = 'Researcher'
     api = None
-    lines = 275
+    lines = 276
     f = '/Instagram/GetLoc/Researcher.py'
     ptf = os.path.abspath(f)
     if os.path.exists(os.path.abspath(f)):
