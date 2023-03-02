@@ -50,7 +50,7 @@ def ScriptInfo():
     language = 'Python'
     name = 'Mutuals'
     api = None
-    lines = 622
+    lines = 629
     f = '/Instagram/Mutuals/Mutuals.py'
     if os.path.exists(os.path.abspath(f)):
         fsize = (os.stat(f)).st_size
@@ -379,6 +379,7 @@ def main():
                                 f.write("[+] Username No"+str(i+1)+": "+str(MUTUALS[i])+"\n")
                             f.close()
                             print("[+] Successfully saved the mutual followers to a text file named: mutuals.txt")
+                            sleep(2)
                             print("[+] Path: "+str(os.path.abspath("mutuals.txt"))
                         else:
                             print("<ok>")
@@ -432,7 +433,9 @@ def main():
                     else:
                         per = (len(MUTUALS) / float(allf))*100
                         print("[+] Number of mutual followers: "+str(len(MUTUALS)))
-                        print("[+] Percentage of mutual followers: "+str(per)+"%")
+                        sleep(1)
+                        print("[+] Percentage of mutual followers: "+str(per)+"%"
+                        sleep(1)
                         print("[+] The usernames of the mutual followers: ")
                         for k in range(len(MUTUALS)):
                             print(f"[+] Username No{k+1}: {MUTUALS[k]}")
@@ -452,6 +455,8 @@ def main():
                                 f.write("[+] Username No"+str(i+1)+": "+str(MUTUALS[i])+"\n")
                             f.close()
                             print("[+] Saved mutual followers to a text file named: mutuals.txt")
+                            sleep(2)
+                            print("[+] Path: "+str(os.path.abspath("mutuals.txt"))
                         else:
                             print("<ok>")
                             sleep(1)
@@ -521,7 +526,9 @@ def main():
                     else:
                         per = (len(MUTUALS) / float(allfe))*100
                         print("[+] Number of mutual followees: "+str(len(MUTUALS)))
+                        sleep(1)
                         print("[+] Percentage of mutual followees: "+str(per)+"%")
+                        sleep(1)
                         print("[+] The usernames of the mutual followees: ")
                         for k in range(len(MUTUALS)):
                             print(f"[+] Username No{k+1}: {MUTUALS[k]}")
@@ -580,9 +587,9 @@ def main():
                 print("[!] No followees found !")
                 sleep(1)
                 if FOLLOWEESF == 0:
-                    print("[+] Followees not found on account: "+str(usernamef))
+                    print("[+] Followees not found on account: "+usernamef)
                 else:
-                    print("[+] Followees not found on account: "+str(usernames))
+                    print("[+] Followees not found on account: "+usernames)
                 sleep(2)
                 print("[+] Exiting...")
                 sleep(1)
