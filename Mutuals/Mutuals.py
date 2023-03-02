@@ -62,7 +62,7 @@ def ScriptInfo():
     print("[+] Github: @"+author)
     print("[+] License: "+license1)
     print("[+] Natural language: "+lang)
-    print("[+] Programming language(s) used: "+str(language))
+    print("[+] Programming language(s) used: "+str(language)
     print("[+] Number of lines: "+str(lines))
     print("[+] Program's name: "+str(name))
     print("[+] API(s) used: "+str(api))
