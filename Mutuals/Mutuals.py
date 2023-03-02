@@ -58,7 +58,7 @@ def ScriptInfo():
         fsize = 0
     stars = 4
     forks = 2
-    print("[+] Author: "+str(author))
+    print("[+] Author: "+strauthor))
     print("[+] Github: @"+str(author))
     print("[+] License: "+str(license1))
     print("[+] Natural language: "+str(lang))
