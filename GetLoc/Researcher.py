@@ -52,7 +52,7 @@ def ScriptInfo():
     ptf = os.path.abspath(f)
     fsize = (os.stat(f)).st_size
     stars = 4
-    forks = 1
+    forks = 2
     print("[+] Author: "+str(author))
     print("[+] Github: @"+str(author))
     print("[+] License: "+str(license1))
