@@ -227,7 +227,6 @@ def main():
         LIST = [followers[i] for i in range(len(followers)) if loc in instaloader.Profile.from_username(loader.context, followers[i]).biography]
         for i in range(len(followers)):
             profile = instaloader.Profile.from_username(loader.context, followers[i])
-            if loc in profile.biography:
         if len(LIST) == 0:
             print("[!] No users with such location found on the followers of the prementioned user.")
             sleep(3)
