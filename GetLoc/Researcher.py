@@ -50,7 +50,7 @@ def ScriptInfo():
     f = '/Instagram/GetLoc/Researcher.py'
     ptf = os.path.abspath(f)
     fsize = (os.stat(f)).st_size
-    stars = 3
+    stars = 4
     forks = 1
     print("[+] Author: "+str(author))
     print("[+] Github: @"+str(author))
