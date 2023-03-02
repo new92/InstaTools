@@ -379,6 +379,7 @@ def main():
                                 f.write("[+] Username No"+str(i+1)+": "+str(MUTUALS[i])+"\n")
                             f.close()
                             print("[+] Successfully saved the mutual followers to a text file named: mutuals.txt")
+                            print("[+] Path: "+str(os.path.abspath("mutuals.txt"))
                         else:
                             print("<ok>")
                             sleep(1)
