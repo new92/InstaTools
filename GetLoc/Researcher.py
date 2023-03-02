@@ -50,7 +50,9 @@ def ScriptInfo():
     lines = 275
     f = '/Instagram/GetLoc/Researcher.py'
     ptf = os.path.abspath(f)
-    fsize = (os.stat(f)).st_size
+    if os.path.exists(os.path.abspath(f)):
+        fsize = (os.stat(f)).st_size
+    else:
     stars = 4
     forks = 2
     print("[+] Author: "+author)
