@@ -50,7 +50,7 @@ def ScriptInfo():
     language = 'Python'
     name = 'Mutuals'
     api = None
-    lines = 615
+    lines = 616
     f = '/Instagram/Mutuals/Mutuals.py'
     if os.path.exists(os.path.abspath(f)):
         fsize = (os.stat(f)).st_size
