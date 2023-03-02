@@ -1,6 +1,7 @@
 """
 Author: new92
 Github: @new92
+
 Python script for retrieving the (possible) location of some followers of a user !
 """
 try:
