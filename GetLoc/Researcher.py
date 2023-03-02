@@ -53,6 +53,7 @@ def ScriptInfo():
     if os.path.exists(os.path.abspath(f)):
         fsize = (os.stat(f)).st_size
     else:
+        fsize = 0
     stars = 4
     forks = 2
     print("[+] Author: "+author)
