@@ -47,7 +47,7 @@ def ScriptInfo():
     language = 'Python'
     name = 'Researcher'
     api = None
-    lines = 279
+    lines = 278
     f = '/Instagram/GetLoc/Researcher.py'
     ptf = os.path.abspath(f)
     fsize = (os.stat(f)).st_size
