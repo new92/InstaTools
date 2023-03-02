@@ -41,7 +41,7 @@ except ImportError as imp:
         system("pip install -r requirements.txt")
 
 def checkUser(user:str) -> bool:
-    return user == None or len(user) > 30 or type(user) != 
+    return user == None or len(user) > 30 or type(user) != str
 
 def ScriptInfo():
     author = 'new92'
