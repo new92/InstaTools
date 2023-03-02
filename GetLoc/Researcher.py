@@ -174,8 +174,7 @@ def main():
             print("[!] Invalid username !")
             sleep(1)
             user=str(input("[::] Please enter again your username: "))
-        user = user.strip()
-        user = user.lower()
+        user = user.lower().strip()
         resp = requests.get(f"https://www.instagram.com/{user}/")
         while resp.status_code == 404 or resp.status_code == 400:
             print("[!] User not found !")
@@ -225,7 +224,7 @@ def main():
             quit(0)
         profile = instaloader.Profile.from_username(loader.context, username)
         followers = [follower.username for follower in profile.get_followers()]
-        LIST = []
+        LIST = [followers[i] for i in range(len(followers)) if loc in instaloader.Profile.from_username(loader.context, followers[i]).biography]
         for i in range(len(followers)):
             profile = instaloader.Profile.from_username(loader.context, followers[i])
             if loc in profile.biography:
