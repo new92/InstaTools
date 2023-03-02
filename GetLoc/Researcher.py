@@ -55,7 +55,7 @@ def ScriptInfo():
     forks = 2
     print("[+] Author: "+author)
     print("[+] Github: @"+author)
-    print("[+] License: "+strlicense1)
+    print("[+] License: "+license1)
     print("[+] Natural language: "+str(lang))
     print("[+] Programming language(s) used: "+str(language))
     print("[+] Number of lines: "+str(lines))
