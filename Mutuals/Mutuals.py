@@ -232,7 +232,6 @@ def main():
                 print("[!] This input can't be blank !")
             sleep(1)
             usernamef=str(input("[::] Please enter again the first username: "))
-        usernamef = usernamef.strip()
         usernamef = usernamef.lower()
         resp = requests.get(f"https://www.instagram.com/{usernamef}/")
         while resp.status_code == 404 or resp.status_code == 400:
