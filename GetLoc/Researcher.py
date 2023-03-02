@@ -53,8 +53,8 @@ def ScriptInfo():
     fsize = (os.stat(f)).st_size
     stars = 4
     forks = 2
-    print("[+] Author: "+author))
-    print("[+] Github: @"+str(author))
+    print("[+] Author: "+author)
+    print("[+] Github: @"author))
     print("[+] License: "+str(license1))
     print("[+] Natural language: "+str(lang))
     print("[+] Programming language(s) used: "+str(language))
