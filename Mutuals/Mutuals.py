@@ -56,7 +56,7 @@ def ScriptInfo():
         fsize = (os.stat(f)).st_size
     else:
         fsize = 0
-    stars = 4
+    stars = 5
     forks = 2
     print("[+] Author: "+author)
     print("[+] Github: @"+author)
