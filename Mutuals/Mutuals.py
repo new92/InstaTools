@@ -69,7 +69,7 @@ def ScriptInfo():
     print(f"[+] File size: {fsize} bytes")
     print(f"[+] Path: {os.path.abspath(f)}")
     print(f"[+] Github repo stars: {stars}")
-    print(f"[+] Github repo forks: {forks}"))
+    print(f"[+] Github repo forks: {forks}")
 
 def banner() -> str:
     return """
