@@ -380,7 +380,7 @@ def main():
                             f.close()
                             print("[+] Successfully saved the mutual followers to a text file named: mutuals.txt")
                             sleep(2)
-                            print("[+] Path: "+str(os.path.abspath("mutuals.txt"))
+                            print("[+] Path: "+os.path.abspath("mutuals.txt"))
                         else:
                             print("<ok>")
                             sleep(1)
@@ -434,7 +434,7 @@ def main():
                         per = (len(MUTUALS) / float(allf))*100
                         print("[+] Number of mutual followers: "+str(len(MUTUALS)))
                         sleep(1)
-                        print("[+] Percentage of mutual followers: "+str(per)+"%"
+                        print("[+] Percentage of mutual followers: "+str(per)+"%")
                         sleep(1)
                         print("[+] The usernames of the mutual followers: ")
                         for k in range(len(MUTUALS)):
@@ -456,7 +456,7 @@ def main():
                             f.close()
                             print("[+] Saved mutual followers to a text file named: mutuals.txt")
                             sleep(2)
-                            print("[+] Path: "+str(os.path.abspath("mutuals.txt"))
+                            print("[+] Path: "+os.path.abspath("mutuals.txt"))
                         else:
                             print("<ok>")
                             sleep(1)
