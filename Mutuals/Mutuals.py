@@ -67,7 +67,7 @@ def ScriptInfo():
     print(f"[+] Program's name: {name}")
     print(f"[+] API(s) used: {api}")
     print(f"[+] File size: {fsize} bytes")
-    print("[+] Path: "+str(os.path.abspath(f)))
+    print(f"[+] Path: "+str(os.path.abspath(f)))
     print("[+] Github repo stars: "+str(stars))
     print("[+] Github repo forks: "+str(forks))
 
