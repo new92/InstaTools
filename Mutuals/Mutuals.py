@@ -45,7 +45,7 @@ def checkUser(user:str) -> bool:
 
 def ScriptInfo():
     author = 'new92'
-    license1 = 'MIT'
+    lice = 'MIT'
     lang = 'es-US'
     language = 'Python'
     name = 'Mutuals'
@@ -60,7 +60,7 @@ def ScriptInfo():
     forks = 2
     print(f"[+] Author: {author}")
     print(f"[+] Github: @{author}")
-    print("[+] License: "+license1)
+    print(f"[+] License: {lice}")
     print("[+] Natural language: "+lang)
     print("[+] Programming language(s) used: "+language)
     print("[+] Number of lines: "+str(lines))
