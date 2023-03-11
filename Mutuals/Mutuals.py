@@ -64,7 +64,7 @@ def ScriptInfo():
     print(f"[+] Natural language: {lang}")
     print(f"[+] Programming language(s) used: {language}")
     print(f"[+] Number of lines: {lines}")
-    print("[+] Program's name: "+name)
+    print(f"[+] Program's name: {name}"+name)
     print("[+] API(s) used: "+str(api))
     print("[+] File size: "+str(fsize)+" bytes")
     print("[+] Path: "+str(os.path.abspath(f)))
