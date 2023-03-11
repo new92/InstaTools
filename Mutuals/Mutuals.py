@@ -63,7 +63,7 @@ def ScriptInfo():
     print(f"[+] License: {lice}")
     print(f"[+] Natural language: {lang}")
     print(f"[+] Programming language(s) used: {language}")
-    print(f"[+] Number of lines: {lines}"+)
+    print(f"[+] Number of lines: {lines}")
     print("[+] Program's name: "+name)
     print("[+] API(s) used: "+str(api))
     print("[+] File size: "+str(fsize)+" bytes")
