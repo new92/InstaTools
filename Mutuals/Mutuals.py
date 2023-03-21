@@ -161,7 +161,10 @@ def main():
             if opt == 1:
                 user=str(input("[::] Please enter the username: "))
                 while checkUser(user):
-                    print("[!] Invalid username !")
+                    if user == None:
+                        print("[!] This field can't be blank !")
+                    else:
+                        print("[!] Invalid username !")
                     sleep(1)
                     user=str(input("[::] Please enter again the username: "))
             elif opt == 2:
@@ -262,7 +265,10 @@ def main():
             if optf == 1:
                 usernamef=str(input("[::] Please enter the username: "))
                 while checkUser(usernamef):
-                    print("[!] Invalid username !")
+                    if usernamef == None:
+                        print("[!] This field can't be blank !")
+                    else:
+                        print("[!] Invalid username !")
                     sleep(1)
                     usernamef=str(input("[::] Please enter again the username: "))
             elif optf == 2:
