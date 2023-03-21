@@ -50,7 +50,7 @@ def ScriptInfo():
     language = 'Python'
     name = 'Mutuals'
     api = None
-    lines = 629
+    lines = 635
     f = '/Instagram/Mutuals/Mutuals.py'
     if os.path.exists(os.path.abspath(f)):
         fsize = (os.stat(f)).st_size
@@ -63,7 +63,7 @@ def ScriptInfo():
     print(f"[+] License: {lice}")
     print(f"[+] Natural language: {lang}")
     print(f"[+] Programming language(s) used: {language}")
-    print(f"[+] Number of lines: {lines}")
+    print(f"[+] Number of lines: {lines} lines")
     print(f"[+] Program's name: {name}")
     print(f"[+] API(s) used: {api}")
     print(f"[+] File size: {fsize} bytes")
@@ -107,7 +107,7 @@ def main():
     print("[+] Author: new92")
     print("[+] Github: @new92")
     print("\n")
-    print("[+] This script finds the mutual followers/followees between 2 accounts !")
+    print("[+] With this script you can find the mutual followers/followings between 2 accounts on Instagram !")
     print("\n")
     nums()
     num=int(input("[::] Please enter a number (from the above ones): "))
@@ -134,8 +134,7 @@ def main():
             print("[!] Invalid username !")
             sleep(1)
             user=str(input("[::] Please enter again your username: "))
-        user = user.strip()
-        user = user.lower()
+        user = user.lower().strip()
         resp = requests.get(f"https://www.instagram.com/{user}/")
         while resp.status_code == 404 or resp.status_code == 400:
             print("[!] User not found !")
@@ -206,8 +205,14 @@ def main():
         print("|"+"-"*45+"|")
         try:
             loader.login(user,psw)
-        except Exception:
-            pass
+        except Exception as ex:
+            print("[!] Login error !")
+            sleep(1)
+            print(f"[+] Error message ==> {ex}")
+            sleep(2)
+            print("[+] Exiting...")
+            sleep(1)
+            quit(0)
         print("[1] Find the mutual followers between 2 accounts")
         print("[2] Find the mutual followees between 2 accounts")
         t=int(input("[::] Please enter a number (from the above ones): "))
@@ -273,8 +278,7 @@ def main():
             print("[!] Invalid username !")
             sleep(1)
             usernames=str(input("[::] Please enter again the second username: "))
-        usernames = usernames.strip()
-        usernames = usernames.lower()
+        usernames = usernames.lower().strip()
         resp = requests.get(f"https://www.instagram.com/{usernames}/")
         while resp.status_code == 404 or resp.status_code == 400:
             print("[!] User not found !")
@@ -359,7 +363,9 @@ def main():
                     else:
                         per = (len(MUTUALS) / float(allf))*100
                         print("[+] Number of mutual followers: "+str(len(MUTUALS)))
+                        sleep(0.5)
                         print("[+] Percentage of mutual followers: "+str(per)+"%")
+                        sleep(0.5)
                         print("[+] The usernames of the mutual followers: ")
                         for k in range(len(MUTUALS)):
                             print(f"[+] Username No{k+1}: {MUTUALS[k]}")
