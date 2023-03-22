@@ -13,6 +13,7 @@ Mutuals provides many features such as:
 - GUI
 - Data visualization
 - Remove login
+- Anonymity
 
 
 And much more ! So stay tuned...
