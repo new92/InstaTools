@@ -8,7 +8,7 @@ Mutuals provides many features such as:
 - Data storage 
 - And it combines data analysis in order to provide to the user as many information as possible.
 
-## Features 😶‍🌫️
+## Features ✨
 
 - GUI
 - Data visualization
