@@ -50,7 +50,7 @@ def ScriptInfo():
     language = 'Python'
     name = 'Mutuals'
     api = None
-    lines = 641
+    lines = 640
     f = '/Instagram/Mutuals/Mutuals.py'
     if os.path.exists(os.path.abspath(f)):
         fsize = (os.stat(f)).st_size
@@ -58,6 +58,11 @@ def ScriptInfo():
         fsize = 0
     stars = 5
     forks = 2
+    issues = 0
+    issuescl = 0
+    prs = 0
+    prscl = 1
+    discs = 1
     print(f"[+] Author: {author}")
     print(f"[+] Github: @{author}")
     print(f"[+] License: {lice}")
@@ -68,8 +73,13 @@ def ScriptInfo():
     print(f"[+] API(s) used: {api}")
     print(f"[+] File size: {fsize} bytes")
     print(f"[+] Path: {os.path.abspath(f)}")
-    print(f"[+] Github repo stars: {stars}")
-    print(f"[+] Github repo forks: {forks}")
+    print(f"[+] Stars: {stars}")
+    print(f"[+] Forks: {forks}")
+    print(f"[+] Open issues: {issues}")
+    print(f"[+] Closed issues: {issuescl}")
+    print(f"[+] Open pull requests: {prs}")
+    print(f"[+] Closed pull requests: {prscl}")
+    print(f"[+] Discussions: {discs}")
 
 def banner() -> str:
     return """
