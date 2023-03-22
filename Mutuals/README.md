@@ -12,7 +12,7 @@ Mutuals provides many features such as:
 
 - GUI
 - Data visualization
-- Speed will be increased
+- Remove login
 
 
 And much more ! So stay tuned...
