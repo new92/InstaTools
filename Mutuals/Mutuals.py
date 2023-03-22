@@ -63,7 +63,7 @@ def ScriptInfo():
     lang = 'en-US'
     language = 'Python'
     api = None
-    lines = 367
+    lines = 357
     f = '/Instagram/IsVer/IsVer.py'
     if os.path.exists(os.path.abspath(f)):
         fsize = (os.stat(f)).st_size
