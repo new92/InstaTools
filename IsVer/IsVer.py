@@ -113,8 +113,8 @@ def Uninstall() -> str:
         for i in range(len(DIRS)):
             os.rmdir(DIRS[i])
         os.rmdir(dire)
-    rmdir(os.path.abspath('Instagram'))
-    return "[+] Files and dependencies uninstalled successfully !"
+    rmdir(os.path.abspath('InstaTools'))
+    return "[✓] Files and dependencies uninstalled successfully !"
 
 def main():
     print(banner())
