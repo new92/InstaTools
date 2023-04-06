@@ -6,6 +6,17 @@ Python script for retrieving the (possible) location of some followers of a user
 """
 try:
     import sys
+    if sys.version_info[0] < 3:
+        print("[!] Error ! This script requires Python version 3.X ! ")
+        print("""[+] Instructions to download Python 3.x : 
+        Linux: apt install python3
+        Windows: https://www.python.org/downloads/
+        MacOS: https://docs.python-guide.org/starting/install3/osx/""")
+        print("[*] Please install the Python 3 and then use this script ✅")
+        sleep(2)
+        print("[+] Exiting...")
+        sleep(1)
+        quit(0)
     import platform
     from os import system
     from time import sleep
