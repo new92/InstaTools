@@ -104,7 +104,7 @@ def ScriptInfo():
     print(f"[+] Number of closed pull requests on the Github repo: {clprs}")
     print(f"[+] Number of discussions on the Github repo: {discs}")
 
-def checkUser(user):
+def checkUser(user:str) -> bool:
     return user == None or len(user) > 30
 
 def nums():
