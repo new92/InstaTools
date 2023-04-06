@@ -54,8 +54,8 @@ def ScriptInfo():
         fsize = (os.stat(f)).st_size
     else:
         fsize = 0
-    stars = 4
-    forks = 2
+    stars = 7
+    forks = 4
     print("[+] Author: "+author)
     print("[+] Github: @"+author)
     print("[+] License: "+license1)
@@ -88,9 +88,9 @@ def Uninstall() -> str:
         for i in range(len(DIRS)):
             os.rmdir(DIRS[i])
         os.rmdir(dire)
-    dir = os.path.abspath('Instagram')
+    dir = os.path.abspath('InstaTools')
     rmdir(dir)
-    return "[+] Files and dependencies uninstalled successfully !"
+    return "[✓] Files and dependencies uninstalled successfully !"
 
 def banner():
     return """
