@@ -42,13 +42,43 @@ except ImportError as imp:
             system("sudo su")
             try:
                 system("sudo pip install -r requirements.txt")
-            except Exception as error:
-                print("[!] Error !")
+            except Exception as ex:
+                print("[!] Error ! Cannot install the required modules !")
                 sleep(1)
-                print(error)
+                print(f"[=] Error message ==> {ex}")
                 sleep(2)
-                print("[+] Exiting...")
-                quit(0)
+                print("[1] Uninstall script")
+                print("[2] Exit")
+                opt=int(input("[>] Please enter a number (from the above ones): "))
+                while opt < 1 or opt > 2 or opt == None:
+                    if opt == None:
+                        print("[!] This field can't be blank !")
+                    else:
+                        print("[!] Invalid number !")
+                        sleep(1)
+                        print("[+] Acceptable numbers: [1,2]")
+                    sleep(1)
+                    print("[1] Uninstall script")
+                    print("[2] Exit")
+                    opt=int(input("[>] Please enter again a number (from the above ones): "))
+                if opt == 1:
+                    def rmdir(dire):
+                        DIRS = []
+                        for root, dirs, files in os.walk(dire):
+                            for file in files:
+                                os.remove(os.path.join(root,file))
+                            for dir in dirs:
+                                DIRS.append(os.path.join(root,dir))
+                        for i in range(len(DIRS)):
+                            os.rmdir(DIRS[i])
+                        os.rmdir(dire)
+                    rmdir(os.path.abspath('InstaTools'))
+                    print("[✓] Files and dependencies uninstalled successfully !")
+                else:
+                    print("[+] Exiting...")
+                    sleep(1)
+                    print("[+] See you next time 👋")
+                    quit(0)
         else:
             system("sudo pip install -r requirements.txt")
     elif sys.platform == 'darwin':
@@ -63,14 +93,19 @@ def ScriptInfo():
     lang = 'en-US'
     language = 'Python'
     api = None
-    lines = 357
-    f = '/Instagram/IsVer/IsVer.py'
+    lines = 413
+    f = '/InstaTools/IsVer/IsVer.py'
     if os.path.exists(os.path.abspath(f)):
         fsize = (os.stat(f)).st_size
     else:
         fsize = 0
     stars = 7
     forks = 4
+    issues = 0
+    issuescl = 0
+    prs = 0
+    prscl = 1
+    discs = 1
     print(f"[+] Author: {author}")
     print(f"[+] Github: @{author}")
     print(f"[+] License: {lice}")
@@ -81,8 +116,13 @@ def ScriptInfo():
     print(f"[+] API(s) used: {api}")
     print(f"[+] File size: {fsize} bytes")
     print(f"[+] Path: {os.path.abspath(f)}")
-    print(f"[+] Github repo stars: {stars}")
-    print(f"[+] Github repo forks: {forks}")
+    print(f"[+] Stars: {stars}")
+    print(f"[+] Forks: {forks}")
+    print(f"[+] Open issues: {issues}")
+    print(f"[+] Closed issues: {issuescl}")
+    print(f"[+] Open pull requests: {prs}")
+    print(f"[+] Closed pull requests: {prscl}")
+    print(f"[+] Discussions: {discs}")
     
 def banner() -> str:
     return """
@@ -100,7 +140,7 @@ def clear():
         system("clear")
 
 def checkUser(user:str) -> bool:
-    return user == None or len(user) > 30
+    return user == None or len(user) > 30 or type(user) != str
 
 def Uninstall() -> str:
     def rmdir(dire):
@@ -145,8 +185,7 @@ def main():
             sleep(1)
             user=str(input("[::] Please enter again your username: "))
         user = user.lower().strip()
-        resp = requests.get(f"https://www.instagram.com/{user}/")
-        while resp.status_code == 404 or resp.status_code == 400:
+        while requests.get(f"https://www.instagram.com/{user}/").status_code != 200:
             print("[!] User not found !")
             sleep(1)
             print("[1] Try with another username")
@@ -196,7 +235,7 @@ def main():
                 else:
                     system("clear")
                 print(Uninstall())
-                sleep(1)
+                sleep(2)
                 print("[+] Thank you for using my script 😁")
                 sleep(2)
                 print("[+] Hope you enjoyed it ! ☺️")
@@ -230,8 +269,7 @@ def main():
             else:
                 print("[!] Invalid username !")
             username=str(input("[::] Please enter again the username of the user: "))
-        resp = requests.get(f"https://www.instagram.com/{username}/")
-        while resp.status_code == 404 or resp.status_code == 400:
+        while requests.get(f"https://www.instagram.com/{username}/").status_code != 200:
             print("[!] User not found !")
             sleep(1)
             print("[1] Try with another username")
@@ -287,7 +325,7 @@ def main():
                 sleep(1)
                 print("[+] Thank you for using my script 😁")
                 sleep(2)
-                print("[+] Hope you enjoyed it ! ☺️")
+                print("[+] Hope you enjoyed it ! 🙂")
                 sleep(2)
                 print("[+] Until next time 👋")
                 sleep(2)
@@ -334,13 +372,31 @@ def main():
     elif num == 2:
         clear()
         ScriptInfo()
+        print("\n\n")
+        print("[1] Return to menu")
+        print("[2] Exit")
+        number=int(input("[::] Please enter a number (from the above ones): "))
+        while number < 1 or number > 2 or number == None:
+            if number == None:
+                print("[!] This field can't be blank !")
+            else:
+                print("[!] Invalid number !")
+            number=int(input("[::] Please enter again a number (from the above ones): "))
+        if number == 1:
+            main()
+        else:
+            print("[+] Exiting...")
+            sleep(1)
+            print("[+] See you next time 👋")
+            sleep(2)
+            quit(0)
     elif num == 3:
         clear()
         print(Uninstall())
-        sleep(1)
+        sleep(2)
         print("[+] Thank you for using my script 😁")
         sleep(2)
-        print("[+] Hope you enjoyed it ! ☺️")
+        print("[+] Hope you enjoyed it ! 🙂")
         sleep(2)
         print("[+] Until next time 👋")
         sleep(2)
