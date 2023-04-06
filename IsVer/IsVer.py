@@ -100,7 +100,7 @@ def clear():
         system("clear")
 
 def checkUser(user:str) -> bool:
-    return user == None or len(user) > 30 or type(user) != str
+    return user == None or len(user) > 30
 
 def Uninstall() -> str:
     def rmdir(dire):
