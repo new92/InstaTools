@@ -42,31 +42,37 @@ except ImportError as imp:
 
 def ScriptInfo():
     author = 'new92'
-    license1 = 'MIT'
+    lice = 'MIT'
     lang = 'es-US'
     language = 'Python'
     name = 'Researcher'
     api = None
-    lines = 278
-    f = '/Instagram/GetLoc/Researcher.py'
+    lines = 327
+    f = '/InstaTools/GetLoc/Researcher.py'
     ptf = os.path.abspath(f)
-    if os.path.exists(os.path.abspath(f)):
-        fsize = (os.stat(f)).st_size
-    else:
-        fsize = 0
+    fsize = (os.stat(f)).st_size
     stars = 7
     forks = 4
-    print("[+] Author: "+author)
-    print("[+] Github: @"+author)
-    print("[+] License: "+license1)
-    print("[+] Natural language: "+lang)
-    print("[+] Programming language(s) used: "+language)
-    print("[+] Number of lines: "+str(lines))
-    print("[+] Program's name: "+name)
-    print("[+] API(s) used: "+str(api))
-    print("[+] File size: "+str(fsize)+" bytes")
-    print("[+] Github repo stars: "+str(stars))
-    print("[+] Github repo forks: "+str(forks))
+    issues = 0
+    clissues = 0
+    prs = 0
+    clprs = 1
+    discs = 1
+    print(f"[+] Author: {author}")
+    print(f"[+] Github: @{author}")
+    print(f"[+] License: {lice}")
+    print(f"[+] Natural language: {lang}")
+    print(f"[+] Programming language(s) used: {language}")
+    print(f"[+] Number of lines: {lines}")
+    print(f"[+] Script's name: {name}")
+    print(f"[+] File size: {fsize} bytes")
+    print(f"[+] Number of stars on the Github repo: {stars}")
+    print(f"[+] Number of forks on the Github repo: {forks}")
+    print(f"[+] Number of open issues on the Github repo: {issues}")
+    print(f"[+] Number of closed issues on the Github repo: {clissues}")
+    print(f"[+] Number of open pull requests on the Github repo: {prs}")
+    print(f"[+] Number of closed pull requests on the Github repo: {clprs}")
+    print(f"[+] Number of discussions on the Github repo: {discs}")
 
 def checkUser(user):
     return user == None or len(user) > 30
@@ -88,8 +94,7 @@ def Uninstall() -> str:
         for i in range(len(DIRS)):
             os.rmdir(DIRS[i])
         os.rmdir(dire)
-    dir = os.path.abspath('InstaTools')
-    rmdir(dir)
+    rmdir(os.path.abspath('Instagram'))
     return "[✓] Files and dependencies uninstalled successfully !"
 
 def banner():
@@ -108,7 +113,7 @@ def main():
     print("[+] Author: new92")
     print("[+] Github: @new92")
     print("\n")
-    print("[+] Description: Python script for getting the possible location of the followers of a user.")
+    print("[+] Researcher: Python script for getting the possible location of the followers of a user.")
     print("\n")
     nums()
     op=int(input("[::] Please enter a number (from the above ones): "))
@@ -130,10 +135,8 @@ def main():
             print("[!] Invalid username !")
             sleep(1)
             username=str(input("[::] Please enter again the username: "))
-        username = username.strip()
-        username = username.lower()
-        resp = requests.get(f"https://www.instagram.com/{username}/")
-        while resp.status_code == 404 or resp.status_code == 400:
+        username = username.lower().strip()
+        while requests.get(f"https://www.instagram.com/{username}/").status_code != 200:
             print("[!] User not found !")
             sleep(1)
             print("[1] Try with another username")
@@ -149,7 +152,7 @@ def main():
                 opt=int(input("[::] Please enter again a number (from the above ones): "))
             if opt == 1:
                 username=str(input("[::] Please enter the username: "))
-                while username == None or len(username) > 30:
+                while checkUser(username):
                     print("[!] Invalid username !")
                     sleep(1)
                     username=str(input("[::] Please enter again the username: "))
@@ -157,6 +160,7 @@ def main():
                 main()
             else:
                 print(Uninstall())
+                sleep(2)
                 print("[+] Thank you for using my script 😁")
                 sleep(2)
                 print("[+] Hope you enjoyed it ! ☺️")
@@ -178,8 +182,7 @@ def main():
             sleep(1)
             user=str(input("[::] Please enter again your username: "))
         user = user.lower().strip()
-        resp = requests.get(f"https://www.instagram.com/{user}/")
-        while resp.status_code == 404 or resp.status_code == 400:
+        while requests.get(f"https://www.instagram.com/{user}/").status_code != 200:
             print("[!] User not found !")
             sleep(1)
             print("[1] Try with another username")
@@ -203,13 +206,12 @@ def main():
                 main()
             else:
                 print(Uninstall())
+                sleep(2)
                 print("[+] Thank you for using my script 😁")
                 sleep(2)
-                print("[+] Hope you enjoyed it ! ☺️")
-                sleep(2)
-                print("[+] Until next time 👋")
+                print("[+] Until we meet again 🫡")
                 sleep(1)
-                exit(0)
+                quit(0)
         passw=str(input("[::] Please enter your password: "))
         while passw == None:
             print("[!] You must enter a password !")
@@ -227,42 +229,89 @@ def main():
             quit(0)
         profile = instaloader.Profile.from_username(loader.context, username)
         followers = [follower.username for follower in profile.get_followers()]
-        LIST = [followers[i] for i in range(len(followers)) if loc in instaloader.Profile.from_username(loader.context, followers[i]).biography]
+        LIST = []
+        for i in range(len(followers)):
+            profile = instaloader.Profile.from_username(loader.context, followers[i])
+            if loc in profile.biography:
+                LIST.append(followers[i])
         if len(LIST) == 0:
-            print("[!] No users with such location found on the followers of the prementioned user.")
+            print(f"[!] No users with such location found on the followers of the user {username}")
             sleep(3)
             print("[+] Exiting...")
             quit(0)
         else:
             per = (float(len(followers)) / len(LIST)) * 100
-            name = 'users_in_'+str(loc)+".txt"
+            name = f'users_in_{loc}.txt'
             f = open(name,"w")
-            print("[+] Location: "+loc.capitalize())
-            print("[+] Searched in user's: "+username+" followers")
-            print("[+] "+str(len(LIST))+" users in location: "+loc.capitalize())
-            print("[+] Percentage of users with this location: "+str(per)+"%")
+            print(f"[+] Location: {loc.capitalize()}")
+            print(f"[+] Searched in user's: {username} followers")
+            print(f"[+] {len(LIST)} users in location: {loc.capitalize()}")
+            print(f"[+] Percentage of users with this location: {per}%")
             print("|"+"-"*20+"users".upper()+"-"*20+"|")
             for i in range(len(LIST)):
-                print("[=] Username: "+str(LIST[i]))
-                f.write("[=] Username: "+str(LIST[i]))
+                print(f"[=] Username: {LIST[i]}")
+                f.write(f"[=] Username: {LIST[i]}")
                 f.write("\n")
             f.close()
-            print(f"[+] The usernames have been saved in a text file named: {name}")
+            print("[✓] Successfully saved usersnames !")
+            sleep(1)
+            print(f"[↪] File name: {name}")
+            print(f"[↪] Path: {os.path.abspath(name)}")
+            print(f"[↪] File size: {(os.stat(name)).st_size}")
+            sleep(3)
+            print("[1] Return to menu")
+            print("[2] Exit")
+            number=int(input("[::] Please enter a number (from the above ones): "))
+            while number < 1 or number > 2 or number == None:
+                if number == None:
+                    print("[!] This field can't be blank !")
+                else:
+                    print("[!] Invalid number !")
+                number=int(input("[::] Please enter again a number (from the above ones): "))
+            if number == 1:
+                main()
+            else:
+                print("[+] Exiting...")
+                sleep(1)
+                print("[+] See you next time 👋")
+                sleep(2)
+                quit(0)
     elif op == 2:
         if platform.system() == 'Windows':
             system("cls")
         else:
             system("clear")
         ScriptInfo()
+        print("\n\n")
+        print("[1] Return to menu")
+        print("[2] Exit")
+        number=int(input("[::] Please enter a number (from the above ones): "))
+        while number < 1 or number > 2 or number == None:
+            if number == None:
+                print("[!] This field can't be blank !")
+            else:
+                print("[!] Invalid number !")
+            number=int(input("[::] Please enter again a number (from the above ones): "))
+        if number == 1:
+            main()
+        else:
+            print("[+] Exiting...")
+            sleep(1)
+            print("[+] See you next time 👋")
+            sleep(2)
+            quit(0)
     elif op == 3:
         if platform.system() == 'Windows':
             system("cls")
         else:
             system("clear")
         print(Uninstall())
+        sleep(2)
         print("[+] Thank you for using my script 😁")
         sleep(2)
-        exit(0)
+        print("[+] Until we meet again 🫡")
+        sleep(1)
+        quit(0)
     else:
         if platform.system() == 'Windows':
             system("cls")
