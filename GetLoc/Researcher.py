@@ -88,7 +88,7 @@ def ScriptInfo():
     language = 'Python'
     name = 'Researcher'
     api = None
-    lines = 357
+    lines = 367
     f = '/InstaTools/GetLoc/Researcher.py'
     fsize = (os.stat(os.path.abspath(f))).st_size
     stars = 7
