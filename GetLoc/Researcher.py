@@ -109,7 +109,7 @@ def ScriptInfo():
     print(f"[+] Number of lines: {lines}")
     print(f"[+] Script's name: {name}")
     print(f"[+] File size: {fsize} bytes")
-    print(f"[+] API used: {api}")
+    print(f"[+] API(s) used: {api}")
     print(f"[+] Number of stars on the Github repo: {stars}")
     print(f"[+] Number of forks on the Github repo: {forks}")
     print(f"[+] Number of open issues on the Github repo: {issues}")
@@ -138,7 +138,7 @@ def Uninstall() -> str:
         for i in range(len(DIRS)):
             os.rmdir(DIRS[i])
         os.rmdir(dire)
-    rmdir(os.path.abspath('Instagram'))
+    rmdir(os.path.abspath('InstaTools'))
     return "[✓] Files and dependencies uninstalled successfully !"
 
 def banner():
