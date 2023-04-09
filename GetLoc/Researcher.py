@@ -90,8 +90,7 @@ def ScriptInfo():
     api = None
     lines = 357
     f = '/InstaTools/GetLoc/Researcher.py'
-    ptf = os.path.abspath(f)
-    fsize = (os.stat(f)).st_size
+    fsize = (os.stat(os.path.abspath(f))).st_size
     stars = 7
     forks = 4
     issues = 0
