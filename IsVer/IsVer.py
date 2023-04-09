@@ -11,6 +11,7 @@ Else:
 """
 try:
     import sys
+    from time import sleep
     if sys.version_info[0] < 3:
         print("[!] Error ! This script requires Python version 3.X ! ")
         print("""[+] Instructions to download Python 3.x : 
@@ -23,12 +24,11 @@ try:
         sleep(1)
         quit(0)
     import platform
-    from time import sleep
     from os import system
     import os
     import instaloader
     import requests
-except ImportError as imp:
+except ImportError:
     print("[!] WARNING: Not all packages used in this program have been installed !")
     sleep(2)
     print("[+] Ignoring warning...")
