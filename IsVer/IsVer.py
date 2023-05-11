@@ -94,7 +94,7 @@ def ScriptInfo():
     language = 'Python'
     api = None
     lines = 413
-    f = '/InstaTools/IsVer/IsVer.py'
+    f = name+'.py'
     if os.path.exists(os.path.abspath(f)):
         fsize = (os.stat(f)).st_size
     else:
