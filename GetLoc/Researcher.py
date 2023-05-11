@@ -89,7 +89,7 @@ def ScriptInfo():
     name = 'Researcher'
     api = None
     lines = 371
-    f = '/InstaTools/GetLoc/Researcher.py'
+    f = name+'.py'
     if os.path.exists(os.path.abspath(f)):
         fsize = (os.stat(f)).st_size
     else:
