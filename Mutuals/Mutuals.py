@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 Author: new92
 Github: @new92
