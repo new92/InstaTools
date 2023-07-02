@@ -1,4 +1,5 @@
 
+![Logo](https://github.com/new92/InstaTools/assets/94779840/3b4328fb-d350-446a-97c6-dfef8ee0466f)
 
 # InstaTools 🧰
 
