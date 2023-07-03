@@ -70,13 +70,13 @@ If you have any feedback, please reach out to us at <a href="mailto:new92github@
 If you are reporting a bug or making a suggestion please make sure your report/suggestion is as much detailed as possible.**
 
 
-## Features
+## Features 🆕
 
 - [ ] More tools / scripts
 - [ ] Fix bugs
 
 
-## FAQ
+## FAQ 🤔
 
 #### Question 1
 
