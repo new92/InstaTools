@@ -100,8 +100,8 @@ Answer ➡️ This error can be resolved by simply logging in to your account, d
   git clone https://github.com/new92/InstaTools
   cd InstaTools
   sudo pip install -r requirements.txt
-  cd <THE FOLDER IN WHICH IS LOCATED THE SCRIPT YOU WANT TO USE>
-  python3 <THE NAME OF THE SCRIPT>.py
+  cd <THE FOLDER IN WHICH IS LOCATED THE SCRIPT YOU WANT TO USE. Example: cd Mutuals>
+  python3 <THE NAME OF THE SCRIPT. Example: python3 Mutuals.py>.py
 ```
 
 ### Windows 🪟
@@ -110,8 +110,8 @@ Answer ➡️ This error can be resolved by simply logging in to your account, d
   git clone https://github.com/new92/InstaTools
   cd InstaTools
   pip install -r requirements.txt
-  cd <THE FOLDER IN WHICH IS LOCATED THE SCRIPT YOU WANT TO USE>
-  python3 <THE NAME OF THE SCRIPT>.py
+  cd <THE FOLDER IN WHICH IS LOCATED THE SCRIPT YOU WANT TO USE. Example: cd Mutuals>
+  python3 <THE NAME OF THE SCRIPT. Example: python3 Mutuals.py>.py
 ```
 
 ### MacOS 🍎
@@ -120,8 +120,8 @@ Answer ➡️ This error can be resolved by simply logging in to your account, d
   git clone https://github.com/new92/InstaTools
   cd InstaTools
   python -m pip install requirements.txt
-  cd <THE FOLDER IN WHICH IS LOCATED THE SCRIPT YOU WANT TO USE>
-  python <THE NAME OF THE SCRIPT>.py
+  cd <THE FOLDER IN WHICH IS LOCATED THE SCRIPT YOU WANT TO USE. Example: cd Mutuals>
+  python <THE NAME OF THE SCRIPT. Example: python3 Mutuals.py>.py
 ```
 
 ## Update 🔄️
