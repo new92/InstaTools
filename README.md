@@ -99,8 +99,8 @@ Answer ➡️ This error can be resolved by simply logging in to your account, d
   sudo su
   git clone https://github.com/new92/InstaTools
   cd InstaTools
-  cd <THE FOLDER IN WHICH IS LOCATED THE SCRIPT YOU WANT TO USE>
   sudo pip install -r requirements.txt
+  cd <THE FOLDER IN WHICH IS LOCATED THE SCRIPT YOU WANT TO USE>
   python3 <THE NAME OF THE SCRIPT>.py
 ```
 
@@ -109,8 +109,8 @@ Answer ➡️ This error can be resolved by simply logging in to your account, d
 ```bash
   git clone https://github.com/new92/InstaTools
   cd InstaTools
-  cd <THE FOLDER IN WHICH IS LOCATED THE SCRIPT YOU WANT TO USE>
   pip install -r requirements.txt
+  cd <THE FOLDER IN WHICH IS LOCATED THE SCRIPT YOU WANT TO USE>
   python3 <THE NAME OF THE SCRIPT>.py
 ```
 
@@ -119,8 +119,8 @@ Answer ➡️ This error can be resolved by simply logging in to your account, d
 ```bash
   git clone https://github.com/new92/InstaTools
   cd InstaTools
-  cd <THE FOLDER IN WHICH IS LOCATED THE SCRIPT YOU WANT TO USE>
   python -m pip install requirements.txt
+  cd <THE FOLDER IN WHICH IS LOCATED THE SCRIPT YOU WANT TO USE>
   python <THE NAME OF THE SCRIPT>.py
 ```
 
