@@ -62,7 +62,7 @@ def ScriptInfo():
     language = 'Python'
     name = 'Mutuals'
     api = None
-    lines = 662
+    lines = 663
     f = name+'.py'
     if os.path.exists(os.path.abspath(f)):
         fsize = (os.stat(f)).st_size
