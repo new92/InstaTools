@@ -58,7 +58,7 @@ def checkUser(user:str) -> bool:
 def ScriptInfo():
     author = 'new92'
     lice = 'MIT'
-    lang = 'es-US'
+    lang = 'en-US'
     language = 'Python'
     name = 'Mutuals'
     api = None
