@@ -85,11 +85,11 @@ except ImportError:
 def ScriptInfo():
     author = 'new92'
     lice = 'MIT'
-    lang = 'es-US'
+    lang = 'en-US'
     language = 'Python'
     name = 'Researcher'
     api = None
-    lines = 371
+    lines = 372
     f = name+'.py'
     if os.path.exists(os.path.abspath(f)):
         fsize = (os.stat(f)).st_size
