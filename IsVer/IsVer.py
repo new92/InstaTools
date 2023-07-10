@@ -30,7 +30,7 @@ try:
     import instaloader
     import requests
 except ImportError:
-    print("[!] WARNING: Not all packages used in this program have been installed !")
+    print("[!] WARNING: Not all packages used in IsVer have been installed !")
     sleep(2)
     print("[+] Ignoring warning...")
     sleep(1)
