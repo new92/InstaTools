@@ -14,19 +14,19 @@ try:
     import sys
     from time import sleep
     if sys.version_info[0] < 3:
-        print("[!] Error ! This script requires Python version 3.X ! ")
+        print("[!] Error ! IsVer requires Python version 3.X ! ")
         print("""[+] Instructions to download Python 3.x : 
         Linux: apt install python3
         Windows: https://www.python.org/downloads/
         MacOS: https://docs.python-guide.org/starting/install3/osx/""")
-        print("[+] Please install the Python 3 and then use this script ✅")
+        print("[+] Please install Python 3 and then use IsVer ✅")
         sleep(2)
         print("[+] Exiting...")
         sleep(1)
         quit(0)
     import platform
-    from os import system
     import os
+    from os import system
     import instaloader
     import requests
 except ImportError:
@@ -46,9 +46,9 @@ except ImportError:
             except Exception as ex:
                 print("[!] Error ! Cannot install the required modules !")
                 sleep(1)
-                print(f"[=] Error message ==> {ex}")
+                print(f"[*] Error message ==> {ex}")
                 sleep(2)
-                print("[1] Uninstall script")
+                print("[1] Uninstall IsVer")
                 print("[2] Exit")
                 opt=int(input("[>] Please enter a number (from the above ones): "))
                 while opt < 1 or opt > 2 or opt == None:
@@ -59,7 +59,7 @@ except ImportError:
                         sleep(1)
                         print("[+] Acceptable numbers: [1,2]")
                     sleep(1)
-                    print("[1] Uninstall script")
+                    print("[1] Uninstall IsVer")
                     print("[2] Exit")
                     opt=int(input("[>] Please enter again a number (from the above ones): "))
                 if opt == 1:
@@ -94,16 +94,16 @@ def ScriptInfo():
     lang = 'en-US'
     language = 'Python'
     api = None
-    lines = 413
+    lines = 415
     f = name+'.py'
     if os.path.exists(os.path.abspath(f)):
         fsize = (os.stat(f)).st_size
     else:
         fsize = 0
-    stars = 27
+    stars = 25
     forks = 6
     issues = 0
-    issuescl = 1
+    issuescl = 0
     prs = 0
     prscl = 1
     discs = 1
@@ -113,10 +113,11 @@ def ScriptInfo():
     print(f"[+] Natural language: {lang}")
     print(f"[+] Programming language(s) used: {language}")
     print(f"[+] Number of lines: {lines} lines")
-    print(f"[+] Program's name: {name}")
+    print(f"[+] Script's name: {name}")
     print(f"[+] API(s) used: {api}")
     print(f"[+] File size: {fsize} bytes")
     print(f"[+] Path: {os.path.abspath(f)}")
+    print("|======|GITHUB REPO INFO|======|")
     print(f"[+] Stars: {stars}")
     print(f"[+] Forks: {forks}")
     print(f"[+] Open issues: {issues}")
@@ -140,8 +141,11 @@ def clear():
     else:
         system("clear")
 
-def checkUser(user:str) -> bool:
-    return user == None or len(user) > 30 or type(user) != str
+def checkUser(username:str) -> bool:
+    return username == None or len(username) > 30 or username == ''
+
+def ValUser(username: str) -> bool:
+    return requests.get(f'https://www.instagram.com/{username}/', allow_redirects=False).status_code != 200
 
 def Uninstall() -> str:
     def rmdir(dire):
@@ -163,18 +167,24 @@ def main():
     print("[+] Author: new92")
     print("[+] Github: @new92")
     print("\n")
-    print("[+] With this script you can see if a user follows verified accounts and if yes which and how many (on Instagram)!")
+    print("[+] With IsVer you can see if a user follows verified accounts and if yes which and how many (on Instagram)")
     print("\n")
     print("[1] Find how many verified users does a user follow (and which ones)")
-    print("[2] Show script's info")
-    print("[3] Uninstall script")
+    print("[2] Show IsVer's info")
+    print("[3] Uninstall IsVer")
     print("[4] Exit")
     num=int(input("[::] Please enter a number (from the above ones): "))
     while num < 1 or num > 4 or num == None:
         if num == None:
-            print("[!] This field can't be blank !")
+            print("[!] This input can't be blank !")
         else:
             print("[!] Invalid number !")
+        sleep(1)
+        print("[1] Find how many verified users does a user follow (and which ones)")
+        print("[2] Show IsVer's info")
+        print("[3] Uninstall IsVer")
+        print("[4] Exit")
+        sleep(3)
         num=int(input("[::] Please enter again a number (from the above ones): "))
     if num == 1:
         clear()
@@ -182,62 +192,61 @@ def main():
         print("|"+"-"*20+"login".upper()+"-"*20+"|")
         user=str(input("[::] Please enter your username: "))
         while checkUser(user):
+            if user == None or user == '':
+                print("[!] This input can't be blank !")
+            else:
+                print("[!] Invalid length ! Acceptable length: <= 30 characters")
+            sleep(1)
             print("[!] Invalid username !")
             sleep(1)
             user=str(input("[::] Please enter again your username: "))
         user = user.lower().strip()
-        while requests.get(f"https://www.instagram.com/{user}/").status_code != 200:
+        while ValUser(user):
             print("[!] User not found !")
             sleep(1)
             print("[1] Try with another username")
             print("[2] Return to menu")
             print("[3] Exit")
-            print("[4] Uninstall and Exit")
+            print("[4] Uninstall IsVer and Exit")
             opt=int(input("[::] Please enter a number (from the above ones): "))
-            while opt < 1 or opt > 4 or opt == None or type(opt) != int:
+            while opt < 1 or opt > 4 or opt == None:
                 if type(opt) == int:
                     print("[!] Invalid number !")
                     sleep(1)
-                    print("[+] Acceptable numbers: [1,2,3,4]")
+                    print("[+] Acceptable numbers: [1/2/3/4]")
                 else:
                     print("[!] This input can't be blank !")
                 sleep(1)
                 print("[1] Try with another username")
                 print("[2] Return to menu")
                 print("[3] Exit")
-                print("[4] Uninstall and Exit")
+                print("[4] Uninstall IsVer and Exit")
                 sleep(1)
                 opt=int(input("[::] Please enter again a number (from the above ones): "))
             if opt == 1:
                 user=str(input("[::] Please enter the username: "))
                 while checkUser(user):
-                    print("[!] Invalid username !")
+                    if user == None or user == '':
+                        print("[!] This input can't be blank !")
+                    else:
+                        print("[!] Invalid length ! Acceptable length: <= 30 characters")
                     sleep(1)
                     user=str(input("[::] Please enter again the username: "))
             elif opt == 2:
-                if platform.system() == 'Windows':
-                    system("cls")
-                else:
-                    system("clear")
+                clear()
                 main()
             elif opt == 3:
-                if platform.system() == 'Windows':
-                    system("cls")
-                else:
-                    system("clear")
+                clear()
                 print("[+] Exiting...")
                 sleep(1)
                 print("[+] Until next time 👋")
                 sleep(1)
                 quit(0)
             else:
-                if platform.system() == 'Windows':
-                    system("cls")
-                else:
-                    system("clear")
+                clear()
                 print(Uninstall())
                 sleep(2)
-                print("[+] Thank you for using my script 😁")
+                print("[+] Thank you for using IsVer 😁")
                 sleep(2)
                 print("[+] Hope you enjoyed it ! ☺️")
                 sleep(2)
@@ -245,11 +254,8 @@ def main():
                 sleep(2)
                 quit(0)
         psw=str(input("[::] Please enter your password: "))
-        while psw == None or type(psw) != str:
-            if psw == None:
-                print("[!] This input can't be blank !")
-            else:
-                print("[!] You must enter an integer !")
+        while psw == None or psw == '':
+            print("[!] This input can't be blank !")
             sleep(1)
             psw=str(input("[::] Please enter again your password: "))
         print("|"+"-"*45+"|")
@@ -258,7 +264,7 @@ def main():
         except Exception as ex:
             print("[!] Login error !")
             sleep(1)
-            print(f"[+] Error message ==> {ex}")
+            print(f"[*] Error message ==> {ex}")
             sleep(2)
             print("[+] Exiting...")
             sleep(1)
@@ -270,7 +276,7 @@ def main():
             else:
                 print("[!] Invalid username !")
             username=str(input("[::] Please enter again the username of the user: "))
-        while requests.get(f"https://www.instagram.com/{username}/").status_code != 200:
+        while ValUser(username):
             print("[!] User not found !")
             sleep(1)
             print("[1] Try with another username")
@@ -278,11 +284,11 @@ def main():
             print("[3] Exit")
             print("[4] Uninstall and Exit")
             opt=int(input("[::] Please enter a number (from the above ones): "))
-            while opt < 1 or opt > 4 or opt == None or type(opt) != int:
+            while opt < 1 or opt > 4 or opt == None:
                 if type(opt) == int:
                     print("[!] Invalid number !")
                     sleep(1)
-                    print("[+] Acceptable numbers: [1,2,3,4]")
+                    print("[+] Acceptable numbers: [1/2/3/4]")
                 else:
                     print("[!] This input can't be blank !")
                 sleep(1)
@@ -302,29 +308,20 @@ def main():
                     sleep(1)
                     username=str(input("[::] Please enter again the username: "))
             elif opt == 2:
-                if platform.system() == 'Windows':
-                    system("cls")
-                else:
-                    system("clear")
+                clear()
                 main()
             elif opt == 3:
-                if platform.system() == 'Windows':
-                    system("cls")
-                else:
-                    system("clear")
+                clear()
                 print("[+] Exiting...")
                 sleep(1)
                 print("[+] Until next time 👋")
                 sleep(1)
                 quit(0)
             else:
-                if platform.system() == 'Windows':
-                    system("cls")
-                else:
-                    system("clear")
+                clear()
                 print(Uninstall())
-                sleep(1)
-                print("[+] Thank you for using my script 😁")
+                sleep(2)
+                print("[+] Thank you for using IsVer 😁")
                 sleep(2)
                 print("[+] Hope you enjoyed it ! 🙂")
                 sleep(2)
@@ -352,11 +349,13 @@ def main():
                     print("[!] Invalid number !")
                 num=int(input("[::] Please enter again a number (from the above ones): "))
             if num == 1:
+                clear()
                 main()
             else:
+                clear()
                 print("[+] Exiting...")
                 sleep(1)
-                print("[+] Thank you for using my script 😁")
+                print("[+] Thank you for using IsVer 😁")
                 quit(0)
         else:
             print(f"[+] The user {username} follows {len(VERS)} verified accounts")
@@ -384,8 +383,10 @@ def main():
                 print("[!] Invalid number !")
             number=int(input("[::] Please enter again a number (from the above ones): "))
         if number == 1:
+            clear()
             main()
         else:
+            clear()
             print("[+] Exiting...")
             sleep(1)
             print("[+] See you next time 👋")
@@ -395,7 +396,7 @@ def main():
         clear()
         print(Uninstall())
         sleep(2)
-        print("[+] Thank you for using my script 😁")
+        print("[+] Thank you for using IsVer 😁")
         sleep(2)
         print("[+] Hope you enjoyed it ! 🙂")
         sleep(2)
@@ -404,7 +405,7 @@ def main():
         quit(0)
     else:
         clear()
-        print("[+] Thank you for using my script 😁")
+        print("[+] Thank you for using IsVer 😁")
         sleep(2)
         print("[+] See you next time 👋")
         sleep(1)
