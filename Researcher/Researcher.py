@@ -95,8 +95,8 @@ def ScriptInfo():
         fsize = (os.stat(f)).st_size
     else:
         fsize = 0
-    stars = 27
-    forks = 6
+    stars = 28
+    forks = 7
     issues = 0
     clissues = 1
     prs = 0
