@@ -101,7 +101,7 @@ def ScriptInfo():
     else:
         fsize = 0
     stars = 28
-    forks = 6
+    forks = 7
     issues = 0
     issuescl = 0
     prs = 0
