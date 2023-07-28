@@ -101,6 +101,9 @@ except ImportError:
     elif platform.system() == 'Windows':
         system("pip install -r requirements.txt")
 
+print("[✓] Successfully loaded modules !")
+sleep(1)
+
 def fpath(fname: str):
     for root, dirs, files in os.walk('/'):
         if fname in files:
@@ -114,7 +117,7 @@ def ScriptInfo():
     lang = 'en-US'
     language = 'Python'
     api = None
-    lines = 429
+    lines = 432
     f = name+'.py'
     if os.path.exists(fpath(f)):
         fsize = os.stat(fpath(f)).st_size
