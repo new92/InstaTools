@@ -15,16 +15,25 @@ try:
     from time import sleep
     if sys.version_info[0] < 3:
         print("[!] Error ! IsVer requires Python version 3.X ! ")
+        sleep(2)
         print("""[+] Instructions to download Python 3.x : 
         Linux: apt install python3
         Windows: https://www.python.org/downloads/
         MacOS: https://docs.python-guide.org/starting/install3/osx/""")
+        sleep(3)
         print("[+] Please install Python 3 and then use IsVer ✅")
         sleep(2)
         print("[+] Exiting...")
         sleep(1)
         quit(0)
     import platform
+    from tqdm import tqdm
+    total_mods = 7
+    bar = tqdm(total=total_mods, desc='Loading modules', unit='module')
+    for _ in range(total_mods):
+        sleep(0.75)
+        bar.update(1)
+    bar.close()
     import os
     from os import system
     import instaloader
@@ -63,6 +72,11 @@ except ImportError:
                     print("[2] Exit")
                     opt=int(input("[>] Please enter again a number (from the above ones): "))
                 if opt == 1:
+                    def fpath(fname: str):
+                        for root, dirs, files in os.walk('/'):
+                            if fname in files:
+                                return os.path.abspath(os.path.join(root, fname))
+                        return None
                     def rmdir(dire):
                         DIRS = []
                         for root, dirs, files in os.walk(dire):
@@ -73,7 +87,7 @@ except ImportError:
                         for i in range(len(DIRS)):
                             os.rmdir(DIRS[i])
                         os.rmdir(dire)
-                    rmdir(os.path.abspath('InstaTools'))
+                    rmdir(fpath('InstaTools'))
                     print("[✓] Files and dependencies uninstalled successfully !")
                 else:
                     print("[+] Exiting...")
@@ -87,6 +101,12 @@ except ImportError:
     elif platform.system() == 'Windows':
         system("pip install -r requirements.txt")
 
+def fpath(fname: str):
+    for root, dirs, files in os.walk('/'):
+        if fname in files:
+            return os.path.abspath(os.path.join(root, fname))
+    return None
+
 def ScriptInfo():
     author = 'new92'
     lice = 'MIT'
@@ -94,10 +114,10 @@ def ScriptInfo():
     lang = 'en-US'
     language = 'Python'
     api = None
-    lines = 415
+    lines = 429
     f = name+'.py'
-    if os.path.exists(os.path.abspath(f)):
-        fsize = os.stat(f).st_size
+    if os.path.exists(fpath(f)):
+        fsize = os.stat(fpath(f)).st_size
     else:
         fsize = 0
     stars = 32
@@ -116,7 +136,7 @@ def ScriptInfo():
     print(f"[+] Script's name: {name}")
     print(f"[+] API(s) used: {api}")
     print(f"[+] File size: {fsize} bytes")
-    print(f"[+] Path: {os.path.abspath(f)}")
+    print(f"[+] Path: {fpath(f)}")
     print("|======|GITHUB REPO INFO|======|")
     print(f"[+] Stars: {stars}")
     print(f"[+] Forks: {forks}")
@@ -158,7 +178,7 @@ def Uninstall() -> str:
         for i in range(len(DIRS)):
             os.rmdir(DIRS[i])
         os.rmdir(dire)
-    rmdir(os.path.abspath('InstaTools'))
+    rmdir(fpath('InstaTools'))
     return "[✓] Files and dependencies uninstalled successfully !"
 
 def main():
@@ -169,18 +189,15 @@ def main():
     print("\n")
     print("[+] With IsVer you can see if a user follows verified accounts and if yes which and how many (on Instagram)")
     print("\n")
-    print("[1] Find how many verified users does a user follow (and which ones)")
+    print("[1] Initiate IsVer")
     print("[2] Show IsVer's info")
     print("[3] Uninstall IsVer")
     print("[4] Exit")
     num=int(input("[::] Please enter a number (from the above ones): "))
-    while num < 1 or num > 4 or num == None:
-        if num == None:
-            print("[!] This input can't be blank !")
-        else:
-            print("[!] Invalid number !")
+    while num < 1 or num > 4:
+        print("[!] Invalid number !")
         sleep(1)
-        print("[1] Find how many verified users does a user follow (and which ones)")
+        print("[1] Initiate IsVer")
         print("[2] Show IsVer's info")
         print("[3] Uninstall IsVer")
         print("[4] Exit")
@@ -209,13 +226,10 @@ def main():
             print("[3] Exit")
             print("[4] Uninstall IsVer and Exit")
             opt=int(input("[::] Please enter a number (from the above ones): "))
-            while opt < 1 or opt > 4 or opt == None:
-                if type(opt) == int:
-                    print("[!] Invalid number !")
-                    sleep(1)
-                    print("[+] Acceptable numbers: [1/2/3/4]")
-                else:
-                    print("[!] This input can't be blank !")
+            while opt < 1 or opt > 4:
+                print("[!] Invalid number !")
+                sleep(1)
+                print("[+] Acceptable numbers: [1/2/3/4]")
                 sleep(1)
                 print("[1] Try with another username")
                 print("[2] Return to menu")
@@ -271,7 +285,7 @@ def main():
             quit(0)
         username=str(input("[::] Please enter the username of the user: "))
         while checkUser(username):
-            if username == None:
+            if username == None or username == '':
                 print("[!] This field can't be blank !")
             else:
                 print("[!] Invalid username !")
@@ -284,13 +298,10 @@ def main():
             print("[3] Exit")
             print("[4] Uninstall and Exit")
             opt=int(input("[::] Please enter a number (from the above ones): "))
-            while opt < 1 or opt > 4 or opt == None:
-                if type(opt) == int:
-                    print("[!] Invalid number !")
-                    sleep(1)
-                    print("[+] Acceptable numbers: [1/2/3/4]")
-                else:
-                    print("[!] This input can't be blank !")
+            while opt < 1 or opt > 4:
+                print("[!] Invalid number !")
+                sleep(1)
+                print("[+] Acceptable numbers: [1/2/3/4]")
                 sleep(1)
                 print("[1] Try with another username")
                 print("[2] Return to menu")
@@ -301,7 +312,7 @@ def main():
             if opt == 1:
                 username=str(input("[::] Please enter the username: "))
                 while checkUser(username):
-                    if username == None:
+                    if username == None or username == '':
                         print("[!] This field can't be blank !")
                     else:
                         print("[!] Invalid username !")
@@ -336,7 +347,7 @@ def main():
             if ver_profile.is_verified:
                 VERS.append(FOLLOWINGS[i])
         followees = profile.followees
-        print(f"[+] User follows verified accounts ? {len(VERS) == 0}")
+        print(f"[+] Is {username} following verified accounts ? {len(VERS) == 0}")
         if len(VERS) == 0:
             sleep(2)
             print("[1] Return to menu")
@@ -358,9 +369,12 @@ def main():
                 print("[+] Thank you for using IsVer 😁")
                 quit(0)
         else:
-            print(f"[+] The user {username} follows {len(VERS)} verified accounts")
+            print(f"[+] {username.capitalize()} follows {len(VERS)} verified accounts")
             sleep(2)
-            print("[+] Accounts: ")
+            print("[+] Accounts:")
+            print("\n")
+            print("-"*10)
+            print("\n")
             for i in range(len(VERS)):
                 print(f"[+] Username: {VERS[i]}")
                 print(f"[+] Followers: {VERS[i].followers}")
