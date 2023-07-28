@@ -108,7 +108,7 @@ def ScriptInfo():
     lines = 387
     f = name+'.py'
     if os.path.exists(fpath(f)):
-        fsize = (os.stat(fpath(f))).st_size
+        fsize = os.stat(fpath(f)).st_size
     else:
         fsize = 0
     stars = 32
@@ -339,7 +339,7 @@ def main():
             sleep(1)
             print(f"[↪] File name: {name}")
             print(f"[↪] Path: {fpath(name)}")
-            print(f"[↪] File size: {(os.stat(fpath(name))).st_size} bytes")
+            print(f"[↪] File size: {os.stat(fpath(name)).st_size} bytes")
             sleep(3)
 
     elif op == 2:
