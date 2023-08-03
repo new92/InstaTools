@@ -75,6 +75,11 @@ If you are reporting a bug or making a suggestion please make sure your report/s
 - [ ] More tools / scripts
 - [ ] Fix bugs
 
+## Next update 🔄
+
+- 2 more scripts added
+- Option for updating the scripts
+
 
 ## FAQ 🤔
 
