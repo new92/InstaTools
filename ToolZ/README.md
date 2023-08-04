@@ -9,7 +9,7 @@ ToolZ offers **live tracking**, **data storage** and **fast results** !
 
 - The user will have the option to track a specific user
 - Data visualization
-- (Maybe) GUI
+- GUI (perhaps) 
 - Automatic login (or no login at all)
 
 > If you like this repository please feel free to star and/or fork it.
