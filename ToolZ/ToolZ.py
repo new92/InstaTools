@@ -144,7 +144,7 @@ def ScriptInfo():
     language = 'Python'
     name = 'ToolZ'
     api = None
-    lines = 0
+    lines = 417
     f = name+'.py'
     if os.path.exists(fpath(f)):
         fsize = os.stat(fpath(f)).st_size
