@@ -22,7 +22,7 @@ try:
         sleep(1)
         quit(0)
     from tqdm import tqdm
-    total_mods = 8
+    total_mods = 9
     bar = tqdm(total=total_mods, desc='Loading modules', unit='module')
     for _ in range(total_mods):
         sleep(0.75)
@@ -31,6 +31,7 @@ try:
     import platform
     from os import system
     import os
+    import json
     import instaloader
     import requests
     from colorama import init, Fore
@@ -138,42 +139,31 @@ def clear():
         system('clear')
 
 def ScriptInfo():
-    author = 'new92'
-    lice = 'MIT'
-    lang = 'en-US'
-    language = 'Python'
-    name = 'ToolZ'
-    api = None
-    lines = 417
-    f = name+'.py'
+    with open('config.json') as config:
+        conf = json.load(config)
+    f = conf['name'] + '.py'
     if os.path.exists(fpath(f)):
         fsize = os.stat(fpath(f)).st_size
     else:
         fsize = 0
-    stars = 35
-    forks = 7
-    issues = 0
-    clissues = 0
-    prs = 0
-    clprs = 4
-    discs = 1
-    print(f"{YELLOW}[+] Author: {author}")
-    print(f"{YELLOW}[+] Github: @{author}")
-    print(f"{YELLOW}[+] License: {lice}")
-    print(f"{YELLOW}[+] Natural language: {lang}")
-    print(f"{YELLOW}[+] Programming language(s) used: {language}")
-    print(f"{YELLOW}[+] Number of lines: {lines}")
-    print(f"{YELLOW}[+] Script's name: {name}")
-    print(f"{YELLOW}[+] File size: {fsize} bytes")
-    print(f"{YELLOW}[+] API(s) used: {api}")
-    print(f"{YELLOW}|======|GITHUB REPO INFO|======|")
-    print(f"{YELLOW}[+] Stars: {stars}")
-    print(f"{YELLOW}[+] Forks: {forks}")
-    print(f"{YELLOW}[+] Open issues: {issues}")
-    print(f"{YELLOW}[+] Closed issues: {clissues}")
-    print(f"{YELLOW}[+] Open pull requests: {prs}")
-    print(f"{YELLOW}[+] Closed pull requests: {clprs}")
-    print(f"{YELLOW}[+] Discussions: {discs}")
+    print(f"[+] Author: {conf['author']}")
+    print(f"[+] Github: @{conf['author']}")
+    print(f"[+] License: {conf['lice']}")
+    print(f"[+] Natural language: {conf['lang']}")
+    print(f"[+] Programming language(s) used: {conf['language']}")
+    print(f"[+] Number of lines: {conf['lines']}")
+    print(f"[+] Script's name: {conf['name']}")
+    print(f"[+] API(s) used: {conf['api']}")
+    print(f"[+] File size: {fsize} bytes")
+    print(f"[+] File path: {fpath(f)}")
+    print(f"|======|GITHUB REPO INFO|======|")
+    print(f"[+] Stars: {conf['stars']}")
+    print(f"[+] Forks: {conf['forks']}")
+    print(f"[+] Open issues: {conf['issues']}")
+    print(f"[+] Closed issues: {conf['clissues']}")
+    print(f"[+] Open pull requests: {conf['prs']}")
+    print(f"[+] Closed pull requests: {conf['clprs']}")
+    print(f"[+] Discussions: {conf['discs']}")
 
 def logo() -> str:
     return f"""{YELLOW}
