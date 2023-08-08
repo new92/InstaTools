@@ -28,13 +28,14 @@ try:
         quit(0)
     import platform
     from tqdm import tqdm
-    total_mods = 7
+    total_mods = 8
     bar = tqdm(total=total_mods, desc='Loading modules', unit='module')
     for _ in range(total_mods):
         sleep(0.75)
         bar.update(1)
     bar.close()
     import os
+    import json
     from os import system
     import instaloader
     import requests
@@ -111,43 +112,31 @@ def fpath(fname: str):
     return None
 
 def ScriptInfo():
-    author = 'new92'
-    lice = 'MIT'
-    name = 'IsVer'
-    lang = 'en-US'
-    language = 'Python'
-    api = None
-    lines = 432
-    f = name+'.py'
+    with open('config.json') as config:
+        conf = json.load(config)
+    f = conf['name'] + '.py'
     if os.path.exists(fpath(f)):
         fsize = os.stat(fpath(f)).st_size
     else:
         fsize = 0
-    stars = 35
-    forks = 7
-    issues = 0
-    issuescl = 0
-    prs = 0
-    prscl = 1
-    discs = 1
-    print(f"[+] Author: {author}")
-    print(f"[+] Github: @{author}")
-    print(f"[+] License: {lice}")
-    print(f"[+] Natural language: {lang}")
-    print(f"[+] Programming language(s) used: {language}")
-    print(f"[+] Number of lines: {lines} lines")
-    print(f"[+] Script's name: {name}")
-    print(f"[+] API(s) used: {api}")
+    print(f"[+] Author: {conf['author']}")
+    print(f"[+] Github: @{conf['author']}")
+    print(f"[+] License: {conf['lice']}")
+    print(f"[+] Natural language: {conf['lang']}")
+    print(f"[+] Programming language(s) used: {conf['language']}")
+    print(f"[+] Number of lines: {conf['lines']}")
+    print(f"[+] Script's name: {conf['name']}")
+    print(f"[+] API(s) used: {conf['api']}")
     print(f"[+] File size: {fsize} bytes")
-    print(f"[+] Path: {fpath(f)}")
-    print("|======|GITHUB REPO INFO|======|")
-    print(f"[+] Stars: {stars}")
-    print(f"[+] Forks: {forks}")
-    print(f"[+] Open issues: {issues}")
-    print(f"[+] Closed issues: {issuescl}")
-    print(f"[+] Open pull requests: {prs}")
-    print(f"[+] Closed pull requests: {prscl}")
-    print(f"[+] Discussions: {discs}")
+    print(f"[+] File path: {fpath(f)}")
+    print(f"|======|GITHUB REPO INFO|======|")
+    print(f"[+] Stars: {conf['stars']}")
+    print(f"[+] Forks: {conf['forks']}")
+    print(f"[+] Open issues: {conf['issues']}")
+    print(f"[+] Closed issues: {conf['clissues']}")
+    print(f"[+] Open pull requests: {conf['prs']}")
+    print(f"[+] Closed pull requests: {conf['clprs']}")
+    print(f"[+] Discussions: {conf['discs']}")
     
 def banner() -> str:
     return """
@@ -165,7 +154,7 @@ def clear():
         system("clear")
 
 def checkUser(username:str) -> bool:
-    return username == None or len(username) > 30 or username == ''
+    return username == None or len(username) > 30 or username == '' or username == ' '
 
 def ValUser(username: str) -> bool:
     return requests.get(f'https://www.instagram.com/{username}/', allow_redirects=False).status_code != 200
@@ -212,7 +201,7 @@ def main():
         print("|"+"-"*20+"login".upper()+"-"*20+"|")
         user=str(input("[::] Please enter your username: "))
         while checkUser(user):
-            if user == None or user == '':
+            if user == None or user == '' or user == ' ':
                 print("[!] This input can't be blank !")
             else:
                 print("[!] Invalid length ! Acceptable length: <= 30 characters")
@@ -243,7 +232,7 @@ def main():
             if opt == 1:
                 user=str(input("[::] Please enter the username: "))
                 while checkUser(user):
-                    if user == None or user == '':
+                    if user == None or user == '' or user == ' ':
                         print("[!] This input can't be blank !")
                     else:
                         print("[!] Invalid length ! Acceptable length: <= 30 characters")
@@ -288,11 +277,12 @@ def main():
             quit(0)
         username=str(input("[::] Please enter the username of the user: "))
         while checkUser(username):
-            if username == None or username == '':
+            if username == None or username == '' or username == ' ':
                 print("[!] This field can't be blank !")
             else:
                 print("[!] Invalid username !")
             username=str(input("[::] Please enter again the username of the user: "))
+        username = username.lower().strip()
         while ValUser(username):
             print("[!] User not found !")
             sleep(1)
@@ -315,7 +305,7 @@ def main():
             if opt == 1:
                 username=str(input("[::] Please enter the username: "))
                 while checkUser(username):
-                    if username == None or username == '':
+                    if username == None or username == '' or username == ' ':
                         print("[!] This field can't be blank !")
                     else:
                         print("[!] Invalid username !")
@@ -372,7 +362,7 @@ def main():
                 print("[+] Thank you for using IsVer 😁")
                 quit(0)
         else:
-            print(f"[+] {username.capitalize()} follows {len(VERS)} verified accounts")
+            print(f"[+] {username} follows {len(VERS)} verified accounts")
             sleep(2)
             print("[+] Accounts:")
             print("\n")
