@@ -22,7 +22,7 @@ try:
         sleep(1)
         quit(0)
     from tqdm import tqdm
-    total_mods = 7
+    total_mods = 8
     bar = tqdm(total=total_mods, desc='Loading modules', unit='module')
     for _ in range(total_mods):
         sleep(0.75)
@@ -32,6 +32,7 @@ try:
     from os import system
     import instaloader
     import os
+    import json
     import requests
 except ImportError or ModuleNotFoundError:
     print("[!] WARNING: Not all packages used in Mutuals have been installed !")
@@ -100,7 +101,7 @@ print("[✓] Successfully loaded modules !")
 sleep(1)
 
 def checkUser(username:str) -> bool:
-    return username == None or len(username) > 30 or username == ''
+    return username == None or len(username) > 30 or username == '' or username == ' '
 
 def valUser(username: str) -> bool:
     return requests.get(f'https://www.instagram.com/{username}/', allow_redirects=False).status_code != 200
@@ -112,43 +113,31 @@ def fpath(fname: str):
     return None
 
 def ScriptInfo():
-    author = 'new92'
-    lice = 'MIT'
-    lang = 'en-US'
-    language = 'Python'
-    name = 'Mutuals'
-    api = None
-    lines = 608
-    f = name+'.py'
+    with open('config.json') as config:
+        conf = json.load(config)
+    f = conf['name'] + '.py'
     if os.path.exists(fpath(f)):
         fsize = os.stat(fpath(f)).st_size
     else:
         fsize = 0
-    stars = 35
-    forks = 7
-    issues = 0
-    issuescl = 0
-    prs = 0
-    prscl = 1
-    discs = 1
-    print(f"[+] Author: {author}")
-    print(f"[+] Github: @{author}")
-    print(f"[+] License: {lice}")
-    print(f"[+] Natural language: {lang}")
-    print(f"[+] Programming language(s) used: {language}")
-    print(f"[+] Number of lines: {lines} lines")
-    print(f"[+] Script's name: {name}")
-    print(f"[+] API(s) used: {api}")
+    print(f"[+] Author: {conf['author']}")
+    print(f"[+] Github: @{conf['author']}")
+    print(f"[+] License: {conf['lice']}")
+    print(f"[+] Natural language: {conf['lang']}")
+    print(f"[+] Programming language(s) used: {conf['language']}")
+    print(f"[+] Number of lines: {conf['lines']}")
+    print(f"[+] Script's name: {conf['name']}")
+    print(f"[+] API(s) used: {conf['api']}")
     print(f"[+] File size: {fsize} bytes")
-    print(f"[+] Path: {fpath(f)}")
-    print("|======|GITHUB REPO INFO|======|")
-    print(f"[+] Stars: {stars}")
-    print(f"[+] Forks: {forks}")
-    print(f"[+] Open issues: {issues}")
-    print(f"[+] Closed issues: {issuescl}")
-    print(f"[+] Open pull requests: {prs}")
-    print(f"[+] Closed pull requests: {prscl}")
-    print(f"[+] Discussions: {discs}")
+    print(f"[+] File path: {fpath(f)}")
+    print(f"|======|GITHUB REPO INFO|======|")
+    print(f"[+] Stars: {conf['stars']}")
+    print(f"[+] Forks: {conf['forks']}")
+    print(f"[+] Open issues: {conf['issues']}")
+    print(f"[+] Closed issues: {conf['clissues']}")
+    print(f"[+] Open pull requests: {conf['prs']}")
+    print(f"[+] Closed pull requests: {conf['clprs']}")
+    print(f"[+] Discussions: {conf['discs']}")
 
 def banner() -> str:
     return """
@@ -211,10 +200,10 @@ def main():
         print("|"+"-"*20+"login".upper()+"-"*20+"|")
         user=str(input("[::] Please enter your username: "))
         while checkUser(user):
-            if user == None or user == '':
+            if user == None or user == '' or user == ' ':
                 print("[!] This field can't be blank !")
             else:
-                print("[!] Invalid username !")
+                print("[!] Invalid length ! Acceptable length: 30 or less characters")
             sleep(1)
             user=str(input("[::] Please enter again your username: "))
         user = user.lower().strip()
@@ -240,10 +229,10 @@ def main():
             if opt == 1:
                 user=str(input("[::] Please enter the username: "))
                 while checkUser(user):
-                    if user == None or user == '':
+                    if user == None or user == '' or user == ' ':
                         print("[!] This field can't be blank !")
                     else:
-                        print("[!] Invalid username !")
+                        print("[!] Invalid length ! Acceptable length: 30 or less characters")
                     sleep(1)
                     user=str(input("[::] Please enter again the username: "))
             elif opt == 2:
@@ -296,10 +285,10 @@ def main():
             t=int(input("[::] Please enter again a number (from the above ones): "))
         usernamef=str(input("[::] Please enter the first username: "))
         while checkUser(usernamef):
-            if usernamef != None:
-                print("[!] The length of the username must be 30 or lower !")
-            else:
+            if usernamef == None or usernamef == '' or usernamef == ' ':
                 print("[!] This field can't be blank !")
+            else:
+                print("[!] Invalid length ! Acceptable length: <= 30 characters")
             sleep(1)
             usernamef=str(input("[::] Please enter again the first username: "))
         usernamef = usernamef.lower().strip()
@@ -325,10 +314,10 @@ def main():
             if optf == 1:
                 usernamef=str(input("[::] Please enter the username: "))
                 while checkUser(usernamef):
-                    if usernamef == None or usernamef == '':
+                    if usernamef == None or usernamef == '' or usernamef == ' ':
                         print("[!] This field can't be blank !")
                     else:
-                        print("[!] Invalid username !")
+                        print("[!] Invalid length ! Acceptable length: <= 30 characters")
                     sleep(1)
                     usernamef=str(input("[::] Please enter again the username: "))
             elif optf == 2:
@@ -355,7 +344,10 @@ def main():
                 quit(0)
         usernames=str(input("[::] Please enter the second username: "))
         while checkUser(usernames):
-            print("[!] Invalid username !")
+            if usernames == None or usernames == '' or usernames == ' ':
+                print("[!] This field can't be blank !")
+            else:
+                print("[!] Invalid length ! Acceptable length: 30 or less characters")
             sleep(1)
             usernames=str(input("[::] Please enter again the second username: "))
         usernames = usernames.lower().strip()
@@ -379,10 +371,10 @@ def main():
             if opts == 1:
                 usernames=str(input("[::] Please enter the username: "))
                 while checkUser(usernames):
-                    if usernames != None:
-                        print("[!] The length of the username must be 30 or lower")
-                    else:
+                    if usernames == None or usernames == '' or usernames == ' ':
                         print("[!] This field can't be blank !")
+                    else:
+                        print("[!] Invalid length ! Acceptable length: <= 30 characters")
                     sleep(1)
                     usernames=str(input("[::] Please enter again the username: "))
             elif opts == 2:
@@ -397,7 +389,7 @@ def main():
                 quit(0)
         profilef=instaloader.Profile.from_username(loader.context, usernamef)
         profiles=instaloader.Profile.from_username(loader.context, usernames)
-        ANS = ['yes','Yes','y','Y','yEs','YES','yES','YeS','YEs','yeS','no','No','n','N','nO']
+        ANS = ['yes','no']
         if t == 1:
             clear()
             FOLLOWERSF=[follower.username for follower in profilef.get_followers()]
@@ -423,7 +415,7 @@ def main():
                         print("[+] Acceptable answers: [yes/no]")
                         sleep(1)
                         savem=str(input("[?] Save the mutual followers ? "))
-                        while savem not in ANS or savem == None or savem == '':
+                        while savem.lower() not in ANS or savem == None or savem == '' or savem == ' ':
                             if type(savem) == str:
                                 print("[!] Invalid answer !")
                                 sleep(1)
@@ -432,7 +424,7 @@ def main():
                                 print("[!] This field can't be blank !")
                             sleep(1)
                             savem=str(input("[?] Save the mutual followers ? "))
-                        if savem in ANS[:10]:
+                        if savem.lower() == ANS[0]:
                             name = 'mutuals.txt'
                             f = open(name,'w')
                             for i in range(len(MUTUALS)):
@@ -467,7 +459,7 @@ def main():
                         print("[+] Acceptable answers: [yes/no]")
                         sleep(1)
                         savem=str(input("[?]  Save the mutual followers ? "))
-                        while savem not in ANS or savem == None or savem == '':
+                        while savem.lower() not in ANS or savem == None or savem == '' or savem == ' ':
                             if type(savem) == str:
                                 print("[!] Invalid answer !")
                                 sleep(1)
@@ -476,11 +468,11 @@ def main():
                                 print("[!] This field can't be blank !")
                             sleep(1)
                             savem=str(input("[?] Save the mutual followers ? "))
-                        if savem in ANS[:10]:
+                        if savem.lower() == ANS[0]:
                             name = 'mutuals.txt'
                             f = open(name,'w')
                             for i in range(len(MUTUALS)):
-                                f.write(f"[+] Username No{i+1}: {MUTUALS[i]}\n")
+                                f.write(f"[+] Username No{str(i+1)}: {MUTUALS[i]}\n")
                             f.close()
                             print("[✓] Successfully saved mutual followers to a text file named: mutuals.txt")
                             sleep(2)
@@ -525,7 +517,7 @@ def main():
                         for k in range(len(MUTUALS)):
                             print(f"[+] Username No{k+1}: {MUTUALS[k]}")
                         savem=str(input("[?] Save the mutual followees ? [yes/no] "))
-                        while savem not in ANS or savem == None or savem == '':
+                        while savem.lower() not in ANS or savem == None or savem == '' or savem == ' ':
                             if type(savem) == str:
                                 print("[!] Invalid answer !")
                                 sleep(1)
@@ -534,11 +526,11 @@ def main():
                                 print("[!] This input can't be blank !")
                             sleep(1)
                             savem=str(input("[?] Save the mutual followees ? [yes/no] "))
-                        if savem in ANS[:10]:
+                        if savem.lower() == ANS[0]:
                             name = 'mutualsf.txt'
                             f = open(name,'w')
                             for i in range(len(MUTUALS)):
-                                f.write(f"[+] Username No{i+1}: {MUTUALS[i]}\n")
+                                f.write(f"[+] Username No{str(i+1)}: {MUTUALS[i]}\n")
                             f.close()
                             print("[✓] Successfully saved mutual followees to a text file !")
                             sleep(2)
