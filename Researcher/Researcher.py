@@ -21,9 +21,17 @@ try:
         print("[+] Exiting...")
         sleep(1)
         quit(0)
+    from tqdm import tqdm
+    total_mods = 8
+    bar = tqdm(total=total_mods, desc='Loading modules', unit='module')
+    for _ in range(total_mods):
+        sleep(0.75)
+        bar.update(1)
+    bar.close()
     import platform
     from os import system
     import os
+    import json
     import instaloader
     import requests
 except ImportError or ModuleNotFoundError:
@@ -99,46 +107,34 @@ def fpath(fname: str):
     return None
 
 def ScriptInfo():
-    author = 'new92'
-    lice = 'MIT'
-    lang = 'en-US'
-    language = 'Python'
-    name = 'Researcher'
-    api = None
-    lines = 387
-    f = name+'.py'
+    with open('config.json') as config:
+        conf = json.load(config)
+    f = conf['name'] + '.py'
     if os.path.exists(fpath(f)):
         fsize = os.stat(fpath(f)).st_size
     else:
         fsize = 0
-    stars = 35
-    forks = 7
-    issues = 0
-    clissues = 0
-    prs = 0
-    clprs = 1
-    discs = 1
-    print(f"[+] Author: {author}")
-    print(f"[+] Github: @{author}")
-    print(f"[+] License: {lice}")
-    print(f"[+] Natural language(s): {lang}")
-    print(f"[+] Programming language(s) used: {language}")
-    print(f"[+] Number of lines: {lines}")
-    print(f"[+] Script's name: {name}")
+    print(f"[+] Author: {conf['author']}")
+    print(f"[+] Github: @{conf['author']}")
+    print(f"[+] License: {conf['lice']}")
+    print(f"[+] Natural language: {conf['lang']}")
+    print(f"[+] Programming language(s) used: {conf['language']}")
+    print(f"[+] Number of lines: {conf['lines']}")
+    print(f"[+] Script's name: {conf['name']}")
+    print(f"[+] API(s) used: {conf['api']}")
     print(f"[+] File size: {fsize} bytes")
-    print(f"[+] API(s) used: {api}")
-    print(f"[+] Path: {fpath(f)}")
-    print("|======|GITHUB REPO INFO|======|")
-    print(f"[+] Stars: {stars}")
-    print(f"[+] Forks: {forks}")
-    print(f"[+] Open issues: {issues}")
-    print(f"[+] Closed issues: {clissues}")
-    print(f"[+] Open pull requests: {prs}")
-    print(f"[+] Closed pull requests: {clprs}")
-    print(f"[+] Discussions: {discs}")
+    print(f"[+] File path: {fpath(f)}")
+    print(f"|======|GITHUB REPO INFO|======|")
+    print(f"[+] Stars: {conf['stars']}")
+    print(f"[+] Forks: {conf['forks']}")
+    print(f"[+] Open issues: {conf['issues']}")
+    print(f"[+] Closed issues: {conf['clissues']}")
+    print(f"[+] Open pull requests: {conf['prs']}")
+    print(f"[+] Closed pull requests: {conf['clprs']}")
+    print(f"[+] Discussions: {conf['discs']}")
 
 def checkUser(user: str) -> bool:
-    return user == None or len(user) > 30 or user == ''
+    return user == None or len(user) > 30 or user == '' or user == ' '
 
 def valUser(username: str) -> bool:
     return requests.get(f'https://www.instagram.com/{username}/', allow_redirects=False).status_code != 200
@@ -201,7 +197,12 @@ def main():
         sleep(4)
         username=str(input("[::] Please enter the username: "))
         while checkUser(username):
-            print("[!] Invalid username !")
+            if username == None or username == '' or username == ' ':
+                print("[!] This field can't be blank !")
+            else:
+                print("[!] Invalid length !")
+                sleep(1)
+                print("[+] Acceptable username length: 30 or less characters")
             sleep(1)
             username=str(input("[::] Please enter again the username: "))
         username = username.lower().strip()
@@ -222,10 +223,12 @@ def main():
             if opt == 1:
                 username=str(input("[::] Please enter the username: "))
                 while checkUser(username):
-                    if username == '' or username == None:
+                    if username == '' or username == None or username == ' ':
                         print("[!] This field can't be blank !")
                     else:
-                        print("[!] Invalid username !")
+                        print("[!] Invalid length !")
+                        sleep(1)
+                        print("[+] Acceptable username length: 30 or less characters")
                     sleep(1)
                     username=str(input("[::] Please enter again the username: "))
             elif opt == 2:
@@ -252,10 +255,12 @@ def main():
         print("|"+"-"*20+"login".upper()+"-"*20+"|")
         user=str(input("[::] Please enter your username: "))
         while checkUser(user):
-            if user == None or user == '':
+            if user == None or user == '' or user == ' ':
                 print("[!] This field can't be blank !")
             else:
-                print("[!] Invalid username !")
+                print("[!] Invalid length !")
+                sleep(1)
+                print("[+] Acceptable username length: 30 or less characters")
             sleep(1)
             user=str(input("[::] Please enter again your username: "))
         user = user.lower().strip()
@@ -276,10 +281,12 @@ def main():
             if opt == 1:
                 username=str(input("[::] Please enter the username: "))
                 while checkUser(username):
-                    if username == None or username == '':
+                    if username == None or username == '' or username == ' ':
                         print("[!] This field can't be blank !")
                     else:
-                        print("[!] Invalid username !")
+                        print("[!] Invalid length !")
+                        sleep(1)
+                        print("[+] Acceptable username length: 30 or less characters")
                     sleep(1)
                     username=str(input("[::] Please enter again the username: "))
             elif opt == 2:
