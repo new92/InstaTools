@@ -2,6 +2,7 @@
 """
 Author: new92
 Github: @new92
+Leetcode: @new92
 
 Script in which the user enters a username and the script returns if the user with the specific username follows verified users.
 If yes then:
