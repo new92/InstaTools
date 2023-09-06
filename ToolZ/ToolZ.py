@@ -3,7 +3,7 @@ Author: new92
 Github: @new92
 Leetcode: @new92
 
-Keeps track on the users which unfollowed you.
+ToolZ: Python script for keeping track on the users which unfollowed you.
 """
 
 try:
@@ -23,7 +23,7 @@ try:
         sleep(1)
         quit(0)
     from tqdm import tqdm
-    total_mods = 9
+    total_mods = 10
     bar = tqdm(total=total_mods, desc='Loading modules', unit='module')
     for _ in range(total_mods):
         sleep(0.75)
@@ -36,6 +36,7 @@ try:
     import instaloader
     import requests
     from colorama import init, Fore
+    from datetime import datetime
 except ImportError or ModuleNotFoundError:
     print("[!] WARNING: Not all packages used in ToolZ have been installed !")
     sleep(2)
@@ -114,7 +115,7 @@ def fpath(fname: str):
     return None
 
 def checkUser(username: str) -> bool:
-    return len(username) > 30 or username == None or username == ''
+    return len(username) > 30 or username in [None, '', ' ']
 
 def valUser(username: str) -> bool:
     return requests.get(f'https://www.instagram.com/{username}/', allow_redirects=False).status_code != 200
@@ -166,6 +167,8 @@ def ScriptInfo():
     print(f"[+] Closed pull requests: {conf['clprs']}")
     print(f"[+] Discussions: {conf['discs']}")
 
+ANS = ['yes', 'no']
+
 def logo() -> str:
     return f"""{YELLOW}
          tttt                                            lllllll
@@ -212,6 +215,59 @@ def main():
         num=int(input(f"{YELLOW}[::] Please enter again a number (from the above ones): "))
     if num == 1:
         clear()
+        print(f"{GREEN}[+] Acceptable answers: [yes/no]")
+        sleep(1)
+        con=str(input(f"{YELLOW}[>] Do you consent that the author (new92) has no responsibility for any loss or damage may the script cause to the given (Instagram) account ? "))
+        while con.lower() not in ANS or con == None or con == '' or con == ' ':
+            if con == None or con == '' or con == ' ':
+                print(f"{RED}[!] This field can't be blank !")
+            else:
+                print(f"{RED}[!] Invalid answer !")
+                sleep(1)
+                print(f"{GREEN}[+] Acceptable answers: [yes/no]")
+            sleep(1)
+            con=str(input(f"{YELLOW}[>] Do you consent that the author (new92) has no responsibility for any loss or damage may the script cause to the given (Instagram) account ? "))
+        if con.lower() == ANS[0]:
+            f = open("cons.txt","a")
+            f.write(f"\n[=] Date: {datetime.now()}\n")
+            f.write("[=] User: Yes I consent that the author (new92) has no responsibility for any loss or damage may the script cause to the given Instagram account.\n")
+            f.write("-"*40)
+            f.close()
+        else:
+            print(f"{YELLOW}[OK]")
+            sleep(1)
+            print(f"{YELLOW}[1] Exit")
+            print(f"{YELLOW}[2] Uninstall ToolZ and exit")
+            num=int(input(f"{YELLOW}[>] Please enter a number (from the above ones): "))
+            valErr = num in [1,2]
+            while not valErr:
+                try:
+                    print(f"{YELLOW}[1] Exit")
+                    print(f"{YELLOW}[2] Uninstall ToolZ and exit")
+                    sleep(1)
+                    num=int(input(f"{YELLOW}[>] Please enter a number (from the above ones): "))
+                    valErr = num in [1,2]
+                except ValueError:
+                    print(f"{RED}[!] Please enter a valid number.")
+                    sleep(1)
+                    print(f"{GREEN}[+] Acceptable numbers: [1,2]")
+                    sleep(1)
+            if num == 1:
+                clear()
+                print(f"{YELLOW}[+] Exiting...")
+                sleep(1)
+                quit(0)
+            else:
+                clear()
+                print(Uninstall())
+                sleep(2)
+                print(f"{YELLOW}[+] Exiting...")
+                sleep(1)
+                print(f"{YELLOW}[+] Thank you for using ToolZ 🫡")
+                sleep(2)
+                print(f"{YELLOW}[+] Until we meet again 👋")
+                sleep(1)
+                quit(0)
         print(f'{GREEN}|---------------|LOGIN|---------------|')
         username=str(input(f"{YELLOW}[::] Please enter your username: "))
         while checkUser(username):
