@@ -268,6 +268,7 @@ def main():
                 print(f"{YELLOW}[+] Until we meet again 👋")
                 sleep(1)
                 quit(0)
+        sleep(1)
         print(f'{GREEN}|---------------|LOGIN|---------------|')
         username=str(input(f"{YELLOW}[::] Please enter your username: "))
         while checkUser(username):
