@@ -4,6 +4,11 @@ Github: @new92
 Leetcode: @new92
 
 ToolZ: Python script for keeping track on the users which unfollowed you.
+
+*********IMPORTANT*********
+User's login credentials (such as: username, password) will not be stored or saved ! 
+Will be used only for the purpose of this script.
+***************************
 """
 
 try:
@@ -135,10 +140,7 @@ def Uninstall() -> str:
     return f'{GREEN}[✓] Files and dependencies uninstalled successfully !'
 
 def clear():
-    if platform.system() == 'Windows':
-        system('cls')
-    else:
-        system('clear')
+    system('cls') if platform.system() == 'Windows' else system('clear')
 
 def ScriptInfo():
     with open('config.json') as config:
@@ -148,24 +150,25 @@ def ScriptInfo():
         fsize = os.stat(fpath(f)).st_size
     else:
         fsize = 0
-    print(f"[+] Author: {conf['author']}")
-    print(f"[+] Github: @{conf['author']}")
-    print(f"[+] License: {conf['lice']}")
-    print(f"[+] Natural language: {conf['lang']}")
-    print(f"[+] Programming language(s) used: {conf['language']}")
-    print(f"[+] Number of lines: {conf['lines']}")
-    print(f"[+] Script's name: {conf['name']}")
-    print(f"[+] API(s) used: {conf['api']}")
-    print(f"[+] File size: {fsize} bytes")
-    print(f"[+] File path: {fpath(f)}")
-    print(f"|======|GITHUB REPO INFO|======|")
-    print(f"[+] Stars: {conf['stars']}")
-    print(f"[+] Forks: {conf['forks']}")
-    print(f"[+] Open issues: {conf['issues']}")
-    print(f"[+] Closed issues: {conf['clissues']}")
-    print(f"[+] Open pull requests: {conf['prs']}")
-    print(f"[+] Closed pull requests: {conf['clprs']}")
-    print(f"[+] Discussions: {conf['discs']}")
+    print(f"{YELLOW}[+] Author: {conf['author']}")
+    print(f"{YELLOW}[+] Github: @{conf['author']}")
+    print(f"{YELLOW}[+] Leetcode: @{conf['author']}")
+    print(f"{YELLOW}[+] License: {conf['lice']}")
+    print(f"{YELLOW}[+] Natural language: {conf['lang']}")
+    print(f"{YELLOW}[+] Programming language(s) used: {conf['language']}")
+    print(f"{YELLOW}[+] Number of lines: {conf['lines']}")
+    print(f"{YELLOW}[+] Script's name: {conf['name']}")
+    print(f"{YELLOW}[+] API(s) used: {conf['api']}")
+    print(f"{YELLOW}[+] File size: {fsize} bytes")
+    print(f"{YELLOW}[+] File path: {fpath(f)}")
+    print(f"{YELLOW}|======|GITHUB REPO INFO|======|")
+    print(f"{YELLOW}[+] Stars: {conf['stars']}")
+    print(f"{YELLOW}[+] Forks: {conf['forks']}")
+    print(f"{YELLOW}[+] Open issues: {conf['issues']}")
+    print(f"{YELLOW}[+] Closed issues: {conf['clissues']}")
+    print(f"{YELLOW}[+] Open pull requests: {conf['prs']}")
+    print(f"{YELLOW}[+] Closed pull requests: {conf['clprs']}")
+    print(f"{YELLOW}[+] Discussions: {conf['discs']}")
 
 ANS = ['yes', 'no']
 
@@ -193,8 +196,10 @@ tttttt:::::::tttttt    o:::::ooooo:::::oo:::::ooooo:::::o l::::l zzzzzzzz::::::z
 def main():
     print(logo())
     print("\n")
+    print(f"{YELLOW}[-] -- Socials --")
     print(f"{YELLOW}[+] Author: new92")
     print(f"{YELLOW}[+] Github: @new92")
+    print(f"{YELLOW}[+] Leetcode: @new92")
     print("\n")
     print(f"{YELLOW}[+] ToolZ: Python tool which keeps track on who unfollowed you.")
     print("\n")
@@ -332,7 +337,7 @@ def main():
         sleep(2)
         print(f"{YELLOW}[*] Acceptable answers: [True/False]")
         sleep(1)
-        kp=bool(input("[?] Keep log ? "))
+        kp=bool(input(f"{YELLOW}[?] Keep log ? "))
         while kp == None:
             print(f"{RED}[!] Invalid answer !")
             sleep(1)
@@ -344,26 +349,26 @@ def main():
         profile = instaloader.Profile.from_username(loader.context, username)
         FOLLOWERS = [follower.username for follower in profile.get_followers()]
         FOLLOWINGS = [following.username for following in profile.get_followees()]
-        print("[1] Live unfollowers tracker")
-        print("[2] One-time unfollowers tracker")
-        opt=int(input("[::] Please enter a number (from the above ones): "))
+        print(f"{YELLOW}[1] Live unfollowers tracker")
+        print(f"{YELLOW}[2] One-time unfollowers tracker")
+        opt=int(input(f"{YELLOW}[::] Please enter a number (from the above ones): "))
         while opt < 1 or opt > 2 or opt == None:
-            print("[!] Invalid number !")
+            print(f"{RED}[!] Invalid number !")
             sleep(1)
-            print("[+] Acceptable numbers: [1/2]")
+            print(f"{GREEN}[+] Acceptable numbers: [1/2]")
             sleep(1)
-            opt=int(input("[::] Please enter a number (from the above ones): "))
+            opt=int(input(f"{YELLOW}[::] Please enter a number (from the above ones): "))
         if opt == 1:
             UNFOLLOWERS = []
             while len(FOLLOWERS) == len(FOLLOWINGS):
-                print("[*] Checking for unfollowers...")
+                print(f"{YELLOW}[*] Checking for unfollowers...")
                 sleep(5)
                 profile = instaloader.Profile.from_username(loader.context, username)
                 FOLLOWERS = [follower.username for follower in profile.get_followers()]
                 FOLLOWINGS = [following.username for following in profile.get_followees()]
-                print("[+] No unfollowers found...")
+                print(f"{GREEN}[+] No unfollowers found...")
                 sleep(5)
-                print("[*] Sleeping for 20 secs...")
+                print(f"{YELLOW}[*] Sleeping for 20 secs...")
                 sleep(20)
             for i in range(len(FOLLOWINGS)):
                 verProf = instaloader.Profile.from_username(loader.context, FOLLOWINGS[i])
@@ -371,7 +376,7 @@ def main():
                     UNFOLLOWERS.append(FOLLOWINGS[i])
             if op:
                 f.write(f"[&] Detected a total of {len(UNFOLLOWERS)} unfollowers\n\n")
-                print("-"*25+'\n\n')
+                f.write("-"*25+'\n\n')
                 for i in range(len(UNFOLLOWERS)):
                     f.write(f"[>] Username >>> {UNFOLLOWERS[i]}\n")
                 print(f"{GREEN}[✓] Successfully saved log !")
@@ -405,7 +410,7 @@ def main():
                 sleep(2)
                 if op:
                     f.write(f"[&] Detected a total of {len(L)} unfollowers\n\n")
-                    print("-"*25+'\n\n')
+                    f.write("-"*25+'\n\n')
                     for i in range(len(L)):
                         f.write(f"[>] Username >>> {L[i]}\n")
                     print(f"{GREEN}[✓] Successfully saved log !")
@@ -423,7 +428,7 @@ def main():
         clear()
         f = open('log.txt','w')
         f.close()
-        print("[✓] Successfully cleared log file !")
+        print(f"{GREEN}[✓] Successfully cleared log file !")
         sleep(2)
     elif num == 4:
         clear()
