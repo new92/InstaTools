@@ -180,8 +180,10 @@ def Uninstall() -> str:
 def main():
     print(banner())
     print("\n")
+    print(" [-] -- Socials --")
     print("[+] Author: new92")
     print("[+] Github: @new92")
+    print("[+] Leetcode: @new92")
     print("\n")
     print("[+] With this script you can find the mutual followers/followings between 2 accounts on Instagram !")
     print("\n")
