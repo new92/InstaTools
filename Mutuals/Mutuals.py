@@ -10,16 +10,16 @@ try:
     import sys
     from time import sleep
     if sys.version_info[0] < 3:
-        print("[!] Error ! Mutuals requires Python version 3.X ! ")
+        print(f"[!] Error ! Mutuals requires Python version 3.X ! ")
         sleep(2)
-        print("""[+] Instructions to download Python 3.x : 
+        print(f"""[+] Instructions to download Python 3.x : 
         Linux: apt install python3
         Windows: https://www.python.org/downloads/
         MacOS: https://docs.python-guide.org/starting/install3/osx/""")
         sleep(3)
-        print("[*] Please install Python 3 and then use Mutuals ✅")
+        print(f"[*] Please install Python 3 and then use Mutuals ✅")
         sleep(2)
-        print("[+] Exiting...")
+        print(f"[+] Exiting...")
         sleep(1)
         quit(0)
     from tqdm import tqdm
@@ -35,38 +35,39 @@ try:
     import os
     import json
     import requests
+    from colorama import init, Fore
 except ImportError or ModuleNotFoundError:
-    print("[!] WARNING: Not all packages used in Mutuals have been installed !")
+    print(f"[!] WARNING: Not all packages used in Mutuals have been installed !")
     sleep(2)
-    print("[+] Ignoring warning...")
+    print(f"[+] Ignoring warning...")
     sleep(1)
     if sys.platform.startswith('linux'):
         if os.geteuid() != 0:
-            print("[!] Root user not detected !")
+            print(f"[!] Root user not detected !")
             sleep(2)
-            print("[+] Trying to enable root user...")
+            print(f"[+] Trying to enable root user...")
             sleep(1)
             system("sudo su")
             try:
                 system("sudo pip install -r requirements.txt")
             except Exception as ex:
-                print("[!] Error ! Cannot install the required modules !")
+                print(f"[!] Error ! Cannot install the required modules !")
                 sleep(1)
                 print(f"[=] Error message ==> {ex}")
                 sleep(2)
-                print("[1] Uninstall script")
-                print("[2] Exit")
+                print(f"[1] Uninstall script")
+                print(f"[2] Exit")
                 opt=int(input("[>] Please enter a number (from the above ones): "))
                 while opt < 1 or opt > 2 or opt == None:
                     if opt == None:
-                        print("[!] This field can't be blank !")
+                        print(f"[!] This field can't be blank !")
                     else:
-                        print("[!] Invalid number !")
+                        print(f"[!] Invalid number !")
                         sleep(1)
-                        print("[+] Acceptable numbers: [1/2]")
+                        print(f"[+] Acceptable numbers: [1/2]")
                     sleep(1)
-                    print("[1] Uninstall script")
-                    print("[2] Exit")
+                    print(f"[1] Uninstall script")
+                    print(f"[2] Exit")
                     opt=int(input("[>] Please enter again a number (from the above ones): "))
                 if opt == 1:
                     def fpath(fname: str):
@@ -85,11 +86,11 @@ except ImportError or ModuleNotFoundError:
                             os.rmdir(DIRS[i])
                         os.rmdir(dire)
                     rmdir(fpath('InstaTools'))
-                    print("[✓] Files and dependencies uninstalled successfully !")
+                    print(f"[✓] Files and dependencies uninstalled successfully !")
                 else:
-                    print("[+] Exiting...")
+                    print(f"[+] Exiting...")
                     sleep(1)
-                    print("[+] See you next time 👋")
+                    print(f"[+] See you next time 👋")
                     quit(0)
         else:
             system("sudo pip install -r requirements.txt")
@@ -98,7 +99,12 @@ except ImportError or ModuleNotFoundError:
     elif platform.system() == 'Windows':
         system("pip install -r requirements.txt")
 
-print("[✓] Successfully loaded modules !")
+init(autoreset=True)
+GREEN = Fore.GREEN
+RED = Fore.RED
+YELLOW = Fore.YELLOW
+
+print(f"{GREEN}[✓] Successfully loaded modules !")
 sleep(1)
 
 def checkUser(username:str) -> bool:
@@ -121,27 +127,27 @@ def ScriptInfo():
         fsize = os.stat(fpath(f)).st_size
     else:
         fsize = 0
-    print(f"[+] Author: {conf['author']}")
-    print(f"[+] Github: @{conf['author']}")
-    print(f"[+] License: {conf['lice']}")
-    print(f"[+] Natural language: {conf['lang']}")
-    print(f"[+] Programming language(s) used: {conf['language']}")
-    print(f"[+] Number of lines: {conf['lines']}")
-    print(f"[+] Script's name: {conf['name']}")
-    print(f"[+] API(s) used: {conf['api']}")
-    print(f"[+] File size: {fsize} bytes")
-    print(f"[+] File path: {fpath(f)}")
-    print(f"|======|GITHUB REPO INFO|======|")
-    print(f"[+] Stars: {conf['stars']}")
-    print(f"[+] Forks: {conf['forks']}")
-    print(f"[+] Open issues: {conf['issues']}")
-    print(f"[+] Closed issues: {conf['clissues']}")
-    print(f"[+] Open pull requests: {conf['prs']}")
-    print(f"[+] Closed pull requests: {conf['clprs']}")
-    print(f"[+] Discussions: {conf['discs']}")
+    print(f"{YELLOW}[+] Author: {conf['author']}")
+    print(f"{YELLOW}[+] Github: @{conf['author']}")
+    print(f"{YELLOW}[+] License: {conf['lice']}")
+    print(f"{YELLOW}[+] Natural language: {conf['lang']}")
+    print(f"{YELLOW}[+] Programming language(s) used: {conf['language']}")
+    print(f"{YELLOW}[+] Number of lines: {conf['lines']}")
+    print(f"{YELLOW}[+] Script's name: {conf['name']}")
+    print(f"{YELLOW}[+] API(s) used: {conf['api']}")
+    print(f"{YELLOW}[+] File size: {fsize} bytes")
+    print(f"{YELLOW}[+] File path: {fpath(f)}")
+    print(f"{YELLOW}|======|GITHUB REPO INFO|======|")
+    print(f"{YELLOW}[+] Stars: {conf['stars']}")
+    print(f"{YELLOW}[+] Forks: {conf['forks']}")
+    print(f"{YELLOW}[+] Open issues: {conf['issues']}")
+    print(f"{YELLOW}[+] Closed issues: {conf['clissues']}")
+    print(f"{YELLOW}[+] Open pull requests: {conf['prs']}")
+    print(f"{YELLOW}[+] Closed pull requests: {conf['clprs']}")
+    print(f"{YELLOW}[+] Discussions: {conf['discs']}")
 
 def banner() -> str:
-    return """
+    return f"""{YELLOW}
 ███╗░░░███╗██╗░░░██╗████████╗██╗░░░██╗░█████╗░██╗░░░░░░██████╗      ███████╗██╗███╗░░██╗██████╗░███████╗██████╗░
 ████╗░████║██║░░░██║╚══██╔══╝██║░░░██║██╔══██╗██║░░░░░██╔════╝      ██╔════╝██║████╗░██║██╔══██╗██╔════╝██╔══██╗
 ██╔████╔██║██║░░░██║░░░██║░░░██║░░░██║███████║██║░░░░░╚█████╗░      █████╗░░██║██╔██╗██║██║░░██║█████╗░░██████╔╝
@@ -151,17 +157,14 @@ def banner() -> str:
 """
 
 def clear():
-    if platform.system() == 'Windows':
-        system('cls')
-    else:
-        system('clear')
+    system('cls') if platform.system() == 'Windows' else system('clear')
 
 def nums():
-    print("[1] Find mutuals")
-    print("[2] Show Mutual's info")
-    print("[3] Update Mutuals")
-    print("[4] Uninstall Mutuals")
-    print("[5] Exit")
+    print(f"{YELLOW}[1] Find mutuals")
+    print(f"{YELLOW}[2] Show Mutual's info")
+    print(f"{YELLOW}[3] Update Mutuals")
+    print(f"{YELLOW}[4] Uninstall Mutuals")
+    print(f"{YELLOW}[5] Exit")
 
 def Uninstall() -> str:
     def rmdir(dire):
@@ -175,162 +178,164 @@ def Uninstall() -> str:
             os.rmdir(DIRS[i])
         os.rmdir(dire)
     rmdir(fpath('InstaTools'))
-    return '[✓] Files and dependencies uninstalled successfully !'
+    return f'{GREEN}[✓] Files and dependencies uninstalled successfully !'
 
 def main():
     print(banner())
-    print("\n")
-    print(" [-] -- Socials --")
-    print("[+] Author: new92")
-    print("[+] Github: @new92")
-    print("[+] Leetcode: @new92")
-    print("\n")
-    print("[+] With this script you can find the mutual followers/followings between 2 accounts on Instagram !")
-    print("\n")
+    print(f"\n")
+    print(f"{YELLOW}[-] -- Socials --")
+    print(f"{YELLOW}[+] Author: new92")
+    print(f"{YELLOW}[+] Github: @new92")
+    print(f"{YELLOW}[+] Leetcode: @new92")
+    print(f"\n")
+    print(f"{YELLOW}[+] With Mutuals you can find the mutual followers/followings between 2 accounts.")
+    print(f"\n")
     nums()
-    num=int(input("[::] Please enter a number (from the above ones): "))
+    num=int(input(f"{YELLOW}[::] Please enter a number (from the above ones): "))
     while num < 1 or num > 5:
-        print("[!] Invalid number !")
+        print(f"{RED}[!] Invalid number !")
         sleep(1)
-        print("[+] Acceptable numbers: [1/2/3/4/5]")
+        print(f"{GREEN}[+] Acceptable numbers: [1/2/3/4/5]")
         sleep(1)
         nums()
         sleep(2)
-        num=int(input("[::] Please enter again a number (from the above ones): "))
+        num=int(input(f"{YELLOW}[::] Please enter again a number (from the above ones): "))
     if num == 1:
         clear()
         loader = instaloader.Instaloader()
-        print("|"+"-"*20+"login".upper()+"-"*20+"|")
-        user=str(input("[::] Please enter your username: "))
+        print(f'{YELLOW}|--------------------|LOGIN|--------------------|')
+        user=str(input(f"{YELLOW}[::] Please enter your username: "))
         while checkUser(user):
             if user == 'None' or user == '' or user == ' ':
-                print("[!] This field can't be blank !")
+                print(f"{RED}[!] This field can't be blank !")
             else:
-                print("[!] Invalid length ! Acceptable length: 30 or less characters")
+                print(f"{RED}[!] Invalid length ! Acceptable length: 30 or less characters")
             sleep(1)
-            user=str(input("[::] Please enter again your username: "))
+            user=str(input(f"{YELLOW}[::] Please enter again your username: "))
         user = user.lower().strip()
         while valUser(user):
-            print("[!] User not found !")
+            print(f"{RED}[!] User not found !")
             sleep(1)
-            print("[1] Try with another username")
-            print("[2] Return to menu")
-            print("[3] Exit")
-            print("[4] Uninstall Mutuals and Exit")
-            opt=int(input("[::] Please enter a number (from the above ones): "))
+            print(f"{YELLOW}[1] Try with another username")
+            print(f"{YELLOW}[2] Return to menu")
+            print(f"{YELLOW}[3] Exit")
+            print(f"{YELLOW}[4] Uninstall Mutuals and Exit")
+            opt=int(input(f"{YELLOW}[::] Please enter a number (from the above ones): "))
             while opt < 1 or opt > 4:
-                print("[!] Invalid number !")
+                print(f"{RED}[!] Invalid number !")
                 sleep(1)
-                print("[+] Acceptable numbers: [1/2/3/4]")
+                print(f"{GREEN}[+] Acceptable numbers: [1/2/3/4]")
                 sleep(1)
-                print("[1] Try with another username")
-                print("[2] Return to menu")
-                print("[3] Exit")
-                print("[4] Uninstall Mutuals and Exit")
+                print(f"{YELLOW}[1] Try with another username")
+                print(f"{YELLOW}[2] Return to menu")
+                print(f"{YELLOW}[3] Exit")
+                print(f"{YELLOW}[4] Uninstall Mutuals and Exit")
                 sleep(1)
-                opt=int(input("[::] Please enter again a number (from the above ones): "))
+                opt=int(input(f"{YELLOW}[::] Please enter again a number (from the above ones): "))
             if opt == 1:
-                user=str(input("[::] Please enter the username: "))
+                user=str(input(f"{YELLOW}[::] Please enter the username: "))
                 while checkUser(user):
                     if user == 'None' or user == '' or user == ' ':
-                        print("[!] This field can't be blank !")
+                        print(f"{RED}[!] This field can't be blank !")
                     else:
-                        print("[!] Invalid length ! Acceptable length: 30 or less characters")
+                        print(f"{RED}[!] Invalid length ! Acceptable length: 30 or less characters")
                     sleep(1)
-                    user=str(input("[::] Please enter again the username: "))
+                    user=str(input(f"{YELLOW}[::] Please enter again the username: "))
             elif opt == 2:
                 clear()
                 main()
             elif opt == 3:
                 clear()
-                print("[+] Exiting...")
+                print(f"{YELLOW}[+] Exiting...")
                 sleep(1)
-                print("[+] Until next time 👋")
+                print(f"{YELLOW}[+] Until next time 👋")
                 sleep(1)
                 quit(0)
             else:
                 clear()
                 print(Uninstall())
                 sleep(2)
-                print("[+] Thank you for using Mutuals 😁")
+                print(f"{YELLOW}[+] Thank you for using Mutuals 😁")
                 sleep(2)
-                print("[+] Hope you enjoyed it ! ☺️")
+                print(f"{YELLOW}[+] Hope you enjoyed it ! ☺️")
                 sleep(2)
-                print("[+] Until next time 👋")
+                print(f"{YELLOW}[+] Until next time 👋")
                 sleep(2)
                 quit(0)
-        psw=str(input("[::] Please enter your password: "))
+        psw=str(input(f"{YELLOW}[::] Please enter your password: "))
         while psw == None or psw == '':
-            print("[!] This field can't be blank !")
+            print(f"{RED}[!] This field can't be blank !")
             sleep(1)
-            psw=str(input("[::] Please enter again your password: "))
-        print("|"+"-"*45+"|")
+            psw=str(input(f"{YELLOW}[::] Please enter again your password: "))
+        print(f'{YELLOW}|-----------------------------------------------|')
         try:
             loader.login(user,psw)
         except Exception as ex:
-            print("[!] Login error !")
+            print(f"{RED}[!] Login error !")
             sleep(1)
-            print(f"[+] Error message ==> {ex}")
+            print(f"{YELLOW}[+] Error message ==> {ex}")
             sleep(2)
-            print("[+] Exiting...")
+            print(f"{YELLOW}[+] Exiting...")
             sleep(1)
             quit(0)
-        print("[1] Find the mutual followers between 2 accounts")
-        print("[2] Find the mutual followees between 2 accounts")
-        t=int(input("[::] Please enter a number (from the above ones): "))
+        print(f"{GREEN}[✓] Login successfull !")
+        sleep(2)
+        print(f"{YELLOW}[1] Find the mutual followers between 2 accounts")
+        print(f"{YELLOW}[2] Find the mutual followees between 2 accounts")
+        t=int(input(f"{YELLOW}[::] Please enter a number (from the above ones): "))
         while t < 1 or t > 2:
-            print("[!] Invalid number !")
+            print(f"{RED}[!] Invalid number !")
             sleep(1)
-            print("[+] Acceptable numbers: [1/2]")
+            print(f"{GREEN}[+] Acceptable numbers: [1/2]")
             sleep(1)
-            print("[1] Find mutual followers")
-            print("[2] Find mutual followees")
-            t=int(input("[::] Please enter again a number (from the above ones): "))
-        usernamef=str(input("[::] Please enter the first username: "))
+            print(f"{YELLOW}[1] Find mutual followers")
+            print(f"{YELLOW}[2] Find mutual followees")
+            t=int(input(f"{YELLOW}[::] Please enter again a number (from the above ones): "))
+        usernamef=str(input(f"{YELLOW}[::] Please enter the first username: "))
         while checkUser(usernamef):
             if usernamef == 'None' or usernamef == '' or usernamef == ' ':
-                print("[!] This field can't be blank !")
+                print(f"{RED}[!] This field can't be blank !")
             else:
-                print("[!] Invalid length ! Acceptable length: <= 30 characters")
+                print(f"{RED}[!] Invalid length ! Acceptable length: <= 30 characters")
             sleep(1)
-            usernamef=str(input("[::] Please enter again the first username: "))
+            usernamef=str(input(f"{YELLOW}[::] Please enter again the first username: "))
         usernamef = usernamef.lower().strip()
         while valUser(usernamef):
-            print("[!] User not found !")
+            print(f"{RED}[!] User not found !")
             sleep(1)
-            print("[1] Try with another username")
-            print("[2] Return to menu")
-            print("[3] Exit")
-            print("[4] Uninstall Mutuals and Exit")
-            optf=int(input("[::] Please enter a number (from the above ones): "))
+            print(f"{YELLOW}[1] Try with another username")
+            print(f"{YELLOW}[2] Return to menu")
+            print(f"{YELLOW}[3] Exit")
+            print(f"{YELLOW}[4] Uninstall Mutuals and Exit")
+            optf=int(input(f"{YELLOW}[::] Please enter a number (from the above ones): "))
             while optf < 1 or optf > 4:
-                print("[!] Invalid number !")
+                print(f"{RED}[!] Invalid number !")
                 sleep(1)
-                print("[+] Acceptable numbers: [1/2/3/4]")
+                print(f"{GREEN}[+] Acceptable numbers: [1/2/3/4]")
                 sleep(1)
-                print("[1] Try with another username")
-                print("[2] Return to menu")
-                print("[3] Exit")
-                print("[4] Uninstall Mutuals and Exit")
+                print(f"{YELLOW}[1] Try with another username")
+                print(f"{YELLOW}[2] Return to menu")
+                print(f"{YELLOW}[3] Exit")
+                print(f"{YELLOW}[4] Uninstall Mutuals and Exit")
                 sleep(1)
-                optf=int(input("[::] Please enter again a number (from the above ones): "))
+                optf=int(input(f"{YELLOW}[::] Please enter again a number (from the above ones): "))
             if optf == 1:
-                usernamef=str(input("[::] Please enter the username: "))
+                usernamef=str(input(f"{YELLOW}[::] Please enter the username: "))
                 while checkUser(usernamef):
                     if usernamef == 'None' or usernamef == '' or usernamef == ' ':
-                        print("[!] This field can't be blank !")
+                        print(f"{RED}[!] This field can't be blank !")
                     else:
-                        print("[!] Invalid length ! Acceptable length: <= 30 characters")
+                        print(f"{RED}[!] Invalid length ! Acceptable length: <= 30 characters")
                     sleep(1)
-                    usernamef=str(input("[::] Please enter again the username: "))
+                    usernamef=str(input(f"{YELLOW}[::] Please enter again the username: "))
             elif optf == 2:
                 clear()
                 main()
             elif optf == 3:
                 clear()
-                print("[+] Exiting...")
+                print(f"{YELLOW}[+] Exiting...")
                 sleep(1)
-                print("[+] Until next time 👋")
+                print(f"{YELLOW}[+] Until next time 👋")
                 sleep(1)
                 quit(0)
             else:
@@ -338,56 +343,56 @@ def main():
                 clear()
                 print(Uninstall())
                 sleep(2)
-                print("[+] Thank you for using Mutuals 😁")
+                print(f"{YELLOW}[+] Thank you for using Mutuals 😁")
                 sleep(2)
-                print("[+] Hope you enjoyed it ! ☺️")
+                print(f"{YELLOW}[+] Hope you enjoyed it ! ☺️")
                 sleep(2)
-                print("[+] Until next time 👋")
+                print(f"{YELLOW}[+] Until next time 👋")
                 sleep(2)
                 quit(0)
-        usernames=str(input("[::] Please enter the second username: "))
+        usernames=str(input(f"{YELLOW}[::] Please enter the second username: "))
         while checkUser(usernames):
             if usernames == 'None' or usernames == '' or usernames == ' ':
-                print("[!] This field can't be blank !")
+                print(f"{RED}[!] This field can't be blank !")
             else:
-                print("[!] Invalid length ! Acceptable length: 30 or less characters")
+                print(f"{RED}[!] Invalid length ! Acceptable length: 30 or less characters")
             sleep(1)
-            usernames=str(input("[::] Please enter again the second username: "))
+            usernames=str(input(f"{YELLOW}[::] Please enter again the second username: "))
         usernames = usernames.lower().strip()
         while valUser(usernames):
-            print("[!] User not found !")
+            print(f"{RED}[!] User not found !")
             sleep(1)
-            print("[1] Try with another username")
-            print("[2] Return to menu")
-            print("[3] Exit")
-            print("[4] Uninstall Mutuals and Exit")
-            opts=int(input("[::] Please enter a number (from the above ones): "))
+            print(f"{YELLOW}[1] Try with another username")
+            print(f"{YELLOW}[2] Return to menu")
+            print(f"{YELLOW}[3] Exit")
+            print(f"{YELLOW}[4] Uninstall Mutuals and Exit")
+            opts=int(input(f"{YELLOW}[::] Please enter a number (from the above ones): "))
             while opts < 1 or opts > 4 or opts == None:
-                print("[!] Invalid number !")
+                print(f"{RED}[!] Invalid number !")
                 sleep(1)
-                print("[1] Try with another username")
-                print("[2] Return to menu")
-                print("[3] Exit")
-                print("[4] Uninstall Mutuals and Exit")
+                print(f"{YELLOW}[1] Try with another username")
+                print(f"{YELLOW}[2] Return to menu")
+                print(f"{YELLOW}[3] Exit")
+                print(f"{YELLOW}[4] Uninstall Mutuals and Exit")
                 sleep(1)
-                opts=int(input("[::] Please enter again a number (from the above ones): "))
+                opts=int(input(f"{YELLOW}[::] Please enter again a number (from the above ones): "))
             if opts == 1:
-                usernames=str(input("[::] Please enter the username: "))
+                usernames=str(input(f"{YELLOW}[::] Please enter the username: "))
                 while checkUser(usernames):
                     if usernames == 'None' or usernames == '' or usernames == ' ':
-                        print("[!] This field can't be blank !")
+                        print(f"{RED}[!] This field can't be blank !")
                     else:
-                        print("[!] Invalid length ! Acceptable length: <= 30 characters")
+                        print(f"{RED}[!] Invalid length ! Acceptable length: <= 30 characters")
                     sleep(1)
-                    usernames=str(input("[::] Please enter again the username: "))
+                    usernames=str(input(f"{YELLOW}[::] Please enter again the username: "))
             elif opts == 2:
                 clear()
                 main()
             else:
                 clear()
-                print("[+] Exiting...")
+                print(f"{YELLOW}[+] Exiting...")
                 sleep(1)
-                print("[+] Until next time 👋")
+                print(f"{YELLOW}[+] Until next time 👋")
                 sleep(1)
                 quit(0)
         profilef=instaloader.Profile.from_username(loader.context, usernamef)
@@ -403,96 +408,97 @@ def main():
                     x = len(FOLLOWERSF) - len(FOLLOWERSS)
                     MUTUALS = [FOLLOWERSF[i] for i in range(len(FOLLOWERSF)) if FOLLOWERSF[i] in FOLLOWERSS]
                     if len(MUTUALS) == 0:
-                        print("[!] No mutual followers found !")
+                        print(f"{RED}[!] No mutual followers found !")
                         sleep(2)
+                        print(f"{YELLOW}[+] Exiting")
+                        sleep(1)
+                        print(f"{YELLOW}[+] Thank you for using Mutuals 😁")
+                        quit(0)
                     else:
+                        print(f"{GREEN}[✓] Successfully found mutual followers !")
+                        sleep(1)
                         per = (len(MUTUALS) / float(allf))*100
-                        print(f"[+] Number of mutual followers: {len(MUTUALS)}")
+                        print(f"{YELLOW}[+] Number of mutual followers: {len(MUTUALS)}")
                         sleep(1)
-                        print(f"[+] Percentage of mutual followers: {per}%")
+                        print(f"{YELLOW}[+] Percentage of mutual followers: {per}%")
                         sleep(1)
-                        print("[+] The usernames of the mutual followers: ")
+                        print(f"{YELLOW}[+] The usernames of the mutual followers: ")
                         for k in range(len(MUTUALS)):
-                            print(f"[+] Username No{k+1}: {MUTUALS[k]}")
+                            print(f"{YELLOW}[+] Username No{k+1}: {MUTUALS[k]}")
                         sleep(3)
-                        print("[+] Acceptable answers: [yes/no]")
+                        print(f"{GREEN}[+] Acceptable answers: [yes/no]")
                         sleep(1)
-                        savem=str(input("[?] Save the mutual followers ? "))
-                        while savem.lower() not in ANS or savem == None or savem == '' or savem == ' ':
-                            if type(savem) == str:
-                                print("[!] Invalid answer !")
-                                sleep(1)
-                                print("[+] Acceptable answers: [yes/no]")
-                            else:
-                                print("[!] This field can't be blank !")
+                        savem=str(input(f"{YELLOW}[?] Save the mutual followers ? "))
+                        while savem.lower() not in ANS or savem == 'None' or savem == '' or savem == ' ':
+                            print(f"{RED}[!] Invalid answer !")
                             sleep(1)
-                            savem=str(input("[?] Save the mutual followers ? "))
+                            print(f"{GREEN}[+] Acceptable answers: [yes/no]")
+                            sleep(1)
+                            savem=str(input(f"{YELLOW}[?] Save the mutual followers ? "))
                         if savem.lower() == ANS[0]:
                             name = 'mutuals.txt'
                             f = open(name,'w')
                             for i in range(len(MUTUALS)):
                                 f.write(f"[+] Username No{i+1}: {MUTUALS[i]}\n")
                             f.close()
-                            print("[✓] Successfully saved the mutual followers to a text file named: mutuals.txt")
+                            print(f"{GREEN}[✓] Successfully saved the mutual followers to a text file named: mutuals.txt")
                             sleep(2)
-                            print(f"[↪] Name: {name}")
-                            print(f"[↪] Path: {fpath(name)}")
-                            print(f"[↪] File size: {(os.stat(fpath(name))).st_size} bytes")
+                            print(f"{YELLOW}[↪] Name: {name}")
+                            print(f"{YELLOW}[↪] Path: {fpath(name)}")
+                            print(f"{YELLOW}[↪] File size: {(os.stat(fpath(name))).st_size} bytes")
                             sleep(2)
                     clear()
                     x = len(FOLLOWERSS) - len(FOLLOWERSF)
                     MUTUALS = [FOLLOWERSS[i] for i in range(len(FOLLOWERSF)+x) if FOLLOWERSS[i] in FOLLOWERSF]
                     if len(MUTUALS) == 0:
-                        print("[!] No mutual followers found !")
+                        print(f"{RED}[!] No mutual followers found !")
                         sleep(2)
-                        print("[+] Exiting")
+                        print(f"{YELLOW}[+] Exiting")
                         sleep(1)
-                        print("[+] Thank you for using Mutuals 😁")
+                        print(f"{YELLOW}[+] Thank you for using Mutuals 😁")
                         quit(0)
                     else:
                         per = len(MUTUALS) / float(allf)*100
-                        print(f"[+] Number of mutual followers: {len(MUTUALS)}")
+                        print(f"{YELLOW}[+] Number of mutual followers: {len(MUTUALS)}")
                         sleep(1)
-                        print(f"[+] Percentage of mutual followers: {per}%")
+                        print(f"{YELLOW}[+] Percentage of mutual followers: {per}%")
                         sleep(1)
-                        print("[+] The usernames of the mutual followers: ")
+                        print(f"{YELLOW}[+] The usernames of the mutual followers: ")
                         for k in range(len(MUTUALS)):
-                            print(f"[+] Username No{k+1}: {MUTUALS[k]}")
+                            print(f"{YELLOW}[+] Username No{k+1}: {MUTUALS[k]}")
                         sleep(3)
-                        print("[+] Acceptable answers: [yes/no]")
+                        print(f"{GREEN}[+] Acceptable answers: [yes/no]")
                         sleep(1)
-                        savem=str(input("[?]  Save the mutual followers ? "))
-                        while savem.lower() not in ANS or savem == None or savem == '' or savem == ' ':
-                            if type(savem) == str:
-                                print("[!] Invalid answer !")
-                                sleep(1)
-                                print("[+] Acceptable answers: [yes/no]")
-                            else:
-                                print("[!] This field can't be blank !")
+                        savem=str(input(f"{YELLOW}[?]  Save the mutual followers ? "))
+                        while savem.lower() not in ANS or savem == 'None' or savem == '' or savem == ' ':
+                            print(f"{RED}[!] Invalid answer !")
                             sleep(1)
-                            savem=str(input("[?] Save the mutual followers ? "))
+                            print(f"{GREEN}[+] Acceptable answers: [yes/no]")
+                            sleep(1)
+                            savem=str(input(f"{YELLOW}[?] Save the mutual followers ? "))
                         if savem.lower() == ANS[0]:
                             name = 'mutuals.txt'
                             f = open(name,'w')
                             for i in range(len(MUTUALS)):
                                 f.write(f"[+] Username No{str(i+1)}: {MUTUALS[i]}\n")
                             f.close()
-                            print("[✓] Successfully saved mutual followers to a text file named: mutuals.txt")
+                            print(f"{GREEN}[✓] Successfully saved mutual followers to a text file named: mutuals.txt")
                             sleep(2)
-                            print(f"[↪] Name: {name}")
-                            print(f"[↪] Path: {fpath(name)}")
-                            print(f"[↪] File size: {os.stat(fpath(name)).st_size} bytes")
+                            print(f"{YELLOW}[↪] Name: {name}")
+                            print(f"{YELLOW}[↪] Path: {fpath(name)}")
+                            print(f"{YELLOW}[↪] File size: {os.stat(fpath(name)).st_size} bytes")
                             sleep(1)
             else:
-                print("[!] No mutual followers found !")
-                sleep(1)
-                if FOLLOWERSF == 0:
-                    print(f"[+] Followers not found on account: {usernamef}")
-                else:
-                    print(f"[+] Followers not found on account: {usernames}")
+                print(f"{RED}[!] No followers found !")
                 sleep(2)
-                print("[+] Exiting...")
+                if len(FOLLOWERSF) == 0:
+                    print(f"{YELLOW}[+] No followers found on account: {usernamef}")
+                else:
+                    print(f"{YELLOW}[+] No followers found on account: {usernames}")
+                print(f"{YELLOW}[+] Exiting...")
                 sleep(1)
+                print(f"{YELLOW}[+] Thank you for using Mutuals 😁")
+                sleep(2)
                 quit(0)
         else:
             clear()
@@ -504,52 +510,52 @@ def main():
                     x = len(FOLLOWEESF) - len(FOLLOWEESS)
                     MUTUALS = [FOLLOWEESF[i] for i in range(len(FOLLOWEESS)+x) if FOLLOWEESF[i] in FOLLOWEESS]
                     if len(MUTUALS) == 0:
-                        print("[!] No mutual followees found !")
+                        print(f"{RED}[!] No mutual followees found !")
                         sleep(2)
-                        print("[+] Exiting")
+                        print(f"{YELLOW}[+] Exiting...")
                         sleep(1)
-                        print("[+] Thank you for using Mutuals 😁")
+                        print(f"{YELLOW}[+] Thank you for using Mutuals 😁")
                         quit(0)
                     else:
                         per = (len(MUTUALS) / float(allfe))*100
-                        print(f"[+] Number of mutual followees: {len(MUTUALS)}")
+                        print(f"{YELLOW}[+] Number of mutual followees: {len(MUTUALS)}")
                         sleep(1)
-                        print(f"[+] Percentage of mutual followees: {per}%")
+                        print(f"{YELLOW}[+] Percentage of mutual followees: {per}%")
                         sleep(1)
-                        print("[+] The usernames of the mutual followees: ")
+                        print(f"{YELLOW}[+] The usernames of the mutual followees: ")
                         for k in range(len(MUTUALS)):
-                            print(f"[+] Username No{k+1}: {MUTUALS[k]}")
-                        savem=str(input("[?] Save the mutual followees ? [yes/no] "))
+                            print(f"{YELLOW}[+] Username No{k+1}: {MUTUALS[k]}")
+                        sleep(2)
+                        print(f'{GREEN}[+] Acceptable answers: [yes/no]')
+                        sleep(2)
+                        savem=str(input(f"{YELLOW}[?] Save the mutual followees ? "))
                         while savem.lower() not in ANS or savem == None or savem == '' or savem == ' ':
-                            if type(savem) == str:
-                                print("[!] Invalid answer !")
-                                sleep(1)
-                                print("[+] Acceptable answers: [yes/no]")
-                            else:
-                                print("[!] This input can't be blank !")
+                            print(f"{RED}[!] Invalid answer !")
                             sleep(1)
-                            savem=str(input("[?] Save the mutual followees ? [yes/no] "))
+                            print(f"{GREEN}[+] Acceptable answers: [yes/no]")
+                            sleep(1)
+                            savem=str(input(f"{YELLOW}[?] Save the mutual followees ? "))
                         if savem.lower() == ANS[0]:
                             name = 'mutualsf.txt'
                             f = open(name,'w')
                             for i in range(len(MUTUALS)):
                                 f.write(f"[+] Username No{str(i+1)}: {MUTUALS[i]}\n")
                             f.close()
-                            print("[✓] Successfully saved mutual followees to a text file !")
+                            print(f"{GREEN}[✓] Successfully saved mutual followees to a text file !")
                             sleep(2)
-                            print(f"[↪] Name: {name}")
-                            print(f"[↪] Path: {fpath(name)}")
-                            print(f"[↪] File size: {os.stat(fpath(name)).st_size}")
+                            print(f"{YELLOW}[↪] Name: {name}")
+                            print(f"{YELLOW}[↪] Path: {fpath(name)}")
+                            print(f"{YELLOW}[↪] File size: {os.stat(fpath(name)).st_size}")
                         sleep(1)
             else:
-                print("[!] No followees found !")
+                print(f"{RED}[!] No followees found !")
                 sleep(1)
-                if FOLLOWEESF == 0:
-                    print(f"[+] Followees not found on account: {usernamef}")
+                if len(FOLLOWEESF) == 0:
+                    print(f"{YELLOW}[+] Followees not found on account: {usernamef}")
                 else:
-                    print(f"[+] Followees not found on account: {usernames}")
+                    print(f"{YELLOW}[+] Followees not found on account: {usernames}")
                 sleep(2)
-                print("[+] Exiting...")
+                print(f"{YELLOW}[+] Exiting...")
                 sleep(1)
                 quit(0)
     elif num == 2:
@@ -560,42 +566,42 @@ def main():
         clear()
         system('git pull')
         sleep(1)
-        print("[✓] Script updated successfully !")
+        print(f"{GREEN}[✓] Script updated successfully !")
         
     elif num == 4:
         clear()
         print(Uninstall())
         sleep(2)
-        print("[+] Thank you for using Researcher 😁")
+        print(f"{YELLOW}[+] Thank you for using Mutuals 😁")
         sleep(2)
-        print("[+] Until we meet again 🫡")
+        print(f"{YELLOW}[+] Until we meet again 🫡")
         sleep(1)
         quit(0)
 
     else:
         clear()
-        print("[+] Thank you for using Mutuals 😁")
+        print(f"{YELLOW}[+] Thank you for using Mutuals 😁")
         sleep(2)
-        print("[+] See you next time 👋")
+        print(f"{YELLOW}[+] See you next time 👋")
         sleep(1)
         quit(0)
 
-    print("[1] Return to menu")
-    print("[2] Exit")
-    number=int(input("[::] Please enter a number (from the above ones): "))
+    print(f"{YELLOW}[1] Return to menu")
+    print(f"{YELLOW}[2] Exit")
+    number=int(input(f"{YELLOW}[::] Please enter a number (from the above ones): "))
     while number < 1 or number > 2 or number == None:
         if number == None:
-            print("[!] This field can't be blank !")
+            print(f"{RED}[!] This field can't be blank !")
         else:
-            print("[!] Invalid number !")
-        number=int(input("[::] Please enter again a number (from the above ones): "))
+            print(f"{RED}[!] Invalid number !")
+        number=int(input(f"{YELLOW}[::] Please enter again a number (from the above ones): "))
     if number == 1:
         clear()
         main()
     else:
-        print("[+] Exiting...")
+        print(f"{YELLOW}[+] Exiting...")
         sleep(1)
-        print("[+] See you next time 👋")
+        print(f"{YELLOW}[+] See you next time 👋")
         sleep(2)
         quit(0)
 
