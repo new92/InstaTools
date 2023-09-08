@@ -2,7 +2,6 @@
 """
 Author: new92
 Github: @new92
-Leetcode: @new92
 
 Python script for fetching the mutual followers and/or followees between two accounts.
 """
@@ -102,7 +101,7 @@ print("[✓] Successfully loaded modules !")
 sleep(1)
 
 def checkUser(username:str) -> bool:
-    return username == None or len(username) > 30 or username == '' or username == ' '
+    return username in ['None', '' , ' '] or len(username) > 30
 
 def valUser(username: str) -> bool:
     return requests.get(f'https://www.instagram.com/{username}/', allow_redirects=False).status_code != 200
@@ -201,7 +200,7 @@ def main():
         print("|"+"-"*20+"login".upper()+"-"*20+"|")
         user=str(input("[::] Please enter your username: "))
         while checkUser(user):
-            if user == None or user == '' or user == ' ':
+            if user == 'None' or user == '' or user == ' ':
                 print("[!] This field can't be blank !")
             else:
                 print("[!] Invalid length ! Acceptable length: 30 or less characters")
@@ -230,7 +229,7 @@ def main():
             if opt == 1:
                 user=str(input("[::] Please enter the username: "))
                 while checkUser(user):
-                    if user == None or user == '' or user == ' ':
+                    if user == 'None' or user == '' or user == ' ':
                         print("[!] This field can't be blank !")
                     else:
                         print("[!] Invalid length ! Acceptable length: 30 or less characters")
@@ -286,7 +285,7 @@ def main():
             t=int(input("[::] Please enter again a number (from the above ones): "))
         usernamef=str(input("[::] Please enter the first username: "))
         while checkUser(usernamef):
-            if usernamef == None or usernamef == '' or usernamef == ' ':
+            if usernamef == 'None' or usernamef == '' or usernamef == ' ':
                 print("[!] This field can't be blank !")
             else:
                 print("[!] Invalid length ! Acceptable length: <= 30 characters")
@@ -315,7 +314,7 @@ def main():
             if optf == 1:
                 usernamef=str(input("[::] Please enter the username: "))
                 while checkUser(usernamef):
-                    if usernamef == None or usernamef == '' or usernamef == ' ':
+                    if usernamef == 'None' or usernamef == '' or usernamef == ' ':
                         print("[!] This field can't be blank !")
                     else:
                         print("[!] Invalid length ! Acceptable length: <= 30 characters")
@@ -345,7 +344,7 @@ def main():
                 quit(0)
         usernames=str(input("[::] Please enter the second username: "))
         while checkUser(usernames):
-            if usernames == None or usernames == '' or usernames == ' ':
+            if usernames == 'None' or usernames == '' or usernames == ' ':
                 print("[!] This field can't be blank !")
             else:
                 print("[!] Invalid length ! Acceptable length: 30 or less characters")
@@ -372,7 +371,7 @@ def main():
             if opts == 1:
                 usernames=str(input("[::] Please enter the username: "))
                 while checkUser(usernames):
-                    if usernames == None or usernames == '' or usernames == ' ':
+                    if usernames == 'None' or usernames == '' or usernames == ' ':
                         print("[!] This field can't be blank !")
                     else:
                         print("[!] Invalid length ! Acceptable length: <= 30 characters")
