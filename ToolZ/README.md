@@ -2,7 +2,7 @@
 
 Python script which keeps track on the users who unfollowed you
 
-## Why ToolZ ? 😆
+## Why ToolZ ? 😄
 ToolZ offers **live tracking**, **data storage** and **fast results** !
 
 ## Features 🪄
