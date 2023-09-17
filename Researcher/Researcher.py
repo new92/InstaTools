@@ -155,7 +155,7 @@ def valUser(username: str) -> bool:
 
 def nums():
     print(f"{YELLOW}[1] Initiate Researcher")
-    print(f"{YELLOW}[2] Show Reseacher's info and exit")
+    print(f"{YELLOW}[2] Show Reseacher's info")
     print(f"{YELLOW}[3] Uninstall Reseacher")
     print(f"{YELLOW}[4] Exit")
 
