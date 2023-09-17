@@ -64,7 +64,7 @@ except ImportError or ModuleNotFoundError:
                 print("[1] Uninstall script")
                 print("[2] Exit")
                 opt=int(input("[>] Please enter a number (from the above ones): "))
-                while opt < 1 or opt > 2 or opt == None:
+                while opt < 1 or opt > 2:
                     if opt == None:
                         print("[!] This field can't be blank !")
                     else:
@@ -431,7 +431,7 @@ def main():
     print(f"{YELLOW}[1] Return to menu")
     print(f"{YELLOW}[2] Exit")
     number=int(input(f"{YELLOW}[::] Please enter a number (from the above ones): "))
-    while number < 1 or number > 2 or number == None:
+    while number < 1 or number > 2:
         if number == None:
             print(f"{RED}[!] This field can't be blank !")
         else:
