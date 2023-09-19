@@ -1,4 +1,4 @@
-# IsVer 🐾
+# IsVer 🥷
 
 Find which and how many verified users does a user follow. **Works for both public and private accounts**
 
