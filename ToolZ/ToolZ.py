@@ -218,8 +218,8 @@ def main():
         print(f"{GREEN}[+] Acceptable answers: [yes/no]")
         sleep(1)
         con=str(input(f"{YELLOW}[>] Do you consent that the author (new92) has no responsibility for any loss or damage may the script cause to the given (Instagram) account ? "))
-        while con.lower() not in ANS or con == None or con == '' or con == ' ':
-            if con == None or con == '' or con == ' ':
+        while con.lower() not in ANS or con in ['None', '', ' ']:
+            if con in ['None', '', ' ']:
                 print(f"{RED}[!] This field can't be blank !")
             else:
                 print(f"{RED}[!] Invalid answer !")
@@ -228,11 +228,10 @@ def main():
             sleep(1)
             con=str(input(f"{YELLOW}[>] Do you consent that the author (new92) has no responsibility for any loss or damage may the script cause to the given (Instagram) account ? "))
         if con.lower() == ANS[0]:
-            f = open("cons.txt","a")
-            f.write(f"\n[=] Date: {datetime.now()}\n")
-            f.write("[=] User: Yes I consent that the author (new92) has no responsibility for any loss or damage may the script cause to the given Instagram account.\n")
-            f.write("-"*40)
-            f.close()
+            with open('cons.txt', 'a', encoding='utf8') as f:
+                f.write(f"\n[=] Date: {datetime.now()}\n")
+                f.write("[=] User: Yes I consent that the author (new92) has no responsibility for any loss or damage may the script cause to the given Instagram account.\n")
+                f.write("-"*40)
         else:
             print(f"{YELLOW}[OK]")
             sleep(1)
@@ -310,7 +309,7 @@ def main():
                     quit(0)
         loader = instaloader.Instaloader()
         password=str(input(f"{YELLOW}[::] Please enter your password: "))
-        while password in ['', ' ']:
+        while password in ['None', '', ' ']:
             print(f"{RED}[!] This field can't be blank !")
             sleep(1)
             password=str(input(f"{YELLOW}[::] Please enter again your password: "))
@@ -331,7 +330,7 @@ def main():
         print(f"{YELLOW}[*] Acceptable answers: [yes/no]")
         sleep(1)
         kp=str(input(f"{YELLOW}[?] Keep log ? "))
-        while kp.lower() not in ANS or kp in ['', ' ']:
+        while kp.lower() not in ANS or kp in ['None', '', ' ']:
             print(f"{RED}[!] Invalid answer !")
             sleep(1)
             print(f"{GREEN}[+] Acceptable answers: [yes/no]")
@@ -344,8 +343,8 @@ def main():
         profile = instaloader.Profile.from_username(loader.context, username)
         FOLLOWERS = [follower.username for follower in profile.get_followers()]
         FOLLOWINGS = [following.username for following in profile.get_followees()]
-        print(f"{YELLOW}[1] Live unfollowers tracker")
-        print(f"{YELLOW}[2] One-time unfollowers tracker")
+        print(f"{YELLOW}[1] Live tracker")
+        print(f"{YELLOW}[2] One-time tracker")
         opt=int(input(f"{YELLOW}[::] Please enter a number (from the above ones): "))
         while opt < 1 or opt > 2:
             print(f"{RED}[!] Invalid number !")
@@ -381,10 +380,12 @@ def main():
                 print(f"{YELLOW}[↪] File size: {os.stat(fpath('log.txt')).st_size} bytes")
                 sleep(3)
             sleep(5)
-            print(f"[+] Found {len(UNFOLLOWERS)} unfollowers.")
+            print(f"{GREEN}[+] Captured a total of {len(UNFOLLOWERS)} unfollowers.")
             sleep(2)
+            print(f'{YELLOW}|--------|USERNAMES|--------|')
+            sleep(0.75)
             for i in range(len(UNFOLLOWERS)):
-                print(f"[>] Username >>> {UNFOLLOWERS[i]}")
+                print(f"{YELLOW}[>] Username >>> {UNFOLLOWERS[i]}")
         else:
             if len(FOLLOWERS) == len(FOLLOWINGS):
                 print(f"{YELLOW}[+] No unfollowers found !")
@@ -408,6 +409,8 @@ def main():
                     f.write("-"*25+'\n\n')
                     for i in range(len(L)):
                         f.write(f"[>] Username >>> {L[i]}\n")
+                    f.close()
+                    sleep(1)
                     print(f"{GREEN}[✓] Successfully saved log !")
                     sleep(2)
                     print(f"{YELLOW}[↪] Log file name: log.txt")
@@ -429,18 +432,16 @@ def main():
         clear()
         print(Uninstall())
         sleep(2)
-        print(f"{YELLOW}[+] Thank you for using ToolZ 😁")
+        print(f"{GREEN}[+] Thank you for using ToolZ 😁")
         sleep(2)
-        print(f"{YELLOW}[+] Hope you enjoyed it ! 👍")
-        sleep(2)
-        print(f"{YELLOW}[+] Until next time 🫡")
+        print(f"{GREEN}[+] Until next time 🫡")
         sleep(1)
         quit(0)
     else:
         clear()
-        print(f"{YELLOW}[+] Thank you for using ToolZ 😁")
+        print(f"{GREEN}[+] Thank you for using ToolZ 😁")
         sleep(2)
-        print(f"{YELLOW}[+] See you next time 👋")
+        print(f"{GREEN}[+] See you next time 👋")
         sleep(1)
         quit(0)
     print(f"{YELLOW}[1] Back to menu")
@@ -454,9 +455,9 @@ def main():
         clear()
         main()
     else:
-        print(f"{YELLOW}[+] Thank you for using ToolZ 😃")
+        print(f"{GREEN}[+] Thank you for using ToolZ 😃")
         sleep(2)
-        print(f"{YELLOW}[+] Until next time 🤗")
+        print(f"{GREEN}[+] Until next time 🤗")
         sleep(1)
         print(f"{YELLOW}[+] Exiting...")
         quit(0)
