@@ -13,6 +13,6 @@ Tracker offers **live and one-time tracking**, **data storage** and **easy to us
 - GUI
 - Better appearance
 
-## ➡️ Expected files ⬅️
+## Expected files 📁
 The files expected to be created are:
   1) trackerResults.txt
