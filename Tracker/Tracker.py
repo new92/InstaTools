@@ -602,7 +602,7 @@ def main():
         clear()
         main()
     else:
-        print(f"{GREEN}[+] Thank you for using ToolZ 😃")
+        print(f"{GREEN}[+] Thank you for using Tracker 😃")
         sleep(2)
         print(f"{GREEN}[+] Until next time 🤗")
         sleep(1)
