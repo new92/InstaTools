@@ -60,7 +60,7 @@ except ImportError:
                 print("[1] Uninstall Tracker")
                 print("[2] Exit")
                 opt=int(input("[>] Please enter a number (from the above ones): "))
-                while opt < 1 or opt > 2 or opt == None:
+                while opt < 1 or opt > 2:
                     if opt == None:
                         print("[!] This field can't be blank !")
                     else:
