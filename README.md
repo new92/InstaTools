@@ -101,39 +101,39 @@ Answer ➡️ This error can be resolved by simply logging in to your account, d
 ### Linux 🐧
 
 ```bash
-  sudo su
-  git clone https://github.com/new92/InstaTools
-  cd InstaTools
-  sudo pip install -r requirements.txt
-  cd <THE FOLDER IN WHICH IS LOCATED THE SCRIPT YOU WANT TO USE. Example: cd Mutuals>
-  python3 <THE NAME OF THE SCRIPT. Example: python3 Mutuals.py>.py
+sudo su
+git clone https://github.com/new92/InstaTools
+cd InstaTools
+sudo pip install -r requirements.txt
+cd <THE FOLDER IN WHICH IS LOCATED THE SCRIPT YOU WANT TO USE. Example: cd Mutuals>
+python3 <THE NAME OF THE SCRIPT. Example: python3 Mutuals.py>.py
 ```
 
 ### Windows 🪟
 
 ```bash
-  git clone https://github.com/new92/InstaTools
-  cd InstaTools
-  pip install -r requirements.txt
-  cd <THE FOLDER IN WHICH IS LOCATED THE SCRIPT YOU WANT TO USE. Example: cd Mutuals>
-  python3 <THE NAME OF THE SCRIPT. Example: python3 Mutuals.py>.py
+git clone https://github.com/new92/InstaTools
+cd InstaTools
+pip install -r requirements.txt
+cd <THE FOLDER IN WHICH IS LOCATED THE SCRIPT YOU WANT TO USE. Example: cd Mutuals>
+python3 <THE NAME OF THE SCRIPT. Example: python3 Mutuals.py>.py
 ```
 
 ### MacOS 🍎
 
 ```bash
-  git clone https://github.com/new92/InstaTools
-  cd InstaTools
-  python -m pip install requirements.txt
-  cd <THE FOLDER IN WHICH IS LOCATED THE SCRIPT YOU WANT TO USE. Example: cd Mutuals>
-  python <THE NAME OF THE SCRIPT. Example: python3 Mutuals.py>.py
+git clone https://github.com/new92/InstaTools
+cd InstaTools
+python -m pip install requirements.txt
+cd <THE FOLDER IN WHICH IS LOCATED THE SCRIPT YOU WANT TO USE. Example: cd Mutuals>
+python <THE NAME OF THE SCRIPT. Example: python3 Mutuals.py>.py
 ```
 
 ## Update 🔄️
 
 ```bash
-   cd <path_to_script>/InstaTools
-   git pull
+cd <path_to_script>/InstaTools
+git pull
 ```
     
 ## License 📜
