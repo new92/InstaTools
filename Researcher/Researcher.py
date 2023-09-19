@@ -15,14 +15,14 @@ try:
     import sys
     from time import sleep
     if sys.version_info[0] < 3:
-        print("[!] Error ! This script requires Python version 3.X ! ")
+        print("[!] Error ! Researcher requires Python version 3.X ! ")
         sleep(2)
         print("""[+] Instructions to download Python 3.x : 
         Linux: apt install python3
         Windows: https://www.python.org/downloads/
         MacOS: https://docs.python-guide.org/starting/install3/osx/""")
         sleep(3)
-        print("[*] Please install the Python 3 and then use this script ✅")
+        print("[*] Please install the Python 3 and then use Researcher ✅")
         sleep(2)
         print("[+] Exiting...")
         sleep(1)
@@ -72,7 +72,7 @@ except ImportError or ModuleNotFoundError:
                         sleep(1)
                         print("[+] Acceptable numbers: [1,2]")
                     sleep(1)
-                    print("[1] Uninstall script")
+                    print("[1] Uninstall Researcher")
                     print("[2] Exit")
                     opt=int(input("[>] Please enter again a number (from the above ones): "))
                 if opt == 1:
@@ -123,10 +123,8 @@ def ScriptInfo():
     with open('config.json') as config:
         conf = json.load(config)
     f = conf['name'] + '.py'
-    if os.path.exists(fpath(f)):
-        fsize = os.stat(fpath(f)).st_size
-    else:
-        fsize = 0
+    fp = os.path.exists(fpath(f)) if not fpath(f) == None else None
+    fsize = 0 if fp == None else os.stat(fpath(f)).st_size
     print(f"{YELLOW}[+] Author: {conf['author']}")
     print(f"{YELLOW}[+] Github: @{conf['author']}")
     print(f"{YELLOW}[+] Leetcode: @{conf['author']}")
@@ -399,7 +397,7 @@ def main():
                     print(f"{YELLOW}[=] Username: {LIST[i]}")
                     f.write(f"[=] Username: {LIST[i]}")
                     f.write("\n")
-            print(f"{GREEN}[✓] Successfully saved usersnames !")
+            print(f"{GREEN}[✓] Successfully saved usernames !")
             sleep(1)
             print(f"{GREEN}[↪] File name: {name}")
             print(f"{GREEN}[↪] Path: {fpath(name)}")
@@ -432,13 +430,10 @@ def main():
     print(f"{YELLOW}[2] Exit")
     number=int(input(f"{YELLOW}[::] Please enter a number (from the above ones): "))
     while number < 1 or number > 2:
-        if number == None:
-            print(f"{RED}[!] This field can't be blank !")
-        else:
-            print(f"{RED}[!] Invalid number !")
-            sleep(1)
-            print(f"{GREEN}[+] Acceptable numbers: [1/2]")
-            sleep(2)
+        print(f"{RED}[!] Invalid number !")
+        sleep(1)
+        print(f"{GREEN}[+] Acceptable numbers: [1/2]")
+        sleep(2)
         number=int(input(f"{YELLOW}[::] Please enter again a number (from the above ones): "))
     if number == 1:
         clear()
