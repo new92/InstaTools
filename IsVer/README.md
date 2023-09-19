@@ -13,6 +13,7 @@ IsVer provides many features such as:
 
 ## Features 🚀
 
-- Log file
+- ~~Log file~~
+- ~~Colored~~
 - GUI
 - Data visualization
