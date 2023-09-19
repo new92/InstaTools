@@ -64,13 +64,10 @@ except ImportError or ModuleNotFoundError:
                 print("[1] Uninstall ToolZ")
                 print("[2] Exit")
                 opt=int(input("[>] Please enter a number (from the above ones): "))
-                while opt < 1 or opt > 2 or opt == None:
-                    if opt == None:
-                        print("[!] This field can't be blank !")
-                    else:
-                        print("[!] Invalid number !")
-                        sleep(1)
-                        print("[+] Acceptable numbers: [1,2]")
+                while opt < 1 or opt > 2:
+                    print("[!] Invalid number !")
+                    sleep(1)
+                    print("[+] Acceptable numbers: [1,2]")
                     sleep(1)
                     print("[1] Uninstall ToolZ")
                     print("[2] Exit")
