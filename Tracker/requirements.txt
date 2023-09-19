@@ -1,0 +1,4 @@
+tqdm == 4.65.0
+instaloader == 4.10
+requests == 2.31.0
+colorama == 0.4.6
