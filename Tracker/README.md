@@ -9,7 +9,7 @@ Tracker offers **live and one-time tracking**, **data storage** and **easy to us
 
 - The user will have the option to enter their email or phone number in order to:
   1) Get the results wherever they are
-  2) Have continuous update
+  2) Have continuous update about the progress of the script
 - GUI
 - Better appearance
 
