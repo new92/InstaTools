@@ -1,7 +1,7 @@
 # Tracker 👻
 Tracker is a python script which keeps track the followers and/or the followings of a user.
 
-> If you like this repository feel free to star and/or fork it. It really helps me to continue creating tools like these.
+> If you like this repository feel free to star and/or fork it. It really helps me to continue creating repos like these.
 
 ## Why Tracker ? 🤔
 Tracker offers **live and one-time tracking**, **data storage** and **easy to use**.
