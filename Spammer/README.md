@@ -1,6 +1,8 @@
 # Spammer 💣
 Spammer is a python script which helps the user spam messages (bomb the inbox) of another user on Instagram. **Works for both public and private acconts**
 
+> If you like this repository please feel free to star and/or fork it. It really helps me to continue creating tools like these.
+
 ## Why Spammer 🥷
 There are plenty of reasons for using Spammer. Some of them are:
   - Because it's easy to install and use
@@ -11,8 +13,6 @@ There are plenty of reasons for using Spammer. Some of them are:
 ## Expected files 📁
 The files expected to be created are:
   1) replies.txt
-
-> If you like this repository please feel free to star and/or fork it.
 
 ## Disclaimer ⚠️
 This script is intended solely for ethical and lawful purposes. It must not be used for any unethical, illegal, or harmful activities. Always obtain explicit consent from any individuals or users targeted by this script before utilizing it in any way.
