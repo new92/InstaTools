@@ -2,7 +2,7 @@
 
 Find which and how many verified users does a user follow. **Works for both public and private accounts**
 
-> If you like this repository feel free to star and/or fork it. It really helps me to continue creating tools like these.
+> If you like this repository feel free to star and/or fork it. It really helps me to continue creating repos like these.
 
 ## Why IsVer ? 🤠
 
