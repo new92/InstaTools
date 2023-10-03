@@ -140,7 +140,7 @@ def ScriptInfo():
     fp = os.path.exists(fpath(f)) if not fpath(f) == None else None
     fsize = 0 if fp == None else os.stat(fpath(f)).st_size
     print(f"{YELLOW}[+] Author: {conf['author']}")
-    print(f"{YELLOW}[+] Contributors : Itsfizziks")
+    print(f"{YELLOW}[+] Contributors : {conf['contributors']}")
     print(f"{YELLOW}[+] Github: @{conf['author']}")
     print(f"{YELLOW}[+] Leetcode: @{conf['author']}")
     print(f"{YELLOW}[+] License: {conf['lice']}")
