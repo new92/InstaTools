@@ -211,6 +211,7 @@ def main():
         print(f'{GREEN}|---------------|LOGIN|---------------|')
         session=str(input(f"{YELLOW}[::] Please enter the cookie file path: "))
         session = session.lower().strip()
+        sleep(0.5)
         print(f"{YELLOW}Using session file: {session}")
         sleep(1)
         while not validate(session):
@@ -220,39 +221,6 @@ def main():
         username = extract(session)
         sleep(0.5)
         print(f"{YELLOW}[+] Extracted username: {username}")
-        sleep(0.5)
-        while valUser(username):
-                print(f"{RED}[!] User not found !")
-                sleep(1)
-                print(f"{YELLOW}[1] Try with another username")
-                print(f"{YELLOW}[2] Return to menu")
-                print(f"{YELLOW}[3] Uninstall and Exit")
-                opt=int(input(f"{YELLOW}[::] Please enter a number (from the above ones): "))
-                while opt < 1 or opt > 3:
-                    print(f"{RED}[!] Invalid number !")
-                    sleep(1)
-                    print(f"{YELLOW}[1] Try with another username")
-                    print(f"{YELLOW}[2] Return to menu")
-                    print(f"{YELLOW}[3] Uninstall and Exit")
-                    opt=int(input(f"{YELLOW}[::] Please enter again a number (from the above ones): "))
-                if opt == 1:
-                    username=str(input(f"{YELLOW}[::] Please enter the username again: "))
-                    while checkUser(username):
-                        print(f"{RED}[!] Invalid username !")
-                        sleep(1)
-                        username=str(input(f"{YELLOW}[::] Please enter the cookie file path again #####: "))
-                elif opt == 2:
-                    clear()
-                    main()
-                else:
-                    clear()
-                    print(Uninstall())
-                    sleep(2)
-                    print(f"{YELLOW}[+] Thank you for using Tracker 😁")
-                    sleep(2)
-                    print(f"{YELLOW}[+] Until next time 👋")
-                    sleep(1)
-                    quit(0)
         sleep(1)
         print(f"{GREEN}[+] Using session file: {session}")  # Debug print
         try: 
