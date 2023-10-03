@@ -175,7 +175,7 @@ def checkUser(username:str) -> bool:
 def valUser(username: str) -> bool:
     return requests.get(f'https://www.instagram.com/{username}/', allow_redirects=False).status_code != 200
 
-def is_session_file_valid(session: str) -> bool:
+def validate(session: str) -> bool:
     return os.path.exists(session)
 
 def extract(raw_path):
@@ -214,7 +214,7 @@ def main():
         session = session.lower().strip()
         print(f"{YELLOW}Using session file: {session}")
         sleep(1)
-        while not is_session_file_valid(session):
+        while not validate(session):
             print(f"{RED}[!] Invalid file path !")
             sleep(1)
             session=str(input(f"{YELLOW}[::] Please enter the cookie file path again: "))
