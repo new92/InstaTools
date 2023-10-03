@@ -178,7 +178,7 @@ def valUser(username: str) -> bool:
 def validate(session: str) -> bool:
     return os.path.exists(session)
 
-def extract(raw_path):
+def extract(raw_path: str):
     index = raw_path.find('session-')
     return raw_path[index + len('session-'):] if index != -1 else None # Return none if session- is not found
 
