@@ -61,6 +61,9 @@ See `contributing.md` for ways to get started.
 
 Please adhere to this project's `code of conduct`. For more info please check the `CODE_OF_CONDUCT.md` file.
 
+## Special thanks to 🫡
+
+- <a href='https://www.github.com/itsfizziks'>@itsfizziks</a>
 
 ## Feedback 💭
 
