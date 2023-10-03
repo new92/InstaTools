@@ -105,6 +105,7 @@ sudo su
 git clone https://github.com/new92/InstaTools
 cd InstaTools
 sudo pip install -r requirements.txt
+python3 cookies.py
 cd <THE FOLDER IN WHICH IS LOCATED THE SCRIPT YOU WANT TO USE. Example: cd Mutuals>
 python3 <THE NAME OF THE SCRIPT. Example: python3 Mutuals.py>.py
 ```
@@ -115,6 +116,7 @@ python3 <THE NAME OF THE SCRIPT. Example: python3 Mutuals.py>.py
 git clone https://github.com/new92/InstaTools
 cd InstaTools
 pip install -r requirements.txt
+python3 cookies.py
 cd <THE FOLDER IN WHICH IS LOCATED THE SCRIPT YOU WANT TO USE. Example: cd Mutuals>
 python3 <THE NAME OF THE SCRIPT. Example: python3 Mutuals.py>.py
 ```
@@ -125,6 +127,7 @@ python3 <THE NAME OF THE SCRIPT. Example: python3 Mutuals.py>.py
 git clone https://github.com/new92/InstaTools
 cd InstaTools
 python -m pip install requirements.txt
+python3 cookies.py
 cd <THE FOLDER IN WHICH IS LOCATED THE SCRIPT YOU WANT TO USE. Example: cd Mutuals>
 python <THE NAME OF THE SCRIPT. Example: python3 Mutuals.py>.py
 ```
@@ -139,7 +142,6 @@ git pull
 ## License 📜
 
 [![License](https://img.shields.io/github/license/new92/IGFollowersIncreaser?style=for-the-badge)](https://github.com/new92/IGFollowersIncreaser/blob/main/LICENSE.md)
-
 
 ## Screenshots 📸
 
