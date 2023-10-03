@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
 Author: new92
-Contributor : Itsfizziks
+Contributors: Itsfizziks
 Github: @new92
 Leetcode: @new92
 
