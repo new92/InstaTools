@@ -187,7 +187,6 @@ def main():
     print("\n")
     print(f"{YELLOW} [-] -- Socials --")
     print(f"{YELLOW}[+] Author: new92")
-    print(f"{YELLOW}[+] Contributors: Itsfizziks")
     print(f"{YELLOW}[+] Github: @new92")
     print(f"{YELLOW}[+] Leetcode: @new92")
     print("\n")
