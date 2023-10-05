@@ -3,8 +3,7 @@ Author: new92
 Github: @new92
 Leetcode: @new92
 
-ToolZ: Python script for keeping track on the users which unfollowed you.
-
+Toolz is a handy Python script designed to help you stay informed about your Instagram network. With Toolz, you can effortlessly monitor and track users who have unfollowed you on Instagram, ensuring you're always up-to-date with your social media connections. Maintain a clear view of your follower base and manage your online presence effectively with this user-friendly script.
 *********IMPORTANT*********
 User's login credentials (such as: username, password) will not be stored or saved ! 
 Will be used only for the purpose of this script.
