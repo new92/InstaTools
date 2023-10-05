@@ -230,8 +230,10 @@ def main():
                 print(f"{GREEN}[✓] Session loaded successfully !")
                 sleep(1)
         except instaloader.exceptions.ConnectionException as ex:
-            print(f"{RED}[!] Login error: {ex}")
+            print(f"{RED}[✕] Error loading session file !")
             sleep(1)
+            print(f"{YELLOW}[+] Error message: {ex}")
+            sleep(2)
             print(f"{YELLOW}[+] Exiting...")
             quit(0)
         profile = None
