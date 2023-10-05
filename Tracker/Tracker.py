@@ -197,7 +197,6 @@ def main():
     print(f"{YELLOW}[3] Uninstall Tracker")
     print(f"{YELLOW}[4] Exit")
     num=int(input(f"{YELLOW}[::] Please enter a number (from the above ones): "))
-    loader = instaloader.Instaloader()
     while num < 1 or num > 4:
         print(f"{RED}[!] Invalid number !")
         sleep(1)
@@ -208,6 +207,7 @@ def main():
         num=int(input(f"{YELLOW}[::] Please enter again a number (from the above ones): "))
     if num == 1:
         clear()
+        loader = instaloader.Instaloader()
         print(f'{GREEN}|---------------|LOGIN|---------------|')
         session=str(input(f"{YELLOW}[::] Please enter the cookie file path: "))
         session = session.lower().strip()
