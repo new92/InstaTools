@@ -3,3 +3,4 @@ requests == 2.31.0
 colorama == 0.4.6
 tqdm == 4.65.0
 instagrapi == 1.16.30
+rich == 12.6.0
