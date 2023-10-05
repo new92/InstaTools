@@ -5,7 +5,10 @@ Toolz is a handy Python script designed to help you stay informed about your Ins
 > If you like this repository feel free to star and/or fork it. It really helps me to continue creating repos like these.
 
 ## Why ToolZ ? 😄
-ToolZ offers **live tracking**, **data storage** and **fast results** !
+- **Stay Informed**: "Toolz" helps users stay informed about changes in their Instagram follower base. By providing real-time notifications and a history of unfollowers, users can maintain an up-to-date view of their network.
+- **Maintain a Healthy Follower Base**: Knowing who has unfollowed you can help you identify and remove inactive or irrelevant accounts, ensuring that your follower base is more engaged and aligned with your content.
+- **Improve Engagement**: With the ability to track unfollowers, users can make data-driven decisions about their Instagram strategy. They can identify which content resonates with their audience and adjust their approach to boost engagement.
+- **Enhance Reciprocity**: "Toolz" can suggest accounts for users to follow back based on mutual unfollowers. This feature promotes reciprocity, potentially leading to a more mutually beneficial follower relationship.
 
 ## Features 🪄
 
