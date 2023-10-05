@@ -11,6 +11,7 @@ Poirot provides many features such as:
 - Anonymity
 - Quick extraction
 - Valuable data (email, telephone)
+- Data extraction
 
 ## Features 🪄
 
