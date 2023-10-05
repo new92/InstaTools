@@ -7,6 +7,7 @@ Spammer is a python script which helps the user spam messages (bomb the inbox) o
 There are plenty of reasons for using Spammer. Some of them are:
   - Easy installation and usage
   - Doesn't require additional info (user-agent, browser, os etc.)
+  - Sends messages until interruption by the user.
 
 ## Expected files 📁
 The files expected to be created are:
