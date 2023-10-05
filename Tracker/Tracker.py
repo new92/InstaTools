@@ -149,6 +149,7 @@ def ScriptInfo():
     print(f"{YELLOW}[+] Script's name: {conf['name']}")
     print(f"{YELLOW}[+] File size: {fsize} bytes")
     print(f"{YELLOW}[+] API(s) used: {conf['api']}")
+    print(f"{YELLOW}[+] Latest update: {conf['update']}")
     print(f"{YELLOW}|======|GITHUB REPO INFO|======|")
     print(f"{YELLOW}[+] Stars: {conf['stars']}")
     print(f"{YELLOW}[+] Forks: {conf['forks']}")
