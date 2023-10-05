@@ -1,6 +1,6 @@
 """
 Author: new92
-Contributors: Itsfizziks
+Contributors: [Itsfizziks]
 Github: @new92
 Leetcode: @new92
 
