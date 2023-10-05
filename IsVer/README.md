@@ -6,11 +6,11 @@ IsVer is a handy Python script designed to analyze and report on the Instagram f
 
 ## Why IsVer ? 🤠
 
-- **Verification Status Identification:** The script can identify and flag verified accounts among the user's Instagram followings. It helps users quickly spot which of their followed accounts have the blue verification badge.
-- **List of Verified Accounts:** "IsVer" generates a list of the verified accounts within the user's followings, making it easy for users to see who they are following that holds a verified status.
-- **User-Friendly Interface:** The script typically provides a user-friendly interface or report that displays the verified accounts in a clear and organized manner, making it easy for users to digest the information.
-- **Automation:** Depending on the script's design, it may automate the process of identifying verified accounts among a user's followings, saving users time and effort compared to manually checking each account.
-- **Customization:** Some versions of "IsVer" may allow users to customize the script's behavior, such as specifying which accounts to scan or which actions to take based on the verification status.
+1. **Verification Status Identification:** The script can identify and flag verified accounts among the user's Instagram followings. It helps users quickly spot which of their followed accounts have the blue verification badge.
+2. **List of Verified Accounts:** "IsVer" generates a list of the verified accounts within the user's followings, making it easy for users to see who they are following that holds a verified status.
+3. **User-Friendly Interface:** The script typically provides a user-friendly interface or report that displays the verified accounts in a clear and organized manner, making it easy for users to digest the information.
+4. **Automation:** Depending on the script's design, it may automate the process of identifying verified accounts among a user's followings, saving users time and effort compared to manually checking each account.
+5. **Customization:** Some versions of "IsVer" may allow users to customize the script's behavior, such as specifying which accounts to scan or which actions to take based on the verification status.
 
 ## Features 🚀
 
