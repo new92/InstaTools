@@ -5,10 +5,10 @@ Spammer is a python script which helps the user spam messages (bomb the inbox) o
 
 ## Why Spammer 🫣
 There are plenty of reasons for using Spammer. Some of them are:
-  - Because it's easy to install and use
-  - It doesn't require additional info (user-agent, browser, os etc.)
-  - It comes with a variety of other tools for Instagram.
-  - It uses techniques to facilitate the user
+  - Easy installation and usage
+  - Doesn't require additional info (user-agent, browser, os etc.)
+  - Comes with a variety of other tools for Instagram.
+  - Uses techniques to facilitate the user
 
 ## Expected files 📁
 The files expected to be created are:
