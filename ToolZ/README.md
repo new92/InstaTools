@@ -18,3 +18,7 @@ Toolz is a handy Python script designed to help you stay informed about your Ins
 - Data visualization
 - GUI (perhaps) 
 - Automatic login (or no login at all)
+
+## Expected files 📁
+The files expected to be created are:
+  1. ToolZ_Log.txt
