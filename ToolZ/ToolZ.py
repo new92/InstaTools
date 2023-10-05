@@ -1,9 +1,11 @@
 """
 Author: new92
+Contributors: Itsfizziks
 Github: @new92
 Leetcode: @new92
 
-Toolz is a handy Python script designed to help you stay informed about your Instagram network. With Toolz, you can effortlessly monitor and track users who have unfollowed you on Instagram, ensuring you're always up-to-date with your social media connections. Maintain a clear view of your follower base and manage your online presence effectively with this user-friendly script.
+ToolZ: Python script for keeping track on the users which unfollowed you.
+
 *********IMPORTANT*********
 User's login credentials (such as: username, password) will not be stored or saved ! 
 Will be used only for the purpose of this script.
@@ -116,7 +118,7 @@ def fpath(fname: str):
     return None
 
 def checkUser(username: str) -> bool:
-    return len(username) > 30 or username in ['None', '', ' ']
+    return len(username) > 30 or username in ['', ' ']
 
 def valUser(username: str) -> bool:
     return requests.get(f'https://www.instagram.com/{username}/', allow_redirects=False).status_code != 200
@@ -138,6 +140,13 @@ def Uninstall() -> str:
 def clear():
     system('cls') if platform.system() == 'Windows' else system('clear')
 
+def validate(path: str) -> bool:
+    return os.path.exists(path)
+
+def extract(raw_path: str):
+    index = raw_path.find('session-')
+    return raw_path[index + len('session-'):] if index != -1 else None 
+
 def ScriptInfo():
     with open('config.json') as config:
         conf = json.load(config)
@@ -145,6 +154,7 @@ def ScriptInfo():
     fp = os.path.exists(fpath(f)) if not fpath(f) == None else None
     fsize = 0 if fp == None else os.stat(fpath(f)).st_size
     print(f"{YELLOW}[+] Author: {conf['author']}")
+    print(f"{YELLOW}[+] Contributors: {conf['contributors']}")
     print(f"{YELLOW}[+] Github: @{conf['author']}")
     print(f"{YELLOW}[+] Leetcode: @{conf['author']}")
     print(f"{YELLOW}[+] License: {conf['lice']}")
@@ -211,11 +221,12 @@ def main():
         num=int(input(f"{YELLOW}[::] Please enter again a number (from the above ones): "))
     if num == 1:
         clear()
+        loader = instaloader.Instaloader()
         print(f"{GREEN}[+] Acceptable answers: [yes/no]")
         sleep(1)
         con=str(input(f"{YELLOW}[>] Do you consent that the author (new92) has no responsibility for any loss or damage may the script cause to the given (Instagram) account ? "))
-        while con.lower() not in ANS or con in ['None', '', ' ']:
-            if con in ['None', '', ' ']:
+        while con.lower() not in ANS or con in ['', ' ']:
+            if con in ['', ' ']:
                 print(f"{RED}[!] This field can't be blank !")
             else:
                 print(f"{RED}[!] Invalid answer !")
@@ -265,198 +276,187 @@ def main():
                 quit(0)
         sleep(1)
         print(f'{GREEN}|---------------|LOGIN|---------------|')
-        username=str(input(f"{YELLOW}[::] Please enter your username: "))
-        while checkUser(username):
-            print(f"{RED}[!] Invalid username !")
+        session=str(input(f"{YELLOW}[::] Please enter the cookie file path: "))
+        session = session.lower().strip()
+        sleep(0.5)
+        print(f"{YELLOW}Using session file: {session}")
+        sleep(1)
+        while not validate(session):
+            print(f"{RED}[!] Invalid file path !")
             sleep(1)
-            username=str(input(f"{YELLOW}[::] Please enter again the username: "))
-        username = username.lower().strip()
-        while valUser(username):
-                print(f"{RED}[!] User not found !")
+            session=str(input(f"{YELLOW}[::] Please enter again the cookie file path: "))
+        username = extract(session)
+        sleep(0.5)
+        print(f"{YELLOW}[+] Extracted username: {username}...")
+        sleep(1)
+        print(f"{GREEN}[+] Using session file: {session}...")
+        sleep(2)
+        try: 
+            with open(session, 'rb') as sessionfile:
+                loader.context.load_session_from_file(username, sessionfile)
+                print(f"{GREEN}[✓] Session loaded successfully !")
                 sleep(1)
-                print(f"{YELLOW}[1] Try with another username")
-                print(f"{YELLOW}[2] Return to menu")
-                print(f"{YELLOW}[3] Uninstall and Exit")
-                opt=int(input(f"{YELLOW}[::] Please enter a number (from the above ones): "))
-                while opt < 1 or opt > 3:
-                    print(f"{RED}[!] Invalid number !")
-                    sleep(1)
-                    print(f"{YELLOW}[1] Try with another username")
-                    print(f"{YELLOW}[2] Return to menu")
-                    print(f"{YELLOW}[3] Uninstall and Exit")
-                    opt=int(input(f"{YELLOW}[::] Please enter again a number (from the above ones): "))
-                if opt == 1:
-                    username=str(input(f"{YELLOW}[::] Please enter the username: "))
-                    while checkUser(username):
-                        print(f"{RED}[!] Invalid username !")
-                        sleep(1)
-                        username=str(input(f"{YELLOW}[::] Please enter again the username: "))
-                elif opt == 2:
-                    clear()
-                    main()
-                else:
-                    clear()
-                    print(Uninstall())
-                    sleep(2)
-                    print(f"{GREEN}[+] Thank you for using ToolZ 😁")
-                    sleep(2)
-                    print(f"{GREEN}[+] Until next time 👋")
-                    sleep(1)
-                    quit(0)
-        loader = instaloader.Instaloader()
-        password=str(input(f"{YELLOW}[::] Please enter your password: "))
-        while password in ['None', '', ' ']:
-            print(f"{RED}[!] This field can't be blank !")
+        except instaloader.exceptions.ConnectionException as ex:
+            print(f"{RED}[✕] Error loading session file !")
             sleep(1)
-            password=str(input(f"{YELLOW}[::] Please enter again your password: "))
-        print(f'{GREEN}|-----------------------------------|')
-        try:
-            loader.login(username,password)
-        except Exception as ex:
-            print(f"{RED}[!] Login Error !")
-            sleep(1)
-            print(f"{YELLOW}[*] Error message ==> {ex}")
+            print(f"{YELLOW}[+] Error message: {ex}")
             sleep(2)
             print(f"{YELLOW}[+] Exiting...")
             quit(0)
-        print(f"{GREEN}[✓] Login successfull !")
-        sleep(1)
-        print(f"{GREEN}[*] Initiating ToolZ...")
-        sleep(2)
-        print(f"{YELLOW}[*] Acceptable answers: [yes/no]")
-        sleep(1)
-        kp=str(input(f"{YELLOW}[?] Keep log ? "))
-        while kp.lower() not in ANS or kp in ['None', '', ' ']:
-            print(f"{RED}[!] Invalid answer !")
+        profile = None
+        try:
+            profile = instaloader.Profile.from_username(loader.context, username)
+        except instaloader.ProfileNotExistsException:
+            print(f"{RED}[!] Profile not found")
             sleep(1)
-            print(f"{GREEN}[+] Acceptable answers: [yes/no]")
+            print(f"{YELLOW}[+] Exiting...")
+            quit(0)
+
+        if profile:
+            name = 'ToolZ_Log.txt'
+            print(f"{GREEN}[✓] Login successfull !")
+            sleep(1)
+            print(f'{YELLOW}[+] User ID: {profile.userid}')
+            print(f'{YELLOW}[+] Full name: {profile.full_name}')
             sleep(2)
+            print(f"{GREEN}[*] Initiating ToolZ...")
+            sleep(2)
+            print(f"{YELLOW}[*] Acceptable answers: [yes/no]")
+            sleep(1)
             kp=str(input(f"{YELLOW}[?] Keep log ? "))
-        op = False
-        if kp:
-            op = True
-            f = open('log.txt','w')
-        profile = instaloader.Profile.from_username(loader.context, username)
-        FOLLOWERS = [follower.username for follower in profile.get_followers()]
-        FOLLOWINGS = [following.username for following in profile.get_followees()]
-        print(f"{YELLOW}[1] Live tracker")
-        print(f"{YELLOW}[2] One-time tracker")
-        opt=int(input(f"{YELLOW}[::] Please enter a number (from the above ones): "))
-        while opt < 1 or opt > 2:
-            print(f"{RED}[!] Invalid number !")
-            sleep(1)
-            print(f"{GREEN}[+] Acceptable numbers: [1/2]")
-            sleep(1)
-            opt=int(input(f"{YELLOW}[::] Please enter a number (from the above ones): "))
-        if opt == 1:
-            UNFOLLOWERS = []
-            while len(FOLLOWERS) == len(FOLLOWINGS):
-                print(f"{YELLOW}[*] Checking for unfollowers...")
-                sleep(5)
-                profile = instaloader.Profile.from_username(loader.context, username)
-                FOLLOWERS = [follower.username for follower in profile.get_followers()]
-                FOLLOWINGS = [following.username for following in profile.get_followees()]
-                print(f"{GREEN}[+] No unfollowers found...")
-                sleep(5)
-                print(f"{YELLOW}[*] Sleeping for 20 secs...")
-                sleep(20)
-            for i in range(len(FOLLOWINGS)):
-                verProf = instaloader.Profile.from_username(loader.context, FOLLOWINGS[i])
-                if FOLLOWINGS[i] not in FOLLOWERS and not verProf.is_verified:
-                    UNFOLLOWERS.append(FOLLOWINGS[i])
-            if op:
-                f.write(f"[&] Detected a total of {len(UNFOLLOWERS)} unfollowers\n\n")
-                f.write("-"*25+'\n\n')
-                for i in range(len(UNFOLLOWERS)):
-                    f.write(f"[>] Username >>> {UNFOLLOWERS[i]}\n")
-                print(f"{GREEN}[✓] Successfully saved log !")
+            while kp.lower() not in ANS or kp in ['', ' ']:
+                print(f"{RED}[!] Invalid answer !")
+                sleep(1)
+                print(f"{GREEN}[+] Acceptable answers: [yes/no]")
                 sleep(2)
-                print(f"{YELLOW}[↪] Log file name: log.txt")
-                print(f"{YELLOW}[↪] Location path: {fpath('log.txt')}")
-                print(f"{YELLOW}[↪] File size: {os.stat(fpath('log.txt')).st_size} bytes")
-                sleep(3)
-            sleep(5)
-            print(f"{GREEN}[+] Captured a total of {len(UNFOLLOWERS)} unfollowers.")
+                kp=str(input(f"{YELLOW}[?] Keep log ? "))
+            kp = True if kp.lower() == ANS[0] else False
+            if kp:
+                f = open(name, 'w')
+            profile = instaloader.Profile.from_username(loader.context, username)
+            FOLLOWERS = [follower.username for follower in profile.get_followers()]
+            FOLLOWINGS = [following.username for following in profile.get_followees()]
             sleep(2)
-            print(f'{YELLOW}|--------|USERNAMES|--------|')
-            sleep(0.75)
-            for i in range(len(UNFOLLOWERS)):
-                print(f"{YELLOW}[>] Username >>> {UNFOLLOWERS[i]}")
-        else:
-            if len(FOLLOWERS) == len(FOLLOWINGS):
-                print(f"{YELLOW}[+] No unfollowers found !")
-            else:
-                L = []
+            clear()
+            print(f"{YELLOW}[1] Live tracker")
+            print(f"{YELLOW}[2] One-time tracker")
+            opt=int(input(f"{YELLOW}[::] Please enter a number (from the above ones): "))
+            while opt < 1 or opt > 2:
+                print(f"{RED}[!] Invalid number !")
+                sleep(1)
+                print(f"{GREEN}[+] Acceptable numbers: [1/2]")
+                sleep(1)
+                opt=int(input(f"{YELLOW}[::] Please enter a number (from the above ones): "))
+            if opt == 1:
+                UNFOLLOWERS = []
+                while len(FOLLOWERS) == len(FOLLOWINGS):
+                    print(f"{YELLOW}[*] Checking for unfollowers...")
+                    sleep(5)
+                    profile = instaloader.Profile.from_username(loader.context, username)
+                    FOLLOWERS = [follower.username for follower in profile.get_followers()]
+                    FOLLOWINGS = [following.username for following in profile.get_followees()]
+                    print(f"{GREEN}[+] No unfollowers found...")
+                    sleep(5)
+                    print(f"{YELLOW}[*] Sleeping for 20 secs before checking again...")
+                    sleep(20)
                 for i in range(len(FOLLOWINGS)):
                     verProf = instaloader.Profile.from_username(loader.context, FOLLOWINGS[i])
                     if FOLLOWINGS[i] not in FOLLOWERS and not verProf.is_verified:
-                        L.append(FOLLOWINGS[i])
-                print(f"{GREEN}[✓] OK")
-                sleep(2)
-                print(f"{YELLOW}[+] Found a total of: {len(L)} unfollowers")
-                sleep(1)
-                print(f"{YELLOW}[+] Usernames: ")
-                print("\n")
-                for i in range(len(L)):
-                    print(f"{YELLOW}[>] Username{i+1} >>> {L[i]}")
-                sleep(2)
-                if op:
-                    f.write(f"[&] Detected a total of {len(L)} unfollowers\n\n")
+                        UNFOLLOWERS.append(FOLLOWINGS[i])
+                if kp:
+                    f.write(f"[&] Detected a total of {len(UNFOLLOWERS)} unfollowers\n\n")
                     f.write("-"*25+'\n\n')
-                    for i in range(len(L)):
-                        f.write(f"[>] Username >>> {L[i]}\n")
-                    f.close()
+                    for i in range(len(UNFOLLOWERS)):
+                        f.write(f"[>] Username >>> {UNFOLLOWERS[i]}\n")
                     sleep(1)
                     print(f"{GREEN}[✓] Successfully saved log !")
                     sleep(2)
-                    print(f"{YELLOW}[↪] Log file name: log.txt")
-                    print(f"{YELLOW}[↪] Location path: {fpath('log.txt')}")
-                    print(f"{YELLOW}[↪] File size: {os.stat(fpath('log.txt')).st_size} bytes")
+                    print(f"{YELLOW}[↪] Name: {name}")
+                    print(f"{YELLOW}[↪] Location: {fpath(name)}")
+                    print(f"{YELLOW}[↪] Size: {os.stat(fpath(name)).st_size} bytes")
                     sleep(3)
-    elif num == 2:
-        clear()
-        ScriptInfo()
-        print("\n\n")
-        sleep(5)
-    elif num == 3:
-        clear()
-        f = open('log.txt','w')
-        f.close()
-        print(f"{GREEN}[✓] Successfully cleared log file !")
-        sleep(2)
-    elif num == 4:
-        clear()
-        print(Uninstall())
-        sleep(2)
-        print(f"{GREEN}[+] Thank you for using ToolZ 😁")
-        sleep(2)
-        print(f"{GREEN}[+] Until next time 🫡")
-        sleep(1)
-        quit(0)
-    else:
-        clear()
-        print(f"{GREEN}[+] Thank you for using ToolZ 😁")
-        sleep(2)
-        print(f"{GREEN}[+] See you next time 👋")
-        sleep(1)
-        quit(0)
-    print(f"{YELLOW}[1] Back to menu")
-    print(f"{YELLOW}[2] Exit")
-    num=int(input(f"{YELLOW}[::] Please enter a number (from the above ones): "))
-    while num < 1 or num > 2:
-        print(f"{RED}[!] Invalid number !")
-        sleep(1)
+                sleep(5)
+                print(f"{GREEN}[+] Captured a total of {len(UNFOLLOWERS)} unfollowers.")
+                sleep(2)
+                print(f'{YELLOW}|--------|USERNAMES|--------|')
+                sleep(0.75)
+                for i in range(len(UNFOLLOWERS)):
+                    print(f"{YELLOW}[>] Username >>> {UNFOLLOWERS[i]}")
+            else:
+                if len(FOLLOWERS) == len(FOLLOWINGS):
+                    print(f"{YELLOW}[+] No unfollowers found !")
+                else:
+                    L = []
+                    for i in range(len(FOLLOWINGS)):
+                        verProf = instaloader.Profile.from_username(loader.context, FOLLOWINGS[i])
+                        if FOLLOWINGS[i] not in FOLLOWERS and not verProf.is_verified:
+                            L.append(FOLLOWINGS[i])
+                    print(f"{GREEN}[✓] OK")
+                    sleep(2)
+                    print(f"{YELLOW}[+] Found a total of: {len(L)} unfollowers")
+                    sleep(1)
+                    print(f"{YELLOW}[+] Usernames: ")
+                    print("\n")
+                    for i in range(len(L)):
+                        print(f"{YELLOW}[>] Username{i+1} >>> {L[i]}")
+                    sleep(2)
+                    if kp:
+                        f.write(f"[&] Detected a total of {len(L)} unfollowers\n\n")
+                        f.write("-"*25+'\n\n')
+                        for i in range(len(L)):
+                            f.write(f"[>] Username >>> {L[i]}\n")
+                        f.close()
+                        sleep(1)
+                        print(f"{GREEN}[✓] Successfully saved log !")
+                        sleep(2)
+                        print(f"{YELLOW}[↪] Name: {name}")
+                        print(f"{YELLOW}[↪] Location: {fpath(name)}")
+                        print(f"{YELLOW}[↪] Size: {os.stat(fpath(name)).st_size} bytes")
+                        sleep(3)
+        elif num == 2:
+            clear()
+            ScriptInfo()
+            print("\n\n")
+            sleep(5)
+        elif num == 3:
+            clear()
+            f = open(name,'w')
+            f.close()
+            print(f"{GREEN}[✓] Successfully cleared log file !")
+            sleep(2)
+        elif num == 4:
+            clear()
+            print(Uninstall())
+            sleep(2)
+            print(f"{GREEN}[+] Thank you for using ToolZ 😁")
+            sleep(2)
+            print(f"{GREEN}[+] Until next time 🫡")
+            sleep(1)
+            quit(0)
+        else:
+            clear()
+            print(f"{GREEN}[+] Thank you for using ToolZ 😁")
+            sleep(2)
+            print(f"{GREEN}[+] See you next time 👋")
+            sleep(1)
+            quit(0)
+        print(f"{YELLOW}[1] Back to menu")
+        print(f"{YELLOW}[2] Exit")
         num=int(input(f"{YELLOW}[::] Please enter a number (from the above ones): "))
-    if num == 1:
-        clear()
-        main()
-    else:
-        print(f"{GREEN}[+] Thank you for using ToolZ 😃")
-        sleep(2)
-        print(f"{GREEN}[+] Until next time 🤗")
-        sleep(1)
-        print(f"{YELLOW}[+] Exiting...")
-        quit(0)
+        while num < 1 or num > 2:
+            print(f"{RED}[!] Invalid number !")
+            sleep(1)
+            num=int(input(f"{YELLOW}[::] Please enter a number (from the above ones): "))
+        if num == 1:
+            clear()
+            main()
+        else:
+            print(f"{GREEN}[+] Thank you for using ToolZ 😃")
+            sleep(2)
+            print(f"{GREEN}[+] Until next time 🤗")
+            sleep(1)
+            print(f"{YELLOW}[+] Exiting...")
+            quit(0)
 
-if __name__ == '__main__':
-    main()
+    if __name__ == '__main__':
+        main()
