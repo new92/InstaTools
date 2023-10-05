@@ -4,7 +4,7 @@ Author: new92
 Github: @new92
 Leetcode: @new92
 
-Python script for fetching the mutual followers and/or followees between two accounts.
+Mutuals is a powerful Python script designed to discover and display mutual followers and followings between two Instagram accounts. Whether you're looking to strengthen connections or gain insights into shared networks, Mutuals simplifies the process, allowing users to identify and connect with those who share mutual interests and connections on Instagram.
 """
 try:
     import sys
