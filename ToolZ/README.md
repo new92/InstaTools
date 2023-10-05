@@ -5,10 +5,12 @@ Toolz is a handy Python script designed to help you stay informed about your Ins
 > If you like this repository feel free to star and/or fork it. It really helps me to continue creating repos like these.
 
 ## Why ToolZ ? 😄
-- **Stay Informed**: "Toolz" helps users stay informed about changes in their Instagram follower base. By providing real-time notifications and a history of unfollowers, users can maintain an up-to-date view of their network.
-- **Maintain a Healthy Follower Base**: Knowing who has unfollowed you can help you identify and remove inactive or irrelevant accounts, ensuring that your follower base is more engaged and aligned with your content.
-- **Improve Engagement**: With the ability to track unfollowers, users can make data-driven decisions about their Instagram strategy. They can identify which content resonates with their audience and adjust their approach to boost engagement.
-- **Enhance Reciprocity**: "Toolz" can suggest accounts for users to follow back based on mutual unfollowers. This feature promotes reciprocity, potentially leading to a more mutually beneficial follower relationship.
+1. **Unfollower Tracking:** Toolz allows users to track and identify accounts that have unfollowed them on Instagram. It keeps a record of users who were previously following but have since decided to stop.
+2. **Real-Time Notifications:** The script may provide real-time notifications to users whenever someone unfollows them on Instagram, ensuring they are promptly informed of any changes in their follower count.
+3. **Historical Data:** Toolz maintains a history of unfollowers over time, allowing users to view past unfollowers and track patterns in their follower base.
+4. **Whitelist and Blacklist:** Users may have the option to create a whitelist and blacklist. The whitelist excludes specific accounts from being tracked, while the blacklist prioritizes tracking for selected accounts.
+5. **Analytics and Insights:** Toolz provide users with analytics and insights into their follower changes. This can include graphs and statistics showing follower growth, unfollowers, and trends.
+6. **User-Friendly Interface:** Toolz offers a user-friendly interface or report that displays unfollower data in a clear and organized manner.
 
 ## Features 🪄
 
