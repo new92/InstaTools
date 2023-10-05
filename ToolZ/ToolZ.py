@@ -1,6 +1,6 @@
 """
 Author: new92
-Contributors: [Itsfizziks]
+Contributors: Itsfizziks
 Github: @new92
 Leetcode: @new92
 
@@ -163,6 +163,7 @@ def ScriptInfo():
     print(f"{YELLOW}[+] Number of lines: {conf['lines']}")
     print(f"{YELLOW}[+] Script's name: {conf['name']}")
     print(f"{YELLOW}[+] API(s) used: {conf['api']}")
+    print(f"{YELLOW}[+] Latest update: {conf['update']}")
     print(f"{YELLOW}[+] File size: {fsize} bytes")
     print(f"{YELLOW}[+] File path: {fpath(f)}")
     print(f"{YELLOW}|======|GITHUB REPO INFO|======|")
