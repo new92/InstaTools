@@ -220,19 +220,21 @@ def main():
             session=str(input(f"{YELLOW}[::] Please enter the cookie file path again: "))
         username = extract(session)
         sleep(0.5)
-        print(f"{YELLOW}[+] Extracted username: {username}")
+        print(f"{YELLOW}[+] Extracted username: {username}...")
         sleep(1)
-        print(f"{GREEN}[+] Using session file: {session}")  # Debug print
+        print(f"{GREEN}[+] Using session file: {session}...")
+        sleep(2)
         try: 
             with open(session, 'rb') as sessionfile:
                 loader.context.load_session_from_file(username, sessionfile)
                 print(f"{GREEN}[✓] Session loaded successfully !")
+                sleep(1)
         except instaloader.exceptions.ConnectionException as ex:
             print(f"{RED}[!] Login error: {ex}")
             sleep(1)
             print(f"{YELLOW}[+] Exiting...")
             quit(0)
-        profile = None  # Initialize profile with None
+        profile = None
         try:
             profile = instaloader.Profile.from_username(loader.context, username)
         except instaloader.ProfileNotExistsException:
@@ -242,11 +244,12 @@ def main():
             quit(0)
 
         if profile:
+            sleep(1)
+            print(f"{GREEN}[✓] Login successfull !")
+            sleep(1.5)
             print(f'{YELLOW}[+] User ID: {profile.userid}')
             print(f'{YELLOW}[+] Full name: {profile.full_name}')
             sleep(2)
-            print(f"{GREEN}[✓] Login successfull !")
-            sleep(1)
             print(f"{YELLOW}[1] Track followers")
             print(f"{YELLOW}[2] Track followees")
             print(f"{YELLOW}[3] Track both")
@@ -336,16 +339,17 @@ def main():
                         sleep(2)
                         print(f"{YELLOW}[+] Username: {[follower for follower in FOLLOWERSAF if follower not in FOLLOWERS][0]}")
                 sleep(2)
-                print(f"{GREEN}[+] Acceptable answers: [true/false]")
+                print(f"{GREEN}[+] Acceptable answers: [yes/no]")
                 sleep(1)
                 kp=str(input(f"{YELLOW}[?] Keep log ? "))
-                while kp in ['', ' '] or kp.lower() not in ['true', 'false']:
+                while kp in ['', ' '] or kp.lower() not in ['yes', 'no']:
                     print(f"{RED}[!] Invalid answer !")
                     sleep(1)
-                    print(f"{GREEN}[+] Acceptable answers: [true/false]")
+                    print(f"{GREEN}[+] Acceptable answers: [yes/no]")
                     sleep(1)
                     kp=str(input(f"{YELLOW}[?] Keep log ? "))
-                if kp.lower() == 'true':
+                kp = True if kp.lower() == 'yes' else False
+                if kp:
                     with open(name, 'w', encoding='utf8') as f:
                         if len(FOLLOWERS) > len(FOLLOWERSAF):
                             for i in range(len(FOLLOWERS)):
