@@ -38,7 +38,6 @@ try:
     import instaloader
     import requests
     from colorama import init, Fore
-    from instaloader import ConnectionException
 except ImportError:
     print("[!] WARNING: Not all packages used in Tracker have been installed !")
     sleep(2)
