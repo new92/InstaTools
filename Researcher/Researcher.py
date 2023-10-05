@@ -4,7 +4,7 @@ Author: new92
 Github: @new92
 Leetcode: @new92
 
-Python script for retrieving the (possible) location of the followers of an Instagram user !
+Researcher is an innovative Python script designed to uncover the possible geographic locations of a user's Instagram followers. With Researcher, you can gain valuable insights into the global reach of your Instagram audience. Whether you're a marketer, influencer, or simply curious about your followers' demographics, this script simplifies the process of researching and visualizing the potential locations of your Instagram fanbase.
 
 *********IMPORTANT*********
 User's login credentials (such as: username, password) will not be stored or saved ! 
