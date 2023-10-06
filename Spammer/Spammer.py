@@ -202,6 +202,7 @@ def valUser(username: str) -> bool:
 IDS = []
 
 def main():
+    table = Table(show_footer=False)
     print(banner())
     print("\n")
     with Live(centered, console=console, screen=False):
