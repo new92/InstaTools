@@ -28,13 +28,16 @@ try:
         print("[+] Exiting...")
         sleep(1)
         quit(0)
-    from tqdm import tqdm
-    total_mods = 10
-    bar = tqdm(total=total_mods, desc='Loading modules', unit='module')
-    for _ in range(total_mods):
-        sleep(0.75)
-        bar.update(1)
-    bar.close()
+    from rich.align import Align
+    from rich.table import Table
+    from rich.live import Live
+    from rich.console import Console
+    console = Console()
+    mods = ['sys', 'time', 'rich', 'platform', 'os', 'json', 'datetime','requests', 'colorama']
+    with console.status('[bold dark_orange]Loading module...') as status:
+        for mod in mods:
+            sleep(0.8)
+            console.log(f'[[bold red]{mod}[/]] => [bold dark_green]okay')
     import platform
     from os import system
     import os
@@ -108,8 +111,10 @@ GREEN = Fore.GREEN
 RED = Fore.RED
 YELLOW = Fore.YELLOW
 
-print(f"{GREEN}[✓] Successfully loaded modules !")
-sleep(1)
+sleep(0.8)
+console.clear()
+console.print("[bold dark_green][✓] Successfully loaded modules.")
+sleep(0.8)
 
 def fpath(fname: str):
     for root, dirs, files in os.walk('/'):
@@ -142,6 +147,29 @@ def clear():
 
 def validate(path: str) -> bool:
     return os.path.exists(path)
+
+TABLE = [
+    [
+        "[b white]Author[/]: [i light_green]new92[/]",
+        "[green]https://github.com/new92[/]"
+    ],
+    [
+        "[b white]Github[/]: [i light_green]@new92[/]",
+        "[green]https://github.com/new92[/]"
+    ],
+    [
+        "[b white]Leetcode[/]: [i light_green]@new92[/]",
+        "[green]https://leetcode.com/new92[/]"
+    ],
+    [
+        "[b white]PyPI[/]: [i light_green]@new92[/]",
+        "[green]https://pypi.org/user/new92[/]"
+    ]
+]
+
+console = Console()
+table = Table(show_footer=False)
+centered = Align.center(table)
 
 def extract(raw_path: str):
     index = raw_path.find('session-')
@@ -199,12 +227,14 @@ tttttt:::::::tttttt    o:::::ooooo:::::oo:::::ooooo:::::o l::::l zzzzzzzz::::::z
 
 
 def main():
+    table = Table(show_footer=False)
     print(logo())
     print("\n")
-    print(f"{YELLOW} [-] -- Socials --")
-    print(f"{YELLOW}[+] Author: new92")
-    print(f"{YELLOW}[+] Github: @new92")
-    print(f"{YELLOW}[+] Leetcode: @new92")
+    with Live(centered, console=console, screen=False):
+        table.add_column('Socials', no_wrap=False)
+        table.add_column('Url', no_wrap=False)
+        for row in TABLE:
+            table.add_row(*row)
     print("\n")
     print(f"{YELLOW}[+] ToolZ: Python tool which keeps track on the users who unfollowed you on Instagram.")
     print("\n")
