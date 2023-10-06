@@ -21,13 +21,16 @@ try:
         print("[+] Exiting...")
         sleep(1)
         quit(0)
-    from tqdm import tqdm
-    total_mods = 8
-    bar = tqdm(total=total_mods, desc='Loading modules', unit='module')
-    for _ in range(total_mods):
-        sleep(0.75)
-        bar.update(1)
-    bar.close()
+    from rich.align import Align
+    from rich.table import Table
+    from rich.live import Live
+    from rich.console import Console
+    console = Console()
+    mods = ['sys', 'time', 'rich', 'platform', 'os', 'json', 'instagrapi', 'requests', 'colorama']
+    with console.status('[bold dark_orange]Loading module...') as status:
+        for mod in mods:
+            sleep(0.8)
+            console.log(f'[[bold red]{mod}[/]] => [bold dark_green]okay')
     import platform
     from os import system
     import instagrapi
@@ -100,8 +103,10 @@ GREEN = Fore.GREEN
 RED = Fore.RED
 YELLOW = Fore.YELLOW
 
-print(f"{GREEN}[✓] Successfully loaded modules !")
-sleep(2)
+sleep(0.8)
+console.clear()
+console.print("[bold dark_green][✓] Successfully loaded modules.")
+sleep(0.8)
 
 def fpath(fname: str):
     for root, dirs, files in os.walk('/'):
@@ -121,6 +126,7 @@ def ScriptInfo():
     fp = os.path.exists(fpath(f)) if not fpath(f) == None else None
     fsize = 0 if fp == None else os.stat(fpath(f)).st_size
     print(f"{YELLOW}[+] Author: {conf['author']}")
+    print(f"{YELLOW}[+] Contributors : {conf['contributors']}")
     print(f"{YELLOW}[+] Github: @{conf['author']}")
     print(f"{YELLOW}[+] Leetcode: @{conf['author']}")
     print(f"{YELLOW}[+] License: {conf['lice']}")
@@ -130,6 +136,7 @@ def ScriptInfo():
     print(f"{YELLOW}[+] Script's name: {conf['name']}")
     print(f"{YELLOW}[+] File size: {fsize} bytes")
     print(f"{YELLOW}[+] API(s) used: {conf['api']}")
+    print(f"{YELLOW}[+] Latest update: {conf['update']}")
     print(f"{YELLOW}|======|GITHUB REPO INFO|======|")
     print(f"{YELLOW}[+] Stars: {conf['stars']}")
     print(f"{YELLOW}[+] Forks: {conf['forks']}")
@@ -153,6 +160,29 @@ def Uninstall() -> str:
     rmdir(fpath('InstaTools'))
     return f"{GREEN}[✓] Files and dependencies uninstalled successfully !"
 
+TABLE = [
+    [
+        "[b white]Author[/]: [i light_green]new92[/]",
+        "[green]https://github.com/new92[/]"
+    ],
+    [
+        "[b white]Github[/]: [i light_green]@new92[/]",
+        "[green]https://github.com/new92[/]"
+    ],
+    [
+        "[b white]Leetcode[/]: [i light_green]@new92[/]",
+        "[green]https://leetcode.com/new92[/]"
+    ],
+    [
+        "[b white]PyPI[/]: [i light_green]@new92[/]",
+        "[green]https://pypi.org/user/new92[/]"
+    ]
+]
+
+console = Console()
+table = Table(show_footer=False)
+centered = Align.center(table)
+
 def banner() -> str:
     return f"""{YELLOW}
 ░██████╗██████╗░░█████╗░███╗░░░███╗███╗░░░███╗███████╗██████╗░
@@ -174,10 +204,11 @@ IDS = []
 def main():
     print(banner())
     print("\n")
-    print(f"{YELLOW} [-] -- Socials --")
-    print(f"{YELLOW}[+] Author: new92")
-    print(f"{YELLOW}[+] Github: @new92")
-    print(f"{YELLOW}[+] Leetcode: @new92")
+    with Live(centered, console=console, screen=False):
+        table.add_column('Socials', no_wrap=False)
+        table.add_column('Url', no_wrap=False)
+        for row in TABLE:
+            table.add_row(*row)
     print("\n")
     print(f"{YELLOW}[+] Spammer: A python script to spam messages on someone on Instagram.")
     print("\n")
@@ -196,6 +227,7 @@ def main():
         clear()
         client = instagrapi.Client()
         msg = 'hello world'
+        name = 'replies.txt'
         username=str(input(f"{YELLOW}[::] Please enter your username: "))
         while checkUser(username):
             print(f"{RED}[!] Invalid username !")
@@ -263,6 +295,8 @@ def main():
                 user=str(input(f"{YELLOW}[::] Please enter again the target username: "))
             user=user.lower().strip()
             IDS.append(requests.get(f'https://www.instagram.com/{user}/?__a=1&__d=dis').json()["logging_page_id"].strip("profilePage_"))
+        inbox = client.direct_inbox(len(IDS))
+        items = inbox['inbox']['threads']
         sleep(1)
         print(f"{YELLOW}[+] Default message: {msg}")
         sleep(1)
@@ -288,9 +322,24 @@ def main():
             sleep(1)
             print("[✓] Message Sent !")
             msgs += 1
-        print(f"{GREEN}[✓] Successfully sent {msgs} to {len(IDS)} users.")
+        with open(name, 'w', encoding='utf8') as f:
+            replies = 0
+            for thread in items:
+                lst = thread['items'][0]
+                if lst['user_id'] != client.user_id:
+                    replies += 1
+                    f.write(lst['text'] + '\n')
+        print(f"{GREEN}[✓] Successfully sent {msgs} to {len(IDS)} targets.")
         sleep(2)
-    
+        print(f"{GREEN}[✓] Replies received: {replies}/{msgs}")
+        sleep(2)
+        print(f"{GREEN}[✓] Successfully saved replies in: {name}")
+        sleep(2)
+        print(f"{GREEN}[↪] File name: {name}")
+        print(f"{GREEN}[↪] Path: {fpath(name)}")
+        print(f"{GREEN}[↪] File size: {os.stat(fpath(name)).st_size} bytes")
+        sleep(4)
+        client.logout()
     elif num == 2:
         clear()
         ScriptInfo()
