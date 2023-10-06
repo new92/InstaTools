@@ -224,6 +224,7 @@ def banner():
 """
 
 def main():
+    table = Table(show_footer=False)
     print(banner())
     print("\n")
     with Live(centered, console=console, screen=False):
@@ -291,9 +292,7 @@ def main():
                 print(f"{GREEN}[+] Until we meet again 👋")
                 sleep(1)
                 quit(0)
-        print(f"{YELLOW}[+] NOTE: The following username will be used to get the possible location of their followers.")
-        sleep(4)
-        username=str(input(f"{YELLOW}[::] Please enter the username: "))
+        username=str(input(f"{YELLOW}[::] Please enter the target username: "))
         while checkUser(username):
             if username in ['', ' ']:
                 print(f"{RED}[!] This field can't be blank !")
@@ -302,7 +301,7 @@ def main():
                 sleep(1)
                 print(f"{GREEN}[+] Acceptable username length: 30 or less characters")
             sleep(1)
-            username=str(input(f"{YELLOW}[::] Please enter again the username: "))
+            username=str(input(f"{YELLOW}[::] Please enter again the target username: "))
         username = username.lower().strip()
         while valUser(username):
             print(f"{RED}[!] User not found !")
