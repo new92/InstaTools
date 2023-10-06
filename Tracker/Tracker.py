@@ -108,6 +108,11 @@ GREEN = Fore.GREEN
 RED = Fore.RED
 YELLOW = Fore.YELLOW
 
+sleep(0.8)
+console.clear()
+console.print("[bold dark_green][✓] Successfully loaded modules.")
+sleep(0.8)
+
 def fpath(fname: str):
     for root, dirs, files in os.walk('/'):
         if fname in files:
@@ -130,6 +135,29 @@ def Uninstall() -> str:
         os.rmdir(dire)
     rmdir(fpath('InstaTools'))
     return f'{GREEN}[✓] Files and dependencies uninstalled successfully !'
+
+TABLE = [
+    [
+        "[b white]Author[/]: [i light_green]new92[/]",
+        "[green]https://github.com/new92[/]"
+    ],
+    [
+        "[b white]Github[/]: [i light_green]@new92[/]",
+        "[green]https://github.com/new92[/]"
+    ],
+    [
+        "[b white]Leetcode[/]: [i light_green]@new92[/]",
+        "[green]https://leetcode.com/new92[/]"
+    ],
+    [
+        "[b white]PyPI[/]: [i light_green]@new92[/]",
+        "[green]https://pypi.org/user/new92[/]"
+    ]
+]
+
+console = Console()
+table = Table(show_footer=False)
+centered = Align.center(table)
 
 def clear():
     system('cls') if platform.system() == 'Windows' else system('clear')
@@ -182,15 +210,16 @@ def validate(session: str) -> bool:
 
 def extract(raw_path: str):
     index = raw_path.find('session-')
-    return raw_path[index + len('session-'):] if index != -1 else None # Return none if session- is not found
+    return raw_path[index + len('session-'):] if index != -1 else None
 
 def main():
     print(logo())
     print("\n")
-    print(f"{YELLOW} [-] -- Socials --")
-    print(f"{YELLOW}[+] Author: new92")
-    print(f"{YELLOW}[+] Github: @new92")
-    print(f"{YELLOW}[+] Leetcode: @new92")
+    with Live(centered, console=console, screen=False):
+        table.add_column('Socials', no_wrap=False)
+        table.add_column('Url', no_wrap=False)
+        for row in TABLE:
+            table.add_row(*row)
     print("\n")
     print(f"{YELLOW}[+] Tracker: Python script to keep track on the followers and/or the followings of a user.")
     print("\n")
