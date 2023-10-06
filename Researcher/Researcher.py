@@ -4,7 +4,7 @@ Author: new92
 Github: @new92
 Leetcode: @new92
 
-Researcher is an innovative Python script designed to uncover the possible geographic locations of a user's Instagram followers. With Researcher, you can gain valuable insights into the global reach of your Instagram audience. Whether you're a marketer, influencer, or simply curious about your followers' demographics, this script simplifies the process of researching and visualizing the potential locations of your Instagram fanbase.
+Python script for retrieving the (possible) location of the followers of an Instagram user !
 
 *********IMPORTANT*********
 User's login credentials (such as: username, password) will not be stored or saved ! 
@@ -27,13 +27,16 @@ try:
         print("[+] Exiting...")
         sleep(1)
         quit(0)
-    from tqdm import tqdm
-    total_mods = 10
-    bar = tqdm(total=total_mods, desc='Loading modules', unit='module')
-    for _ in range(total_mods):
-        sleep(0.75)
-        bar.update(1)
-    bar.close()
+    from rich.align import Align
+    from rich.table import Table
+    from rich.live import Live
+    from rich.console import Console
+    console = Console()
+    mods = ['sys', 'time', 'rich', 'platform', 'os', 'json', 'datetime','requests', 'colorama']
+    with console.status('[bold dark_orange]Loading module...') as status:
+        for mod in mods:
+            sleep(0.8)
+            console.log(f'[[bold red]{mod}[/]] => [bold dark_green]okay')
     import platform
     from os import system
     import os
@@ -110,8 +113,10 @@ GREEN = Fore.GREEN
 YELLOW = Fore.YELLOW
 RED = Fore.RED
 
-print(f"{GREEN}[✓] Successfully loaded modules !")
-sleep(1)
+sleep(0.8)
+console.clear()
+console.print("[bold dark_green][✓] Successfully loaded modules.")
+sleep(0.8)
 
 def fpath(fname: str):
     for root, dirs, files in os.walk('/'):
@@ -126,6 +131,7 @@ def ScriptInfo():
     fp = os.path.exists(fpath(f)) if not fpath(f) == None else None
     fsize = 0 if fp == None else os.stat(fpath(f)).st_size
     print(f"{YELLOW}[+] Author: {conf['author']}")
+    print(f"{YELLOW}[+] Contributors : {conf['contributors']}")
     print(f"{YELLOW}[+] Github: @{conf['author']}")
     print(f"{YELLOW}[+] Leetcode: @{conf['author']}")
     print(f"{YELLOW}[+] License: {conf['lice']}")
@@ -134,6 +140,7 @@ def ScriptInfo():
     print(f"{YELLOW}[+] Number of lines: {conf['lines']}")
     print(f"{YELLOW}[+] Script's name: {conf['name']}")
     print(f"{YELLOW}[+] API(s) used: {conf['api']}")
+    print(f"{YELLOW}[+] Latest update: {conf['update']}")
     print(f"{YELLOW}[+] File size: {fsize} bytes")
     print(f"{YELLOW}[+] File path: {fpath(f)}")
     print(f"{YELLOW}|======|GITHUB REPO INFO|======|")
@@ -146,7 +153,7 @@ def ScriptInfo():
     print(f"{YELLOW}[+] Discussions: {conf['discs']}")
 
 def checkUser(user: str) -> bool:
-    return user in ['None', '', ' '] or len(user) > 30
+    return user in ['', ' '] or len(user) > 30
 
 def valUser(username: str) -> bool:
     return requests.get(f'https://www.instagram.com/{username}/', allow_redirects=False).status_code != 200
@@ -156,6 +163,29 @@ def nums():
     print(f"{YELLOW}[2] Show Reseacher's info")
     print(f"{YELLOW}[3] Uninstall Reseacher")
     print(f"{YELLOW}[4] Exit")
+
+TABLE = [
+    [
+        "[b white]Author[/]: [i light_green]new92[/]",
+        "[green]https://github.com/new92[/]"
+    ],
+    [
+        "[b white]Github[/]: [i light_green]@new92[/]",
+        "[green]https://github.com/new92[/]"
+    ],
+    [
+        "[b white]Leetcode[/]: [i light_green]@new92[/]",
+        "[green]https://leetcode.com/new92[/]"
+    ],
+    [
+        "[b white]PyPI[/]: [i light_green]@new92[/]",
+        "[green]https://pypi.org/user/new92[/]"
+    ]
+]
+
+console = Console()
+table = Table(show_footer=False)
+centered = Align.center(table)
 
 ANS = ['yes', 'no']
 
@@ -176,6 +206,13 @@ def Uninstall() -> str:
     rmdir(fpath('InstaTools'))
     return f"{GREEN}[✓] Files and dependencies uninstalled successfully !"
 
+def validate(session: str) -> bool:
+    return os.path.exists(session)
+
+def extract(raw_path: str):
+    index = raw_path.find('session-')
+    return raw_path[index + len('session-'):] if index != -1 else None
+
 def banner():
     return f"""{YELLOW}
 ██████╗░███████╗░██████╗███████╗░█████╗░██████╗░░█████╗░██╗░░██╗███████╗██████╗░
@@ -189,10 +226,11 @@ def banner():
 def main():
     print(banner())
     print("\n")
-    print(f"{YELLOW} [-] -- Socials --")
-    print(f"{YELLOW}[+] Author: new92")
-    print(f"{YELLOW}[+] Github: @new92")
-    print(f"{YELLOW}[+] Leetcode: @new92")
+    with Live(centered, console=console, screen=False):
+        table.add_column('Socials', no_wrap=False)
+        table.add_column('Url', no_wrap=False)
+        for row in TABLE:
+            table.add_row(*row)
     print("\n")
     print(f"{YELLOW}[+] Researcher: Python script for retrieving the possible location of the followers of a user on Instagram.")
     print("\n")
@@ -209,8 +247,8 @@ def main():
         print(f"{GREEN}[+] Acceptable answers: [yes/no]")
         sleep(2)
         con=str(input(f"{YELLOW}[>] Do you consent that the author (new92) has no responsibility for any loss or damage may the script cause to the given (Instagram) account ? "))
-        while con.lower() not in ANS or con in ['None', '', ' ']:
-            if con in ['None', '', ' ']:
+        while con.lower() not in ANS or con in ['', ' ']:
+            if con in ['', ' ']:
                 print(f"{RED}[!] This field can't be blank !")
             else:
                 print(f"{RED}[!] Invalid answer !")
@@ -257,7 +295,7 @@ def main():
         sleep(4)
         username=str(input(f"{YELLOW}[::] Please enter the username: "))
         while checkUser(username):
-            if username in ['None', '', ' ']:
+            if username in ['', ' ']:
                 print(f"{RED}[!] This field can't be blank !")
             else:
                 print(f"{RED}[!] Invalid length !")
@@ -282,7 +320,7 @@ def main():
             if opt == 1:
                 username=str(input(f"{YELLOW}[::] Please enter the username: "))
                 while checkUser(username):
-                    if username in ['None', '', ' ']:
+                    if username in ['', ' ']:
                         print(f"{RED}[!] This field can't be blank !")
                     else:
                         print(f"{RED}[!] Invalid length !")
@@ -303,106 +341,86 @@ def main():
                 sleep(1)
                 quit(0)
         loc=str(input(f"{YELLOW}[::] Please enter the location: "))
-        while loc in ['None', '', ' ']:
+        while loc in ['', ' ']:
             print(f"{YELLOW}[!] Invalid location !")
             sleep(1)
             loc=str(input(f"{YELLOW}[::] Please enter again the location: "))
         loc = loc.capitalize().strip()
         loader = instaloader.Instaloader()
         print(f'{YELLOW}|--------------------LOGIN--------------------|')
-        user=str(input(f"{YELLOW}[::] Please enter your username: "))
-        while checkUser(user):
-            if user in ['None', '', ' ']:
-                print(f"{RED}[!] This field can't be blank !")
-            else:
-                print(f"{RED}[!] Invalid length !")
+        session=str(input(f"{YELLOW}[::] Please enter the cookie file path: "))
+        session = session.lower().strip()
+        sleep(0.5)
+        print(f"{YELLOW}Using session file: {session}")
+        sleep(1)
+        while not validate(session):
+            print(f"{RED}[!] Invalid file path !")
+            sleep(1)
+            session=str(input(f"{YELLOW}[::] Please enter the cookie file path again: "))
+        username = extract(session)
+        sleep(0.5)
+        print(f"{YELLOW}[+] Extracted username: {username}...")
+        sleep(1)
+        print(f"{GREEN}[+] Using session file: {session}...")
+        sleep(2)
+        try: 
+            with open(session, 'rb') as sessionfile:
+                loader.context.load_session_from_file(username, sessionfile)
+                print(f"{GREEN}[✓] Session loaded successfully !")
                 sleep(1)
-                print(f"{GREEN}[+] Acceptable username length: 30 or less characters")
+        except instaloader.exceptions.ConnectionException as ex:
+            print(f"{RED}[✕] Error loading session file !")
             sleep(1)
-            user=str(input(f"{YELLOW}[::] Please enter again your username: "))
-        user = user.lower().strip()
-        while valUser(user):
-            print(f"{RED}[!] User not found !")
-            sleep(1)
-            print(f"{YELLOW}[1] Try with another username")
-            print(f"{YELLOW}[2] Return to menu")
-            print(f"{YELLOW}[3] Uninstall and Exit")
-            opt=int(input(f"{YELLOW}[::] Please enter a number (from the above ones): "))
-            while opt < 1 or opt > 3:
-                print(f"{RED}[!] Invalid number !")
-                sleep(1)
-                print(f"{GREEN}[+] Acceptable numbers: [1-3]")
-                sleep(2)
-                opt=int(input(f"{YELLOW}[::] Please enter again a number (from the above ones): "))
-            if opt == 1:
-                username=str(input(f"{YELLOW}[::] Please enter the username: "))
-                while checkUser(username):
-                    if username in ['None', '', ' ']:
-                        print(f"{RED}[!] This field can't be blank !")
-                    else:
-                        print(f"{RED}[!] Invalid length !")
-                        sleep(1)
-                        print(f"{GREEN}[+] Acceptable username length: 30 or less characters")
-                    sleep(1)
-                    username=str(input(f"{YELLOW}[::] Please enter again the username: "))
-            elif opt == 2:
-                clear()
-                main()
-            else:
-                clear()
-                print(Uninstall())
-                sleep(2)
-                print(f"{GREEN}[+] Thank you for using Researcher 😁")
-                sleep(2)
-                print(f"{GREEN}[+] Until we meet again 🫡")
-                sleep(1)
-                quit(0)
-        passw=str(input(f"{YELLOW}[::] Please enter your password: "))
-        while passw in ['None', '', ' ']:
-            print(f"{RED}[!] This field can't be blank !")
-            sleep(1)
-            passw=str(input(f"{YELLOW}[::] Please enter again your password: "))
-        print(f'{YELLOW}|---------------------------------------------|')
-        try:
-            loader.login(user,passw)
-        except Exception as ex:
-            print(f"{RED}[!] Login Error !")
-            sleep(1)
-            print(f"{YELLOW}[*] Error message ==> {ex}")
+            print(f"{YELLOW}[+] Error message: {ex}")
             sleep(2)
             print(f"{YELLOW}[+] Exiting...")
             quit(0)
-        profile = instaloader.Profile.from_username(loader.context, username)
-        followers = [follower.username for follower in profile.get_followers()]
-        LIST = []
-        for i in range(len(followers)):
-            profile = instaloader.Profile.from_username(loader.context, followers[i])
-            if loc in profile.biography:
-                LIST.append(followers[i])
-        if len(LIST) == 0:
-            print(f"{RED}[!] No users with such location found on the followers of {username}")
-            sleep(3)
+        profile = None
+        try:
+            profile = instaloader.Profile.from_username(loader.context, username)
+        except instaloader.ProfileNotExistsException:
+            print(f"{RED}[!] Profile not found")
+            sleep(1)
             print(f"{YELLOW}[+] Exiting...")
             quit(0)
-        else:
-            per = (float(len(followers)) / len(LIST)) * 100
-            name = f'users_in_{loc}.txt'
-            with open(name, 'w', encoding='utf8') as f:
-                print(f"{YELLOW}[+] Location: {loc}")
-                print(f"{YELLOW}[+] Searched in user's: {username} followers")
-                print(f"{YELLOW}[+] {len(LIST)} users in location: {loc}")
-                print(f"{YELLOW}[+] Percentage of users with this location: {per}%")
-                print(f'{YELLOW}\n|--------------------USERS--------------------|\n')
-                for i in range(len(LIST)):
-                    print(f"{YELLOW}[=] Username: {LIST[i]}")
-                    f.write(f"[=] Username: {LIST[i]}")
-                    f.write("\n")
-            print(f"{GREEN}[✓] Successfully saved usernames !")
+        if profile:
             sleep(1)
-            print(f"{GREEN}[↪] File name: {name}")
-            print(f"{GREEN}[↪] Path: {fpath(name)}")
-            print(f"{GREEN}[↪] File size: {os.stat(fpath(name)).st_size} bytes")
-            sleep(3)
+            print(f"{GREEN}[✓] Login successfull !")
+            sleep(1.5)
+            print(f'{YELLOW}[+] User ID: {profile.userid}')
+            print(f'{YELLOW}[+] Full name: {profile.full_name}')
+            sleep(2)
+            followers = [follower.username for follower in profile.get_followers()]
+            LIST = []
+            for i in range(len(followers)):
+                profile = instaloader.Profile.from_username(loader.context, followers[i])
+                if loc in profile.biography:
+                    LIST.append(followers[i])
+            if len(LIST) == 0:
+                print(f"{RED}[!] No users with such location found on the followers of {username}")
+                sleep(3)
+                print(f"{YELLOW}[+] Exiting...")
+                quit(0)
+            else:
+                per = (float(len(followers)) / len(LIST)) * 100
+                name = f'users_in_{loc}.txt'
+                with open(name, 'w', encoding='utf8') as f:
+                    print(f"{YELLOW}[+] Location: {loc}")
+                    print(f"{YELLOW}[+] Searched in user's: {username} followers")
+                    print(f"{YELLOW}[+] {len(LIST)} users in location: {loc}")
+                    print(f"{YELLOW}[+] Percentage of users with this location: {per}%")
+                    print(f'{YELLOW}\n|--------------------USERS--------------------|\n')
+                    for i in range(len(LIST)):
+                        print(f"{YELLOW}[=] Username: {LIST[i]}")
+                        f.write(f"[=] Username: {LIST[i]}")
+                        f.write("\n")
+                sleep(1.5)
+                print(f"{GREEN}[✓] Successfully saved usernames !")
+                sleep(1)
+                print(f"{GREEN}[↪] Name: {name}")
+                print(f"{GREEN}[↪] Location: {fpath(name)}")
+                print(f"{GREEN}[↪] Size: {os.stat(fpath(name)).st_size} bytes")
+                sleep(3)
 
     elif op == 2:
         clear()
