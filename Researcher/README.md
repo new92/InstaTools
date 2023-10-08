@@ -11,5 +11,5 @@ Researcher offers **high speed**, **data storage**, **automatic uninstallation**
 
 ## Expected files 📁
 The files expected to be created are:
-  1) users_in_+loc+.txt   (the +loc+ will be replaced with the input location)
-  2) cons.txt
+  1) `users_in_+loc+.txt`   (the +loc+ will be replaced with the input location)
+  2) `responsibility.txt`
