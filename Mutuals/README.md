@@ -21,7 +21,7 @@ Mutuals is a powerful Python script designed to discover and display mutual foll
 
 ## Expected files 📁
 The files expected to be created are:
-  1) mutuals.txt
-  2) mutualsf.txt
+  1) `mutuals.txt`
+  2) `mutualsf.txt`
 
 And much more ! So stay tuned...
