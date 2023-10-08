@@ -1,5 +1,6 @@
 
-<center><img src="https://github.com/new92/InstaTools/assets/94779840/04b080f1-120f-4800-99d7-bc9a626cb144" /></center>
+![logo](https://github.com/new92/InstaTools/assets/94779840/bdfbb09f-37ec-4ef7-a2a7-2dce756bb7aa)
+
 
 # InstaTools 🧰
 
