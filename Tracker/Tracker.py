@@ -395,123 +395,20 @@ def main():
                     print(f"{YELLOW}[↪] Location: {fpath(name)}")
                     print(f"{YELLOW}[↪] File size: {os.stat(fpath(name)).st_size} bytes")
                     sleep(3)
-        elif number == 2:
-            profile = instaloader.Profile.from_username(loader.context, username)
-            FOLLOWEES = [followee.username for followee in profile.get_followees()]
-            FOLLOWEESAF = [followee.username for followee in profile.get_followees()]
-            while FOLLOWEES == FOLLOWEESAF:
-                print(f"{YELLOW}[+] No new additions found on: {user}")
-                sleep(1)
-                print(f"{YELLOW}[+] Sleeping for 5 minutes before checking again...")
-                sleep(300)
+            elif number == 2:
+                profile = instaloader.Profile.from_username(loader.context, username)
                 FOLLOWEES = [followee.username for followee in profile.get_followees()]
                 FOLLOWEESAF = [followee.username for followee in profile.get_followees()]
-            if abs(len(FOLLOWEESAF) - len(FOLLOWEES)) > 1:
-                if len(FOLLOWEES) > len(FOLLOWEESAF):
-                    print(f"{GREEN}[*] {user} stopped following {len(FOLLOWEES) - len(FOLLOWEESAF)} users.")
-                    sleep(2)
-                    print(f'{YELLOW}|----------|USERNAMES|----------|')
+                while FOLLOWEES == FOLLOWEESAF:
+                    print(f"{YELLOW}[+] No new additions found on: {user}")
                     sleep(1)
-                    for followee in FOLLOWEES:
-                        if followee not in FOLLOWEESAF:
-                            print(f"{YELLOW}[⇒] Username: {followee}")
-                else:
-                    print(f"{GREEN}[*] {user} started following {len(FOLLOWEESAF) - len(FOLLOWEES)} users.")
-                    sleep(1)
-                    print(f'{YELLOW}|----------|USERNAMES|----------|')
-                    sleep(1)
-                    for followee in FOLLOWEESAF:
-                        if followee not in FOLLOWEES:
-                            print(f"{YELLOW}[⇒] Username: {followee}")
-                sleep(4)
-            else:
-                if len(FOLLOWEES) > len(FOLLOWEESAF):
-                    print(f"{GREEN}[*] {user} stopped following 1 user.")
-                    sleep(1)
-                    print(f"{YELLOW}[+] Username: {[followee for followee in FOLLOWEES if followee not in FOLLOWEESAF][0]}")
-                else:
-                    print(f"{GREEN}[*] {user} started following 1 user.")
-                    sleep(2)
-                    print(f"{YELLOW}[+] Username: {[followee for followee in FOLLOWEESAF if followee not in FOLLOWEES][0]}")
-            sleep(2)
-            print(f"{GREEN}[+] Acceptable answers: [true/false]")
-            sleep(1)
-            kp=str(input(f"{YELLOW}[?] Keep log ? "))
-            while kp in ['', ' '] or kp.lower() not in ['true', 'false']:
-                print(f"{RED}[!] Invalid answer !")
-                sleep(1)
-                print(f"{GREEN}[+] Acceptable answers: [true/false]")
-                sleep(1)
-                kp=str(input(f"{YELLOW}[?] Keep log ? "))
-            if kp.lower() == 'true':
-                with open(name, 'w', encoding='utf8') as f:
-                    if len(FOLLOWEES) > len(FOLLOWEESAF):
-                        for i in range(len(FOLLOWEES)):
-                            if FOLLOWEES[i] not in FOLLOWEESAF:
-                                f.write(f'{i+1}) {FOLLOWEES[i]}')
-                    else:
-                        for i in range(len(FOLLOWEESAF)):
-                            if FOLLOWEESAF[i] not in FOLLOWEES:
-                                f.write(f'{i+1}) {FOLLOWEESAF[i]}')
-                print(f"{GREEN}[✓] Successfully saved log !")
-                sleep(2)
-                print(f"{YELLOW}[↪] Log file name: {name}")
-                print(f"{YELLOW}[↪] Location: {fpath(name)}")
-                print(f"{YELLOW}[↪] File size: {os.stat(fpath(name)).st_size} bytes")
-                sleep(3)
-        else:
-            profile = instaloader.Profile.from_username(loader.context, username)
-            FOLLOWERS = [follower.username for follower in profile.get_followers()]
-            FOLLOWERSAF = [follower.username for follower in profile.get_followers()]
-            FOLLOWEES = [followee.username for followee in profile.get_followees()]
-            FOLLOWEESAF = [followee.username for followee in profile.get_followees()]
-            while FOLLOWERS == FOLLOWERSAF or FOLLOWEES == FOLLOWEESAF:
-                print(f"{YELLOW}[+] No new additions found on {user}")
-                sleep(1)
-                print(f"{YELLOW}[+] Sleeping for 5 minutes before checking again...")
-                sleep(300)
-                FOLLOWERS = [follower.username for follower in profile.get_followers()]
-                FOLLOWERSAF = [follower.username for follower in profile.get_followers()]
-                FOLLOWEES = [followee.username for followee in profile.get_followees()]
-                FOLLOWEESAF = [followee.username for followee in profile.get_followees()]
-            if FOLLOWERS != FOLLOWERSAF:
-                print(f"{GREEN}[*] Detected change on the user's followers...")
-                sleep(2)
-                if abs(len(FOLLOWERSAF) - len(FOLLOWERS)) > 1:
-                    if len(FOLLOWERS) > len(FOLLOWERSAF):
-                        print(f"{GREEN}[*] {user} removed {len(FOLLOWERS) - len(FOLLOWERSAF)} followers.")
-                        sleep(2)
-                        print(f'{YELLOW}|----------|USERNAMES|----------|')
-                        sleep(1)
-                        for follower in FOLLOWERS:
-                            if follower not in FOLLOWERSAF:
-                                print(f"{YELLOW}[⇒] Username: {follower}")
-                    else:
-                        print(f"{GREEN}[*] {user} added {len(FOLLOWERSAF) - len(FOLLOWERS)} followers.")
-                        sleep(2)
-                        print(f'{YELLOW}|----------|USERNAMES|----------|')
-                        sleep(1)
-                        for follower in FOLLOWERSAF:
-                            if follower not in FOLLOWERS:
-                                print(f"{YELLOW}[⇒] Username: {follower}")
-                    sleep(4)
-                else:
-                    if len(FOLLOWERS) > len(FOLLOWERSAF):
-                        print(f"{GREEN}[*] {user} removed 1 follower.")
-                        sleep(1)
-                        print(f"{YELLOW}[⇒] Username: {[usr for usr in FOLLOWERS if usr not in FOLLOWERSAF][0]}")
-                        sleep(1)
-                    else:
-                        print(f"{GREEN}[*] {user} added 1 follower.")
-                        sleep(1)
-                        print(f"{YELLOW}[*] Username: {[follower for follower in FOLLOWERSAF if follower not in FOLLOWERS][0]}")
-                        sleep(1)
-            else:
-                print(f"{GREEN}[*] Detected change on the user's followings...")
-                sleep(2)
+                    print(f"{YELLOW}[+] Sleeping for 5 minutes before checking again...")
+                    sleep(300)
+                    FOLLOWEES = [followee.username for followee in profile.get_followees()]
+                    FOLLOWEESAF = [followee.username for followee in profile.get_followees()]
                 if abs(len(FOLLOWEESAF) - len(FOLLOWEES)) > 1:
                     if len(FOLLOWEES) > len(FOLLOWEESAF):
-                        print(f"{GREEN}[*] {user} stopped following {len(FOLLOWEESAF) - len(FOLLOWEES)} users.")
+                        print(f"{GREEN}[*] {user} stopped following {len(FOLLOWEES) - len(FOLLOWEESAF)} users.")
                         sleep(2)
                         print(f'{YELLOW}|----------|USERNAMES|----------|')
                         sleep(1)
@@ -519,8 +416,8 @@ def main():
                             if followee not in FOLLOWEESAF:
                                 print(f"{YELLOW}[⇒] Username: {followee}")
                     else:
-                        print(f"{GREEN}[*] {user} started following {len(FOLLOWEESAF) - len(FOLLOWEES)}")
-                        sleep(2)
+                        print(f"{GREEN}[*] {user} started following {len(FOLLOWEESAF) - len(FOLLOWEES)} users.")
+                        sleep(1)
                         print(f'{YELLOW}|----------|USERNAMES|----------|')
                         sleep(1)
                         for followee in FOLLOWEESAF:
@@ -531,12 +428,115 @@ def main():
                     if len(FOLLOWEES) > len(FOLLOWEESAF):
                         print(f"{GREEN}[*] {user} stopped following 1 user.")
                         sleep(1)
-                        print(f"{YELLOW}[⇒] Username: {[FOLLOWEES[i] for i in range(len(FOLLOWEES)) if FOLLOWEES[i] not in FOLLOWEESAF][0]}")
+                        print(f"{YELLOW}[+] Username: {[followee for followee in FOLLOWEES if followee not in FOLLOWEESAF][0]}")
                     else:
                         print(f"{GREEN}[*] {user} started following 1 user.")
-                        sleep(1)
-                        print(f"{YELLOW}[⇒] Username: {[FOLLOWEESAF[i] for i in range(len(FOLLOWEESAF)) if FOLLOWEESAF[i] not in FOLLOWEES][0]}")
+                        sleep(2)
+                        print(f"{YELLOW}[+] Username: {[followee for followee in FOLLOWEESAF if followee not in FOLLOWEES][0]}")
+                sleep(2)
+                print(f"{GREEN}[+] Acceptable answers: [true/false]")
+                sleep(1)
+                kp=str(input(f"{YELLOW}[?] Keep log ? "))
+                while kp in ['', ' '] or kp.lower() not in ['true', 'false']:
+                    print(f"{RED}[!] Invalid answer !")
+                    sleep(1)
+                    print(f"{GREEN}[+] Acceptable answers: [true/false]")
+                    sleep(1)
+                    kp=str(input(f"{YELLOW}[?] Keep log ? "))
+                if kp.lower() == 'true':
+                    with open(name, 'w', encoding='utf8') as f:
+                        if len(FOLLOWEES) > len(FOLLOWEESAF):
+                            for i in range(len(FOLLOWEES)):
+                                if FOLLOWEES[i] not in FOLLOWEESAF:
+                                    f.write(f'{i+1}) {FOLLOWEES[i]}')
+                        else:
+                            for i in range(len(FOLLOWEESAF)):
+                                if FOLLOWEESAF[i] not in FOLLOWEES:
+                                    f.write(f'{i+1}) {FOLLOWEESAF[i]}')
+                    print(f"{GREEN}[✓] Successfully saved log !")
                     sleep(2)
+                    print(f"{YELLOW}[↪] Log file name: {name}")
+                    print(f"{YELLOW}[↪] Location: {fpath(name)}")
+                    print(f"{YELLOW}[↪] File size: {os.stat(fpath(name)).st_size} bytes")
+                    sleep(3)
+            else:
+                profile = instaloader.Profile.from_username(loader.context, username)
+                FOLLOWERS = [follower.username for follower in profile.get_followers()]
+                FOLLOWERSAF = [follower.username for follower in profile.get_followers()]
+                FOLLOWEES = [followee.username for followee in profile.get_followees()]
+                FOLLOWEESAF = [followee.username for followee in profile.get_followees()]
+                while FOLLOWERS == FOLLOWERSAF or FOLLOWEES == FOLLOWEESAF:
+                    print(f"{YELLOW}[+] No new additions found on {user}")
+                    sleep(1)
+                    print(f"{YELLOW}[+] Sleeping for 5 minutes before checking again...")
+                    sleep(300)
+                    FOLLOWERS = [follower.username for follower in profile.get_followers()]
+                    FOLLOWERSAF = [follower.username for follower in profile.get_followers()]
+                    FOLLOWEES = [followee.username for followee in profile.get_followees()]
+                    FOLLOWEESAF = [followee.username for followee in profile.get_followees()]
+                if FOLLOWERS != FOLLOWERSAF:
+                    print(f"{GREEN}[*] Detected change on the user's followers...")
+                    sleep(2)
+                    if abs(len(FOLLOWERSAF) - len(FOLLOWERS)) > 1:
+                        if len(FOLLOWERS) > len(FOLLOWERSAF):
+                            print(f"{GREEN}[*] {user} removed {len(FOLLOWERS) - len(FOLLOWERSAF)} followers.")
+                            sleep(2)
+                            print(f'{YELLOW}|----------|USERNAMES|----------|')
+                            sleep(1)
+                            for follower in FOLLOWERS:
+                                if follower not in FOLLOWERSAF:
+                                    print(f"{YELLOW}[⇒] Username: {follower}")
+                        else:
+                            print(f"{GREEN}[*] {user} added {len(FOLLOWERSAF) - len(FOLLOWERS)} followers.")
+                            sleep(2)
+                            print(f'{YELLOW}|----------|USERNAMES|----------|')
+                            sleep(1)
+                            for follower in FOLLOWERSAF:
+                                if follower not in FOLLOWERS:
+                                    print(f"{YELLOW}[⇒] Username: {follower}")
+                        sleep(4)
+                    else:
+                        if len(FOLLOWERS) > len(FOLLOWERSAF):
+                            print(f"{GREEN}[*] {user} removed 1 follower.")
+                            sleep(1)
+                            print(f"{YELLOW}[⇒] Username: {[usr for usr in FOLLOWERS if usr not in FOLLOWERSAF][0]}")
+                            sleep(1)
+                        else:
+                            print(f"{GREEN}[*] {user} added 1 follower.")
+                            sleep(1)
+                            print(f"{YELLOW}[*] Username: {[follower for follower in FOLLOWERSAF if follower not in FOLLOWERS][0]}")
+                            sleep(1)
+                else:
+                    print(f"{GREEN}[*] Detected change on the user's followings...")
+                    sleep(2)
+                    if abs(len(FOLLOWEESAF) - len(FOLLOWEES)) > 1:
+                        if len(FOLLOWEES) > len(FOLLOWEESAF):
+                            print(f"{GREEN}[*] {user} stopped following {len(FOLLOWEESAF) - len(FOLLOWEES)} users.")
+                            sleep(2)
+                            print(f'{YELLOW}|----------|USERNAMES|----------|')
+                            sleep(1)
+                            for followee in FOLLOWEES:
+                                if followee not in FOLLOWEESAF:
+                                    print(f"{YELLOW}[⇒] Username: {followee}")
+                        else:
+                            print(f"{GREEN}[*] {user} started following {len(FOLLOWEESAF) - len(FOLLOWEES)}")
+                            sleep(2)
+                            print(f'{YELLOW}|----------|USERNAMES|----------|')
+                            sleep(1)
+                            for followee in FOLLOWEESAF:
+                                if followee not in FOLLOWEES:
+                                    print(f"{YELLOW}[⇒] Username: {followee}")
+                        sleep(4)
+                    else:
+                        if len(FOLLOWEES) > len(FOLLOWEESAF):
+                            print(f"{GREEN}[*] {user} stopped following 1 user.")
+                            sleep(1)
+                            print(f"{YELLOW}[⇒] Username: {[FOLLOWEES[i] for i in range(len(FOLLOWEES)) if FOLLOWEES[i] not in FOLLOWEESAF][0]}")
+                        else:
+                            print(f"{GREEN}[*] {user} started following 1 user.")
+                            sleep(1)
+                            print(f"{YELLOW}[⇒] Username: {[FOLLOWEESAF[i] for i in range(len(FOLLOWEESAF)) if FOLLOWEESAF[i] not in FOLLOWEES][0]}")
+                        sleep(2)
             print(f"{GREEN}[+] Acceptable answers: [yes/no]")
             sleep(1)
             keep=str(input(f"{YELLOW}[?] Keep log ? "))
