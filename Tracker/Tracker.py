@@ -606,7 +606,7 @@ def main():
     print(f"{YELLOW}[1] Return to menu")
     print(f"{YELLOW}[2] Exit")
     numb=int(input(f"{YELLOW}[::] Please enter a number (from the above ones): "))
-    while numb < 1 or numb > 2 or numb:
+    while numb < 1 or numb > 2:
         print(f"{RED}[!] Invalid number !")
         sleep(1)
         numb=int(input(f"{YELLOW}[::] Please enter again a number (from the above ones): "))
