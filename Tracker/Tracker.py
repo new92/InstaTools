@@ -119,9 +119,6 @@ def fpath(fname: str):
             return os.path.abspath(os.path.join(root, fname))
     return None
 
-print(f"{GREEN}[✓] Successfully loaded modules !")
-sleep(1)
-
 def Uninstall() -> str:
     def rmdir(dire):
         DIRS = []
