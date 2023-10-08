@@ -22,4 +22,4 @@ Tracker is a Python script designed to monitor and maintain a record of a user's
 
 ## Expected files 📁
 The files expected to be created are:
-  1) trackerResults.txt
+  1) `trackerResults.txt`
