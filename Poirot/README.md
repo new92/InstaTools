@@ -21,4 +21,4 @@ Poirot provides many features such as:
 
 ## Expected files 📁
 The files expected to be created are the following:
-  1. poirotLog.txt
+  1. `poirotLog.txt`
