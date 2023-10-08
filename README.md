@@ -1,5 +1,5 @@
 
-![logo](https://github.com/new92/InstaTools/assets/94779840/04b080f1-120f-4800-99d7-bc9a626cb144)
+<center><a href="https://github.com/new92/InstaTools/assets/94779840/04b080f1-120f-4800-99d7-bc9a626cb144"></a></center>
 
 # InstaTools 🧰
 
