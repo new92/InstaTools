@@ -1,5 +1,5 @@
 # 🛑 UNSTABLE VERSION 🛑
-IsVer is currently experiencing instability. You can still use it, but there is a possibility that you may encounter errors.
+<b>IsVer is currently experiencing instability. You can still use it, but there is a possibility that you may encounter errors.</b>
 
 # IsVer 🥷
 
