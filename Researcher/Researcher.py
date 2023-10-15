@@ -351,7 +351,7 @@ def main():
         session=str(input(f"{YELLOW}[::] Please enter the cookie file path: "))
         session = session.lower().strip()
         sleep(0.5)
-        print(f"{YELLOW}Using session file: {session}")
+        print(f"{YELLOW}Using session file: {session}...")
         sleep(1)
         while not validate(session):
             print(f"{RED}[!] Invalid file path !")
