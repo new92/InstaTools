@@ -103,7 +103,8 @@ YELLOW = Fore.YELLOW
 sleep(0.8)
 console.clear()
 console.log("[bold green][✓] Successfully loaded modules ![/]")
-sleep(1)
+sleep(0.8)
+console.clear()
 
 def checkUser(username:str) -> bool:
     return username in ['' , ' '] or len(username) > 30
