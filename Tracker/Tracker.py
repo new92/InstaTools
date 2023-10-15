@@ -112,6 +112,7 @@ sleep(0.8)
 console.clear()
 console.print("[bold dark_green][✓] Successfully loaded modules.")
 sleep(0.8)
+console.clear()
 
 def fpath(fname: str):
     for root, dirs, files in os.walk('/'):
