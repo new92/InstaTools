@@ -5,6 +5,7 @@
     "contributors": ["itsfizziks"],
     "language": ["Python"],
     "name": "ToolZ",
+    "update": "10/15/2023",
     "lines": 493,
     "stars": 54,
     "forks": 13,
@@ -14,5 +15,4 @@
     "clprs": 4,
     "discs": 2,
     "api": null,
-    "update": "10/06/2023"
 }
