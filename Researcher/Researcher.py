@@ -3,6 +3,7 @@
 Author: new92
 Github: @new92
 Leetcode: @new92
+PyPI: @new92
 
 Python script for retrieving the (possible) location of the followers of an Instagram user !
 
@@ -168,7 +169,7 @@ def nums():
 TABLE = [
     [
         "[b white]Author[/]: [i light_green]new92[/]",
-        "[green]https://github.com/new92[/]"
+        "[green]https://new92.github.io/[/]"
     ],
     [
         "[b white]Github[/]: [i light_green]@new92[/]",
