@@ -123,7 +123,7 @@ def ScriptInfo():
         conf = json.load(config)
     f = conf['name'] + '.py'
     fp = True if not fpath(f) == None else False
-    fsize = 0 if fp else os.stat(fpath(f)).st_size
+    fsize = 0 if not fp else os.stat(fpath(f)).st_size
     print(f"{YELLOW}[+] Author: {conf['author']}")
     print(f"{YELLOW}[+] Github: @{conf['author']}")
     print(f"{YELLOW}[+] Leetcode: @{conf['author']}")
