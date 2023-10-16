@@ -231,8 +231,7 @@ def fetch(username: str):
         return js['message']
     
 def main():
-    table = Table(show_footer=False)
-    print(banner())
+    banner()
     print("\n")
     with Live(centered, console=console, screen=False):
         table.add_column('Socials', no_wrap=False)
