@@ -2,6 +2,7 @@
 Author: new92
 Github: @new92
 Leetcode: @new92
+PyPI: @new92
 
 Spammer: Python script to spam messages on user(s) on Instagram.
 """
@@ -20,7 +21,7 @@ try:
         sleep(2)
         print("[+] Exiting...")
         sleep(1)
-        quit(0)
+        quit()
     from rich.align import Align
     from rich.table import Table
     from rich.live import Live
@@ -90,7 +91,7 @@ except ImportError or ModuleNotFoundError:
                     print("[+] Exiting...")
                     sleep(1)
                     print("[+] See you next time 👋")
-                    quit(0)
+                    quit()
         else:
             system("sudo pip install -r requirements.txt")
     elif sys.platform == 'darwin':
@@ -106,7 +107,7 @@ YELLOW = Fore.YELLOW
 sleep(0.8)
 console.clear()
 console.print("[bold dark_green][✓] Successfully loaded modules.")
-sleep(0.8)
+sleep(1)
 console.clear()
 
 def fpath(fname: str):
@@ -125,11 +126,12 @@ def ScriptInfo():
         conf = json.load(configFile)
     f = conf['name'] + '.py'
     fp = True if not fpath(f) == None else False
-    fsize = 0 if not fp else os.stat(fpath(f)).st_size
+    fsize = 0 if fp else os.stat(fpath(f)).st_size
     print(f"{YELLOW}[+] Author: {conf['author']}")
     print(f"{YELLOW}[+] Contributors : {conf['contributors']}")
     print(f"{YELLOW}[+] Github: @{conf['author']}")
     print(f"{YELLOW}[+] Leetcode: @{conf['author']}")
+    print(f"{YELLOW}[+] PyPI: @{conf['author']}")
     print(f"{YELLOW}[+] License: {conf['lice']}")
     print(f"{YELLOW}[+] Natural language: {conf['lang']}")
     print(f"{YELLOW}[+] Programming language(s) used: {conf['language']}")
@@ -164,7 +166,7 @@ def Uninstall() -> str:
 TABLE = [
     [
         "[b white]Author[/]: [i light_green]new92[/]",
-        "[green]https://github.com/new92[/]"
+        "[green]https://new92.github.io/[/]"
     ],
     [
         "[b white]Github[/]: [i light_green]@new92[/]",
@@ -185,14 +187,14 @@ table = Table(show_footer=False)
 centered = Align.center(table)
 
 def banner() -> str:
-    return f"""{YELLOW}
+    console.print("""[bold yellow]
 ░██████╗██████╗░░█████╗░███╗░░░███╗███╗░░░███╗███████╗██████╗░
 ██╔════╝██╔══██╗██╔══██╗████╗░████║████╗░████║██╔════╝██╔══██╗
 ╚█████╗░██████╔╝███████║██╔████╔██║██╔████╔██║█████╗░░██████╔╝
 ░╚═══██╗██╔═══╝░██╔══██║██║╚██╔╝██║██║╚██╔╝██║██╔══╝░░██╔══██╗
 ██████╔╝██║░░░░░██║░░██║██║░╚═╝░██║██║░╚═╝░██║███████╗██║░░██║
 ╚═════╝░╚═╝░░░░░╚═╝░░╚═╝╚═╝░░░░░╚═╝╚═╝░░░░░╚═╝╚══════╝╚═╝░░╚═╝
-"""
+""")
 
 def checkUser(username:str) -> bool:
     return username in ['', ' '] or len(username) > 30
@@ -203,7 +205,6 @@ def valUser(username: str) -> bool:
 IDS = []
 
 def main():
-    table = Table(show_footer=False)
     print(banner())
     print("\n")
     with Live(centered, console=console, screen=False):
@@ -212,12 +213,12 @@ def main():
         for row in TABLE:
             table.add_row(*row)
     print("\n")
-    print(f"{YELLOW}[+] Spammer: A python script to spam messages on someone on Instagram.")
+    print(f"[bold yellow][+] Spammer: A python script to spam messages on someone on Instagram.")
     print("\n")
-    print(f"{YELLOW}[1] Initiate Spammer")
-    print(f"{YELLOW}[2] Show Spammer's info")
-    print(f"{YELLOW}[3] Uninstall Spammer")
-    print(f"{YELLOW}[4] Exit")
+    print(f"[bold yellow][1] Initiate Spammer")
+    print(f"[bold yellow][2] Show Spammer's info")
+    print(f"[bold yellow][3] Uninstall Spammer")
+    print(f"[bold yellow][4] Exit")
     num=int(input(f"{YELLOW}[::] Please enter a number (from the above ones): "))
     while num < 1 or num > 4:
         print(f"{RED}[!] Invalid number !")
@@ -266,7 +267,7 @@ def main():
                 sleep(2)
                 print(f"{YELLOW}[+] Until next time 👋")
                 sleep(1)
-                quit(0)
+                quit()
         username = username.lower().strip()
         password=str(input(f"{YELLOW}[::] Please enter your password: "))
         while password in ['', ' ']:
@@ -282,7 +283,7 @@ def main():
             print(f"{YELLOW}[*] Error message ==> {ex}")
             sleep(2)
             print(f"{YELLOW}[+] Exiting...")
-            quit(0)
+            quit()
         sleep(1)
         count=int(input(f"{YELLOW}[::] Number of targets: "))
         while count < 1:
@@ -305,7 +306,7 @@ def main():
         print(f"{GREEN}[+] Acceptable answers: {ANS}")
         sleep(2)
         change=str(input(f"{YELLOW}[?] Change message ? "))
-        while change.lower() not in ANS or change in ['', ' ']:
+        while change.lower() not in ANS:
             print(f'{RED}[!] Invalid answer !')
             sleep(1)
             print(f"{GREEN}[+] Acceptable answers: {ANS}")
@@ -356,14 +357,14 @@ def main():
         sleep(2)
         print(f"{GREEN}[+] Until next time 🫡")
         sleep(1)
-        quit(0)
+        quit()
     else:
         clear()
         print(f"{GREEN}[+] Thank you for using Spammer 😁")
         sleep(2)
         print(f"{GREEN}[+] See you next time 👋")
         sleep(1)
-        quit(0)
+        quit()
 
     print(f"{YELLOW}[1] Back to menu")
     print(f"{YELLOW}[2] Exit")
@@ -381,7 +382,7 @@ def main():
         print(f"{GREEN}[+] Until next time 🤗")
         sleep(1)
         print(f"{YELLOW}[+] Exiting...")
-        quit(0)
+        quit()
 
 if __name__ == '__main__':
     main()
