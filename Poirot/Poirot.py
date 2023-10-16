@@ -1,10 +1,11 @@
 """
 Author: new92
+Contributors: [Itsfizziks, ProgramR4732]
 Github: @new92
 Leetcode: @new92
 PyPI: @new92
 
-Poirot is a Python script used to extract information from Instagram accounts.
+Poirot is a Python script used to extract information from Instagram accounts. Without login or any type of credentials required.
 """
 try:
     import sys
@@ -27,11 +28,11 @@ try:
     from rich.live import Live
     from rich.console import Console
     console = Console()
-    mods = ['sys', 'time', 'rich', 'platform', 'os', 'requests', 'json', 'prettytable', 'colorama']
+    mods = ['sys', 'time', 'rich', 'platform', 'os', 'requests', 'json', 'colorama']
     with console.status('[bold dark_orange]Loading module...') as status:
         for mod in mods:
-            sleep(0.8)
-            console.log(f'[[bold red]{mod}[/]] => [bold dark_green]okay')
+            sleep(0.85)
+            console.log(f'[[bold red]{mod}[/]] => [bold dark_green]okay[/]')
     import platform
     import json
     import requests
@@ -60,7 +61,7 @@ except ImportError or ModuleNotFoundError:
                 print(f"[1] Uninstall Poirot")
                 print(f"[2] Exit")
                 opt=int(input("[>] Please enter a number (from the above ones): "))
-                while opt < 1 or opt > 2:
+                while opt not in range(1,3):
                     print(f"[!] Invalid number !")
                     sleep(1)
                     print(f"[+] Acceptable numbers: [1/2]")
@@ -105,6 +106,7 @@ sleep(0.8)
 console.clear()
 console.log("[bold green][✓] Successfully loaded modules ![/]")
 sleep(1)
+console.clear()
 
 def checkUser(username:str) -> bool:
     return username in ['' , ' '] or len(username) > 30
@@ -119,11 +121,11 @@ def fpath(fname: str):
     return None
 
 def ScriptInfo():
-    with open('config.json') as config:
+    with open('Poirot/config.json') as config:
         conf = json.load(config)
     f = conf['name'] + '.py'
-    fp = True if not fpath(f) == None else False
-    fsize = 0 if fp else os.stat(fpath(f)).st_size
+    fp = fpath(f) == None
+    fsize = os.stat(fpath(f)).st_size if fp else 0
     print(f"{YELLOW}[+] Author: {conf['author']}")
     print(f"{YELLOW}[+] Contributors : {conf['contributors']}")
     print(f"{YELLOW}[+] Github: @{conf['author']}")
@@ -199,7 +201,7 @@ TABLE = [
 ]
 
 def clear():
-    system('cls') if platform.system() == 'Windows' else system('clear')
+    system('cls' if platform.system() == 'Windows' else 'clear')
 
 def fetch(username: str):
     request = requests.get(f'https://www.instagram.com/{username}/?__a=1&__d=dis')
@@ -248,7 +250,7 @@ def main():
     console.print("[bold yellow][5] Exit[/]")
     print("\n")
     num=int(input(f"{YELLOW}[::] Please enter a number (from the above ones): "))
-    while num < 1 or num > 5:
+    while num not in range(1,6):
         print(f"{RED}[!] Invalid number !")
         sleep(1)
         print(f"{GREEN}[+] Acceptable numbers: [1-5]")
@@ -257,19 +259,16 @@ def main():
     if num == 1:
         clear()
         sleep(1)
-        print(f"{GREEN}[+] Acceptable answers: [yes/no]")
+        print(f"{GREEN}[+] Acceptable answers: {ANS}")
         sleep(1)
         keep=str(input(f"{YELLOW}[?] Keep log ? "))
-        while keep.lower() not in ANS or keep in ['', ' ']:
-            if keep in ['', ' ']:
-                print(f"{RED}[!] This field can't be blank !")
-            else:
-                print(f"{RED}[!] Invalid answer !")
-                sleep(1)
-                print(f"{GREEN}[+] Acceptable answers: [yes/no]")
+        while keep.lower() not in ANS:
+            print(f"{RED}[!] Invalid answer !")
+            sleep(1)
+            print(f"{GREEN}[+] Acceptable answers: {ANS}")
             sleep(1)
             keep=str(input(f"{YELLOW}[?] Keep log ? "))
-        keep = True if keep.lower() == ANS[0] else False
+        keep = keep.lower() == ANS[0]
         sleep(1.2)
         clear()
         username=str(input(f"{YELLOW}[>] Please enter the target username: "))
@@ -289,7 +288,7 @@ def main():
             print(f"{YELLOW}[2] Return to menu")
             print(f"{YELLOW}[3] Exit")
             opt=int(input(f"{YELLOW}[>] Please enter a number (from the above ones): "))
-            while opt < 1 or opt > 3:
+            while opt not in range(1,4):
                 print(f"{RED}[!] Invalid number !")
                 sleep(1)
                 print(f"{GREEN}[+] Acceptable numbers: [1-3]")
@@ -328,7 +327,7 @@ def main():
             sleep(1.3)
             print(f"{GREEN}[✓] Success !")
             sleep(1.1)
-            print("\n")
+            clear()
             print(f"{GREEN}---------------" + '-' * len(username))
             print(f"{GREEN}[>] Username | {username}")
             print(f"{GREEN}[>] Name | {dict['name']}")
@@ -361,9 +360,9 @@ def main():
                     print("\n")
                     print(f"{YELLOW}[✓] Successfully saved log !")
                     sleep(1)
-                    print(f"{YELLOW}[↪] File name: {name}")
-                    print(f"{YELLOW}[↪] Location: {fpath(name)}")
-                    print(f"{YELLOW}[↪] File size: {os.stat(fpath(name)).st_size} bytes")
+                    print(f"{YELLOW}[↪] Name >>> {name}")
+                    print(f"{YELLOW}[↪] Location >>> {fpath(name)}")
+                    print(f"{YELLOW}[↪] Size >>> {os.stat(fpath(name)).st_size} bytes")
         else:
             print(f"{RED}[✕] Information fetch unsuccessfull !")
             sleep(2)
@@ -373,7 +372,7 @@ def main():
     elif num == 2:
         clear()
         ScriptInfo()
-        sleep(4)
+        sleep(5)
         print("\n\n")
 
     elif num == 3:
@@ -384,9 +383,9 @@ def main():
             f.close()
             print(f"{GREEN}[✓] Successfully cleared log !")
             sleep(1)
-            print(f"{GREEN}[↪] File name: {name}")
-            print(f"{GREEN}[↪] Location: {fpath(name)}")
-            print(f"{GREEN}[↪] Size: 0 bytes")
+            print(f"{GREEN}[↪] Name >>> {name}")
+            print(f"{GREEN}[↪] Location >>> {fpath(name)}")
+            print(f"{GREEN}[↪] Size >>> 0 bytes")
             sleep(3)
         else:
             clear()
@@ -398,7 +397,7 @@ def main():
             sleep(2)
             print(f"""{YELLOW}[+] Instructions: 
             1) Return to menu and enter the option number 1
-            2) Enter <True> in the keep log question
+            2) Enter <yes> in the keep log question
             """)
             sleep(3)
     
@@ -447,5 +446,4 @@ def main():
 
 if __name__ == '__main__':
     sleep(2)
-    clear()
     main()

@@ -1,18 +1,18 @@
 {
     "author": "new92",
     "lice": "MIT",
-    "contributors": ["itsfizziks"],
+    "contributors": ["itsfizziks", "ProgramR4732"],
     "lang": "en-US",
     "language": ["Python"],
-    "lines": 451,
+    "lines": 449,
     "name": "Poirot",
     "update": "10/16/2023",
     "api": null,
-    "stars": 54,
-    "forks": 13,
+    "stars": 55,
+    "forks": 14,
     "issues": 0,
     "clissues": 2,
     "prs": 0,
-    "clprs": 4,
+    "clprs": 5,
     "discs": 2
 }

@@ -1,18 +1,18 @@
 {
     "author": "new92",
     "lice": "MIT",
-    "contributors": ["itsfizziks"],
+    "contributors": ["itsfizziks", "ProgramR4732"],
     "lang": "en-US",
     "language": ["Python"],
     "name": "Researcher",
-    "lines": 506,
-    "stars": 54,
-    "forks": 13,
+    "lines": 501,
+    "stars": 55,
+    "forks": 14,
     "update": "10/16/2023",
     "issues": 0,
     "clissues": 2,
     "prs": 0,
-    "clprs": 4,
+    "clprs": 5,
     "discs": 2,
     "api": null
 }

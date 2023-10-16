@@ -21,7 +21,7 @@ IsVer is a handy Python script designed to analyze and report on the Instagram f
 - ~~Colored~~ ✅
 - GUI
 - Data visualization
-- Categorize the verified accounts
+- Categorize the verified accounts (sports, lifestyle, companies etc.)
 
 ## Expected files 📁
 The files expected to be created are:

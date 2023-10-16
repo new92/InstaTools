@@ -1,11 +1,12 @@
 # -*- coding: utf-8 -*-
 """
 Author: new92
+Contributors: [Itsfizziks, ProgramR4732]
 Github: @new92
 Leetcode: @new92
 PyPI: @new92
 
-The researcher is a Python script designed to retrieve the possible location of a part of followers from an Instagram user.
+Researcher is a Python script designed to retrieve the possible location of a part of followers from an Instagram user.
 
 *********IMPORTANT*********
 User's login credentials (such as: username, password) will not be stored or saved ! 
@@ -33,11 +34,11 @@ try:
     from rich.live import Live
     from rich.console import Console
     console = Console()
-    mods = ['sys', 'time', 'rich', 'platform', 'os', 'json', 'datetime','requests', 'colorama', 'logging']
+    mods = ['sys', 'time', 'rich', 'platform', 'os', 'json', 'logging', 'requests', 'colorama']
     with console.status('[bold dark_orange]Loading module...') as status:
         for mod in mods:
             sleep(0.8)
-            console.log(f'[[bold red]{mod}[/]] => [bold dark_green]okay')
+            console.log(f'[[bold red]{mod}[/]] => [bold dark_green]okay[/]')
     import platform
     from os import system
     import os
@@ -46,7 +47,6 @@ try:
     import instaloader
     import requests
     from colorama import init, Fore
-    from datetime import datetime
 except ImportError or ModuleNotFoundError:
     print("[!] WARNING: Not all packages used in Researcher have been installed !")
     sleep(2)
@@ -69,13 +69,10 @@ except ImportError or ModuleNotFoundError:
                 print("[1] Uninstall script")
                 print("[2] Exit")
                 opt=int(input("[>] Please enter a number (from the above ones): "))
-                while opt < 1 or opt > 2:
-                    if opt == None:
-                        print("[!] This field can't be blank !")
-                    else:
-                        print("[!] Invalid number !")
-                        sleep(1)
-                        print("[+] Acceptable numbers: [1,2]")
+                while opt not in range(1,3):
+                    print("[!] Invalid number !")
+                    sleep(1)
+                    print("[+] Acceptable numbers: [1/2]")
                     sleep(1)
                     print("[1] Uninstall Researcher")
                     print("[2] Exit")
@@ -117,7 +114,7 @@ RED = Fore.RED
 
 sleep(0.8)
 console.clear()
-console.print("[bold dark_green][✓] Successfully loaded modules.")
+console.log("[bold dark_green][✓] Successfully loaded modules.[/]")
 sleep(0.8)
 console.clear()
 
@@ -128,11 +125,11 @@ def fpath(fname: str):
     return None
 
 def ScriptInfo():
-    with open('config.json') as config:
+    with open('Researcher/config.json') as config:
         conf = json.load(config)
     f = conf['name'] + '.py'
-    fp = True if not fpath(f) == None else False
-    fsize = 0 if not fp else os.stat(fpath(f)).st_size
+    fp = fpath(f) == None
+    fsize = os.stat(fpath(f)).st_size if fp else 0
     print(f"{YELLOW}[+] Author: {conf['author']}")
     print(f"{YELLOW}[+] Contributors : {conf['contributors']}")
     print(f"{YELLOW}[+] Github: @{conf['author']}")
@@ -186,15 +183,15 @@ table = Table(show_footer=False)
 centered = Align.center(table)
 
 def nums():
-    console.print("[bold yellow][1] Initiate Researcher")
-    console.print("[bold yellow][2] Show Reseacher's info")
-    console.print("[bold yellow][3] Uninstall Reseacher")
-    console.print("[bold yellow][4] Exit")
+    console.print("[bold yellow][1] Initiate Researcher[/]")
+    console.print("[bold yellow][2] Show Reseacher's info[/]")
+    console.print("[bold yellow][3] Uninstall Reseacher[/]")
+    console.print("[bold yellow][4] Exit[/]")
 
 ANS = ['yes', 'no']
 
 def clear():
-    system('cls') if platform.system() == 'Windows' else system('clear')
+    system('cls' if platform.system() == 'Windows' else 'clear')
 
 def Uninstall() -> str:
     def rmdir(dire):
@@ -225,7 +222,7 @@ def banner():
                                 ██╔══██╗██╔══╝░░░╚═══██╗██╔══╝░░██╔══██║██╔══██╗██║░░██╗██╔══██║██╔══╝░░██╔══██╗
                                 ██║░░██║███████╗██████╔╝███████╗██║░░██║██║░░██║╚█████╔╝██║░░██║███████╗██║░░██║
                                 ╚═╝░░╚═╝╚══════╝╚═════╝░╚══════╝╚═╝░░╚═╝╚═╝░░╚═╝░╚════╝░╚═╝░░╚═╝╚══════╝╚═╝░░╚═╝
-""")
+[/]""")
 
 def main():
     banner()
@@ -236,11 +233,11 @@ def main():
         for row in TABLE:
             table.add_row(*row)
     print("\n")
-    console.print("[bold yellow][+] Researcher: Python script for retrieving the possible location of the followers of a user on Instagram.")
+    console.print("[bold yellow][+] Researcher: Python script for retrieving the possible location of the followers of a user on Instagram.[/]")
     print("\n")
     nums()
     op=int(input(f"{YELLOW}[::] Please enter a number (from the above ones): "))
-    while op < 1 or op > 4:
+    while op not in range(1,5):
         print(f"{RED}[!] Invalid number !")
         sleep(1)
         print(f"{GREEN}[+] Acceptable answers: [1-4]")
@@ -248,16 +245,13 @@ def main():
         op=int(input(f"{YELLOW}[::] Please enter again a number (from the above ones): "))
     if op == 1:
         clear()
-        print(f"{GREEN}[+] Acceptable answers: [yes/no]")
+        print(f"{GREEN}[+] Acceptable answers: {ANS}")
         sleep(2)
         con=str(input(f"{YELLOW}[>] Do you consent that the author (new92) has no responsibility for any loss or damage may the script cause to the given (Instagram) account ? "))
-        while con.lower() not in ANS or con in ['', ' ']:
-            if con in ['', ' ']:
-                print(f"{RED}[!] This field can't be blank !")
-            else:
-                print(f"{RED}[!] Invalid answer !")
-                sleep(1)
-                print(f"{GREEN}[+] Acceptable answers: [yes/no]")
+        while con.lower() not in ANS:
+            print(f"{RED}[!] Invalid answer !")
+            sleep(1)
+            print(f"{GREEN}[+] Acceptable answers: {ANS}")
             sleep(1)
             con=str(input(f"{YELLOW}[>] Do you consent that the author (new92) has no responsibility for any loss or damage may the script cause to the given (Instagram) account ? "))
         if con.lower() == ANS[0]:
@@ -274,12 +268,12 @@ def main():
             print(f"{YELLOW}[1] Exit")
             print(f"{YELLOW}[2] Uninstall Researcher and exit")
             num=int(input(f"{YELLOW}[>] Please enter a number (from the above ones): "))
-            while num < 1 or num > 2:
+            while num not in range(1,3):
                 print(f"{RED}[!] Invalid number !")
                 sleep(1)
                 print(f"{GREEN}[+] Acceptable numbers: [1/2]")
                 sleep(2)
-                num=int(input(f"{YELLOW}[>] Please enter a number (from the above ones): "))
+                num=int(input(f"{YELLOW}[>] Please enter again a number (from the above ones): "))
             if num == 1:
                 clear()
                 print(f"{YELLOW}[+] Exiting...")
@@ -298,6 +292,8 @@ def main():
                 print(f"{GREEN}[+] Until we meet again 👋")
                 sleep(1)
                 quit()
+        sleep(2)
+        clear()
         username=str(input(f"{YELLOW}[::] Please enter the target username: "))
         while checkUser(username):
             if username in ['', ' ']:
@@ -316,7 +312,7 @@ def main():
             print(f"{YELLOW}[2] Return to menu")
             print(f"{YELLOW}[3] Uninstall and Exit")
             opt=int(input(f"{YELLOW}[::] Please enter a number (from the above ones): "))
-            while opt < 1 or opt > 3:
+            while opt not in [1,4]:
                 print(f"{RED}[!] Invalid number !")
                 sleep(1)
                 print(f"{GREEN}[+] Acceptable numbers: [1-3]")
@@ -345,6 +341,7 @@ def main():
                 print(f"{GREEN}[+] Until next time 👋")
                 sleep(1)
                 quit()
+        sleep(1)
         loc=str(input(f"{YELLOW}[::] Please enter the location: "))
         while loc in ['', ' ']:
             print(f"{YELLOW}[!] Invalid location !")
@@ -352,19 +349,16 @@ def main():
             loc=str(input(f"{YELLOW}[::] Please enter again the location: "))
         loc = loc.capitalize().strip()
         loader = instaloader.Instaloader()
-        print(f'{YELLOW}|--------------------LOGIN--------------------|')
+        print(f'{YELLOW}|--------------------|LOGIN|--------------------|')
         session=str(input(f"{YELLOW}[::] Please enter the cookie file path: "))
         session = session.lower().strip()
-        sleep(0.5)
-        print(f"{YELLOW}Using session file: {session}...")
-        sleep(1)
         while not validate(session):
             print(f"{RED}[!] Invalid file path !")
             sleep(1)
             session=str(input(f"{YELLOW}[::] Please enter the cookie file path again: "))
         username = extract(session)
         sleep(0.5)
-        print(f"{YELLOW}[+] Extracted username: {username}...")
+        print(f"{GREEN}[✓] Extracted username: {username}...")
         sleep(1)
         print(f"{GREEN}[+] Using session file: {session}...")
         sleep(2)
@@ -389,7 +383,7 @@ def main():
             print("[1] Return to menu")
             print("[2] Exit")
             num=int(input("[::] Please enter a number (from the above ones): "))
-            while num < 1 or num > 2:
+            while num not in range(1,3):
                 print(f"{RED}[!] Invalid number !")
                 sleep(1)
                 print(f"{GREEN}[+] Acceptable numbers: [1/2]")
@@ -456,14 +450,15 @@ def main():
                 sleep(1.5)
                 print(f"{GREEN}[✓] Successfully saved usernames !")
                 sleep(1)
-                print(f"{GREEN}[↪] Name: {name}")
-                print(f"{GREEN}[↪] Location: {fpath(name)}")
-                print(f"{GREEN}[↪] Size: {os.stat(fpath(name)).st_size} bytes")
+                print(f"{GREEN}[↪] Name >>> {name}")
+                print(f"{GREEN}[↪] Location >>> {fpath(name)}")
+                print(f"{GREEN}[↪] Size >>> {os.stat(fpath(name)).st_size} bytes")
                 sleep(3)
                 
     elif op == 2:
         clear()
         ScriptInfo()
+        sleep(5)
         print("\n\n")
 
     elif op == 3:
@@ -486,7 +481,7 @@ def main():
     print(f"{YELLOW}[1] Return to menu")
     print(f"{YELLOW}[2] Exit")
     number=int(input(f"{YELLOW}[::] Please enter a number (from the above ones): "))
-    while number < 1 or number > 2:
+    while number not in range(1,3):
         print(f"{RED}[!] Invalid number !")
         sleep(1)
         print(f"{GREEN}[+] Acceptable numbers: [1/2]")

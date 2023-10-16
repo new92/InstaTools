@@ -1,18 +1,18 @@
 {
     "author": "new92",
-    "contributors": ["itsfizziks"],
+    "contributors": ["itsfizziks", "ProgramR4732"],
     "lice": "MIT",
     "lang": "en-US",
     "update": "10/16/2023",
     "language": ["Python"],
     "name": "Tracker",
-    "lines": 640,
-    "stars": 54,
-    "forks": 13,
+    "lines": 688,
+    "stars": 55,
+    "forks": 14,
     "issues": 0,
     "clissues": 2,
     "prs": 0,
-    "clprs": 4,
+    "clprs": 5,
     "discs": 2,
     "api": null
 }

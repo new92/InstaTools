@@ -1,10 +1,16 @@
 """
 Author: new92
+Contributors: [Itsfizziks, ProgramR4732]
 Github: @new92
 Leetcode: @new92
 PyPI: @new92
 
-Spammer: Python script to spam messages on user(s) on Instagram.
+Spammer is a python script to spam messages on user(s) on Instagram.
+
+*********DISCLAIMER*********
+This script must not, under any circumstances, be designed or utilized in a manner that violates any of Instagram's rules, terms of service, or community guidelines. It is the user's responsibility to ensure compliance with Instagram's policies when using this script. Any misuse or violation of Instagram's rules resulting from the use of this script is the sole responsibility of the user. This script is intended for legitimate and ethical purposes only. Use it responsibly and in full accordance with Instagram's guidelines.
+The author (new92) has no responsibility for the user of this script. Please use it responsibly.
+****************************
 """
 
 try:
@@ -12,6 +18,7 @@ try:
     from time import sleep
     if sys.version_info[0] < 3:
         print("[!] Error ! Spammer requires Python version 3.X ! ")
+        sleep(1)
         print("""[+] Instructions to download Python 3.x : 
         Linux: apt install python3
         Windows: https://www.python.org/downloads/
@@ -27,16 +34,17 @@ try:
     from rich.live import Live
     from rich.console import Console
     console = Console()
-    mods = ['sys', 'time', 'rich', 'platform', 'os', 'json', 'instagrapi', 'requests', 'colorama']
+    mods = ['sys', 'time', 'rich', 'platform', 'os', 'json', 'logging', 'instagrapi', 'requests', 'colorama']
     with console.status('[bold dark_orange]Loading module...') as status:
         for mod in mods:
-            sleep(0.8)
+            sleep(0.85)
             console.log(f'[[bold red]{mod}[/]] => [bold dark_green]okay')
     import platform
     from os import system
     import instagrapi
     import os
     import json
+    import logging
     import requests
     from colorama import init, Fore
 except ImportError or ModuleNotFoundError:
@@ -61,13 +69,11 @@ except ImportError or ModuleNotFoundError:
                 print("[1] Uninstall Spammer")
                 print("[2] Exit")
                 opt=int(input("[>] Please enter a number (from the above ones): "))
-                while opt < 1 or opt > 2:
+                while opt not in range(1,3):
                     print("[!] Invalid number !")
                     sleep(1)
-                    print("[+] Acceptable numbers: [1,2]")
+                    print("[+] Acceptable numbers: [1/2]")
                     sleep(1)
-                    print("[1] Uninstall script")
-                    print("[2] Exit")
                     opt=int(input("[>] Please enter again a number (from the above ones): "))
                 if opt == 1:
                     def fpath(fname: str):
@@ -106,7 +112,7 @@ YELLOW = Fore.YELLOW
 
 sleep(0.8)
 console.clear()
-console.print("[bold dark_green][✓] Successfully loaded modules.")
+console.log("[bold dark_green][✓] Successfully loaded modules.[/]")
 sleep(1)
 console.clear()
 
@@ -117,16 +123,16 @@ def fpath(fname: str):
     return None
 
 def clear():
-    system('cls') if platform.system() == 'Windows' else system('clear')
+    system('cls' if platform.system() == 'Windows' else 'clear')
 
 ANS = ['yes', 'no']
 
 def ScriptInfo():
-    with open('config.json') as configFile:
+    with open('Spammer/config.json') as configFile:
         conf = json.load(configFile)
     f = conf['name'] + '.py'
-    fp = True if not fpath(f) == None else False
-    fsize = 0 if fp else os.stat(fpath(f)).st_size
+    fp = fpath(f) == None
+    fsize = os.stat(fpath(f)).st_size if fp else 0
     print(f"{YELLOW}[+] Author: {conf['author']}")
     print(f"{YELLOW}[+] Contributors : {conf['contributors']}")
     print(f"{YELLOW}[+] Github: @{conf['author']}")
@@ -187,14 +193,14 @@ table = Table(show_footer=False)
 centered = Align.center(table)
 
 def banner() -> str:
-    console.print("""[bold yellow]
-░██████╗██████╗░░█████╗░███╗░░░███╗███╗░░░███╗███████╗██████╗░
-██╔════╝██╔══██╗██╔══██╗████╗░████║████╗░████║██╔════╝██╔══██╗
-╚█████╗░██████╔╝███████║██╔████╔██║██╔████╔██║█████╗░░██████╔╝
-░╚═══██╗██╔═══╝░██╔══██║██║╚██╔╝██║██║╚██╔╝██║██╔══╝░░██╔══██╗
-██████╔╝██║░░░░░██║░░██║██║░╚═╝░██║██║░╚═╝░██║███████╗██║░░██║
-╚═════╝░╚═╝░░░░░╚═╝░░╚═╝╚═╝░░░░░╚═╝╚═╝░░░░░╚═╝╚══════╝╚═╝░░╚═╝
-""")
+    console.log("""[bold yellow]
+    ░██████╗██████╗░░█████╗░███╗░░░███╗███╗░░░███╗███████╗██████╗░
+    ██╔════╝██╔══██╗██╔══██╗████╗░████║████╗░████║██╔════╝██╔══██╗
+    ╚█████╗░██████╔╝███████║██╔████╔██║██╔████╔██║█████╗░░██████╔╝
+    ░╚═══██╗██╔═══╝░██╔══██║██║╚██╔╝██║██║╚██╔╝██║██╔══╝░░██╔══██╗
+    ██████╔╝██║░░░░░██║░░██║██║░╚═╝░██║██║░╚═╝░██║███████╗██║░░██║
+    ╚═════╝░╚═╝░░░░░╚═╝░░╚═╝╚═╝░░░░░╚═╝╚═╝░░░░░╚═╝╚══════╝╚═╝░░╚═╝
+    [/]""")
 
 def checkUser(username:str) -> bool:
     return username in ['', ' '] or len(username) > 30
@@ -205,7 +211,7 @@ def valUser(username: str) -> bool:
 IDS = []
 
 def main():
-    print(banner())
+    banner()
     print("\n")
     with Live(centered, console=console, screen=False):
         table.add_column('Socials', no_wrap=False)
@@ -213,14 +219,14 @@ def main():
         for row in TABLE:
             table.add_row(*row)
     print("\n")
-    print(f"[bold yellow][+] Spammer: A python script to spam messages on someone on Instagram.")
+    console.print("[bold yellow][+] Spammer: A python script to spam messages on someone on Instagram.[/]")
     print("\n")
-    print(f"[bold yellow][1] Initiate Spammer")
-    print(f"[bold yellow][2] Show Spammer's info")
-    print(f"[bold yellow][3] Uninstall Spammer")
-    print(f"[bold yellow][4] Exit")
+    console.print("[bold yellow][1] Initiate Spammer[/]")
+    console.print("[bold yellow][2] Show Spammer's info[/]")
+    console.print("[bold yellow][3] Uninstall Spammer[/]")
+    console.print("[bold yellow][4] Exit[/]")
     num=int(input(f"{YELLOW}[::] Please enter a number (from the above ones): "))
-    while num < 1 or num > 4:
+    while num not in range(1,5):
         print(f"{RED}[!] Invalid number !")
         sleep(1)
         print(f"{GREEN}[+] Acceptable numbers: [1-4]")
@@ -229,6 +235,55 @@ def main():
     if num == 1:
         clear()
         client = instagrapi.Client()
+        print(f"{GREEN}[+] Acceptable answers: {ANS}")
+        sleep(2)
+        con=str(input(f"{YELLOW}[>] Do you consent that the author (new92) has no responsibility for any loss or damage may the script cause to the given (Instagram) account ? "))
+        while con.lower() not in ANS:
+            print(f"{RED}[!] Invalid answer !")
+            sleep(1)
+            print(f"{GREEN}[+] Acceptable answers: {ANS}")
+            sleep(1)
+            con=str(input(f"{YELLOW}[>] Do you consent that the author (new92) has no responsibility for any loss or damage may the script cause to the given (Instagram) account ? "))
+        if con.lower() == ANS[0]:
+            logging.basicConfig(
+                filename='cons.txt',
+                level=logging.INFO,
+                format='%(asctime)s [%(levelname)s]: %(message)s',
+                datefmt='%Y-%m-%d %H:%M:%S'
+            )
+            logging.info('Yes I consent that the author (new92) has no responsibility for any loss or damage may the script cause to the given Instagram account')
+        else:
+            print(f"{YELLOW}[OK]")
+            sleep(1)
+            print(f"{YELLOW}[1] Exit")
+            print(f"{YELLOW}[2] Uninstall Researcher and exit")
+            num=int(input(f"{YELLOW}[>] Please enter a number (from the above ones): "))
+            while num not in range(1,3):
+                print(f"{RED}[!] Invalid number !")
+                sleep(1)
+                print(f"{GREEN}[+] Acceptable numbers: [1/2]")
+                sleep(2)
+                num=int(input(f"{YELLOW}[>] Please enter a number (from the above ones): "))
+            if num == 1:
+                clear()
+                print(f"{YELLOW}[+] Exiting...")
+                sleep(1)
+                print(f"{GREEN}[+] See you next time 👋")
+                sleep(2)
+                quit()
+            else:
+                clear()
+                print(Uninstall())
+                sleep(2)
+                print(f"{YELLOW}[+] Exiting...")
+                sleep(1)
+                print(f"{GREEN}[+] Thank you for using Researcher 🫡")
+                sleep(2)
+                print(f"{GREEN}[+] Until we meet again 👋")
+                sleep(1)
+                quit()
+        sleep(1)
+        clear()
         msg = 'hello world'
         name = 'replies.txt'
         username=str(input(f"{YELLOW}[::] Please enter your username: "))
@@ -243,7 +298,7 @@ def main():
             print(f"{YELLOW}[2] Return to menu")
             print(f"{YELLOW}[3] Uninstall and Exit")
             opt=int(input(f"{YELLOW}[::] Please enter a number (from the above ones): "))
-            while opt < 1 or opt > 3:
+            while opt not in range(1,4):
                 print(f"{RED}[!] Invalid number !")
                 sleep(1)
                 print(f"{YELLOW}[1] Try with another username")
@@ -322,7 +377,7 @@ def main():
         sleep(2.5)
         while True:
             client.direct_send(msg,IDS)
-            sleep(1)
+            sleep(0.8)
             print("[✓] Message Sent !")
             msgs += 1
         with open(name, 'w', encoding='utf8') as f:
@@ -338,15 +393,15 @@ def main():
         sleep(2)
         print(f"{GREEN}[✓] Successfully saved replies in: {name}")
         sleep(2)
-        print(f"{GREEN}[↪] File name: {name}")
-        print(f"{GREEN}[↪] Path: {fpath(name)}")
-        print(f"{GREEN}[↪] File size: {os.stat(fpath(name)).st_size} bytes")
+        print(f"{GREEN}[↪] File name >>> {name}")
+        print(f"{GREEN}[↪] Path >>> {fpath(name)}")
+        print(f"{GREEN}[↪] File size >>> {os.stat(fpath(name)).st_size} bytes")
         sleep(4)
         client.logout()
     elif num == 2:
         clear()
         ScriptInfo()
-        sleep(4)
+        sleep(5)
         print("\n\n")
 
     elif num == 3:

@@ -1,8 +1,10 @@
 # -*- coding: utf-8 -*-
 """
 Author: new92
+Contributors: [Itsfizziks, ProgramR4732]
 Github: @new92
 Leetcode: @new92
+PyPI: @new92
 
 Script in which the user enters a username and the script returns if the user with the specific username follows verified users.
 If true then:
@@ -26,20 +28,24 @@ try:
         sleep(2)
         print("[+] Exiting...")
         sleep(1)
-        quit(0)
+        quit()
     import platform
-    from tqdm import tqdm
-    total_mods = 8
-    bar = tqdm(total=total_mods, desc='Loading modules', unit='module')
-    for _ in range(total_mods):
-        sleep(0.75)
-        bar.update(1)
-    bar.close()
+    from rich.align import Align
+    from rich.table import Table
+    from rich.live import Live
+    from rich.console import Console
+    console = Console()
+    mods = ['sys', 'time', 'rich', 'platform', 'os', 'requests', 'instaloader', 'logging', 'prettytable' ,'json', 'colorama']
+    with console.status('[bold dark_orange]Loading module...[/]') as status:
+        for mod in mods:
+            sleep(0.85)
+            console.log(f'[[bold red]{mod}[/]] => [bold dark_green]okay[/]')
     import os
     import json
     from os import system
     import instaloader
     import requests
+    import logging
     from prettytable import PrettyTable
     from colorama import init, Fore
 except ImportError:
@@ -64,13 +70,10 @@ except ImportError:
                 print("[1] Uninstall IsVer")
                 print("[2] Exit")
                 opt=int(input("[>] Please enter a number (from the above ones): "))
-                while opt < 1 or opt > 2:
-                    if opt == None:
-                        print("[!] This field can't be blank !")
-                    else:
-                        print("[!] Invalid number !")
-                        sleep(1)
-                        print("[+] Acceptable numbers: [1,2]")
+                while opt not in range(1,3):
+                    print("[!] Invalid number !")
+                    sleep(1)
+                    print("[+] Acceptable numbers: [1,2]")
                     sleep(1)
                     print("[1] Uninstall IsVer")
                     print("[2] Exit")
@@ -97,7 +100,7 @@ except ImportError:
                     print("[+] Exiting...")
                     sleep(1)
                     print("[+] See you next time 👋")
-                    quit(0)
+                    quit()
         else:
             system("sudo pip install -r requirements.txt")
     elif sys.platform == 'darwin':
@@ -112,7 +115,7 @@ YELLOW = Fore.YELLOW
 
 sleep(0.8)
 console.clear()
-console.print("[bold dark_green][✓] Successfully loaded modules.")
+console.print("[bold dark_green][✓] Successfully loaded modules.[/]")
 sleep(0.8)
 console.clear()
 
@@ -124,25 +127,33 @@ def fpath(fname: str):
             return os.path.abspath(os.path.join(root, fname))
     return None
 
+console = Console()
+table = Table(show_footer=False)
+centered = Align.center(table)
+
+def validate(session: str) -> bool:
+    return os.path.exists(session)
+
 def ScriptInfo():
     with open('config.json') as config:
         conf = json.load(config)
     f = conf['name'] + '.py'
-    fp = True if not fpath(f) == None else False
-    fsize = 0 if not fp else os.stat(fpath(f)).st_size
+    fp = fpath(f) == None
+    fsize = os.stat(fpath(f)).st_size if fp else 0
     print(f"{YELLOW}[+] Author: {conf['author']}")
+    print(f"{YELLOW}[+] Contributors : {conf['contributors']}")
     print(f"{YELLOW}[+] Github: @{conf['author']}")
     print(f"{YELLOW}[+] Leetcode: @{conf['author']}")
-    print(f"{YELLOW}[+] Contributors : {conf['contributors']}")
+    print(f"{YELLOW}[+] PyPI: @{conf['author']}")
     print(f"{YELLOW}[+] License: {conf['lice']}")
     print(f"{YELLOW}[+] Natural language: {conf['lang']}")
     print(f"{YELLOW}[+] Programming language(s) used: {conf['language']}")
     print(f"{YELLOW}[+] Number of lines: {conf['lines']}")
     print(f"{YELLOW}[+] Script's name: {conf['name']}")
     print(f"{YELLOW}[+] API(s) used: {conf['api']}")
+    print(f"{YELLOW}[+] Latest update: {conf['update']}")
     print(f"{YELLOW}[+] File size: {fsize} bytes")
     print(f"{YELLOW}[+] File path: {fpath(f)}")
-    print(f"{YELLOW}[+] Latest update: {conf['update']}")
     print(f"{YELLOW}|======|GITHUB REPO INFO|======|")
     print(f"{YELLOW}[+] Stars: {conf['stars']}")
     print(f"{YELLOW}[+] Forks: {conf['forks']}")
@@ -152,19 +163,45 @@ def ScriptInfo():
     print(f"{YELLOW}[+] Discussions: {conf['discs']}")
     
 def banner() -> str:
-    return f"""{YELLOW}
-██╗░██████╗██╗░░░██╗███████╗██████╗░
-██║██╔════╝██║░░░██║██╔════╝██╔══██╗
-██║╚█████╗░╚██╗░██╔╝█████╗░░██████╔╝
-██║░╚═══██╗░╚████╔╝░██╔══╝░░██╔══██╗
-██║██████╔╝░░╚██╔╝░░███████╗██║░░██║
-╚═╝╚═════╝░░░░╚═╝░░░╚══════╝╚═╝░░╚═╝"""
+    console.log("""[bold yellow]
+    ██╗░██████╗██╗░░░██╗███████╗██████╗░
+    ██║██╔════╝██║░░░██║██╔════╝██╔══██╗
+    ██║╚█████╗░╚██╗░██╔╝█████╗░░██████╔╝
+    ██║░╚═══██╗░╚████╔╝░██╔══╝░░██╔══██╗
+    ██║██████╔╝░░╚██╔╝░░███████╗██║░░██║
+    ╚═╝╚═════╝░░░░╚═╝░░░╚══════╝╚═╝░░╚═╝
+    [/]""")
 
 def clear():
-    system('cls') if platform.system() == 'Windows' else system('clear')
+    system('cls' if platform.system() == 'Windows' else 'clear')
+
+def extract(raw_path: str):
+    index = raw_path.find('session-')
+    return raw_path[index + len('session-'):] if index != -1 else None
+
+TABLE = [
+    [
+        "[b white]Author[/]: [i light_green]new92[/]",
+        "[green]https://new92.github.io/[/]"
+    ],
+    [
+        "[b white]Github[/]: [i light_green]@new92[/]",
+        "[green]https://github.com/new92[/]"
+    ],
+    [
+        "[b white]Leetcode[/]: [i light_green]@new92[/]",
+        "[green]https://leetcode.com/new92[/]"
+    ],
+    [
+        "[b white]PyPI[/]: [i light_green]@new92[/]",
+        "[green]https://pypi.org/user/new92[/]"
+    ]
+]
 
 def checkUser(username:str) -> bool:
-    return username in ['', ' ', 'None'] or len(username) > 30
+    return username in ['', ' '] or len(username) > 30
+
+name = 'IsVer_log.txt'
 
 def ValUser(username: str) -> bool:
     return requests.get(f'https://www.instagram.com/{username}/', allow_redirects=False).status_code != 200
@@ -184,182 +221,125 @@ def Uninstall() -> str:
     return f"{GREEN}[✓] Files and dependencies uninstalled successfully !"
 
 def main():
-    print(banner())
+    banner()
     print("\n")
-    print(f"{YELLOW} [-] -- Socials --")
-    print(f"{YELLOW}[+] Author: new92")
-    print(f"{YELLOW}[+] Github: @new92")
-    print(f"{YELLOW}[+] Leetcode: @new92")
+    with Live(centered, console=console, screen=False):
+        table.add_column('Socials', no_wrap=False)
+        table.add_column('Url', no_wrap=False)
+        for row in TABLE:
+            table.add_row(*row)
     print("\n")
-    print(f"{YELLOW}[+] With IsVer you can see if a user follows verified accounts and if yes which and how many (on Instagram)")
+    console.print("[bold yellow][+] With IsVer you can see if a user follows verified accounts and if yes which and how many (on Instagram).[/]")
     print("\n")
-    print(f"{YELLOW}[1] Initiate IsVer")
-    print(f"{YELLOW}[2] Show IsVer's info")
-    print(f"{YELLOW}[3] Uninstall IsVer")
-    print(f"{YELLOW}[4] Exit")
+    console.print("[bold yellow][1] Initiate IsVer[/]")
+    console.print("[bold yellow][2] Show IsVer's info[/]")
+    console.print("[bold yellow][3] Clear log file[/]")
+    console.print("[bold yellow][4] Uninstall IsVer[/]")
+    console.print("[bold yellow][5] Exit[/]")
     num=int(input(f"{YELLOW}[::] Please enter a number (from the above ones): "))
-    while num < 1 or num > 4:
+    while num not in range(1,6):
         print(f"{RED}[!] Invalid number !")
         sleep(1)
-        print(f"{GREEN}[+] Acceptable numbers: [1-4]")
+        print(f"{GREEN}[+] Acceptable numbers: [1-5]")
         sleep(2)
         num=int(input(f"{YELLOW}[::] Please enter again a number (from the above ones): "))
     if num == 1:
         clear()
         loader = instaloader.Instaloader()
-        print(f'{YELLOW}|--------------------LOGIN--------------------|')
-        user=str(input(f"{YELLOW}[::] Please enter your username: "))
-        while checkUser(user):
-            if user in ['None', '', ' ']:
-                print(f"{RED}[!] This field can't be blank !")
-            else:
-                print(f"{RED}[!] Invalid length ! Acceptable length: 30 or less characters")
+        print(f"{GREEN}[+] Acceptable answers: {ANS}")
+        sleep(1)
+        con=str(input(f"{YELLOW}[>] Do you consent that the author (new92) has no responsibility for any loss or damage may the script cause to the given (Instagram) account ? "))
+        while con.lower() not in ANS:
+            print(f"{RED}[!] Invalid answer !")
             sleep(1)
-            user=str(input(f"{YELLOW}[::] Please enter again your username: "))
-        user = user.lower().strip()
-        while ValUser(user):
-            print(f"{RED}[!] User not found !")
+            print(f"{GREEN}[+] Acceptable answers: {ANS}")
             sleep(1)
-            print(f"{YELLOW}[1] Try with another username")
-            print(f"{YELLOW}[2] Return to menu")
-            print(f"{YELLOW}[3] Exit")
-            print(f"{YELLOW}[4] Uninstall IsVer and Exit")
-            opt=int(input(f"{YELLOW}[::] Please enter a number (from the above ones): "))
-            while opt < 1 or opt > 4:
-                print(f"{RED}[!] Invalid number !")
-                sleep(1)
-                print(f"{GREEN}[+] Acceptable numbers: [1/2/3/4]")
-                sleep(1)
-                opt=int(input(f"{YELLOW}[::] Please enter again a number (from the above ones): "))
-            if opt == 1:
-                user=str(input(f"{YELLOW}[::] Please enter the username: "))
-                while checkUser(user):
-                    if user in ['None', '', ' ']:
-                        print(f"{RED}[!] This field can't be blank !")
-                    else:
-                        print(f"{RED}[!] Invalid length ! Acceptable length: <= 30 characters")
+            con=str(input(f"{YELLOW}[>] Do you consent that the author (new92) has no responsibility for any loss or damage may the script cause to the given (Instagram) account ? "))
+        if con.lower() == ANS[0]:
+            logging.basicConfig(
+                filename='cons.txt',
+                level=logging.INFO,
+                format='%(asctime)s [%(levelname)s]: %(message)s',
+                datefmt='%Y-%m-%d %H:%M:%S'
+            )
+            logging.info('Yes I consent that the author (new92) has no responsibility for any loss or damage may the script cause to the given Instagram account.')
+        else:
+            print(f"{YELLOW}[OK]")
+            sleep(1)
+            print(f"{YELLOW}[1] Exit")
+            print(f"{YELLOW}[2] Uninstall ToolZ and exit")
+            num=int(input(f"{YELLOW}[>] Please enter a number (from the above ones): "))
+            valErr = num in [1,2]
+            while not valErr:
+                try:
+                    print(f"{YELLOW}[1] Exit")
+                    print(f"{YELLOW}[2] Uninstall ToolZ and exit")
                     sleep(1)
-                    user=str(input(f"{YELLOW}[::] Please enter again the username: "))
-            elif opt == 2:
-                clear()
-                main()
-            elif opt == 3:
+                    num=int(input(f"{YELLOW}[>] Please enter a number (from the above ones): "))
+                    valErr = num in [1,2]
+                except ValueError:
+                    print(f"{RED}[!] Please enter a valid number.")
+                    sleep(1)
+                    print(f"{GREEN}[+] Acceptable numbers: [1,2]")
+                    sleep(1)
+            if num == 1:
                 clear()
                 print(f"{YELLOW}[+] Exiting...")
                 sleep(1)
-                print(f"{GREEN}[+] Until next time 👋")
-                sleep(1)
-                quit(0)
+                quit()
             else:
                 clear()
                 print(Uninstall())
                 sleep(2)
-                print(f"{GREEN}[+] Thank you for using IsVer 😁")
+                print(f"{YELLOW}[+] Exiting...")
+                sleep(1)
+                print(f"{YELLOW}[+] Thank you for using ToolZ 🫡")
                 sleep(2)
-                print(f"{GREEN}[+] Until next time 👋")
-                sleep(2)
-                quit(0)
-        psw=str(input("[::] Please enter your password: "))
-        while psw in ['None', '', ' ']:
-            print("[!] This input can't be blank !")
+                print(f"{YELLOW}[+] Until we meet again 👋")
+                sleep(1)
+                quit()
+        sleep(2)
+        clear()
+        print(f'{YELLOW}|--------------------LOGIN--------------------|')
+        session=str(input(f"{YELLOW}[::] Please enter the cookie file path: "))
+        session = session.lower().strip()
+        while not validate(session):
+            print(f"{RED}[!] Invalid file path !")
             sleep(1)
-            psw=str(input("[::] Please enter again your password: "))
-        print(f'{YELLOW}|---------------------------------------------|')
-        try:
-            loader.login(user,psw)
-        except Exception as ex:
-            print(f"{RED}[!] Login error !")
+            session=str(input(f"{YELLOW}[::] Please enter the cookie file path again: "))
+        username = extract(session)
+        sleep(0.5)
+        print(f"{GREEN}[✓] Extracted username: {username}...")
+        sleep(1)
+        print(f"{GREEN}[+] Using session file: {session}...")
+        sleep(2)
+        try: 
+            with open(session, 'rb') as sessionfile:
+                loader.context.load_session_from_file(username, sessionfile)
+                print(f"{GREEN}[✓] Session loaded successfully !")
+                sleep(1)
+        except instaloader.exceptions.ConnectionException as ex:
+            print(f"{RED}[✕] Error loading session file !")
             sleep(1)
-            print(f"{YELLOW}[*] Error message ==> {ex}")
+            print(f"{YELLOW}[+] Error message: {ex}")
             sleep(2)
             print(f"{YELLOW}[+] Exiting...")
+            quit()
+        profile = None
+        try:
+            profile = instaloader.Profile.from_username(loader.context, username)
+        except instaloader.ProfileNotExistsException:
+            print(f"{RED}[!] Profile not found")
             sleep(1)
-            quit(0)
-        username=str(input(f"{YELLOW}[::] Please enter the username of the target user: "))
-        while checkUser(username):
-            if username in ['None', '', ' ']:
-                print(f"{RED}[!] This field can't be blank !")
-            else:
-                print(f"{RED}[!] Invalid username !")
-            username=str(input(f"{YELLOW}[::] Please enter again the username of the target user: "))
-        username = username.lower().strip()
-        while ValUser(username):
-            print(f"{RED}[!] User not found !")
-            sleep(1)
-            print(f"{YELLOW}[1] Try with another username")
-            print(f"{YELLOW}[2] Return to menu")
-            print(f"{YELLOW}[3] Exit")
-            print(f"{YELLOW}[4] Uninstall and Exit")
-            opt=int(input(f"{YELLOW}[::] Please enter a number (from the above ones): "))
-            while opt < 1 or opt > 4:
-                print(f"{RED}[!] Invalid number !")
-                sleep(1)
-                print(f"{GREEN}[+] Acceptable numbers: [1-4]")
-                sleep(1)
-                opt=int(input(f"{YELLOW}[::] Please enter again a number (from the above ones): "))
-            if opt == 1:
-                username=str(input(f"{YELLOW}[::] Please enter the username: "))
-                while checkUser(username):
-                    if username in ['None', '', ' ']:
-                        print(f"{RED}[!] This field can't be blank !")
-                    else:
-                        print(f"{RED}[!] Invalid username !")
-                    sleep(1)
-                    username=str(input(f"{YELLOW}[::] Please enter again the username: "))
-            elif opt == 2:
-                clear()
-                main()
-            elif opt == 3:
-                clear()
-                print(f"{YELLOW}[+] Exiting...")
-                sleep(1)
-                print(f"{GREEN}[+] Until next time 👋")
-                sleep(1)
-                quit(0)
-            else:
-                clear()
-                print(Uninstall())
-                sleep(2)
-                print(f"{GREEN}[+] Thank you for using IsVer 😁")
-                sleep(2)
-                print(f"{GREEN}[+] Until next time 👋")
-                sleep(2)
-                quit(0)
-        sleep(1)
-        print(f"{GREEN}[+] Acceptable answers: [yes/no]")
-        sleep(1)
-        keep=str(input(f"{YELLOW}[?] Keep log ? "))
-        while keep.lower() not in ANS or keep in ['', ' ']:
-            if keep in ['', ' ']:
-                print(f"{RED}[!] This field can't be blank !")
-            else:
-                print(f"{RED}[!] Invalid answer !")
-                sleep(1)
-                print(f"{GREEN}[+] Acceptable answers: [yes/no]")
-            sleep(2)
-            keep=str(input(f"{YELLOW}[?] Keep log ? "))
-        keep = True if keep.lower() == ANS[0] else False
-        name = 'IsVer_log.txt'
-        profile=instaloader.Profile.from_username(loader.context, username)
-        FOLLOWINGS = [following.username for following in profile.get_followees()]
-        VERS = []
-        for i in range(len(FOLLOWINGS)):
-            ver_profile = instaloader.Profile.from_username(loader.context, FOLLOWINGS[i])
-            if ver_profile.is_verified:
-                VERS.append(FOLLOWINGS[i])
-        followees = profile.followees
-        print(f"{YELLOW}[+] Is {username} following verified accounts ? {len(VERS) == 0}")
-        if len(VERS) == 0:
-            sleep(2)
-            print(f"{YELLOW}[1] Return to menu")
-            print(f"{YELLOW}[2] Exit")
-            num=int(input(f"{YELLOW}[::] Please enter a number (from the above ones): "))
-            while num < 1 or num > 2:
+            print("[1] Return to menu")
+            print("[2] Exit")
+            num=int(input("[::] Please enter a number (from the above ones): "))
+            while num not in range(1,3):
                 print(f"{RED}[!] Invalid number !")
                 sleep(1)
                 print(f"{GREEN}[+] Acceptable numbers: [1/2]")
-                sleep(2)
-                num=int(input(f"{YELLOW}[::] Please enter again a number (from the above ones): "))
+                sleep(1)
+                num=int(input("[::] Please enter again a number (from the above ones): "))
             if num == 1:
                 clear()
                 main()
@@ -367,53 +347,138 @@ def main():
                 clear()
                 print(f"{YELLOW}[+] Exiting...")
                 sleep(1)
-                print(f"{GREEN}[+] Thank you for using IsVer 😁")
-                quit(0)
-        else:
-            print(f"{YELLOW}[+] {username} follows {len(VERS)} verified accounts")
-            sleep(2)
-            table = PrettyTable()
-            table.field_names = ['usernames', 'followers', 'followings']
-            for i in range(len(VERS)):
-                table.add_row([VERS[i], VERS[i].followers, VERS[i].followings])
-            print(table)
-            sleep(5)
-            print(f"{GREEN}[+] Percentage of verified accounts followed by {username} ==> {float(len(VERS)) / len(FOLLOWINGS)*100}%")
-            sleep(2)
-            print(f"{GREEN}[+] Verified followings: {len(VERS)}/{followees}")
-            if keep:
-                with open(name, 'w', encoding='utf8') as fp:
-                    fp.write(str(table))
-                print(f"{GREEN}[✓] Successfully saved log !")
+                print(f"{GREEN}[+] See you next time 👋")
                 sleep(2)
-                print(f"{GREEN}[↪] File name: {name}")
-                print(f"{GREEN}[↪] Path: {fpath(name)}")
-                print(f"{GREEN}[↪] File size: {os.stat(fpath(name)).st_size} bytes")
-                sleep(3)
+                quit()
+        if profile:
+            print(f"{GREEN}[✓] Login successfull !")
+            sleep(0.85)
+            clear()
+            username=str(input(f"{YELLOW}[::] Please enter the username of the target user: "))
+            while checkUser(username):
+                if username in ['', ' ']:
+                    print(f"{RED}[!] This field can't be blank !")
+                else:
+                    print(f"{RED}[!] Invalid username !")
+                username=str(input(f"{YELLOW}[::] Please enter again the username of the target user: "))
+            username = username.lower().strip()
+            while ValUser(username):
+                print(f"{RED}[!] User not found !")
+                sleep(1)
+                print(f"{YELLOW}[1] Try with another username")
+                print(f"{YELLOW}[2] Return to menu")
+                print(f"{YELLOW}[3] Exit")
+                print(f"{YELLOW}[4] Uninstall and Exit")
+                opt=int(input(f"{YELLOW}[::] Please enter a number (from the above ones): "))
+                while opt not in range(1,5):
+                    print(f"{RED}[!] Invalid number !")
+                    sleep(1)
+                    print(f"{GREEN}[+] Acceptable numbers: [1-4]")
+                    sleep(1)
+                    opt=int(input(f"{YELLOW}[::] Please enter again a number (from the above ones): "))
+                if opt == 1:
+                    username=str(input(f"{YELLOW}[::] Please enter the username: "))
+                    while checkUser(username):
+                        if username in ['', ' ']:
+                            print(f"{RED}[!] This field can't be blank !")
+                        else:
+                            print(f"{RED}[!] Invalid username !")
+                        sleep(1)
+                        username=str(input(f"{YELLOW}[::] Please enter again the username: "))
+                elif opt == 2:
+                    clear()
+                    main()
+                elif opt == 3:
+                    clear()
+                    print(f"{YELLOW}[+] Exiting...")
+                    sleep(1)
+                    print(f"{GREEN}[+] Until next time 👋")
+                    sleep(1)
+                    quit()
+                else:
+                    clear()
+                    print(Uninstall())
+                    sleep(2)
+                    print(f"{GREEN}[+] Thank you for using IsVer 😁")
+                    sleep(2)
+                    print(f"{GREEN}[+] Until next time 👋")
+                    sleep(2)
+                    quit()
+            sleep(1)
+            print(f"{GREEN}[+] Acceptable answers: {ANS}")
+            sleep(1)
+            keep=str(input(f"{YELLOW}[?] Keep log ? "))
+            while keep.lower() not in ANS:
+                print(f"{RED}[!] Invalid answer !")
+                sleep(1)
+                print(f"{GREEN}[+] Acceptable answers: {ANS}")
+                sleep(2)
+                keep=str(input(f"{YELLOW}[?] Keep log ? "))
+            keep = keep.lower() == ANS[0]
+            FOLLOWINGS = [following.username for following in profile.get_followees()]
+            VERS = []
+            for i in range(len(FOLLOWINGS)):
+                ver_profile = instaloader.Profile.from_username(loader.context, FOLLOWINGS[i])
+                if ver_profile.is_verified:
+                    VERS.append(FOLLOWINGS[i])
+            followees = profile.followees
+            print(f"{YELLOW}[+] Is {username} following verified accounts ? {len(VERS) == 0}")
+            if len(VERS) == 0:
+                sleep(2)
+                print(f"{YELLOW}[1] Return to menu")
+                print(f"{YELLOW}[2] Exit")
+                num=int(input(f"{YELLOW}[::] Please enter a number (from the above ones): "))
+                while num not in range(1,3):
+                    print(f"{RED}[!] Invalid number !")
+                    sleep(1)
+                    print(f"{GREEN}[+] Acceptable numbers: [1/2]")
+                    sleep(2)
+                    num=int(input(f"{YELLOW}[::] Please enter again a number (from the above ones): "))
+                if num == 1:
+                    clear()
+                    main()
+                else:
+                    clear()
+                    print(f"{YELLOW}[+] Exiting...")
+                    sleep(1)
+                    print(f"{GREEN}[+] Thank you for using IsVer 😁")
+                    quit()
+            else:
+                print(f"{YELLOW}[+] {username} follows {len(VERS)} verified accounts")
+                sleep(2)
+                table = PrettyTable()
+                table.field_names = ['usernames', 'followers', 'followings']
+                for i in range(len(VERS)):
+                    table.add_row([VERS[i], VERS[i].followers, VERS[i].followings])
+                print(table)
+                sleep(5)
+                print(f"{GREEN}[+] Percentage of verified accounts followed by {username} ==> {float(len(VERS)) / len(FOLLOWINGS)*100}%")
+                sleep(2)
+                print(f"{GREEN}[+] Verified followings: {len(VERS)}/{followees}")
+                if keep:
+                    with open(name, 'w', encoding='utf8') as fp:
+                        fp.write(str(table))
+                    print(f"{GREEN}[✓] Successfully saved log !")
+                    sleep(2)
+                    print(f"{GREEN}[↪] Name >>> {name}")
+                    print(f"{GREEN}[↪] Path >>> {fpath(name)}")
+                    print(f"{GREEN}[↪] Size >>> {os.stat(fpath(name)).st_size} bytes")
+                    sleep(3)
+                    
     elif num == 2:
         clear()
         ScriptInfo()
+        sleep(5)
         print("\n\n")
-        print(f"{YELLOW}[1] Return to menu")
-        print(f"{YELLOW}[2] Exit")
-        number=int(input(f"{YELLOW}[::] Please enter a number (from the above ones): "))
-        while number < 1 or number > 2:
-            print(f"{RED}[!] Invalid number !")
-            sleep(1)
-            print(f"{GREEN}[+] Acceptable numbers: [1/2]")
-            sleep(2)
-            number=int(input(f"{YELLOW}[::] Please enter again a number (from the above ones): "))
-        if number == 1:
-            clear()
-            main()
-        else:
-            clear()
-            print(f"{YELLOW}[+] Exiting...")
-            sleep(1)
-            print(f"{GREEN}[+] See you next time 👋")
-            sleep(2)
-            quit(0)
+
     elif num == 3:
+        clear()
+        f = open(name,'w')
+        f.close()
+        print(f"{GREEN}[✓] Log file cleared successfully !")
+        sleep(2)
+
+    elif num == 4:
         clear()
         print(Uninstall())
         sleep(2)
@@ -421,18 +486,19 @@ def main():
         sleep(2)
         print(f"{GREEN}[+] Until next time 👋")
         sleep(2)
-        quit(0)
+        quit()
+
     else:
         clear()
         print(f"{GREEN}[+] Thank you for using IsVer 😁")
         sleep(2)
         print(f"{GREEN}[+] See you next time 👋")
         sleep(1)
-        quit(0)
+        quit()
     print(f"{YELLOW}[1] Return to menu")
     print(f"{YELLOW}[2] Exit")
     number=int(input(f"{YELLOW}[::] Please enter a number (from the above ones): "))
-    while number < 1 or number > 2:
+    while number not in range(1,3):
         print(f"{RED}[!] Invalid number !")
         sleep(1)
         print(f"{GREEN}[+] Acceptable numbers: [1/2]")
@@ -442,11 +508,12 @@ def main():
         clear()
         main()
     else:
+        clear()
         print(f"{YELLOW}[+] Exiting...")
         sleep(1)
         print(f"{GREEN}[+] See you next time 👋")
         sleep(2)
-        quit(0)
+        quit()
 
 if __name__ == '__main__':
     main()

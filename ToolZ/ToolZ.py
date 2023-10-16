@@ -1,8 +1,9 @@
 """
 Author: new92
-Contributors: [Itsfizziks]
+Contributors: [Itsfizziks, ProgramR4732]
 Github: @new92
 Leetcode: @new92
+PyPI: @new92
 
 ToolZ: Python script for keeping track on the users which unfollowed you.
 
@@ -11,7 +12,6 @@ User's login credentials (such as: username, password) will not be stored or sav
 Will be used only for the purpose of this script.
 ***************************
 """
-
 try:
     import sys
     from time import sleep
@@ -27,25 +27,25 @@ try:
         sleep(2)
         print("[+] Exiting...")
         sleep(1)
-        quit(0)
+        quit()
     from rich.align import Align
     from rich.table import Table
     from rich.live import Live
     from rich.console import Console
     console = Console()
-    mods = ['sys', 'time', 'rich', 'platform', 'os', 'json', 'datetime','requests', 'colorama']
+    mods = ['sys', 'time', 'rich', 'platform', 'os', 'logging', 'json', 'requests', 'colorama']
     with console.status('[bold dark_orange]Loading module...') as status:
         for mod in mods:
-            sleep(0.8)
+            sleep(0.85)
             console.log(f'[[bold red]{mod}[/]] => [bold dark_green]okay')
     import platform
     from os import system
     import os
+    import logging
     import json
     import instaloader
     import requests
     from colorama import init, Fore
-    from datetime import datetime
 except ImportError or ModuleNotFoundError:
     print("[!] WARNING: Not all packages used in ToolZ have been installed !")
     sleep(2)
@@ -68,10 +68,10 @@ except ImportError or ModuleNotFoundError:
                 print("[1] Uninstall ToolZ")
                 print("[2] Exit")
                 opt=int(input("[>] Please enter a number (from the above ones): "))
-                while opt < 1 or opt > 2:
+                while opt not in range(1,3):
                     print("[!] Invalid number !")
                     sleep(1)
-                    print("[+] Acceptable numbers: [1,2]")
+                    print("[+] Acceptable numbers: [1/2]")
                     sleep(1)
                     print("[1] Uninstall ToolZ")
                     print("[2] Exit")
@@ -98,7 +98,7 @@ except ImportError or ModuleNotFoundError:
                     print("[+] Exiting...")
                     sleep(1)
                     print("[+] See you next time 👋")
-                    quit(0)
+                    quit()
         else:
             system("sudo pip install -r requirements.txt")
     elif sys.platform == 'darwin':
@@ -113,7 +113,7 @@ YELLOW = Fore.YELLOW
 
 sleep(0.8)
 console.clear()
-console.print("[bold dark_green][✓] Successfully loaded modules.")
+console.log("[bold dark_green][✓] Successfully loaded modules.")
 sleep(0.8)
 console.clear()
 
@@ -144,7 +144,7 @@ def Uninstall() -> str:
     return f'{GREEN}[✓] Files and dependencies uninstalled successfully !'
 
 def clear():
-    system('cls') if platform.system() == 'Windows' else system('clear')
+    system('cls' if platform.system() == 'Windows' else 'clear')
 
 def validate(path: str) -> bool:
     return os.path.exists(path)
@@ -152,7 +152,7 @@ def validate(path: str) -> bool:
 TABLE = [
     [
         "[b white]Author[/]: [i light_green]new92[/]",
-        "[green]https://github.com/new92[/]"
+        "[green]https://new92.github.io/[/]"
     ],
     [
         "[b white]Github[/]: [i light_green]@new92[/]",
@@ -177,15 +177,16 @@ def extract(raw_path: str):
     return raw_path[index + len('session-'):] if index != -1 else None 
 
 def ScriptInfo():
-    with open('config.json') as config:
+    with open('ToolZ/config.json') as config:
         conf = json.load(config)
     f = conf['name'] + '.py'
-    fp = True if not fpath(f) == None else False
-    fsize = 0 if not fp else os.stat(fpath(f)).st_size
+    fp = fpath(f) == None
+    fsize = os.stat(fpath(f)).st_size if fp else 0
     print(f"{YELLOW}[+] Author: {conf['author']}")
     print(f"{YELLOW}[+] Contributors: {conf['contributors']}")
     print(f"{YELLOW}[+] Github: @{conf['author']}")
     print(f"{YELLOW}[+] Leetcode: @{conf['author']}")
+    print(f"{YELLOW}[+] PyPI: @{conf['author']}")
     print(f"{YELLOW}[+] License: {conf['lice']}")
     print(f"{YELLOW}[+] Natural language: {conf['lang']}")
     print(f"{YELLOW}[+] Programming language(s) used: {conf['language']}")
@@ -206,8 +207,8 @@ def ScriptInfo():
 
 ANS = ['yes', 'no']
 
-def logo() -> str:
-    return f"""{YELLOW}
+def banner() -> str:
+    console.log("""[bold yellow]
          tttt                                            lllllll
       ttt:::t                                            l:::::l
       t:::::t                                            l:::::l
@@ -224,12 +225,12 @@ tttttt:::::::tttttt    o:::::ooooo:::::oo:::::ooooo:::::o l::::l zzzzzzzz::::::z
       tt::::::::::::::to:::::::::::::::oo:::::::::::::::ol::::::l z::::::::::::::z
         tt:::::::::::tt oo:::::::::::oo  oo:::::::::::oo l::::::lz:::::::::::::::z
           ttttttttttt     ooooooooooo      ooooooooooo   llllllllzzzzzzzzzzzzzzzzz
-    """
+    [/]""")
 
+name = 'ToolZ_Log.txt'
 
 def main():
-    table = Table(show_footer=False)
-    print(logo())
+    banner()
     print("\n")
     with Live(centered, console=console, screen=False):
         table.add_column('Socials', no_wrap=False)
@@ -237,15 +238,15 @@ def main():
         for row in TABLE:
             table.add_row(*row)
     print("\n")
-    print(f"{YELLOW}[+] ToolZ: Python tool which keeps track on the users who unfollowed you on Instagram.")
+    console.print("[bold yellow][+] ToolZ is a python tool which keeps track on the users who unfollowed you on Instagram.[/]")
     print("\n")
-    print(f"{YELLOW}[1] Initiate ToolZ")
-    print(f"{YELLOW}[2] Display ToolZ's info")
-    print(f"{YELLOW}[3] Clear log file")
-    print(f"{YELLOW}[4] Uninstall ToolZ")
-    print(f"{YELLOW}[5] Exit")
+    console.print("[bold yellow][1] Initiate ToolZ[/]")
+    console.print("[bold yellow][2] Display ToolZ's info[/]")
+    console.print("[bold yellow][3] Clear log file[/]")
+    console.print("[bold yellow][4] Uninstall ToolZ[/]")
+    console.print("[bold yellow][5] Exit[/]")
     num=int(input(f"{YELLOW}[::] Please enter a number (from the above ones): "))
-    while num < 1 or num > 5:
+    while num not in range(1,6):
         print(f"{RED}[!] Invalid number !")
         sleep(1)
         print(f"{GREEN}[+] Acceptable numbers: [1-5]")
@@ -267,34 +268,30 @@ def main():
             sleep(1)
             con=str(input(f"{YELLOW}[>] Do you consent that the author (new92) has no responsibility for any loss or damage may the script cause to the given (Instagram) account ? "))
         if con.lower() == ANS[0]:
-            with open('cons.txt', 'a', encoding='utf8') as f:
-                f.write(f"\n[=] Date: {datetime.now()}\n")
-                f.write("[=] User: Yes I consent that the author (new92) has no responsibility for any loss or damage may the script cause to the given Instagram account.\n")
-                f.write("-"*40)
+            logging.basicConfig(
+                filename='cons.txt',
+                level=logging.INFO,
+                format='%(asctime)s [%(levelname)s]: %(message)s',
+                datefmt='%Y-%m-%d %H:%M:%S'
+            )
+            logging.info('Yes I consent that the author (new92) has no responsibility for any loss or damage may the script cause to the given Instagram account.')
         else:
             print(f"{YELLOW}[OK]")
             sleep(1)
             print(f"{YELLOW}[1] Exit")
             print(f"{YELLOW}[2] Uninstall ToolZ and exit")
             num=int(input(f"{YELLOW}[>] Please enter a number (from the above ones): "))
-            valErr = num in [1,2]
-            while not valErr:
-                try:
-                    print(f"{YELLOW}[1] Exit")
-                    print(f"{YELLOW}[2] Uninstall ToolZ and exit")
-                    sleep(1)
-                    num=int(input(f"{YELLOW}[>] Please enter a number (from the above ones): "))
-                    valErr = num in [1,2]
-                except ValueError:
-                    print(f"{RED}[!] Please enter a valid number.")
-                    sleep(1)
-                    print(f"{GREEN}[+] Acceptable numbers: [1,2]")
-                    sleep(1)
+            while num not in range(1,3):
+                print(f"{RED}[!] Invalid number !")
+                sleep(1)
+                print(f"{GREEN}[+] Acceptable numbers: [1/2]")
+                sleep(1)
+                num=int(input(f"{YELLOW}[::] Please enter a number (from the above ones): "))
             if num == 1:
                 clear()
                 print(f"{YELLOW}[+] Exiting...")
                 sleep(1)
-                quit(0)
+                quit()
             else:
                 clear()
                 print(Uninstall())
@@ -305,47 +302,46 @@ def main():
                 sleep(2)
                 print(f"{YELLOW}[+] Until we meet again 👋")
                 sleep(1)
-                quit(0)
+                quit()
         sleep(1)
+        clear()
         print(f'{GREEN}|---------------|LOGIN|---------------|')
         session=str(input(f"{YELLOW}[::] Please enter the cookie file path: "))
         session = session.lower().strip()
-        sleep(0.5)
-        print(f"{YELLOW}Using session file: {session}")
-        sleep(1)
         while not validate(session):
             print(f"{RED}[!] Invalid file path !")
             sleep(1)
             session=str(input(f"{YELLOW}[::] Please enter again the cookie file path: "))
         username = extract(session)
         sleep(0.5)
-        print(f"{YELLOW}[+] Extracted username: {username}...")
+        print(f"{GREEN}[✓] Extracted username: {username}...")
         sleep(1)
         print(f"{GREEN}[+] Using session file: {session}...")
         sleep(2)
         try: 
             with open(session, 'rb') as sessionfile:
                 loader.context.load_session_from_file(username, sessionfile)
-                print(f"{GREEN}[✓] Session loaded successfully !")
-                sleep(1)
         except instaloader.exceptions.ConnectionException as ex:
             print(f"{RED}[✕] Error loading session file !")
             sleep(1)
             print(f"{YELLOW}[+] Error message: {ex}")
             sleep(2)
             print(f"{YELLOW}[+] Exiting...")
-            quit(0)
+            quit()
+        print(f"{GREEN}[✓] Session loaded successfully !")
+        sleep(1)
         profile = None
         try:
             profile = instaloader.Profile.from_username(loader.context, username)
-        except instaloader.ProfileNotExistsException:
+        except instaloader.ProfileNotExistsException as ex:
             print(f"{RED}[!] Profile not found")
             sleep(1)
+            print(f"{YELLOW}[+] Error message: {ex}")
+            sleep(2)
             print(f"{YELLOW}[+] Exiting...")
-            quit(0)
+            quit()
 
         if profile:
-            name = 'ToolZ_Log.txt'
             print(f"{GREEN}[✓] Login successfull !")
             sleep(1)
             print(f'{YELLOW}[+] User ID: {profile.userid}')
@@ -353,16 +349,16 @@ def main():
             sleep(2)
             print(f"{GREEN}[*] Initiating ToolZ...")
             sleep(2)
-            print(f"{YELLOW}[*] Acceptable answers: [yes/no]")
+            print(f"{YELLOW}[*] Acceptable answers: {ANS}")
             sleep(1)
             kp=str(input(f"{YELLOW}[?] Keep log ? "))
-            while kp.lower() not in ANS or kp in ['', ' ']:
+            while kp.lower() not in ANS:
                 print(f"{RED}[!] Invalid answer !")
                 sleep(1)
-                print(f"{GREEN}[+] Acceptable answers: [yes/no]")
+                print(f"{GREEN}[+] Acceptable answers: {ANS}")
                 sleep(2)
                 kp=str(input(f"{YELLOW}[?] Keep log ? "))
-            kp = True if kp.lower() == ANS[0] else False
+            kp = kp.lower() == ANS[0]
             if kp:
                 f = open(name, 'w')
             profile = instaloader.Profile.from_username(loader.context, username)
@@ -373,7 +369,7 @@ def main():
             print(f"{YELLOW}[1] Live tracker")
             print(f"{YELLOW}[2] One-time tracker")
             opt=int(input(f"{YELLOW}[::] Please enter a number (from the above ones): "))
-            while opt < 1 or opt > 2:
+            while opt not in range(1,3):
                 print(f"{RED}[!] Invalid number !")
                 sleep(1)
                 print(f"{GREEN}[+] Acceptable numbers: [1/2]")
@@ -425,15 +421,15 @@ def main():
                             L.append(FOLLOWINGS[i])
                     print(f"{GREEN}[✓] OK")
                     sleep(2)
-                    print(f"{YELLOW}[+] Found a total of: {len(L)} unfollowers")
+                    print(f"{YELLOW}[+] Captured a total of {len(L)} unfollowers")
                     sleep(1)
                     print(f"{YELLOW}[+] Usernames: ")
                     print("\n")
                     for i in range(len(L)):
-                        print(f"{YELLOW}[>] Username{i+1} >>> {L[i]}")
+                        print(f"\t{YELLOW}[>] {L[i]}")
                     sleep(2)
                     if kp:
-                        f.write(f"[&] Detected a total of {len(L)} unfollowers\n\n")
+                        f.write(f"[+] Captured a total of {len(L)} unfollowers\n\n")
                         f.write("-"*25+'\n\n')
                         for i in range(len(L)):
                             f.write(f"[>] Username >>> {L[i]}\n")
@@ -441,54 +437,60 @@ def main():
                         sleep(1)
                         print(f"{GREEN}[✓] Successfully saved log !")
                         sleep(2)
-                        print(f"{YELLOW}[↪] Name: {name}")
-                        print(f"{YELLOW}[↪] Location: {fpath(name)}")
-                        print(f"{YELLOW}[↪] Size: {os.stat(fpath(name)).st_size} bytes")
+                        print(f"{YELLOW}[↪] Name >>> {name}")
+                        print(f"{YELLOW}[↪] Location >>> {fpath(name)}")
+                        print(f"{YELLOW}[↪] Size >>> {os.stat(fpath(name)).st_size} bytes")
                         sleep(3)
-        elif num == 2:
-            clear()
-            ScriptInfo()
-            print("\n\n")
-            sleep(5)
-        elif num == 3:
-            clear()
-            f = open(name,'w')
-            f.close()
-            print(f"{GREEN}[✓] Successfully cleared log file !")
-            sleep(2)
-        elif num == 4:
-            clear()
-            print(Uninstall())
-            sleep(2)
-            print(f"{GREEN}[+] Thank you for using ToolZ 😁")
-            sleep(2)
-            print(f"{GREEN}[+] Until next time 🫡")
-            sleep(1)
-            quit(0)
-        else:
-            clear()
-            print(f"{GREEN}[+] Thank you for using ToolZ 😁")
-            sleep(2)
-            print(f"{GREEN}[+] See you next time 👋")
-            sleep(1)
-            quit(0)
-        print(f"{YELLOW}[1] Back to menu")
-        print(f"{YELLOW}[2] Exit")
-        num=int(input(f"{YELLOW}[::] Please enter a number (from the above ones): "))
-        while num < 1 or num > 2:
-            print(f"{RED}[!] Invalid number !")
-            sleep(1)
-            num=int(input(f"{YELLOW}[::] Please enter a number (from the above ones): "))
-        if num == 1:
-            clear()
-            main()
-        else:
-            print(f"{GREEN}[+] Thank you for using ToolZ 😃")
-            sleep(2)
-            print(f"{GREEN}[+] Until next time 🤗")
-            sleep(1)
-            print(f"{YELLOW}[+] Exiting...")
-            quit(0)
+    elif num == 2:
+        clear()
+        ScriptInfo()
+        print("\n\n")
+        sleep(5)
 
-    if __name__ == '__main__':
+    elif num == 3:
+        clear()
+        f = open(name,'w')
+        f.close()
+        print(f"{GREEN}[✓] Log file cleared successfully !")
+        sleep(2)
+
+    elif num == 4:
+        clear()
+        print(Uninstall())
+        sleep(2)
+        print(f"{GREEN}[+] Thank you for using ToolZ 😁")
+        sleep(2)
+        print(f"{GREEN}[+] Until next time 🫡")
+        sleep(1)
+        quit()
+
+    else:
+        clear()
+        print(f"{GREEN}[+] Thank you for using ToolZ 😁")
+        sleep(2)
+        print(f"{GREEN}[+] See you next time 👋")
+        sleep(1)
+        quit()
+
+    print(f"{YELLOW}[1] Return to menu")
+    print(f"{YELLOW}[2] Exit")
+    num=int(input(f"{YELLOW}[::] Please enter a number (from the above ones): "))
+    while num not in range(1,3):
+        print(f"{RED}[!] Invalid number !")
+        sleep(1)
+        print(f"{GREEN}[+] Acceptable numbers: [1/2]")
+        sleep(1)
+        num=int(input(f"{YELLOW}[::] Please enter a number (from the above ones): "))
+    if num == 1:
+        clear()
         main()
+    else:
+        print(f"{GREEN}[+] Thank you for using ToolZ 😃")
+        sleep(2)
+        print(f"{GREEN}[+] Until next time 🤗")
+        sleep(1)
+        print(f"{YELLOW}[+] Exiting...")
+        quit()
+
+if __name__ == '__main__':
+    main()
