@@ -27,13 +27,13 @@ try:
         sleep(2)
         print("[+] Exiting...")
         sleep(1)
-        quit(0)
+        quit()
     from rich.align import Align
     from rich.table import Table
     from rich.live import Live
     from rich.console import Console
     console = Console()
-    mods = ['sys', 'time', 'rich', 'platform', 'os', 'json', 'datetime','requests', 'colorama']
+    mods = ['sys', 'time', 'rich', 'platform', 'os', 'json', 'datetime','requests', 'colorama', 'logging']
     with console.status('[bold dark_orange]Loading module...') as status:
         for mod in mods:
             sleep(0.8)
@@ -41,6 +41,7 @@ try:
     import platform
     from os import system
     import os
+    import logging
     import json
     import instaloader
     import requests
@@ -101,7 +102,7 @@ except ImportError or ModuleNotFoundError:
                     print("[+] Exiting...")
                     sleep(1)
                     print("[+] See you next time 👋")
-                    quit(0)
+                    quit()
         else:
             system("sudo pip install -r requirements.txt")
     elif sys.platform == 'darwin':
@@ -260,10 +261,13 @@ def main():
             sleep(1)
             con=str(input(f"{YELLOW}[>] Do you consent that the author (new92) has no responsibility for any loss or damage may the script cause to the given (Instagram) account ? "))
         if con.lower() == ANS[0]:
-            with open('cons.txt', 'a', encoding='utf8') as f:
-                f.write(f"\n[=] Date: {datetime.now()}\n")
-                f.write("[=] User: Yes I consent that the author (new92) has no responsibility for any loss or damage may the script cause to the given Instagram account.\n")
-                f.write("-"*40)
+            logging.basicConfig(
+                filename='cons.txt',
+                level=logging.INFO,
+                format='%(asctime)s [%(levelname)s]: %(message)s',
+                datefmt='%Y-%m-%d %H:%M:%S'
+            )
+            logging.info('Yes I consent that the author (new92) has no responsibility for any loss or damage may the script cause to the given Instagram account')
         else:
             print(f"{YELLOW}[OK]")
             sleep(1)
@@ -282,7 +286,7 @@ def main():
                 sleep(1)
                 print(f"{GREEN}[+] See you next time 👋")
                 sleep(2)
-                quit(0)
+                quit()
             else:
                 clear()
                 print(Uninstall())
@@ -293,7 +297,7 @@ def main():
                 sleep(2)
                 print(f"{GREEN}[+] Until we meet again 👋")
                 sleep(1)
-                quit(0)
+                quit()
         username=str(input(f"{YELLOW}[::] Please enter the target username: "))
         while checkUser(username):
             if username in ['', ' ']:
@@ -340,7 +344,7 @@ def main():
                 sleep(2)
                 print(f"{GREEN}[+] Until next time 👋")
                 sleep(1)
-                quit(0)
+                quit()
         loc=str(input(f"{YELLOW}[::] Please enter the location: "))
         while loc in ['', ' ']:
             print(f"{YELLOW}[!] Invalid location !")
@@ -375,15 +379,32 @@ def main():
             print(f"{YELLOW}[+] Error message: {ex}")
             sleep(2)
             print(f"{YELLOW}[+] Exiting...")
-            quit(0)
+            quit()
         profile = None
         try:
             profile = instaloader.Profile.from_username(loader.context, username)
         except instaloader.ProfileNotExistsException:
             print(f"{RED}[!] Profile not found")
             sleep(1)
-            print(f"{YELLOW}[+] Exiting...")
-            quit(0)
+            print("[1] Return to menu")
+            print("[2] Exit")
+            num=int(input("[::] Please enter a number (from the above ones): "))
+            while num < 1 or num > 2:
+                print(f"{RED}[!] Invalid number !")
+                sleep(1)
+                print(f"{GREEN}[+] Acceptable numbers: [1/2]")
+                sleep(1)
+                num=int(input("[::] Please enter again a number (from the above ones): "))
+            if num == 1:
+                clear()
+                main()
+            else:
+                clear()
+                print(f"{YELLOW}[+] Exiting...")
+                sleep(1)
+                print(f"{GREEN}[+] See you next time 👋")
+                sleep(2)
+                quit()
         if profile:
             sleep(1)
             print(f"{GREEN}[✓] Login successfull !")
@@ -400,8 +421,25 @@ def main():
             if len(LIST) == 0:
                 print(f"{RED}[!] No users with such location found on the followers of {username}")
                 sleep(3)
-                print(f"{YELLOW}[+] Exiting...")
-                quit(0)
+                print("[1] Return to menu")
+                print("[2] Exit")
+                num=int(input("[::] Please enter a number (from the above ones): "))
+                while num < 1 or num > 2:
+                    print(f"{RED}[!] Invalid number !")
+                    sleep(1)
+                    print(f"{GREEN}[+] Acceptable numbers: [1/2]")
+                    sleep(1)
+                    num=int(input("[::] Please enter again a number (from the above ones): "))
+                if num == 1:
+                    clear()
+                    main()
+                else:
+                    clear()
+                    print(f"{YELLOW}[+] Exiting...")
+                    sleep(1)
+                    print(f"{GREEN}[+] See you next time 👋")
+                    sleep(2)
+                    quit()
             else:
                 per = (float(len(followers)) / len(LIST)) * 100
                 name = f'users_in_{loc}.txt'
@@ -422,7 +460,7 @@ def main():
                 print(f"{GREEN}[↪] Location: {fpath(name)}")
                 print(f"{GREEN}[↪] Size: {os.stat(fpath(name)).st_size} bytes")
                 sleep(3)
-
+                
     elif op == 2:
         clear()
         ScriptInfo()
@@ -436,7 +474,7 @@ def main():
         sleep(2)
         print(f"{GREEN}[+] Until we meet again 🫡")
         sleep(1)
-        quit(0)
+        quit()
 
     else:
         clear()
@@ -444,7 +482,7 @@ def main():
         sleep(2)
         print(f"{GREEN}[+] See you next time 👋")
         sleep(1)
-        quit(0)
+        quit()
     print(f"{YELLOW}[1] Return to menu")
     print(f"{YELLOW}[2] Exit")
     number=int(input(f"{YELLOW}[::] Please enter a number (from the above ones): "))
@@ -462,7 +500,7 @@ def main():
         sleep(1)
         print(f"{GREEN}[+] See you next time 👋")
         sleep(2)
-        quit(0)
+        quit()
 
 if __name__ == '__main__':
     main()
