@@ -1,16 +1,18 @@
 {
     "author": "new92",
     "lice": "MIT",
+    "contributors": ["itsfizziks"],
     "lang": "en-US",
     "language": ["Python"],
     "name": "IsVer",
-    "lines": 423,
-    "stars": 36,
-    "forks": 8,
+    "lines": 452,
+    "update": "10/15/2023",
+    "stars": 54,
+    "forks": 13,
     "issues": 0,
-    "clissues": 1,
+    "clissues": 2,
     "prs": 0,
     "clprs": 4,
-    "discs": 1,
+    "discs": 2,
     "api": null
 }

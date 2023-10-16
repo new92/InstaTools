@@ -1,5 +1,7 @@
+# 🛑 Active Poll 🛑 <a href="https://github.com/new92/InstaTools/discussions/9">URL</a>
 
-![Logo](https://github.com/new92/InstaTools/assets/94779840/3b4328fb-d350-446a-97c6-dfef8ee0466f)
+<br><br><br><br>![logo](https://github.com/new92/InstaTools/assets/94779840/bdfbb09f-37ec-4ef7-a2a7-2dce756bb7aa)
+
 
 # InstaTools 🧰
 
@@ -61,6 +63,9 @@ See `contributing.md` for ways to get started.
 
 Please adhere to this project's `code of conduct`. For more info please check the `CODE_OF_CONDUCT.md` file.
 
+## Special thanks to 🫡
+
+- <a href='https://www.github.com/itsfizziks'>@itsfizziks</a>
 
 ## Feedback 💭
 
@@ -101,45 +106,47 @@ Answer ➡️ This error can be resolved by simply logging in to your account, d
 ### Linux 🐧
 
 ```bash
-  sudo su
-  git clone https://github.com/new92/InstaTools
-  cd InstaTools
-  sudo pip install -r requirements.txt
-  cd <THE FOLDER IN WHICH IS LOCATED THE SCRIPT YOU WANT TO USE. Example: cd Mutuals>
-  python3 <THE NAME OF THE SCRIPT. Example: python3 Mutuals.py>.py
+sudo su
+git clone https://github.com/new92/InstaTools
+cd InstaTools
+sudo pip install -r requirements.txt
+python3 cookies.py
+cd <THE FOLDER IN WHICH IS LOCATED THE SCRIPT YOU WANT TO USE. Example: cd Mutuals>
+python3 <THE NAME OF THE SCRIPT. Example: python3 Mutuals.py>.py
 ```
 
 ### Windows 🪟
 
 ```bash
-  git clone https://github.com/new92/InstaTools
-  cd InstaTools
-  pip install -r requirements.txt
-  cd <THE FOLDER IN WHICH IS LOCATED THE SCRIPT YOU WANT TO USE. Example: cd Mutuals>
-  python3 <THE NAME OF THE SCRIPT. Example: python3 Mutuals.py>.py
+git clone https://github.com/new92/InstaTools
+cd InstaTools
+pip install -r requirements.txt
+python3 cookies.py
+cd <THE FOLDER IN WHICH IS LOCATED THE SCRIPT YOU WANT TO USE. Example: cd Mutuals>
+python3 <THE NAME OF THE SCRIPT. Example: python3 Mutuals.py>.py
 ```
 
 ### MacOS 🍎
 
 ```bash
-  git clone https://github.com/new92/InstaTools
-  cd InstaTools
-  python -m pip install requirements.txt
-  cd <THE FOLDER IN WHICH IS LOCATED THE SCRIPT YOU WANT TO USE. Example: cd Mutuals>
-  python <THE NAME OF THE SCRIPT. Example: python3 Mutuals.py>.py
+git clone https://github.com/new92/InstaTools
+cd InstaTools
+python -m pip install requirements.txt
+python3 cookies.py
+cd <THE FOLDER IN WHICH IS LOCATED THE SCRIPT YOU WANT TO USE. Example: cd Mutuals>
+python <THE NAME OF THE SCRIPT. Example: python3 Mutuals.py>.py
 ```
 
 ## Update 🔄️
 
 ```bash
-   cd <path_to_script>/InstaTools
-   git pull
+cd <path_to_script>/InstaTools
+git pull
 ```
     
 ## License 📜
 
 [![License](https://img.shields.io/github/license/new92/IGFollowersIncreaser?style=for-the-badge)](https://github.com/new92/IGFollowersIncreaser/blob/main/LICENSE.md)
-
 
 ## Screenshots 📸
 
