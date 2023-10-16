@@ -28,7 +28,7 @@ try:
     from rich.live import Live
     from rich.console import Console
     console = Console()
-    mods = ['sys', 'time', 'rich', 'platform', 'os', 'json', 'requests', 'instaloader', 'colorama']
+    mods = ('sys', 'time', 'rich', 'platform', 'os', 'json', 'requests', 'instaloader', 'colorama')
     with console.status('[bold dark_orange]Loading module...') as status:
         for mod in mods:
             sleep(0.8)
@@ -46,7 +46,7 @@ except ImportError:
     print("[+] Ignoring warning...")
     sleep(1)
     if sys.platform.startswith('linux'):
-        if os.geteuid() != 0:
+        if os.geteuid():
             print("[!] Root user not detected !")
             sleep(2)
             print("[+] Trying to enable root user...")
@@ -62,8 +62,8 @@ except ImportError:
                 print("[1] Uninstall Tracker")
                 print("[2] Exit")
                 opt=int(input("[>] Please enter a number (from the above ones): "))
-                while opt < 1 or opt > 2:
-                    if opt == None:
+                while opt not in range(1, 3):
+                    if opt is None:
                         print("[!] This field can't be blank !")
                     else:
                         print("[!] Invalid number !")
@@ -158,14 +158,14 @@ table = Table(show_footer=False)
 centered = Align.center(table)
 
 def clear():
-    system('cls') if platform.system() == 'Windows' else system('clear')
+    system('cls' if platform.system() == 'Windows' else 'clear')
 
 def ScriptInfo():
     with open('config.json') as config:
         conf = json.load(config)
     f = conf['name'] + '.py'
-    fp = True if not fpath(f) == None else False
-    fsize = 0 if not fp else os.stat(fpath(f)).st_size
+    fp = fpath(f) == None
+    fsize = os.stat(fpath(f)).st_size if fp else 0
     print(f"{YELLOW}[+] Author: {conf['author']}")
     print(f"{YELLOW}[+] Contributors : {conf['contributors']}")
     print(f"{YELLOW}[+] Github: @{conf['author']}")
@@ -226,7 +226,7 @@ def main():
     print(f"{YELLOW}[3] Uninstall Tracker")
     print(f"{YELLOW}[4] Exit")
     num=int(input(f"{YELLOW}[::] Please enter a number (from the above ones): "))
-    while num < 1 or num > 4:
+    while num not in range(1, 5):
         print(f"{RED}[!] Invalid number !")
         sleep(1)
         print(f"{YELLOW}[1] Start Tracker")
@@ -238,7 +238,7 @@ def main():
         clear()
         loader = instaloader.Instaloader()
         print(f'{GREEN}|---------------|LOGIN|---------------|')
-        session=str(input(f"{YELLOW}[::] Please enter the cookie file path: "))
+        session=input(f"{YELLOW}[::] Please enter the cookie file path: ")
         session = session.lower().strip()
         sleep(0.5)
         print(f"{YELLOW}Using session file: {session}")
@@ -246,7 +246,7 @@ def main():
         while not validate(session):
             print(f"{RED}[!] Invalid file path !")
             sleep(1)
-            session=str(input(f"{YELLOW}[::] Please enter the cookie file path again: "))
+            session=input(f"{YELLOW}[::] Please enter the cookie file path again: ")
         username = extract(session)
         sleep(0.5)
         print(f"{YELLOW}[+] Extracted username: {username}...")
@@ -285,18 +285,18 @@ def main():
             print(f"{YELLOW}[2] Track followees")
             print(f"{YELLOW}[3] Track both")
             number=int(input(f"{YELLOW}[::] Please enter a number (from the above ones): "))
-            while number < 1 or number > 3:
+            while number not in range(1, 4):
                 print(f"{RED}[!] Invalid number !")
                 sleep(1)
                 print(f"{YELLOW}[1] Track followers")
                 print(f"{YELLOW}[2] Track followees")
                 print(f"{YELLOW}[3] Track both")
                 number=int(input(f"{YELLOW}[::] Please enter a number (from the above ones): "))
-            user=str(input(f"{YELLOW}[::] Please enter the username of the target user: "))
+            user=input(f"{YELLOW}[::] Please enter the username of the target user: ")
             while checkUser(user):
                 print(f"{RED}[!] Invalid username !")
                 sleep(1)
-                user=str(input(f"{YELLOW}[::] Please enter again the username of the target user: "))
+                user=input(f"{YELLOW}[::] Please enter again the username of the target user: ")
             user = user.lower().strip()
             while valUser(user):
                 print(f"{RED}[!] User not found !")
@@ -305,7 +305,7 @@ def main():
                 print(f"{YELLOW}[2] Return to menu")
                 print(f"{YELLOW}[3] Uninstall and Exit")
                 opt=int(input(f"{YELLOW}[::] Please enter a number (from the above ones): "))
-                while opt < 1 or opt > 3:
+                while opt not in range(1, 4):
                     print(f"{RED}[!] Invalid number !")
                     sleep(1)
                     print(f"{YELLOW}[1] Try with another username")
@@ -313,11 +313,11 @@ def main():
                     print(f"{YELLOW}[3] Uninstall and Exit")
                     opt=int(input(f"{YELLOW}[::] Please enter again a number (from the above ones): "))
                 if opt == 1:
-                    user=str(input(f"{YELLOW}[::] Please enter the username: "))
+                    user=input(f"{YELLOW}[::] Please enter the username: ")
                     while checkUser(user):
                         print(f"{RED}[!] Invalid username !")
                         sleep(1)
-                        user=str(input(f"{YELLOW}[::] Please enter again the username: "))
+                        user=input(f"{YELLOW}[::] Please enter again the username: ")
                 elif opt == 2:
                     clear()
                     main()
@@ -372,14 +372,14 @@ def main():
                 sleep(2)
                 print(f"{GREEN}[+] Acceptable answers: [yes/no]")
                 sleep(1)
-                kp=str(input(f"{YELLOW}[?] Keep log ? "))
+                kp=input(f"{YELLOW}[?] Keep log ? ")
                 while kp in ['', ' '] or kp.lower() not in ['yes', 'no']:
                     print(f"{RED}[!] Invalid answer !")
                     sleep(1)
                     print(f"{GREEN}[+] Acceptable answers: [yes/no]")
                     sleep(1)
-                    kp=str(input(f"{YELLOW}[?] Keep log ? "))
-                kp = True if kp.lower() == 'yes' else False
+                    kp=input(f"{YELLOW}[?] Keep log ? ")
+                kp = kp.lower() == 'yes'
                 if kp:
                     with open(name, 'w', encoding='utf8') as f:
                         if len(FOLLOWERS) > len(FOLLOWERSAF):
@@ -437,13 +437,13 @@ def main():
                 sleep(2)
                 print(f"{GREEN}[+] Acceptable answers: [true/false]")
                 sleep(1)
-                kp=str(input(f"{YELLOW}[?] Keep log ? "))
+                kp=input(f"{YELLOW}[?] Keep log ? ")
                 while kp in ['', ' '] or kp.lower() not in ['true', 'false']:
                     print(f"{RED}[!] Invalid answer !")
                     sleep(1)
                     print(f"{GREEN}[+] Acceptable answers: [true/false]")
                     sleep(1)
-                    kp=str(input(f"{YELLOW}[?] Keep log ? "))
+                    kp=input(f"{YELLOW}[?] Keep log ? ")
                 if kp.lower() == 'true':
                     with open(name, 'w', encoding='utf8') as f:
                         if len(FOLLOWEES) > len(FOLLOWEESAF):
@@ -540,13 +540,13 @@ def main():
                         sleep(2)
             print(f"{GREEN}[+] Acceptable answers: [yes/no]")
             sleep(1)
-            keep=str(input(f"{YELLOW}[?] Keep log ? "))
+            keep=input(f"{YELLOW}[?] Keep log ? ")
             while keep in ['', ' '] or keep.lower() not in ['yes', 'no']:
                 print(f"{RED}[!] Invalid answer !")
                 sleep(1)
                 print(f"{YELLOW}[+] Acceptable answers: [true/false]")
                 sleep(2)
-                keep=str(input(f"{YELLOW}[?] Keep log ? "))
+                keep=input(f"{YELLOW}[?] Keep log ? ")
             if keep.lower() == 'true':
                 with open(name, 'w', encoding='utf8') as f:
                     if len(FOLLOWERS) != len(FOLLOWERSAF):
@@ -604,7 +604,7 @@ def main():
     print(f"{YELLOW}[1] Return to menu")
     print(f"{YELLOW}[2] Exit")
     numb=int(input(f"{YELLOW}[::] Please enter a number (from the above ones): "))
-    while numb < 1 or numb > 2:
+    while numb not in range(1, 3):
         print(f"{RED}[!] Invalid number !")
         sleep(1)
         numb=int(input(f"{YELLOW}[::] Please enter again a number (from the above ones): "))
@@ -621,7 +621,7 @@ def main():
     print(f"{YELLOW}[1] Back to menu")
     print(f"{YELLOW}[2] Exit")
     num=int(input(f"{YELLOW}[::] Please enter a number (from the above ones): "))
-    while num < 1 or num > 2:
+    while num not in range(1, 3):
         print(f"{RED}[!] Invalid number !")
         sleep(1)
         num=int(input(f"{YELLOW}[::] Please enter a number (from the above ones): "))
