@@ -162,12 +162,6 @@ def checkUser(user: str) -> bool:
 def valUser(username: str) -> bool:
     return requests.get(f'https://www.instagram.com/{username}/', allow_redirects=False).status_code != 200
 
-def nums():
-    print(f"[bold yellow][1] Initiate Researcher")
-    print(f"[bold yellow][2] Show Reseacher's info")
-    print(f"[bold yellow][3] Uninstall Reseacher")
-    print(f"[bold yellow][4] Exit")
-
 TABLE = [
     [
         "[b white]Author[/]: [i light_green]new92[/]",
@@ -190,6 +184,12 @@ TABLE = [
 console = Console()
 table = Table(show_footer=False)
 centered = Align.center(table)
+
+def nums():
+    console.print("[bold yellow][1] Initiate Researcher")
+    console.print("[bold yellow][2] Show Reseacher's info")
+    console.print("[bold yellow][3] Uninstall Reseacher")
+    console.print("[bold yellow][4] Exit")
 
 ANS = ['yes', 'no']
 
@@ -218,18 +218,17 @@ def extract(raw_path: str):
     return raw_path[index + len('session-'):] if index != -1 else None
 
 def banner():
-    console.print("""
-██████╗░███████╗░██████╗███████╗░█████╗░██████╗░░█████╗░██╗░░██╗███████╗██████╗░
-██╔══██╗██╔════╝██╔════╝██╔════╝██╔══██╗██╔══██╗██╔══██╗██║░░██║██╔════╝██╔══██╗
-██████╔╝█████╗░░╚█████╗░█████╗░░███████║██████╔╝██║░░╚═╝███████║█████╗░░██████╔╝
-██╔══██╗██╔══╝░░░╚═══██╗██╔══╝░░██╔══██║██╔══██╗██║░░██╗██╔══██║██╔══╝░░██╔══██╗
-██║░░██║███████╗██████╔╝███████╗██║░░██║██║░░██║╚█████╔╝██║░░██║███████╗██║░░██║
-╚═╝░░╚═╝╚══════╝╚═════╝░╚══════╝╚═╝░░╚═╝╚═╝░░╚═╝░╚════╝░╚═╝░░╚═╝╚══════╝╚═╝░░╚═╝
+    console.print("""[bold yellow]
+                                ██████╗░███████╗░██████╗███████╗░█████╗░██████╗░░█████╗░██╗░░██╗███████╗██████╗░
+                                ██╔══██╗██╔════╝██╔════╝██╔════╝██╔══██╗██╔══██╗██╔══██╗██║░░██║██╔════╝██╔══██╗
+                                ██████╔╝█████╗░░╚█████╗░█████╗░░███████║██████╔╝██║░░╚═╝███████║█████╗░░██████╔╝
+                                ██╔══██╗██╔══╝░░░╚═══██╗██╔══╝░░██╔══██║██╔══██╗██║░░██╗██╔══██║██╔══╝░░██╔══██╗
+                                ██║░░██║███████╗██████╔╝███████╗██║░░██║██║░░██║╚█████╔╝██║░░██║███████╗██║░░██║
+                                ╚═╝░░╚═╝╚══════╝╚═════╝░╚══════╝╚═╝░░╚═╝╚═╝░░╚═╝░╚════╝░╚═╝░░╚═╝╚══════╝╚═╝░░╚═╝
 """)
 
 def main():
-    table = Table(show_footer=False)
-    print(banner())
+    banner()
     print("\n")
     with Live(centered, console=console, screen=False):
         table.add_column('Socials', no_wrap=False)
@@ -237,7 +236,7 @@ def main():
         for row in TABLE:
             table.add_row(*row)
     print("\n")
-    print(f"{YELLOW}[+] Researcher: Python script for retrieving the possible location of the followers of a user on Instagram.")
+    console.print("[bold yellow][+] Researcher: Python script for retrieving the possible location of the followers of a user on Instagram.")
     print("\n")
     nums()
     op=int(input(f"{YELLOW}[::] Please enter a number (from the above ones): "))
