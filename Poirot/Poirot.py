@@ -2,8 +2,9 @@
 Author: new92
 Github: @new92
 Leetcode: @new92
+PyPI: @new92
 
-Python script to extract information from instagram accounts.
+Poirot is a Python script used to extract information from Instagram accounts.
 """
 try:
     import sys
@@ -20,7 +21,7 @@ try:
         sleep(2)
         print(f"[+] Exiting...")
         sleep(1)
-        quit(0)
+        quit()
     from rich.align import Align
     from rich.table import Table
     from rich.live import Live
@@ -87,7 +88,7 @@ except ImportError or ModuleNotFoundError:
                     print(f"[+] Exiting...")
                     sleep(1)
                     print(f"[+] See you next time 👋")
-                    quit(0)
+                    quit()
         else:
             system("sudo pip install -r requirements.txt")
     elif sys.platform == 'darwin':
@@ -103,8 +104,7 @@ YELLOW = Fore.YELLOW
 sleep(0.8)
 console.clear()
 console.log("[bold green][✓] Successfully loaded modules ![/]")
-sleep(0.8)
-console.clear()
+sleep(1)
 
 def checkUser(username:str) -> bool:
     return username in ['' , ' '] or len(username) > 30
@@ -123,11 +123,12 @@ def ScriptInfo():
         conf = json.load(config)
     f = conf['name'] + '.py'
     fp = True if not fpath(f) == None else False
-    fsize = 0 if not fp else os.stat(fpath(f)).st_size
+    fsize = 0 if fp else os.stat(fpath(f)).st_size
     print(f"{YELLOW}[+] Author: {conf['author']}")
+    print(f"{YELLOW}[+] Contributors : {conf['contributors']}")
     print(f"{YELLOW}[+] Github: @{conf['author']}")
     print(f"{YELLOW}[+] Leetcode: @{conf['author']}")
-    print(f"{YELLOW}[+] Contributors : {conf['contributors']}")
+    print(f"{YELLOW}[+] PyPI: @{conf['author']}")
     print(f"{YELLOW}[+] License: {conf['lice']}")
     print(f"{YELLOW}[+] Natural language: {conf['lang']}")
     print(f"{YELLOW}[+] Programming language(s) used: {conf['language']}")
@@ -146,18 +147,12 @@ def ScriptInfo():
     print(f"{YELLOW}[+] Closed pull requests: {conf['clprs']}")
     print(f"{YELLOW}[+] Discussions: {conf['discs']}")
 
-def correctUsername(username: str) -> str:
-    for char in username:
-        if char.isalnum() or char.isspace():
-            username.replace(char, '')
-    return username
-
 console = Console()
 table = Table(show_footer=False)
 centered = Align.center(table)
 
 def banner() -> str:
-    return f"""{YELLOW}
+    console.print("""[bold yellow]
                _               _   
               (_)             | |  
  _ __    ___   _  _ __   ___  | |_ 
@@ -166,7 +161,7 @@ def banner() -> str:
 | .__/  \___/ |_||_|    \___/  \__|
 | |
 |_|
-"""
+""")
 
 def Uninstall() -> str:
     def rmdir(dire):
@@ -187,7 +182,7 @@ ANS = ['yes', 'no']
 TABLE = [
     [
         "[b white]Author[/]: [i light_green]new92[/]",
-        "[green]https://github.com/new92[/]"
+        "[green]https://new92.github.io/[/]"
     ],
     [
         "[b white]Github[/]: [i light_green]@new92[/]",
@@ -245,7 +240,7 @@ def main():
         for row in TABLE:
             table.add_row(*row)
     print("\n")
-    console.print("[bold yellow][+] Poirot is a python script for retrieving info from a user's Instagram account.[/]")
+    console.print("[bold yellow][+] Poirot is a python script for extracting info from a user's Instagram account.[/]")
     print("\n")
     console.print("[bold yellow][1] Initiate Poirot[/]")
     console.print("[bold yellow][2] Show Poirot's info[/]")
@@ -321,14 +316,13 @@ def main():
                 sleep(1)
                 print(f"{GREEN}[+] See you next time 👋")
                 sleep(2)
-                quit(0)
+                quit()
         username = username.lower().strip()
-        username = correctUsername(username)
         sleep(1.2)
         name = 'poirotLog.txt'
         print(f"{GREEN}[+] Username -> OK")
         sleep(1.3)
-        print(f"{GREEN}[+] Initiating fetch...")
+        print(f"{GREEN}[+] Extracting info...")
         sleep(1.3)
         dict = fetch(username)
         if type(dict) != str:
@@ -363,27 +357,7 @@ def main():
             if keep:
                 with open(name, 'w', encoding='utf8') as f:
                     f.write('---------------' + '-' * len(username))
-                    f.write(f'\n[>] Username | {username}')
-                    f.write(f"\n[>] Name | {dict['name']}")
-                    f.write(f"\n[>] Bio | {dict['bio']}")
-                    f.write(f"\n[>] Followers | {dict['followers']}")
-                    f.write(f"\n[>] Followings | {dict['followings']}")
-                    f.write(f"\n[>] Email | {dict['email']}")
-                    f.write(f"\n[>] Tel | {dict['tel']}")
-                    f.write(f"\n[>] Profile pic | {dict['pic']}")
-                    f.write(f"\n[>] ID | {dict['id']}")
-                    f.write(f"\n[>] External links | {dict['links']}")
-                    f.write(f"\n[>] Users in bio | {dict['users']}")
-                    f.write(f"\n[>] Hashtags in bio | {dict['hashtags']}")
-                    f.write(f"\n[>] fb | {dict['fb']}")
-                    f.write(f"\n[>] fb ID | {dict['fbid']}")
-                    f.write(f"\n[>] Joined recently | {dict['join']}")
-                    f.write(f"\n[>] Private | {dict['private']}")
-                    f.write(f"\n[>] Verified | {dict['verified']}")
-                    f.write(f"\n[>] Business | {dict['business']}")
-                    f.write(f"\n[>] Professional | {dict['professional']}")
-                    f.write(f"\n[>] Supervised | {dict['supervision']}")
-                    f.write(f"\n[>] Hide likes & views | {dict['hide']}")
+                    f.write(dict)
                     f.write("\n-------------------------" + '-' * len(str(dict['hide'])))
                     print("\n")
                     print(f"{YELLOW}[✓] Successfully saved log !")
@@ -401,6 +375,7 @@ def main():
         clear()
         ScriptInfo()
         sleep(4)
+        print("\n\n")
 
     elif num == 3:
         clear()
@@ -440,7 +415,7 @@ def main():
         sleep(3)
         print(f"{GREEN}[+] Until we meet again 🫡")
         sleep(1)
-        quit(0)
+        quit()
 
     else:
         clear()
@@ -448,7 +423,7 @@ def main():
         sleep(2)
         print(f"{YELLOW}[+] See you next time 👋")
         sleep(1)
-        quit(0)
+        quit()
     
     print("\n\n")
     print(f"{YELLOW}[1] Return to menu")
@@ -469,7 +444,7 @@ def main():
         sleep(2)
         print(f"{GREEN}[+] See you next time 👋")
         sleep(1)
-        quit(0)
+        quit()
 
 if __name__ == '__main__':
     sleep(2)
