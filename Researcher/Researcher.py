@@ -137,6 +137,7 @@ def ScriptInfo():
     print(f"{YELLOW}[+] Contributors : {conf['contributors']}")
     print(f"{YELLOW}[+] Github: @{conf['author']}")
     print(f"{YELLOW}[+] Leetcode: @{conf['author']}")
+    print(f"{YELLOW}[+] PyPI: @{conf['author']}")
     print(f"{YELLOW}[+] License: {conf['lice']}")
     print(f"{YELLOW}[+] Natural language: {conf['lang']}")
     print(f"{YELLOW}[+] Programming language(s) used: {conf['language']}")
@@ -162,10 +163,10 @@ def valUser(username: str) -> bool:
     return requests.get(f'https://www.instagram.com/{username}/', allow_redirects=False).status_code != 200
 
 def nums():
-    print(f"{YELLOW}[1] Initiate Researcher")
-    print(f"{YELLOW}[2] Show Reseacher's info")
-    print(f"{YELLOW}[3] Uninstall Reseacher")
-    print(f"{YELLOW}[4] Exit")
+    print(f"[bold yellow][1] Initiate Researcher")
+    print(f"[bold yellow][2] Show Reseacher's info")
+    print(f"[bold yellow][3] Uninstall Reseacher")
+    print(f"[bold yellow][4] Exit")
 
 TABLE = [
     [
