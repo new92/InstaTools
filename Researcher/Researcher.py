@@ -5,7 +5,7 @@ Github: @new92
 Leetcode: @new92
 PyPI: @new92
 
-Python script for retrieving the (possible) location of the followers of an Instagram user !
+The researcher is a Python script designed to retrieve the possible location of a part of followers from an Instagram user.
 
 *********IMPORTANT*********
 User's login credentials (such as: username, password) will not be stored or saved ! 
