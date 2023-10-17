@@ -52,7 +52,7 @@ python3 <THE NAME OF THE SCRIPT. Example: python3 Mutuals.py>.py
 ```bash
 git clone https://github.com/new92/InstaTools
 cd InstaTools
-python -m pip install requirements.txt
+python -m pip install -r requirements.txt
 python3 cookies.py
 cd <THE FOLDER IN WHICH IS LOCATED THE SCRIPT YOU WANT TO USE. Example: cd Mutuals>
 python3 <THE NAME OF THE SCRIPT. Example: python3 Mutuals.py>.py
