@@ -34,7 +34,7 @@ try:
     from rich.live import Live
     from rich.console import Console
     console = Console()
-    mods = ['sys', 'time', 'rich', 'platform', 'os', 'json', 'logging', 'requests', 'colorama']
+    mods = ('sys', 'time', 'rich', 'platform', 'os', 'json', 'logging', 'requests', 'colorama')
     with console.status('[bold dark_orange]Loading module...') as status:
         for mod in mods:
             sleep(0.8)
@@ -47,13 +47,13 @@ try:
     import instaloader
     import requests
     from colorama import init, Fore
-except ImportError or ModuleNotFoundError:
+except (ImportError, ModuleNotFoundError):
     print("[!] WARNING: Not all packages used in Researcher have been installed !")
     sleep(2)
     print("[+] Ignoring warning...")
     sleep(1)
     if sys.platform.startswith('linux'):
-        if os.geteuid() != 0:
+        if os.geteuid():
             print("[!] Root user not detected !")
             sleep(2)
             print("[+] Trying to enable root user...")
@@ -312,7 +312,7 @@ def main():
             print(f"{YELLOW}[2] Return to menu")
             print(f"{YELLOW}[3] Uninstall and Exit")
             opt=int(input(f"{YELLOW}[::] Please enter a number (from the above ones): "))
-            while opt not in [1,4]:
+            while opt not in (1, 4):
                 print(f"{RED}[!] Invalid number !")
                 sleep(1)
                 print(f"{GREEN}[+] Acceptable numbers: [1-3]")
@@ -343,7 +343,7 @@ def main():
                 quit()
         sleep(1)
         loc=str(input(f"{YELLOW}[::] Please enter the location: "))
-        while loc in ['', ' ']:
+        while loc in ('', ' '):
             print(f"{YELLOW}[!] Invalid location !")
             sleep(1)
             loc=str(input(f"{YELLOW}[::] Please enter again the location: "))
@@ -412,13 +412,13 @@ def main():
                 profile = instaloader.Profile.from_username(loader.context, followers[i])
                 if loc in profile.biography:
                     LIST.append(followers[i])
-            if len(LIST) == 0:
+            if not len(LIST):
                 print(f"{RED}[!] No users with such location found on the followers of {username}")
                 sleep(3)
                 print("[1] Return to menu")
                 print("[2] Exit")
                 num=int(input("[::] Please enter a number (from the above ones): "))
-                while num < 1 or num > 2:
+                while num not in range(1, 3):
                     print(f"{RED}[!] Invalid number !")
                     sleep(1)
                     print(f"{GREEN}[+] Acceptable numbers: [1/2]")
