@@ -258,13 +258,10 @@ def main():
         print(f"{GREEN}[+] Acceptable answers: [yes/no]")
         sleep(1)
         con=str(input(f"{YELLOW}[>] Do you consent that the author (new92) has no responsibility for any loss or damage may the script cause to the given (Instagram) account ? "))
-        while con.lower() not in ANS or con in ['', ' ']:
-            if con in ['', ' ']:
-                print(f"{RED}[!] This field can't be blank !")
-            else:
-                print(f"{RED}[!] Invalid answer !")
-                sleep(1)
-                print(f"{GREEN}[+] Acceptable answers: [yes/no]")
+        while con.lower() not in ANS:
+            print(f"{RED}[!] Invalid answer !")
+            sleep(1)
+            print(f"{GREEN}[+] Acceptable answers: [yes/no]")
             sleep(1)
             con=str(input(f"{YELLOW}[>] Do you consent that the author (new92) has no responsibility for any loss or damage may the script cause to the given (Instagram) account ? "))
         if con.lower() == ANS[0]:
