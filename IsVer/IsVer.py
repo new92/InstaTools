@@ -28,14 +28,14 @@ try:
         sleep(2)
         print("[+] Exiting...")
         sleep(1)
-        quit()
+        sys.exit()
     import platform
     from rich.align import Align
     from rich.table import Table
     from rich.live import Live
     from rich.console import Console
     console = Console()
-    mods = ['sys', 'time', 'rich', 'platform', 'os', 'requests', 'instaloader', 'logging', 'prettytable' ,'json', 'colorama']
+    mods = ('sys', 'time', 'rich', 'platform', 'os', 'requests', 'instaloader', 'logging', 'prettytable' ,'json', 'colorama')
     with console.status('[bold dark_orange]Loading module...[/]') as status:
         for mod in mods:
             sleep(0.85)
@@ -54,7 +54,7 @@ except ImportError:
     print("[+] Ignoring warning...")
     sleep(1)
     if sys.platform.startswith('linux'):
-        if os.geteuid() != 0:
+        if os.geteuid():
             print("[!] Root user not detected !")
             sleep(2)
             print("[+] Trying to enable root user...")
@@ -119,7 +119,8 @@ console.print("[bold dark_green][✓] Successfully loaded modules.[/]")
 sleep(0.8)
 console.clear()
 
-ANS = ['yes', 'no']
+ANS = ('yes', 'no')
+EMPTY = ('', ' ')
 
 def fpath(fname: str):
     for root, dirs, files in os.walk('/'):
@@ -137,8 +138,8 @@ def validate(session: str) -> bool:
 def ScriptInfo():
     with open('config.json') as config:
         conf = json.load(config)
-    f = conf['name'] + '.py'
-    fp = fpath(f) == None
+    f = f"{conf['name']}.py"
+    fp = fpath(f) is None
     fsize = os.stat(fpath(f)).st_size if fp else 0
     print(f"{YELLOW}[+] Author: {conf['author']}")
     print(f"{YELLOW}[+] Contributors : {conf['contributors']}")
@@ -199,7 +200,7 @@ TABLE = [
 ]
 
 def checkUser(username:str) -> bool:
-    return username in ['', ' '] or len(username) > 30
+    return username in EMPTY or len(username) > 30
 
 name = 'IsVer_log.txt'
 
@@ -269,7 +270,7 @@ def main():
             print(f"{YELLOW}[1] Exit")
             print(f"{YELLOW}[2] Uninstall ToolZ and exit")
             num=int(input(f"{YELLOW}[>] Please enter a number (from the above ones): "))
-            valErr = num in [1,2]
+            valErr = num in (1, 2)
             while not valErr:
                 try:
                     print(f"{YELLOW}[1] Exit")
@@ -301,8 +302,8 @@ def main():
         sleep(2)
         clear()
         print(f'{YELLOW}|--------------------LOGIN--------------------|')
-        session=str(input(f"{YELLOW}[::] Please enter the cookie file path: "))
-        session = session.lower().strip()
+        session= input(f"{YELLOW}[::] Please enter the cookie file path: ")
+        session = session.strip().lower()
         while not validate(session):
             print(f"{RED}[!] Invalid file path !")
             sleep(1)
@@ -354,14 +355,14 @@ def main():
             print(f"{GREEN}[✓] Login successfull !")
             sleep(0.85)
             clear()
-            username=str(input(f"{YELLOW}[::] Please enter the username of the target user: "))
+            username= input(f"{YELLOW}[::] Please enter the username of the target user: ")
             while checkUser(username):
-                if username in ['', ' ']:
+                if username in EMPTY:
                     print(f"{RED}[!] This field can't be blank !")
                 else:
                     print(f"{RED}[!] Invalid username !")
                 username=str(input(f"{YELLOW}[::] Please enter again the username of the target user: "))
-            username = username.lower().strip()
+            username = username.strip().lower()
             while ValUser(username):
                 print(f"{RED}[!] User not found !")
                 sleep(1)
@@ -379,12 +380,12 @@ def main():
                 if opt == 1:
                     username=str(input(f"{YELLOW}[::] Please enter the username: "))
                     while checkUser(username):
-                        if username in ['', ' ']:
+                        if username in EMPTY:
                             print(f"{RED}[!] This field can't be blank !")
                         else:
                             print(f"{RED}[!] Invalid username !")
                         sleep(1)
-                        username=str(input(f"{YELLOW}[::] Please enter again the username: "))
+                        username= input(f"{YELLOW}[::] Please enter again the username: ")
                 elif opt == 2:
                     clear()
                     main()
@@ -407,7 +408,7 @@ def main():
             sleep(1)
             print(f"{GREEN}[+] Acceptable answers: {ANS}")
             sleep(1)
-            keep=str(input(f"{YELLOW}[?] Keep log ? "))
+            keep= input(f"{YELLOW}[?] Keep log ? ")
             while keep.lower() not in ANS:
                 print(f"{RED}[!] Invalid answer !")
                 sleep(1)
@@ -423,7 +424,7 @@ def main():
                     VERS.append(FOLLOWINGS[i])
             followees = profile.followees
             print(f"{YELLOW}[+] Is {username} following verified accounts ? {len(VERS) == 0}")
-            if len(VERS) == 0:
+            if not len(VERS):
                 sleep(2)
                 print(f"{YELLOW}[1] Return to menu")
                 print(f"{YELLOW}[2] Exit")
