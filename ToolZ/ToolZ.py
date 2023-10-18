@@ -255,13 +255,13 @@ def main():
     if num == 1:
         clear()
         loader = instaloader.Instaloader()
-        print(f"{GREEN}[+] Acceptable answers: [yes/no]")
+        print(f"{GREEN}[+] Acceptable answers: {ANS}")
         sleep(1)
         con=str(input(f"{YELLOW}[>] Do you consent that the author (new92) has no responsibility for any loss or damage may the script cause to the given (Instagram) account ? "))
         while con.lower() not in ANS:
             print(f"{RED}[!] Invalid answer !")
             sleep(1)
-            print(f"{GREEN}[+] Acceptable answers: [yes/no]")
+            print(f"{GREEN}[+] Acceptable answers: {ANS}")
             sleep(1)
             con=str(input(f"{YELLOW}[>] Do you consent that the author (new92) has no responsibility for any loss or damage may the script cause to the given (Instagram) account ? "))
         if con.lower() == ANS[0]:
