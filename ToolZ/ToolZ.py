@@ -33,7 +33,7 @@ try:
     from rich.live import Live
     from rich.console import Console
     console = Console()
-    mods = ['sys', 'time', 'rich', 'platform', 'os', 'logging', 'json', 'requests', 'colorama']
+    mods = ('sys', 'time', 'rich', 'platform', 'os', 'logging', 'json', 'requests', 'colorama')
     with console.status('[bold dark_orange]Loading module...') as status:
         for mod in mods:
             sleep(0.85)
@@ -46,13 +46,13 @@ try:
     import instaloader
     import requests
     from colorama import init, Fore
-except ImportError or ModuleNotFoundError:
+except (ImportError, ModuleNotFoundError):
     print("[!] WARNING: Not all packages used in ToolZ have been installed !")
     sleep(2)
     print("[+] Ignoring warning...")
     sleep(1)
     if sys.platform.startswith('linux'):
-        if os.geteuid() != 0:
+        if os.geteuid():
             print("[!] Root user not detected !")
             sleep(2)
             print("[+] Trying to enable root user...")
@@ -81,16 +81,16 @@ except ImportError or ModuleNotFoundError:
                         for root, dirs, files in os.walk('/'):
                             if fname in files:
                                 return os.path.abspath(os.path.join(root, fname))
-                        return None
+
                     def rmdir(dire):
-                        DIRS = []
                         for root, dirs, files in os.walk(dire):
                             for file in files:
                                 os.remove(os.path.join(root,file))
-                            for dir in dirs:
-                                DIRS.append(os.path.join(root,dir))
-                        for i in range(len(DIRS)):
-                            os.rmdir(DIRS[i])
+
+                            DIRS = (os.path.join(root, dir) for dir in dirs)
+                        
+                        for i in DIRS:
+                            os.rmdir(i)
                         os.rmdir(dire)
                     rmdir(fpath('InstaTools'))
                     print("[✓] Files and dependencies uninstalled successfully !")
@@ -121,27 +121,26 @@ def fpath(fname: str):
     for root, dirs, files in os.walk('/'):
         if fname in files:
             return os.path.abspath(os.path.join(root, fname))
-    return None
 
 def checkUser(username: str) -> bool:
-    return len(username) > 30 or username in ['', ' ']
+    return len(username) > 30 or username in ('', ' ')
 
 def valUser(username: str) -> bool:
     return requests.get(f'https://www.instagram.com/{username}/', allow_redirects=False).status_code != 200
 
 def Uninstall() -> str:
     def rmdir(dire):
-        DIRS = []
         for root, dirs, files in os.walk(dire):
             for file in files:
                 os.remove(os.path.join(root,file))
-            for dir in dirs:
-                DIRS.append(os.path.join(root,dir))
-        for i in range(len(DIRS)):
-            os.rmdir(DIRS[i])
+
+            DIRS = (os.path.join(root, dir) for dir in dirs)
+
+        for i in DIRS:
+            os.rmdir(i)
         os.rmdir(dire)
     rmdir(fpath('InstaTools'))
-    return f'{GREEN}[✓] Files and dependencies uninstalled successfully !'
+    return f"{GREEN}[✓] Files and dependencies uninstalled successfully !"
 
 def clear():
     system('cls' if platform.system() == 'Windows' else 'clear')
@@ -149,24 +148,24 @@ def clear():
 def validate(path: str) -> bool:
     return os.path.exists(path)
 
-TABLE = [
-    [
+TABLE = (
+    (
         "[b white]Author[/]: [i light_green]new92[/]",
         "[green]https://new92.github.io/[/]"
-    ],
-    [
+    ),
+    (
         "[b white]Github[/]: [i light_green]@new92[/]",
         "[green]https://github.com/new92[/]"
-    ],
-    [
+    ),
+    (
         "[b white]Leetcode[/]: [i light_green]@new92[/]",
         "[green]https://leetcode.com/new92[/]"
-    ],
-    [
+    ),
+    (
         "[b white]PyPI[/]: [i light_green]@new92[/]",
         "[green]https://pypi.org/user/new92[/]"
-    ]
-]
+    )
+)
 
 console = Console()
 table = Table(show_footer=False)
@@ -179,7 +178,7 @@ def extract(raw_path: str):
 def ScriptInfo():
     with open('ToolZ/config.json') as config:
         conf = json.load(config)
-    f = conf['name'] + '.py'
+    f = f"{conf['name']}.py"
     fp = fpath(f) == None
     fsize = os.stat(fpath(f)).st_size if fp else 0
     print(f"{YELLOW}[+] Author: {conf['author']}")
@@ -205,7 +204,7 @@ def ScriptInfo():
     print(f"{YELLOW}[+] Closed pull requests: {conf['clprs']}")
     print(f"{YELLOW}[+] Discussions: {conf['discs']}")
 
-ANS = ['yes', 'no']
+ANS = ('yes', 'no')
 
 def banner() -> str:
     console.log("""[bold yellow]
@@ -257,13 +256,13 @@ def main():
         loader = instaloader.Instaloader()
         print(f"{GREEN}[+] Acceptable answers: {ANS}")
         sleep(1)
-        con=str(input(f"{YELLOW}[>] Do you consent that the author (new92) has no responsibility for any loss or damage may the script cause to the given (Instagram) account ? "))
+        con= input(f"{YELLOW}[>] Do you consent that the author (new92) has no responsibility for any loss or damage may the script cause to the given (Instagram) account ? ")
         while con.lower() not in ANS:
             print(f"{RED}[!] Invalid answer !")
             sleep(1)
             print(f"{GREEN}[+] Acceptable answers: {ANS}")
             sleep(1)
-            con=str(input(f"{YELLOW}[>] Do you consent that the author (new92) has no responsibility for any loss or damage may the script cause to the given (Instagram) account ? "))
+            con= input(f"{YELLOW}[>] Do you consent that the author (new92) has no responsibility for any loss or damage may the script cause to the given (Instagram) account ? ")
         if con.lower() == ANS[0]:
             logging.basicConfig(
                 filename='cons.txt',
@@ -304,11 +303,11 @@ def main():
         clear()
         print(f'{GREEN}|---------------|LOGIN|---------------|')
         session=str(input(f"{YELLOW}[::] Please enter the cookie file path: "))
-        session = session.lower().strip()
+        session = session.strip().lower()
         while not validate(session):
             print(f"{RED}[!] Invalid file path !")
             sleep(1)
-            session=str(input(f"{YELLOW}[::] Please enter again the cookie file path: "))
+            session= input(f"{YELLOW}[::] Please enter again the cookie file path: ")
         username = extract(session)
         sleep(0.5)
         print(f"{GREEN}[✓] Extracted username: {username}...")
@@ -348,13 +347,13 @@ def main():
             sleep(2)
             print(f"{YELLOW}[*] Acceptable answers: {ANS}")
             sleep(1)
-            kp=str(input(f"{YELLOW}[?] Keep log ? "))
+            kp= input(f"{YELLOW}[?] Keep log ? ")
             while kp.lower() not in ANS:
                 print(f"{RED}[!] Invalid answer !")
                 sleep(1)
                 print(f"{GREEN}[+] Acceptable answers: {ANS}")
                 sleep(2)
-                kp=str(input(f"{YELLOW}[?] Keep log ? "))
+                kp= input(f"{YELLOW}[?] Keep log ? ")
             kp = kp.lower() == ANS[0]
             if kp:
                 f = open(name, 'w')
@@ -384,15 +383,15 @@ def main():
                     sleep(5)
                     print(f"{YELLOW}[*] Sleeping for 20 secs before checking again...")
                     sleep(20)
-                for i in range(len(FOLLOWINGS)):
-                    verProf = instaloader.Profile.from_username(loader.context, FOLLOWINGS[i])
-                    if FOLLOWINGS[i] not in FOLLOWERS and not verProf.is_verified:
-                        UNFOLLOWERS.append(FOLLOWINGS[i])
+                for i in FOLLOWINGS:
+                    verProf = instaloader.Profile.from_username(loader.context, i)
+                    if i not in FOLLOWERS and not verProf.is_verified:
+                        UNFOLLOWERS.append(i)
                 if kp:
                     f.write(f"[&] Detected a total of {len(UNFOLLOWERS)} unfollowers\n\n")
                     f.write("-"*25+'\n\n')
-                    for i in range(len(UNFOLLOWERS)):
-                        f.write(f"[>] Username >>> {UNFOLLOWERS[i]}\n")
+                    for i in UNFOLLOWERS:
+                        f.write(f"[>] Username >>> {i}\n")
                     sleep(1)
                     print(f"{GREEN}[✓] Successfully saved log !")
                     sleep(2)
@@ -405,31 +404,31 @@ def main():
                 sleep(2)
                 print(f'{YELLOW}|--------|USERNAMES|--------|')
                 sleep(0.75)
-                for i in range(len(UNFOLLOWERS)):
-                    print(f"{YELLOW}[>] Username >>> {UNFOLLOWERS[i]}")
+                for i in UNFOLLOWERS:
+                    print(f"{YELLOW}[>] Username >>> {i}")
             else:
                 if len(FOLLOWERS) == len(FOLLOWINGS):
                     print(f"{YELLOW}[+] No unfollowers found !")
                 else:
                     L = []
-                    for i in range(len(FOLLOWINGS)):
-                        verProf = instaloader.Profile.from_username(loader.context, FOLLOWINGS[i])
-                        if FOLLOWINGS[i] not in FOLLOWERS and not verProf.is_verified:
-                            L.append(FOLLOWINGS[i])
+                    for i in FOLLOWINGS:
+                        verProf = instaloader.Profile.from_username(loader.context, i)
+                        if i not in FOLLOWERS and not verProf.is_verified:
+                            L.append(i)
                     print(f"{GREEN}[✓] OK")
                     sleep(2)
                     print(f"{YELLOW}[+] Captured a total of {len(L)} unfollowers")
                     sleep(1)
                     print(f"{YELLOW}[+] Usernames: ")
                     print("\n")
-                    for i in range(len(L)):
-                        print(f"\t{YELLOW}[>] {L[i]}")
+                    for i in L:
+                        print(f"\t{YELLOW}[>] {i}")
                     sleep(2)
                     if kp:
                         f.write(f"[+] Captured a total of {len(L)} unfollowers\n\n")
                         f.write("-"*25+'\n\n')
-                        for i in range(len(L)):
-                            f.write(f"[>] Username >>> {L[i]}\n")
+                        for i in L:
+                            f.write(f"[>] Username >>> {i}\n")
                         f.close()
                         sleep(1)
                         print(f"{GREEN}[✓] Successfully saved log !")
