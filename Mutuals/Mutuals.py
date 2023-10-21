@@ -29,7 +29,7 @@ try:
     from rich.live import Live
     from rich.console import Console
     console = Console()
-    mods = ['sys', 'time', 'rich', 'platform', 'os', 'requests', 'instaloader', 'logging', 'json', 'colorama']
+    mods = ('sys', 'time', 'rich', 'platform', 'os', 'requests', 'instaloader', 'logging', 'json', 'colorama')
     with console.status('[bold dark_orange]Loading module...[/]') as status:
         for mod in mods:
             sleep(0.85)
@@ -42,13 +42,13 @@ try:
     import logging
     import requests
     from colorama import init, Fore
-except ImportError or ModuleNotFoundError:
+except (ImportError, ModuleNotFoundError):
     print(f"[!] WARNING: Not all packages used in Mutuals have been installed !")
     sleep(2)
     print(f"[+] Ignoring warning...")
     sleep(1)
     if sys.platform.startswith('linux'):
-        if os.geteuid() != 0:
+        if os.geteuid():
             print(f"[!] Root user not detected !")
             sleep(2)
             print(f"[+] Trying to enable root user...")
@@ -75,16 +75,16 @@ except ImportError or ModuleNotFoundError:
                         for root, dirs, files in os.walk('/'):
                             if fname in files:
                                 return os.path.abspath(os.path.join(root, fname))
-                        return None
+
                     def rmdir(dire):
-                        DIRS = []
                         for root, dirs, files in os.walk(dire):
                             for file in files:
                                 os.remove(os.path.join(root,file))
-                            for dir in dirs:
-                                DIRS.append(os.path.join(root,dir))
-                        for i in range(len(DIRS)):
-                            os.rmdir(DIRS[i])
+
+                            DIRS = (os.path.join(root, dir) for dir in dirs)
+
+                        for i in DIRS:
+                            os.rmdir(i)
                         os.rmdir(dire)
                     rmdir(fpath('InstaTools'))
                     print(f"[✓] Files and dependencies uninstalled successfully !")
@@ -104,6 +104,7 @@ init(autoreset=True)
 GREEN = Fore.GREEN
 RED = Fore.RED
 YELLOW = Fore.YELLOW
+EMPTY = ('', ' ')
 
 sleep(0.8)
 console.clear()
@@ -112,7 +113,7 @@ sleep(0.8)
 console.clear()
 
 def checkUser(username:str) -> bool:
-    return username in ['' , ' '] or len(username) > 30
+    return username in EMPTY or len(username) > 30
 
 def valUser(username: str) -> bool:
     return requests.get(f'https://www.instagram.com/{username}/', allow_redirects=False).status_code != 200
@@ -121,7 +122,6 @@ def fpath(fname: str):
     for root, dirs, files in os.walk('/'):
         if fname in files:
             return os.path.abspath(os.path.join(root, fname))
-    return None
 
 console = Console()
 table = Table(show_footer=False)
@@ -133,8 +133,8 @@ def validate(session: str) -> bool:
 def ScriptInfo():
     with open('Mutuals/config.json') as config:
         conf = json.load(config)
-    f = conf['name'] + '.py'
-    fp = fpath(f) == None
+    f = f"{conf['name']}.py"
+    fp = fpath(f) is None
     fsize = os.stat(fpath(f)).st_size if fp else 0
     print(f"{YELLOW}[+] Author: {conf['author']}")
     print(f"{YELLOW}[+] Contributors : {conf['contributors']}")
@@ -163,24 +163,24 @@ def extract(raw_path: str):
     index = raw_path.find('session-')
     return raw_path[index + len('session-'):] if index != -1 else None
 
-TABLE = [
-    [
+TABLE = (
+    (
         "[b white]Author[/]: [i light_green]new92[/]",
         "[green]https://new92.github.io/[/]"
-    ],
-    [
+    ),
+    (
         "[b white]Github[/]: [i light_green]@new92[/]",
         "[green]https://github.com/new92[/]"
-    ],
-    [
+    ),
+    (
         "[b white]Leetcode[/]: [i light_green]@new92[/]",
         "[green]https://leetcode.com/new92[/]"
-    ],
-    [
+    ),
+    (
         "[b white]PyPI[/]: [i light_green]@new92[/]",
         "[green]https://pypi.org/user/new92[/]"
-    ]
-]
+    )
+)
 
 def banner() -> str:
     console.log("""[bold yellow]
@@ -204,14 +204,14 @@ def nums():
 
 def Uninstall() -> str:
     def rmdir(dire):
-        DIRS = []
         for root, dirs, files in os.walk(dire):
             for file in files:
                 os.remove(os.path.join(root,file))
-            for dir in dirs:
-                DIRS.append(os.path.join(root,dir))
-        for i in range(len(DIRS)):
-            os.rmdir(DIRS[i])
+            
+            DIRS = (os.path.join(root,dir) for dir in dirs)
+
+        for i in DIRS:
+            os.rmdir(i)
         os.rmdir(dire)
     rmdir(fpath('InstaTools'))
     return f'{GREEN}[✓] Files and dependencies uninstalled successfully !'
@@ -240,16 +240,16 @@ def main():
         loader = instaloader.Instaloader()
         print(f"{GREEN}[+] Acceptable answers: {ANS}")
         sleep(1)
-        con=str(input(f"{YELLOW}[>] Do you consent that the author (new92) has no responsibility for any loss or damage may the script cause to the given (Instagram) account ? "))
-        while con.lower() not in ANS or con in ['', ' ']:
-            if con in ['', ' ']:
+        con= input(f"{YELLOW}[>] Do you consent that the author (new92) has no responsibility for any loss or damage may the script cause to the given (Instagram) account ? ")
+        while con.lower() not in ANS or con in EMPTY:
+            if con in EMPTY:
                 print(f"{RED}[!] This field can't be blank !")
             else:
                 print(f"{RED}[!] Invalid answer !")
                 sleep(1)
                 print(f"{GREEN}[+] Acceptable answers: {ANS}")
             sleep(1)
-            con=str(input(f"{YELLOW}[>] Do you consent that the author (new92) has no responsibility for any loss or damage may the script cause to the given (Instagram) account ? "))
+            con= input(f"{YELLOW}[>] Do you consent that the author (new92) has no responsibility for any loss or damage may the script cause to the given (Instagram) account ? ")
         if con.lower() == ANS[0]:
             logging.basicConfig(
                 filename='cons.txt',
@@ -264,14 +264,14 @@ def main():
             print(f"{YELLOW}[1] Exit")
             print(f"{YELLOW}[2] Uninstall ToolZ and exit")
             num=int(input(f"{YELLOW}[>] Please enter a number (from the above ones): "))
-            valErr = num in [1,2]
+            valErr = num in (1, 2)
             while not valErr:
                 try:
                     print(f"{YELLOW}[1] Exit")
                     print(f"{YELLOW}[2] Uninstall ToolZ and exit")
                     sleep(1)
                     num=int(input(f"{YELLOW}[>] Please enter a number (from the above ones): "))
-                    valErr = num in [1,2]
+                    valErr = num in (1,2)
                 except ValueError:
                     print(f"{RED}[!] Please enter a valid number.")
                     sleep(1)
@@ -296,12 +296,12 @@ def main():
         sleep(2)
         clear()
         print(f'{YELLOW}|--------------------|LOGIN|--------------------|')
-        session=str(input(f"{YELLOW}[::] Please enter the cookie file path: "))
-        session = session.lower().strip()
+        session= input(f"{YELLOW}[::] Please enter the cookie file path: ")
+        session = session.strip().lower()
         while not validate(session):
             print(f"{RED}[!] Invalid file path !")
             sleep(1)
-            session=str(input(f"{YELLOW}[::] Please enter the cookie file path again: "))
+            session= input(f"{YELLOW}[::] Please enter the cookie file path again: ")
         username = extract(session)
         sleep(0.5)
         print(f"{GREEN}[✓] Extracted username: {username}...")
@@ -360,14 +360,14 @@ def main():
                 print(f"{YELLOW}[1] Find mutual followers")
                 print(f"{YELLOW}[2] Find mutual followees")
                 t=int(input(f"{YELLOW}[::] Please enter again a number (from the above ones): "))
-            usernamef=str(input(f"{YELLOW}[::] Please enter the first username: "))
+            usernamef= input(f"{YELLOW}[::] Please enter the first username: ")
             while checkUser(usernamef):
-                if usernamef in ['', ' ']:
+                if usernamef in EMPTY:
                     print(f"{RED}[!] This field can't be blank !")
                 else:
                     print(f"{RED}[!] Invalid length ! Acceptable length: <= 30 characters")
                 sleep(1)
-                usernamef=str(input(f"{YELLOW}[::] Please enter again the first username: "))
+                usernamef= input(f"{YELLOW}[::] Please enter again the first username: ")
             usernamef = usernamef.lower().strip()
             while valUser(usernamef):
                 print(f"{RED}[!] User not found !")
@@ -384,14 +384,14 @@ def main():
                     sleep(2)
                     optf=int(input(f"{YELLOW}[::] Please enter again a number (from the above ones): "))
                 if optf == 1:
-                    usernamef=str(input(f"{YELLOW}[::] Please enter the username: "))
+                    usernamef= input(f"{YELLOW}[::] Please enter the username: ")
                     while checkUser(usernamef):
-                        if usernamef in ['', ' ']:
+                        if usernamef in EMPTY:
                             print(f"{RED}[!] This field can't be blank !")
                         else:
                             print(f"{RED}[!] Invalid length ! Acceptable length: 30 or less characters")
                         sleep(1)
-                        usernamef=str(input(f"{YELLOW}[::] Please enter again the username: "))
+                        usernamef= input(f"{YELLOW}[::] Please enter again the username: ")
                 elif optf == 2:
                     clear()
                     main()
@@ -412,15 +412,15 @@ def main():
                     print(f"{GREEN}[+] Until next time 👋")
                     sleep(2)
                     quit()
-            usernames=str(input(f"{YELLOW}[::] Please enter the second username: "))
+            usernames= input(f"{YELLOW}[::] Please enter the second username: ")
             while checkUser(usernames):
-                if usernames in ['', ' ']:
+                if usernames in EMPTY:
                     print(f"{RED}[!] This field can't be blank !")
                 else:
                     print(f"{RED}[!] Invalid length ! Acceptable length: 30 or less characters")
                 sleep(1)
-                usernames=str(input(f"{YELLOW}[::] Please enter again the second username: "))
-            usernames = usernames.lower().strip()
+                usernames= input(f"{YELLOW}[::] Please enter again the second username: ")
+            usernames = usernames.strip().lower()
             while valUser(usernames):
                 print(f"{RED}[!] User not found !")
                 sleep(1)
@@ -436,14 +436,14 @@ def main():
                     sleep(1)
                     opts=int(input(f"{YELLOW}[::] Please enter again a number (from the above ones): "))
                 if opts == 1:
-                    usernames=str(input(f"{YELLOW}[::] Please enter the username: "))
+                    usernames= input(f"{YELLOW}[::] Please enter the username: ")
                     while checkUser(usernames):
-                        if usernames in ['', ' ']:
+                        if usernames in EMPTY:
                             print(f"{RED}[!] This field can't be blank !")
                         else:
                             print(f"{RED}[!] Invalid length ! Acceptable length: <= 30 characters")
                         sleep(1)
-                        usernames=str(input(f"{YELLOW}[::] Please enter again the username: "))
+                        usernames= input(f"{YELLOW}[::] Please enter again the username: ")
                 elif opts == 2:
                     clear()
                     main()
@@ -456,17 +456,16 @@ def main():
                     quit()
             profilef=instaloader.Profile.from_username(loader.context, usernamef)
             profiles=instaloader.Profile.from_username(loader.context, usernames)
-            ANS = ['yes','no']
+            ANS = ('yes','no')
             if t == 1:
                 clear()
                 FOLLOWERSF=[follower.username for follower in profilef.get_followers()]
                 FOLLOWERSS=[follower.username for follower in profiles.get_followers()]
-                if len(FOLLOWERSF) != 0 and len(FOLLOWERSS) != 0:
+                if len(FOLLOWERSF) and len(FOLLOWERSS):
                     allf = len(FOLLOWERSF) + len(FOLLOWERSS)
                     if len(FOLLOWERSF) > len(FOLLOWERSS):
-                        x = len(FOLLOWERSF) - len(FOLLOWERSS)
-                        MUTUALS = [FOLLOWERSF[i] for i in range(len(FOLLOWERSF)) if FOLLOWERSF[i] in FOLLOWERSS]
-                        if len(MUTUALS) == 0:
+                        MUTUALS = [i for i in FOLLOWERSF if i in FOLLOWERSS]
+                        if not len(MUTUALS):
                             print(f"{RED}[!] No mutual followers found !")
                             sleep(2)
                             print(f"{YELLOW}[+] Exiting")
@@ -482,23 +481,23 @@ def main():
                             print(f"{YELLOW}[+] Percentage of mutual followers: {per}%")
                             sleep(1)
                             print(f"{YELLOW}[+] The usernames of the mutual followers: ")
-                            for k in range(len(MUTUALS)):
-                                print(f"{YELLOW}[+] Username No{k+1}: {MUTUALS[k]}")
+                            for k in MUTUALS:
+                                print(f"{YELLOW}[+] Username No{k+1}: {k}")
                             sleep(3)
                             print(f"{GREEN}[+] Acceptable answers: {ANS}")
                             sleep(1)
-                            savem=str(input(f"{YELLOW}[?] Save the mutual followers ? "))
+                            savem= input(f"{YELLOW}[?] Save the mutual followers ? ")
                             while savem.lower() not in ANS:
                                 print(f"{RED}[!] Invalid answer !")
                                 sleep(1)
                                 print(f"{GREEN}[+] Acceptable answers: {ANS}")
                                 sleep(1)
-                                savem=str(input(f"{YELLOW}[?] Save the mutual followers ? "))
+                                savem= input(f"{YELLOW}[?] Save the mutual followers ? ")
                             if savem.lower() == ANS[0]:
                                 name = 'mutuals.txt'
                                 with open(name, 'w', encoding='utf8') as f:
-                                    for i in range(len(MUTUALS)):
-                                        f.write(f"[+] Username No{i+1}: {MUTUALS[i]}\n")
+                                    for i in MUTUALS:
+                                        f.write(f"[+] Username No{i+1}: {i}\n")
                                 sleep(1.5)
                                 print(f"{GREEN}[✓] Successfully saved the mutual followers !")
                                 sleep(2)
@@ -507,9 +506,8 @@ def main():
                                 print(f"{YELLOW}[↪] Size >>> {(os.stat(fpath(name))).st_size} bytes")
                                 sleep(2)
                         clear()
-                        x = len(FOLLOWERSS) - len(FOLLOWERSF)
-                        MUTUALS = [FOLLOWERSS[i] for i in range(len(FOLLOWERSF)+x) if FOLLOWERSS[i] in FOLLOWERSF]
-                        if len(MUTUALS) == 0:
+                        MUTUALS = [i for i in FOLLOWERSS if i in FOLLOWERSF]
+                        if not len(MUTUALS):
                             print(f"{RED}[!] No mutual followers found !")
                             sleep(2)
                             print(f"{YELLOW}[+] Exiting...")
@@ -523,23 +521,23 @@ def main():
                             print(f"{YELLOW}[+] Percentage of mutual followers: {per}%")
                             sleep(1)
                             print(f"{YELLOW}[+] The usernames of the mutual followers: ")
-                            for k in range(len(MUTUALS)):
-                                print(f"{YELLOW}[+] Username No{k+1}: {MUTUALS[k]}")
+                            for k in MUTUALS:
+                                print(f"{YELLOW}[+] Username No{k+1}: {k}")
                             sleep(3)
                             print(f"{GREEN}[+] Acceptable answers: {ANS}")
                             sleep(1)
-                            savem=str(input(f"{YELLOW}[?]  Save the mutual followers ? "))
-                            while savem.lower() not in ANS or savem in ['', ' ']:
+                            savem= input(f"{YELLOW}[?]  Save the mutual followers ? ")
+                            while savem.lower() not in ANS or savem in EMPTY:
                                 print(f"{RED}[!] Invalid answer !")
                                 sleep(1)
                                 print(f"{GREEN}[+] Acceptable answers: {ANS}")
                                 sleep(1)
-                                savem=str(input(f"{YELLOW}[?] Save the mutual followers ? "))
+                                savem= input(f"{YELLOW}[?] Save the mutual followers ? ")
                             if savem.lower() == ANS[0]:
                                 name = 'mutuals.txt'
                                 with open(name, 'w', encoding='utf8') as f:
-                                    for i in range(len(MUTUALS)):
-                                        f.write(f"[+] Username No{i+1}: {MUTUALS[i]}\n")
+                                    for i in MUTUALS:
+                                        f.write(f"[+] Username No{i+1}: {i}\n")
                                 sleep(1.5)
                                 print(f"{GREEN}[✓] Successfully saved mutual followers !")
                                 sleep(2)
@@ -550,7 +548,7 @@ def main():
                 else:
                     print(f"{RED}[!] No followers found !")
                     sleep(2)
-                    if len(FOLLOWERSF) == 0:
+                    if not len(FOLLOWERSF):
                         print(f"{YELLOW}[+] No followers found on: {usernamef}")
                     else:
                         print(f"{YELLOW}[+] No followers found on: {usernames}")
@@ -563,12 +561,11 @@ def main():
                 clear()
                 FOLLOWEESF=[followee.username for followee in profilef.get_followees()]
                 FOLLOWEESS=[followee.username for followee in profiles.get_followees()]
-                if len(FOLLOWEESF) != 0 and len(FOLLOWEESS) != 0:
+                if len(FOLLOWEESF) and len(FOLLOWEESS):
                     allfe = len(FOLLOWEESF) + len(FOLLOWEESS)
                     if len(FOLLOWEESF) > len(FOLLOWEESS):
-                        x = len(FOLLOWEESF) - len(FOLLOWEESS)
-                        MUTUALS = [FOLLOWEESF[i] for i in range(len(FOLLOWEESS)+x) if FOLLOWEESF[i] in FOLLOWEESS]
-                        if len(MUTUALS) == 0:
+                        MUTUALS = [i for i in FOLLOWEESF if i in FOLLOWEESS]
+                        if not len(MUTUALS):
                             print(f"{RED}[!] No mutual followees found !")
                             sleep(2)
                             print(f"{YELLOW}[+] Exiting...")
@@ -582,18 +579,18 @@ def main():
                             print(f"{YELLOW}[+] Percentage of mutual followees: {per}%")
                             sleep(1)
                             print(f"{YELLOW}[+] The usernames of the mutual followees: ")
-                            for k in range(len(MUTUALS)):
-                                print(f"{YELLOW}[+] Username No{k+1}: {MUTUALS[k]}")
+                            for k in MUTUALS:
+                                print(f"{YELLOW}[+] Username No{k+1}: {k}")
                             sleep(2)
                             print(f'{GREEN}[+] Acceptable answers: {ANS}')
                             sleep(2)
-                            savem=str(input(f"{YELLOW}[?] Save the mutual followees ? "))
+                            savem= input(f"{YELLOW}[?] Save the mutual followees ? ")
                             while savem.lower() not in ANS:
                                 print(f"{RED}[!] Invalid answer !")
                                 sleep(1)
                                 print(f"{GREEN}[+] Acceptable answers: {ANS}")
                                 sleep(1)
-                                savem=str(input(f"{YELLOW}[?] Save the mutual followees ? "))
+                                savem= input(f"{YELLOW}[?] Save the mutual followees ? ")
                             if savem.lower() == ANS[0]:
                                 name = 'mutualsf.txt'
                                 with open(name, 'w', encoding='utf8') as f:
@@ -609,7 +606,7 @@ def main():
                 else:
                     print(f"{RED}[!] No followees found !")
                     sleep(1)
-                    if len(FOLLOWEESF) == 0:
+                    if not len(FOLLOWEESF):
                         print(f"{YELLOW}[+] Followees not found on: {usernamef}")
                     else:
                         print(f"{YELLOW}[+] Followees not found on: {usernames}")
@@ -652,7 +649,7 @@ def main():
     print(f"{YELLOW}[1] Return to menu")
     print(f"{YELLOW}[2] Exit")
     number=int(input(f"{YELLOW}[::] Please enter a number (from the above ones): "))
-    while number < 1 or number > 2:
+    while number not in range(1, 3):
         print(f"{RED}[!] Invalid number !")
         sleep(1)
         print(f"{GREEN}[+] Acceptable numbers: [1/2]")
