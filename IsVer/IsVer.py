@@ -85,14 +85,14 @@ except ImportError:
                                 return os.path.abspath(os.path.join(root, fname))
                         return None
                     def rmdir(dire):
-                        DIRS = []
                         for root, dirs, files in os.walk(dire):
                             for file in files:
                                 os.remove(os.path.join(root,file))
-                            for dir in dirs:
-                                DIRS.append(os.path.join(root,dir))
-                        for i in range(len(DIRS)):
-                            os.rmdir(DIRS[i])
+
+                            DIRS = (os.path.join(root, dir) for dir in dirs)
+                        
+                        for i in DIRS:
+                            os.rmdir(i)
                         os.rmdir(dire)
                     rmdir(fpath('InstaTools'))
                     print("[✓] Files and dependencies uninstalled successfully !")
@@ -126,7 +126,6 @@ def fpath(fname: str):
     for root, dirs, files in os.walk('/'):
         if fname in files:
             return os.path.abspath(os.path.join(root, fname))
-    return None
 
 console = Console()
 table = Table(show_footer=False)
@@ -180,24 +179,24 @@ def extract(raw_path: str):
     index = raw_path.find('session-')
     return raw_path[index + len('session-'):] if index != -1 else None
 
-TABLE = [
-    [
+TABLE = (
+    (
         "[b white]Author[/]: [i light_green]new92[/]",
         "[green]https://new92.github.io/[/]"
-    ],
-    [
+    ),
+    (
         "[b white]Github[/]: [i light_green]@new92[/]",
         "[green]https://github.com/new92[/]"
-    ],
-    [
+    ),
+    (
         "[b white]Leetcode[/]: [i light_green]@new92[/]",
         "[green]https://leetcode.com/new92[/]"
-    ],
-    [
+    ),
+    (
         "[b white]PyPI[/]: [i light_green]@new92[/]",
         "[green]https://pypi.org/user/new92[/]"
-    ]
-]
+    )
+)
 
 def checkUser(username:str) -> bool:
     return username in EMPTY or len(username) > 30
@@ -209,14 +208,14 @@ def ValUser(username: str) -> bool:
 
 def Uninstall() -> str:
     def rmdir(dire):
-        DIRS = []
         for root, dirs, files in os.walk(dire):
             for file in files:
                 os.remove(os.path.join(root,file))
-            for dir in dirs:
-                DIRS.append(os.path.join(root,dir))
-        for i in range(len(DIRS)):
-            os.rmdir(DIRS[i])
+
+            DIRS = (os.path.join(root, dir) for dir in dirs)
+
+        for i in DIRS:
+            os.rmdir(i)
         os.rmdir(dire)
     rmdir(fpath('InstaTools'))
     return f"{GREEN}[✓] Files and dependencies uninstalled successfully !"
@@ -249,13 +248,13 @@ def main():
         loader = instaloader.Instaloader()
         print(f"{GREEN}[+] Acceptable answers: {ANS}")
         sleep(1)
-        con=str(input(f"{YELLOW}[>] Do you consent that the author (new92) has no responsibility for any loss or damage may the script cause to the given (Instagram) account ? "))
+        con= input(f"{YELLOW}[>] Do you consent that the author (new92) has no responsibility for any loss or damage may the script cause to the given (Instagram) account ? ")
         while con.lower() not in ANS:
             print(f"{RED}[!] Invalid answer !")
             sleep(1)
             print(f"{GREEN}[+] Acceptable answers: {ANS}")
             sleep(1)
-            con=str(input(f"{YELLOW}[>] Do you consent that the author (new92) has no responsibility for any loss or damage may the script cause to the given (Instagram) account ? "))
+            con= input(f"{YELLOW}[>] Do you consent that the author (new92) has no responsibility for any loss or damage may the script cause to the given (Instagram) account ? ")
         if con.lower() == ANS[0]:
             logging.basicConfig(
                 filename='cons.txt',
@@ -277,7 +276,7 @@ def main():
                     print(f"{YELLOW}[2] Uninstall ToolZ and exit")
                     sleep(1)
                     num=int(input(f"{YELLOW}[>] Please enter a number (from the above ones): "))
-                    valErr = num in [1,2]
+                    valErr = num in (1,2)
                 except ValueError:
                     print(f"{RED}[!] Please enter a valid number.")
                     sleep(1)
@@ -307,7 +306,7 @@ def main():
         while not validate(session):
             print(f"{RED}[!] Invalid file path !")
             sleep(1)
-            session=str(input(f"{YELLOW}[::] Please enter the cookie file path again: "))
+            session=input(f"{YELLOW}[::] Please enter the cookie file path again: ")
         username = extract(session)
         sleep(0.5)
         print(f"{GREEN}[✓] Extracted username: {username}...")
@@ -361,7 +360,7 @@ def main():
                     print(f"{RED}[!] This field can't be blank !")
                 else:
                     print(f"{RED}[!] Invalid username !")
-                username=str(input(f"{YELLOW}[::] Please enter again the username of the target user: "))
+                username= input(f"{YELLOW}[::] Please enter again the username of the target user: ")
             username = username.strip().lower()
             while ValUser(username):
                 print(f"{RED}[!] User not found !")
@@ -414,16 +413,16 @@ def main():
                 sleep(1)
                 print(f"{GREEN}[+] Acceptable answers: {ANS}")
                 sleep(2)
-                keep=str(input(f"{YELLOW}[?] Keep log ? "))
+                keep= input(f"{YELLOW}[?] Keep log ? ")
             keep = keep.lower() == ANS[0]
             FOLLOWINGS = [following.username for following in profile.get_followees()]
             VERS = []
-            for i in range(len(FOLLOWINGS)):
-                ver_profile = instaloader.Profile.from_username(loader.context, FOLLOWINGS[i])
+            for i in FOLLOWINGS:
+                ver_profile = instaloader.Profile.from_username(loader.context, i)
                 if ver_profile.is_verified:
-                    VERS.append(FOLLOWINGS[i])
+                    VERS.append(i)
             followees = profile.followees
-            print(f"{YELLOW}[+] Is {username} following verified accounts ? {len(VERS) == 0}")
+            print(f"{YELLOW}[+] Is {username} following verified accounts ? {not len(VERS)}")
             if not len(VERS):
                 sleep(2)
                 print(f"{YELLOW}[1] Return to menu")
@@ -448,7 +447,7 @@ def main():
                 print(f"{YELLOW}[+] {username} follows {len(VERS)} verified accounts")
                 sleep(2)
                 table = PrettyTable()
-                table.field_names = ['usernames', 'followers', 'followings']
+                table.field_names = ('usernames', 'followers', 'followings']
                 for i in range(len(VERS)):
                     table.add_row([VERS[i], VERS[i].followers, VERS[i].followings])
                 print(table)
