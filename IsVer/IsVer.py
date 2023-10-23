@@ -447,7 +447,7 @@ def main():
                 print(f"{YELLOW}[+] {username} follows {len(VERS)} verified accounts")
                 sleep(2)
                 table = PrettyTable()
-                table.field_names = ('usernames', 'followers', 'followings']
+                table.field_names = ('usernames', 'followers', 'followings')
                 for i in range(len(VERS)):
                     table.add_row([VERS[i], VERS[i].followers, VERS[i].followings])
                 print(table)
