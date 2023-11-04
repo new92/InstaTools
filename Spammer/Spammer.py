@@ -47,7 +47,7 @@ try:
     import logging
     import requests
     from colorama import init, Fore
-except (ImportError, ModuleNotFoundErro):
+except (ImportError, ModuleNotFoundError):
     print("[!] WARNING: Not all packages used in Spammer have been installed !")
     sleep(2)
     print("[+] Ignoring warning...")
