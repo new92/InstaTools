@@ -107,6 +107,7 @@ init(autoreset=True)
 GREEN = Fore.GREEN
 RED = Fore.RED
 YELLOW = Fore.YELLOW
+EMPTY = ('', ' ')
 
 sleep(0.8)
 console.clear()
