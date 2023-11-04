@@ -34,7 +34,7 @@ try:
     from rich.live import Live
     from rich.console import Console
     console = Console()
-    mods = ['sys', 'time', 'rich', 'platform', 'os', 'json', 'logging', 'instagrapi', 'requests', 'colorama']
+    mods = ('sys', 'time', 'rich', 'platform', 'os', 'json', 'logging', 'instagrapi', 'requests', 'colorama')
     with console.status('[bold dark_orange]Loading module...') as status:
         for mod in mods:
             sleep(0.85)
@@ -47,13 +47,13 @@ try:
     import logging
     import requests
     from colorama import init, Fore
-except ImportError or ModuleNotFoundError:
+except (ImportError, ModuleNotFoundErro):
     print("[!] WARNING: Not all packages used in Spammer have been installed !")
     sleep(2)
     print("[+] Ignoring warning...")
     sleep(1)
     if sys.platform.startswith('linux'):
-        if os.geteuid() != 0:
+        if os.geteuid():
             print("[!] Root user not detected !")
             sleep(2)
             print("[+] Trying to enable root user...")
@@ -80,16 +80,14 @@ except ImportError or ModuleNotFoundError:
                         for root, dirs, files in os.walk('/'):
                             if fname in files:
                                 return os.path.abspath(os.path.join(root, fname))
-                        return None
+
                     def rmdir(dire):
-                        DIRS = []
                         for root, dirs, files in os.walk(dire):
                             for file in files:
                                 os.remove(os.path.join(root,file))
-                            for dir in dirs:
-                                DIRS.append(os.path.join(root,dir))
-                        for i in range(len(DIRS)):
-                            os.rmdir(DIRS[i])
+                            dirs = (os.path.join(root, dir) for dir in dirs)
+                        for i in dirs:
+                            os.rmdir(i)
                         os.rmdir(dire)
                     rmdir(fpath('InstaTools'))
                     print(f"[✓] Files and dependencies uninstalled successfully !")
@@ -120,18 +118,17 @@ def fpath(fname: str):
     for root, dirs, files in os.walk('/'):
         if fname in files:
             return os.path.abspath(os.path.join(root, fname))
-    return None
 
 def clear():
     system('cls' if platform.system() == 'Windows' else 'clear')
 
-ANS = ['yes', 'no']
+ANS = ('yes', 'no')
 
 def ScriptInfo():
     with open('Spammer/config.json') as configFile:
         conf = json.load(configFile)
-    f = conf['name'] + '.py'
-    fp = fpath(f) == None
+    f = f"{conf['name']}.py"
+    fp = fpath(f) is None
     fsize = os.stat(fpath(f)).st_size if fp else 0
     print(f"{YELLOW}[+] Author: {conf['author']}")
     print(f"{YELLOW}[+] Contributors : {conf['contributors']}")
@@ -157,36 +154,34 @@ def ScriptInfo():
 
 def Uninstall() -> str:
     def rmdir(dire):
-        DIRS = []
         for root, dirs, files in os.walk(dire):
             for file in files:
                 os.remove(os.path.join(root,file))
-            for dir in dirs:
-                DIRS.append(os.path.join(root,dir))
-        for i in range(len(DIRS)):
-            os.rmdir(DIRS[i])
+            dirs = (os.path.join(root, dir) for dir in dirs)
+        for i in dirs:
+            os.rmdir(i)
         os.rmdir(dire)
     rmdir(fpath('InstaTools'))
     return f"{GREEN}[✓] Files and dependencies uninstalled successfully !"
 
-TABLE = [
-    [
+TABLE = (
+    (
         "[b white]Author[/]: [i light_green]new92[/]",
         "[green]https://new92.github.io/[/]"
-    ],
-    [
+    ),
+    (
         "[b white]Github[/]: [i light_green]@new92[/]",
         "[green]https://github.com/new92[/]"
-    ],
-    [
+    ),
+    (
         "[b white]Leetcode[/]: [i light_green]@new92[/]",
         "[green]https://leetcode.com/new92[/]"
-    ],
-    [
+    ),
+    (
         "[b white]PyPI[/]: [i light_green]@new92[/]",
         "[green]https://pypi.org/user/new92[/]"
-    ]
-]
+    )
+)
 
 console = Console()
 table = Table(show_footer=False)
@@ -203,7 +198,7 @@ def banner() -> str:
     [/]""")
 
 def checkUser(username:str) -> bool:
-    return username in ['', ' '] or len(username) > 30
+    return username in EMPTY or len(username) > 30
 
 def valUser(username: str) -> bool:
     return requests.get(f'https://www.instagram.com/{username}/', allow_redirects=False).status_code != 200
@@ -237,13 +232,13 @@ def main():
         client = instagrapi.Client()
         print(f"{GREEN}[+] Acceptable answers: {ANS}")
         sleep(2)
-        con=str(input(f"{YELLOW}[>] Do you consent that the author (new92) has no responsibility for any loss or damage may the script cause to the given (Instagram) account ? "))
+        con=input(f"{YELLOW}[>] Do you consent that the author (new92) has no responsibility for any loss or damage may the script cause to the given (Instagram) account ? ")
         while con.lower() not in ANS:
             print(f"{RED}[!] Invalid answer !")
             sleep(1)
             print(f"{GREEN}[+] Acceptable answers: {ANS}")
             sleep(1)
-            con=str(input(f"{YELLOW}[>] Do you consent that the author (new92) has no responsibility for any loss or damage may the script cause to the given (Instagram) account ? "))
+            con=input(f"{YELLOW}[>] Do you consent that the author (new92) has no responsibility for any loss or damage may the script cause to the given (Instagram) account ? ")
         if con.lower() == ANS[0]:
             logging.basicConfig(
                 filename='cons.txt',
@@ -286,11 +281,11 @@ def main():
         clear()
         msg = 'hello world'
         name = 'replies.txt'
-        username=str(input(f"{YELLOW}[::] Please enter your username: "))
+        username=input(f"{YELLOW}[::] Please enter your username: ")
         while checkUser(username):
             print(f"{RED}[!] Invalid username !")
             sleep(1)
-            username=str(input(f"{YELLOW}[::] Please enter again your username: "))
+            username=input(f"{YELLOW}[::] Please enter again your username: ")
         while valUser(username):
             print(f"{RED}[!] User not found !")
             sleep(1)
@@ -306,11 +301,11 @@ def main():
                 print(f"{YELLOW}[3] Uninstall and Exit")
                 opt=int(input(f"{YELLOW}[::] Please enter again a number (from the above ones): "))
             if opt == 1:
-                username=str(input(f"{YELLOW}[::] Please enter the username: "))
+                username=input(f"{YELLOW}[::] Please enter the username: ")
                 while checkUser(username):
                     print(f"{RED}[!] Invalid username !")
                     sleep(1)
-                    username=str(input(f"{YELLOW}[::] Please enter again the username: "))
+                    username=input(f"{YELLOW}[::] Please enter again the username: ")
             elif opt == 2:
                 clear()
                 main()
@@ -324,11 +319,11 @@ def main():
                 sleep(1)
                 quit()
         username = username.lower().strip()
-        password=str(input(f"{YELLOW}[::] Please enter your password: "))
-        while password in ['', ' ']:
+        password=input(f"{YELLOW}[::] Please enter your password: ")
+        while password in EMPTY:
             print(f"{RED}[!] Invalid password !")
             sleep(1)
-            password=str(input(f"{YELLOW}[::] Please enter again your password: "))
+            password=input(f"{YELLOW}[::] Please enter again your password: ")
         password = password.strip()
         try:
             client.login(username,password)
@@ -346,11 +341,11 @@ def main():
             sleep(1)
             count=int(input(f"{YELLOW}[::] Number of targets: "))
         for i in range(count):
-            user=str(input(f"{YELLOW}[::] Please enter the target username: "))
+            user=input(f"{YELLOW}[::] Please enter the target username: ")
             while checkUser(user) or valUser(user):
                 print(f"{RED}[!] Invalid username !")
                 sleep(1)
-                user=str(input(f"{YELLOW}[::] Please enter again the target username: "))
+                user=input(f"{YELLOW}[::] Please enter again the target username: ")
             user=user.lower().strip()
             IDS.append(requests.get(f'https://www.instagram.com/{user}/?__a=1&__d=dis').json()["logging_page_id"].strip("profilePage_"))
         inbox = client.direct_inbox(len(IDS))
@@ -360,16 +355,16 @@ def main():
         sleep(1)
         print(f"{GREEN}[+] Acceptable answers: {ANS}")
         sleep(2)
-        change=str(input(f"{YELLOW}[?] Change message ? "))
+        change=input(f"{YELLOW}[?] Change message ? ")
         while change.lower() not in ANS:
             print(f'{RED}[!] Invalid answer !')
             sleep(1)
             print(f"{GREEN}[+] Acceptable answers: {ANS}")
             sleep(2)
-            change=str(input(f"{YELLOW}[?] Change message ? "))
+            change=input(f"{YELLOW}[?] Change message ? ")
         if change.lower() == ANS[0]:
             sleep(1)
-            msg=str(input(f"{YELLOW}[::] Please enter the message: "))
+            msg=input(f"{YELLOW}[::] Please enter the message: ")
             sleep(2)
         msgs = 0
         sleep(1)
