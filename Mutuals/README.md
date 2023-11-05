@@ -1,6 +1,3 @@
-# 🛑 UNSTABLE VERSION 🛑
-<b>Mutuals is currently experiencing instability. You can still use it, but there is a possibility that you may encounter errors.</b>
-
 # Mutuals 🧙
 Mutuals is a powerful Python script designed to discover and display mutual followers and followings between two Instagram accounts. Whether you're looking to strengthen connections or gain insights into shared networks, Mutuals simplifies the process, allowing users to identify and connect with those who share mutual interests and connections on Instagram. **Works for both public and private accounts**.
 

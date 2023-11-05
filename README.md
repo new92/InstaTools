@@ -22,6 +22,48 @@ Any type of feedback is welcome and appreciated. (Please do not use any vulgar v
 
 - [@new92](https://www.github.com/new92)
 
+## Installation 📥
+
+### Linux 🐧
+
+```bash
+sudo su
+git clone https://github.com/new92/InstaTools
+cd InstaTools
+sudo pip install -r requirements.txt
+python3 cookies.py
+cd <THE FOLDER IN WHICH IS LOCATED THE SCRIPT YOU WANT TO USE. Example: cd Mutuals>
+python3 <THE NAME OF THE SCRIPT. Example: python3 Mutuals.py>.py
+```
+
+### Windows 🪟
+
+```bash
+git clone https://github.com/new92/InstaTools
+cd InstaTools
+pip install -r requirements.txt
+python3 cookies.py
+cd <THE FOLDER IN WHICH IS LOCATED THE SCRIPT YOU WANT TO USE. Example: cd Mutuals>
+python3 <THE NAME OF THE SCRIPT. Example: python3 Mutuals.py>.py
+```
+
+### MacOS 🍎
+
+```bash
+git clone https://github.com/new92/InstaTools
+cd InstaTools
+python -m pip install -r requirements.txt
+python3 cookies.py
+cd <THE FOLDER IN WHICH IS LOCATED THE SCRIPT YOU WANT TO USE. Example: cd Mutuals>
+python3 <THE NAME OF THE SCRIPT. Example: python3 Mutuals.py>.py
+```
+
+## Update 🔄️
+
+```bash
+cd <path_to_script>/InstaTools
+git pull
+```
 
 ## Badges 📛
 
@@ -99,50 +141,6 @@ Answer ➡️ Absolutely not. These tools are using publicly available informati
 - Geting error while trying to log in ?
 
 Answer ➡️ This error can be resolved by simply logging in to your account, do the Instagram verification tests and run again the script.
-
-
-## Installation 📥
-
-### Linux 🐧
-
-```bash
-sudo su
-git clone https://github.com/new92/InstaTools
-cd InstaTools
-sudo pip install -r requirements.txt
-python3 cookies.py
-cd <THE FOLDER IN WHICH IS LOCATED THE SCRIPT YOU WANT TO USE. Example: cd Mutuals>
-python3 <THE NAME OF THE SCRIPT. Example: python3 Mutuals.py>.py
-```
-
-### Windows 🪟
-
-```bash
-git clone https://github.com/new92/InstaTools
-cd InstaTools
-pip install -r requirements.txt
-python3 cookies.py
-cd <THE FOLDER IN WHICH IS LOCATED THE SCRIPT YOU WANT TO USE. Example: cd Mutuals>
-python3 <THE NAME OF THE SCRIPT. Example: python3 Mutuals.py>.py
-```
-
-### MacOS 🍎
-
-```bash
-git clone https://github.com/new92/InstaTools
-cd InstaTools
-python -m pip install requirements.txt
-python3 cookies.py
-cd <THE FOLDER IN WHICH IS LOCATED THE SCRIPT YOU WANT TO USE. Example: cd Mutuals>
-python <THE NAME OF THE SCRIPT. Example: python3 Mutuals.py>.py
-```
-
-## Update 🔄️
-
-```bash
-cd <path_to_script>/InstaTools
-git pull
-```
     
 ## License 📜
 

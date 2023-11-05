@@ -1,6 +1,3 @@
-# 🛑 UNSTABLE VERSION 🛑
-<b>IsVer is currently experiencing instability. You can still use it, but there is a possibility that you may encounter errors.</b>
-
 # IsVer 🥷
 
 IsVer is a handy Python script designed to analyze and report on the Instagram followings of a user. With IsVer, you can effortlessly identify and keep track of the verified accounts that a user follows on Instagram, providing valuable insights into their network. Stay informed about the presence of verified users in your Instagram connections with this user-friendly script. **Works for both public and private accounts**
@@ -21,7 +18,7 @@ IsVer is a handy Python script designed to analyze and report on the Instagram f
 - ~~Colored~~ ✅
 - GUI
 - Data visualization
-- Categorize the verified accounts
+- Categorize the verified accounts (sports, lifestyle, companies etc.)
 
 ## Expected files 📁
 The files expected to be created are:

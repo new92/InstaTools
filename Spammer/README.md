@@ -11,7 +11,8 @@ There are plenty of reasons for using Spammer. Some of them are:
 
 ## Expected files 📁
 The files expected to be created are:
-  1) `replies.txt`
+  1) `cons.txt`
+  2) `replies.txt`
 
 ## Disclaimer ⚠️
 This script is intended solely for ethical and lawful purposes. It must not be used for any unethical, illegal, or harmful activities. Always obtain explicit consent from any individuals or users targeted by this script before utilizing it in any way.
