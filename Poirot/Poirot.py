@@ -28,7 +28,7 @@ try:
     from rich.live import Live
     from rich.console import Console
     console = Console()
-    mods = ['sys', 'time', 'rich', 'platform', 'os', 'requests', 'json', 'colorama']
+    mods = ('sys', 'time', 'rich', 'platform', 'os', 'requests', 'json', 'colorama')
     with console.status('[bold dark_orange]Loading module...') as status:
         for mod in mods:
             sleep(0.85)
@@ -39,13 +39,13 @@ try:
     import os
     from os import system
     from colorama import init, Fore
-except ImportError or ModuleNotFoundError:
+except (ImportError, ModuleNotFoundError):
     print(f"[!] WARNING: Not all packages used in Poirot have been installed !")
     sleep(2)
     print(f"[+] Ignoring warning...")
     sleep(1)
     if sys.platform.startswith('linux'):
-        if os.geteuid() != 0:
+        if os.geteuid():
             print(f"[!] Root user not detected !")
             sleep(2)
             print(f"[+] Trying to enable root user...")
@@ -72,16 +72,13 @@ except ImportError or ModuleNotFoundError:
                         for root, dirs, files in os.walk('/'):
                             if fname in files:
                                 return os.path.abspath(os.path.join(root, fname))
-                        return None
                     def rmdir(dire):
-                        DIRS = []
                         for root, dirs, files in os.walk(dire):
                             for file in files:
                                 os.remove(os.path.join(root,file))
-                            for dir in dirs:
-                                DIRS.append(os.path.join(root,dir))
-                        for i in range(len(DIRS)):
-                            os.rmdir(DIRS[i])
+                            DIRS = (os.path.join(root, dir) for dir in dirs)
+                        for i in DIRS:
+                            os.rmdir(i)
                         os.rmdir(dire)
                     rmdir(fpath('InstaTools'))
                     print(f"[✓] Files and dependencies uninstalled successfully !")
@@ -107,9 +104,10 @@ console.clear()
 console.log("[bold green][✓] Successfully loaded modules ![/]")
 sleep(1)
 console.clear()
+EMPTY = ('', ' ')
 
 def checkUser(username:str) -> bool:
-    return username in ['' , ' '] or len(username) > 30
+    return username in EMPTY or len(username) > 30
 
 def valUser(username: str) -> bool:
     return requests.get(f'https://www.instagram.com/{username}/', allow_redirects=False).status_code != 200
@@ -118,13 +116,12 @@ def fpath(fname: str):
     for root, dirs, files in os.walk('/'):
         if fname in files:
             return os.path.abspath(os.path.join(root, fname))
-    return None
 
 def ScriptInfo():
     with open('Poirot/config.json') as config:
         conf = json.load(config)
-    f = conf['name'] + '.py'
-    fp = fpath(f) == None
+    f = f"{conf['name']}.py"
+    fp = fpath(f) is None
     fsize = os.stat(fpath(f)).st_size if fp else 0
     print(f"{YELLOW}[+] Author: {conf['author']}")
     print(f"{YELLOW}[+] Contributors : {conf['contributors']}")
@@ -167,38 +164,36 @@ def banner() -> str:
 
 def Uninstall() -> str:
     def rmdir(dire):
-        DIRS = []
         for root, dirs, files in os.walk(dire):
             for file in files:
                 os.remove(os.path.join(root,file))
-            for dir in dirs:
-                DIRS.append(os.path.join(root,dir))
-        for i in range(len(DIRS)):
-            os.rmdir(DIRS[i])
+            DIRS = (os.path.join(root, dir) for dir in dirs)
+        for i in DIRS:
+            os.rmdir(i)
         os.rmdir(dire)
     rmdir(fpath('InstaTools'))
     return f'{GREEN}[✓] Files and dependencies uninstalled successfully !'
 
-ANS = ['yes', 'no']
+ANS = ('yes', 'no')
 
-TABLE = [
-    [
+TABLE = (
+    (
         "[b white]Author[/]: [i light_green]new92[/]",
         "[green]https://new92.github.io/[/]"
-    ],
-    [
+    ),
+    (
         "[b white]Github[/]: [i light_green]@new92[/]",
         "[green]https://github.com/new92[/]"
-    ],
-    [
+    ),
+    (
         "[b white]Leetcode[/]: [i light_green]@new92[/]",
         "[green]https://leetcode.com/new92[/]"
-    ],
-    [
+    ),
+    (
         "[b white]PyPI[/]: [i light_green]@new92[/]",
         "[green]https://pypi.org/user/new92[/]"
-    ]
-]
+    )
+)
 
 def clear():
     system('cls' if platform.system() == 'Windows' else 'clear')
@@ -206,31 +201,31 @@ def clear():
 def fetch(username: str):
     request = requests.get(f'https://www.instagram.com/{username}/?__a=1&__d=dis')
     js = request.json()
-    if request.status_code == 200:
-        return {
-            'bio': js['graphql']['user']['biography'],
-            'links': [js['graphql']['user']['bio_links'][i]['url'] for i in range(len(js['graphql']['user']['bio_links']))],
-            'fb': js['graphql']['user']['fb_profile_biolink'],
-            'users': [js['graphql']['user']['biography_with_entities']['entities'][i]['user']['username'] for i in range(len(js['graphql']['user']['biography_with_entities']['entities'])) if js['graphql']['user']['biography_with_entities']['entities'][i]['user'] != None],
-            'hashtags': [js['graphql']['user']['biography_with_entities']['entities'][i]['hashtag']['name'] for i in range(len(js['graphql']['user']['biography_with_entities']['entities'])) if js['graphql']['user']['biography_with_entities']['entities'][i]['hashtag'] != None],
-            'followers': js['graphql']['user']['edge_followed_by']['count'],
-            'followings': js['graphql']['user']['edge_follow']['count'],
-            'fbid': js['graphql']['user']['fbid'],
-            'name': js['graphql']['user']['full_name'],
-            'id': js['graphql']['user']['id'],
-            'hide': js['graphql']['user']['hide_like_and_view_counts'],
-            'business': js['graphql']['user']['is_business_account'],
-            'professional': js['graphql']['user']['is_professional_account'],
-            'supervision': js['graphql']['user']['is_supervision_enabled'],
-            'join': js['graphql']['user']['is_joined_recently'],
-            'email': js['graphql']['user']['business_email'],
-            'tel': js['graphql']['user']['business_phone_number'],
-            'private': js['graphql']['user']['is_private'],
-            'verified': js['graphql']['user']['is_verified'],
-            'pic': js['graphql']['user']['profile_pic_url_hd']
-        }
-    else:
+    if request.status_code != 200:
         return js['message']
+
+    return {
+        'bio': js['graphql']['user']['biography'],
+        'links': [js['graphql']['user']['bio_links'][i]['url'] for i in range(len(js['graphql']['user']['bio_links']))],
+        'fb': js['graphql']['user']['fb_profile_biolink'],
+        'users': [js['graphql']['user']['biography_with_entities']['entities'][i]['user']['username'] for i in range(len(js['graphql']['user']['biography_with_entities']['entities'])) if js['graphql']['user']['biography_with_entities']['entities'][i]['user'] != None],
+        'hashtags': [js['graphql']['user']['biography_with_entities']['entities'][i]['hashtag']['name'] for i in range(len(js['graphql']['user']['biography_with_entities']['entities'])) if js['graphql']['user']['biography_with_entities']['entities'][i]['hashtag'] != None],
+        'followers': js['graphql']['user']['edge_followed_by']['count'],
+        'followings': js['graphql']['user']['edge_follow']['count'],
+        'fbid': js['graphql']['user']['fbid'],
+        'name': js['graphql']['user']['full_name'],
+        'id': js['graphql']['user']['id'],
+        'hide': js['graphql']['user']['hide_like_and_view_counts'],
+        'business': js['graphql']['user']['is_business_account'],
+        'professional': js['graphql']['user']['is_professional_account'],
+        'supervision': js['graphql']['user']['is_supervision_enabled'],
+        'join': js['graphql']['user']['is_joined_recently'],
+        'email': js['graphql']['user']['business_email'],
+        'tel': js['graphql']['user']['business_phone_number'],
+        'private': js['graphql']['user']['is_private'],
+        'verified': js['graphql']['user']['is_verified'],
+        'pic': js['graphql']['user']['profile_pic_url_hd']
+    }
     
 def main():
     banner()
@@ -261,26 +256,26 @@ def main():
         sleep(1)
         print(f"{GREEN}[+] Acceptable answers: {ANS}")
         sleep(1)
-        keep=str(input(f"{YELLOW}[?] Keep log ? "))
+        keep=input(f"{YELLOW}[?] Keep log ? ")
         while keep.lower() not in ANS:
             print(f"{RED}[!] Invalid answer !")
             sleep(1)
             print(f"{GREEN}[+] Acceptable answers: {ANS}")
             sleep(1)
-            keep=str(input(f"{YELLOW}[?] Keep log ? "))
+            keep=input(f"{YELLOW}[?] Keep log ? ")
         keep = keep.lower() == ANS[0]
         sleep(1.2)
         clear()
-        username=str(input(f"{YELLOW}[>] Please enter the target username: "))
+        username=input(f"{YELLOW}[>] Please enter the target username: ")
         while checkUser(username):
-            if username in ['', ' ']:
+            if username in EMPTY:
                 print(f"{RED}[!] This field can't be blank !")
             else:
                 print(f"{RED}[!] Invalid length !")
                 sleep(1)
                 print(f"{GREEN}[+] Acceptable length: 30 or less characters")
             sleep(1)
-            username=str(input(f"{YELLOW}[>] Please enter again the target username: "))
+            username=input(f"{YELLOW}[>] Please enter again the target username: ")
         while valUser(username):
             print(f"{RED}[!] User not found !")
             sleep(1)
@@ -295,16 +290,16 @@ def main():
                 sleep(2)
                 opt=int(input(f"{YELLOW}[>] Please enter again a number (from the above ones): "))
             if opt == 1:
-                username=str(input(f"{YELLOW}[>] Please enter the target username: "))
+                username=input(f"{YELLOW}[>] Please enter the target username: ")
                 while checkUser(username):
-                    if username in ['', ' ']:
+                    if username in EMPTY:
                         print(f"{RED}[!] This field can't be blank !")
                     else:
                         print(f"{RED}[!] Invalid length !")
                         sleep(1)
                         print(f"{GREEN}[+] Acceptable length: 30 or less characters")
                     sleep(1)
-                    username=str(input(f"{YELLOW}[>] Please enter again the target username: "))
+                    username=input(f"{YELLOW}[>] Please enter again the target username: ")
             elif opt == 2:
                 clear()
                 main()
@@ -315,7 +310,7 @@ def main():
                 print(f"{GREEN}[+] See you next time 👋")
                 sleep(2)
                 quit()
-        username = username.lower().strip()
+        username = username.strip().lower()
         sleep(1.2)
         name = 'poirotLog.txt'
         print(f"{GREEN}[+] Username -> OK")
@@ -323,42 +318,32 @@ def main():
         print(f"{GREEN}[+] Extracting info...")
         sleep(1.3)
         dict = fetch(username)
-        if type(dict) != str:
+        if type(dict) is not str:
             sleep(1.3)
             print(f"{GREEN}[✓] Success !")
             sleep(1.1)
             clear()
-            print(f"{GREEN}---------------" + '-' * len(username))
-            print(f"{GREEN}[>] Username | {username}")
-            print(f"{GREEN}[>] Name | {dict['name']}")
-            print(f"{GREEN}[>] Bio | {dict['bio']}")
-            print(f"{GREEN}[>] Followers | {dict['followers']}")
-            print(f"{GREEN}[>] Followings | {dict['followings']}")
-            print(f"{GREEN}[>] Email | {dict['email']}")
-            print(f"{GREEN}[>] Tel | {dict['tel']}")
-            print(f"{GREEN}[>] Profile pic | {dict['pic']}")
-            print(f"{GREEN}[>] ID | {dict['id']}")
-            print(f"{GREEN}[>] External links | {dict['links']}")
-            print(f"{GREEN}[>] Users in bio | {dict['users']}")
-            print(f"{GREEN}[>] Hashtags in bio | {dict['hashtags']}")
-            print(f"{GREEN}[>] fb | {dict['fb']}")
-            print(f"{GREEN}[>] fb ID | {dict['fbid']}")
-            print(f"{GREEN}[>] Joined recently | {dict['join']}")
-            print(f"{GREEN}[>] Private | {dict['private']}")
-            print(f"{GREEN}[>] Verified | {dict['verified']}")
-            print(f"{GREEN}[>] Business | {dict['business']}")
-            print(f"{GREEN}[>] Professional | {dict['professional']}")
-            print(f"{GREEN}[>] Supervised | {dict['supervision']}")
-            print(f"{GREEN}[>] Hide likes & views | {dict['hide']}")
-            print(f"{GREEN}-------------------------" + '-' * len(str(dict['hide'])))
+            print(
+                f"{GREEN}{'-' * (len(username) + 15)}", f"{GREEN}[>] Name | {dict['name']}",
+                f"{GREEN}[>] Bio | {dict['bio']}", f"{GREEN}[>] Followers | {dict['followers']}",
+                f"{GREEN}[>] Followings | {dict['followings']}", f"{GREEN}[>] Email | {dict['email']}",
+                f"{GREEN}[>] Tel | {dict['tel']}", f"{GREEN}[>] Profile pic | {dict['pic']}",
+                f"{GREEN}[>] ID | {dict['id']}", f"{GREEN}[>] External links | {dict['links']}",
+                f"{GREEN}[>] Users in bio | {dict['users']}", f"{GREEN}[>] Hashtags in bio | {dict['hashtags']}",
+                f"{GREEN}[>] fb | {dict['fb']}", f"{GREEN}[>] fb ID | {dict['fbid']}",
+                f"{GREEN}[>] Joined recently | {dict['join']}", f"{GREEN}[>] Private | {dict['private']}",
+                f"{GREEN}[>] Verified | {dict['verified']}", f"{GREEN}[>] Business | {dict['business']}",
+                f"{GREEN}[>] Professional | {dict['professional']}", f"{GREEN}[>] Supervised | {dict['supervision']}",
+                f"{GREEN}[>] Hide likes & views | {dict['hide']}", f"{GREEN}{'-' * (len(str(dict['hide'])) + 25)}",
+                sep="\n"
+            )
             sleep(3)
             if keep:
                 with open(name, 'w', encoding='utf8') as f:
-                    f.write('---------------' + '-' * len(username))
+                    f.write('-' * (len(username) + 15))
                     f.write(dict)
-                    f.write("\n-------------------------" + '-' * len(str(dict['hide'])))
-                    print("\n")
-                    print(f"{YELLOW}[✓] Successfully saved log !")
+                    f.write(f"\n{'-' * (len(str(dict['hide'])) + 25)}")
+                    print(f"\n{YELLOW}[✓] Successfully saved log !")
                     sleep(1)
                     print(f"{YELLOW}[↪] Name >>> {name}")
                     print(f"{YELLOW}[↪] Location >>> {fpath(name)}")
@@ -383,9 +368,7 @@ def main():
             f.close()
             print(f"{GREEN}[✓] Successfully cleared log !")
             sleep(1)
-            print(f"{GREEN}[↪] Name >>> {name}")
-            print(f"{GREEN}[↪] Location >>> {fpath(name)}")
-            print(f"{GREEN}[↪] Size >>> 0 bytes")
+            print(f"{GREEN}[↪] Name >>> {name}", f"{GREEN}[↪] Location >>> {fpath(name)}", f"{GREEN}[↪] Size >>> 0 bytes"), sep="\n")
             sleep(3)
         else:
             clear()
@@ -423,11 +406,9 @@ def main():
         sleep(1)
         quit()
     
-    print("\n\n")
-    print(f"{YELLOW}[1] Return to menu")
-    print(f"{YELLOW}[2] Exit")
+    print(f"\n\n{YELLOW}[1] Return to menu\n{YELLOW}[2] Exit")
     opt=int(input(f"{YELLOW}[>] Please enter a number (from the above ones): "))
-    while opt < 1 or opt > 2:
+    while opt not in range(1, 3):
         print(f"{RED}[!] Invalid number !")
         sleep(1)
         print(f"{GREEN}[+] Acceptable numbers: [1/2]")
