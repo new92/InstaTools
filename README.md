@@ -109,6 +109,8 @@ Please adhere to this project's `code of conduct`. For more info please check th
 
 - <a href='https://www.github.com/itsfizziks'>@itsfizziks</a>
 
+- <a href='https://www.github.com/ProgramR4732'>@ProgramR4732</a>
+
 ## Feedback 💭
 
 If you have any feedback, please reach out to us at <a href="mailto:new92github@gmail.com">this email address</a>.
