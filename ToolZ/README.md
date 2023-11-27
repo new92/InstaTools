@@ -22,3 +22,4 @@ Toolz is a handy Python script designed to help you stay informed about your Ins
 ## Expected files 📁
 The files expected to be created are:
   1. `ToolZ_Log.txt`
+  2. `cons.txt`
