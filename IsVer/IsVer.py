@@ -135,7 +135,7 @@ def validate(session: str) -> bool:
     return os.path.exists(session)
 
 def ScriptInfo():
-    with open('config.json') as config:
+    with open('IsVer/config.json') as config:
         conf = json.load(config)
     f = f"{conf['name']}.py"
     fp = fpath(f) is None
