@@ -360,7 +360,7 @@ def main():
                     print(f"{RED}[!] This field can't be blank !")
                 else:
                     print(f"{RED}[!] Invalid username !")
-                username= input(f"{YELLOW}[::] Please enter again the username of the target user: ")
+                username=input(f"{YELLOW}[::] Please enter again the username of the target user: ")
             username = username.strip().lower()
             while ValUser(username):
                 print(f"{RED}[!] User not found !")
