@@ -354,7 +354,7 @@ def main():
             print(f"{GREEN}[✓] Login successfull !")
             sleep(0.85)
             clear()
-            username= input(f"{YELLOW}[::] Please enter the username of the target user: ")
+            username=input(f"{YELLOW}[::] Please enter the username of the target user: ")
             while checkUser(username):
                 if username in EMPTY:
                     print(f"{RED}[!] This field can't be blank !")
