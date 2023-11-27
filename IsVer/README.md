@@ -23,3 +23,4 @@ IsVer is a handy Python script designed to analyze and report on the Instagram f
 ## Expected files 📁
 The files expected to be created are:
   1) `IsVer_log.txt`
+  2) `cons.txt`
