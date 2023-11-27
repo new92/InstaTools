@@ -301,7 +301,7 @@ def main():
         sleep(2)
         clear()
         print(f'{YELLOW}|--------------------LOGIN--------------------|')
-        session= input(f"{YELLOW}[::] Please enter the cookie file path: ")
+        session=input(f"{YELLOW}[::] Please enter the cookie file path: ")
         session = session.strip().lower()
         while not validate(session):
             print(f"{RED}[!] Invalid file path !")
