@@ -1,5 +1,3 @@
-# 🛑 Active Poll 🛑 <a href="https://github.com/new92/InstaTools/discussions/9">URL</a>
-
 # Tracker 👻
 Tracker is a Python script designed to monitor and maintain a record of a user's Instagram followers and followings. With Tracker, you can effortlessly keep tabs on changes in your Instagram network over time, making it a valuable tool for social media enthusiasts, influencers, and businesses looking to manage their online presence. **Works for both public and private accounts**
 
