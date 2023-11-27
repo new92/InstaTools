@@ -224,7 +224,7 @@ tttttt:::::::tttttt    o:::::ooooo:::::oo:::::ooooo:::::o l::::l zzzzzzzz::::::z
           ttttttttttt     ooooooooooo      ooooooooooo   llllllllzzzzzzzzzzzzzzzzz
     [/]""")
 
-name = 'ToolZ_Log.txt'
+name = 'ToolZLog.txt'
 
 def main():
     banner()
