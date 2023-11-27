@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 Author: new92
 Contributors: [Itsfizziks, ProgramR4732]
@@ -334,9 +335,7 @@ def main():
                 f"{GREEN}[>] Joined recently | {dict['join']}", f"{GREEN}[>] Private | {dict['private']}",
                 f"{GREEN}[>] Verified | {dict['verified']}", f"{GREEN}[>] Business | {dict['business']}",
                 f"{GREEN}[>] Professional | {dict['professional']}", f"{GREEN}[>] Supervised | {dict['supervision']}",
-                f"{GREEN}[>] Hide likes & views | {dict['hide']}", f"{GREEN}{'-' * (len(str(dict['hide'])) + 25)}",
-                sep="\n"
-            )
+                f"{GREEN}[>] Hide likes & views | {dict['hide']}", f"{GREEN}{'-' * (len(str(dict['hide'])) + 25)}", sep="\n")
             sleep(3)
             if keep:
                 with open(name, 'w', encoding='utf8') as f:
@@ -368,7 +367,7 @@ def main():
             f.close()
             print(f"{GREEN}[✓] Successfully cleared log !")
             sleep(1)
-            print(f"{GREEN}[↪] Name >>> {name}", f"{GREEN}[↪] Location >>> {fpath(name)}", f"{GREEN}[↪] Size >>> 0 bytes"), sep="\n")
+            print(f"{GREEN}[↪] Name >>> {name}", f"{GREEN}[↪] Location >>> {fpath(name)}", f"{GREEN}[↪] Size >>> 0 bytes", sep="\n")
             sleep(3)
         else:
             clear()
@@ -400,7 +399,7 @@ def main():
 
     else:
         clear()
-        print(f"{YELLOW}[+] Thank you for using IGFollowersIncreaser 😁")
+        print(f"{YELLOW}[+] Thank you for using Poirot 😁")
         sleep(2)
         print(f"{YELLOW}[+] See you next time 👋")
         sleep(1)
