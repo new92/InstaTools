@@ -119,6 +119,7 @@ def fpath(fname: str):
     for root, dirs, files in os.walk('/'):
         if fname in files:
             return os.path.abspath(os.path.join(root, fname))
+    return None
 
 def checkUser(username: str) -> bool:
     return len(username) > 30 or username in ('', ' ')
