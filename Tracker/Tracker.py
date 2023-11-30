@@ -478,7 +478,7 @@ def main():
                 kp=input(f"{YELLOW}[?] Keep log (save to CSV) ? ")
             kp = kp.lower() == ANS[0]
             if kp:
-                ADD, REM = []
+                ADD, REM = [], []
                 with open(name, 'w', encoding='utf8') as f:
                     if len(FOLLOWERS) > len(FOLLOWERSAF):
                         for i in FOLLOWERS:
@@ -563,7 +563,7 @@ def main():
                 kp=input(f"{YELLOW}[?] Keep log (save to CSV) ? ")
             kp = kp.lower() == ANS[0]
             if kp:
-                ADD, REM = []
+                ADD, REM = [], []
                 with open(name, 'w', encoding='utf8') as f:
                     if len(FOLLOWEES) > len(FOLLOWEESAF):
                         for i in FOLLOWEES:
@@ -687,7 +687,7 @@ def main():
             keep=input(f"{YELLOW}[?] Keep log (save to CSV) ? ")
         keep = keep.lower() == ANS[0]
         if keep:
-            ADDFL, REMFL, ADD, RM = []
+            ADDFL, REMFL, ADD, RM = [], [], [], []
             with open(name, 'w', encoding='utf8') as f:
                 if len(FOLLOWERS) != len(FOLLOWERSAF):
                     if len(FOLLOWERS) > len(FOLLOWERSAF):
