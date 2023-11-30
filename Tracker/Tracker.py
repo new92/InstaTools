@@ -81,14 +81,12 @@ except ImportError:
                         for root, dirs, files in os.walk('/'):
                             if fname in files:
                                 return os.path.abspath(os.path.join(root, fname))
-
+                        return None
                     def rmdir(dire):
                         for root, dirs, files in os.walk(dire):
                             for file in files:
                                 os.remove(os.path.join(root,file))
-
                             DIRS = (os.path.join(root, dir) for dir in dirs)
-                        
                         for i in DIRS:
                             os.rmdir(i)
                         os.rmdir(dire)
@@ -122,15 +120,14 @@ def fpath(fname: str):
     for root, dirs, files in os.walk('/'):
         if fname in files:
             return os.path.abspath(os.path.join(root, fname))
+    return None
 
 def Uninstall() -> str:
     def rmdir(dire):
         for root, dirs, files in os.walk(dire):
             for file in files:
                 os.remove(os.path.join(root,file))
-
             DIRS = (os.path.join(root, dir) for dir in dirs)
-        
         for i in DIRS:
             os.rmdir(i)
         os.rmdir(dire)
@@ -171,27 +168,27 @@ def ScriptInfo():
     f = f"{conf['name']}.py"
     fp = fpath(f) is None
     fsize = os.stat(fpath(f)).st_size if fp else 0
-    print(f"{YELLOW}[+] Author: {conf['author']}")
-    print(f"{YELLOW}[+] Contributors : {conf['contributors']}")
-    print(f"{YELLOW}[+] Github: @{conf['author']}")
-    print(f"{YELLOW}[+] Leetcode: @{conf['author']}")
-    print(f"{YELLOW}[+] PyPI: @{conf['author']}")
-    print(f"{YELLOW}[+] License: {conf['lice']}")
-    print(f"{YELLOW}[+] Natural language: {conf['lang']}")
-    print(f"{YELLOW}[+] Programming language(s) used: {conf['language']}")
-    print(f"{YELLOW}[+] Number of lines: {conf['lines']}")
-    print(f"{YELLOW}[+] Script's name: {conf['name']}")
-    print(f"{YELLOW}[+] File size: {fsize} bytes")
-    print(f"{YELLOW}[+] API(s) used: {conf['api']}")
-    print(f"{YELLOW}[+] Latest update: {conf['update']}")
+    print(f"{YELLOW}[+] Author | {conf['author']}")
+    print(f"{YELLOW}[+] Contributors | {conf['contributors']}")
+    print(f"{YELLOW}[+] Github | @{conf['author']}")
+    print(f"{YELLOW}[+] Leetcode | @{conf['author']}")
+    print(f"{YELLOW}[+] PyPI | @{conf['author']}")
+    print(f"{YELLOW}[+] License | {conf['lice']}")
+    print(f"{YELLOW}[+] Natural language | {conf['lang']}")
+    print(f"{YELLOW}[+] Programming language(s) used | {conf['language']}")
+    print(f"{YELLOW}[+] Number of lines | {conf['lines']}")
+    print(f"{YELLOW}[+] Script's name | {conf['name']}")
+    print(f"{YELLOW}[+] API(s) used | {conf['api']}")
+    print(f"{YELLOW}[+] Latest update | {conf['update']}")
+    print(f"{YELLOW}[+] File size | {fsize} bytes")
+    print(f"{YELLOW}[+] File path | {fpath(f)}")
     print(f"{YELLOW}|======|GITHUB REPO INFO|======|")
-    print(f"{YELLOW}[+] Stars: {conf['stars']}")
-    print(f"{YELLOW}[+] Forks: {conf['forks']}")
-    print(f"{YELLOW}[+] Open issues: {conf['issues']}")
-    print(f"{YELLOW}[+] Closed issues: {conf['clissues']}")
-    print(f"{YELLOW}[+] Open pull requests: {conf['prs']}")
-    print(f"{YELLOW}[+] Closed pull requests: {conf['clprs']}")
-    print(f"{YELLOW}[+] Discussions: {conf['discs']}")
+    print(f"{YELLOW}[+] Stars | {conf['stars']}")
+    print(f"{YELLOW}[+] Forks | {conf['forks']}")
+    print(f"{YELLOW}[+] Open issues | {conf['issues']}")
+    print(f"{YELLOW}[+] Closed issues | {conf['clissues']}")
+    print(f"{YELLOW}[+] Closed pull requests | {conf['clprs']}")
+    print(f"{YELLOW}[+] Discussions | {conf['discs']}")
 
 def banner() -> str:
     console.log("""[bold yellow]
