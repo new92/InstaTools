@@ -1,5 +1,5 @@
 # Spammer 🧨
-Spammer is a python script which helps the user spam messages (bomb the inbox) of another user on Instagram. **Works for both public and private acconts**
+Spammer is a python script which helps the user spam messages (bomb the inbox) of another user on Instagram. **Works for both public and private acconts**.
 
 > If you like this repository please feel free to star and/or fork it. It really helps me to continue creating repos like these.
 
