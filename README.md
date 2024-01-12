@@ -7,6 +7,8 @@
 
 # InstaTools 🧰
 
+![Codacy grade](https://img.shields.io/codacy/grade/187dba28735848868b7f8615e0e45597?style=for-the-badge&logo=codacy)![Open issues](https://img.shields.io/github/issues/new92/InstaTools?style=for-the-badge&logo=github)![Closed issues]![Open pull requests](https://img.shields.io/github/issues-pr/new92/InstaTools?style=for-the-badge&logo=github)(https://img.shields.io/github/issues-closed/new92/InstaTools?style=for-the-badge&logo=github)![Closed pull requests](https://img.shields.io/github/issues-pr-closed/new92/InstaTools?style=for-the-badge&logo=github)![Discussions](https://img.shields.io/github/discussions/new92/InstaTools?style=for-the-badge&logo=github)![Code size in bytes](https://img.shields.io/github/languages/code-size/new92/InstaTools?style=for-the-badge&logo=github)![File count](https://img.shields.io/github/directory-file-count/new92/InstaTools?style=for-the-badge&logo=github)![Repo size](https://img.shields.io/github/repo-size/new92/InstaTools?style=for-the-badge&logo=github)![Followers](https://img.shields.io/github/followers/new92?style=for-the-badge&logo=github)![Stars](https://img.shields.io/github/stars/new92/InstaTools?style=for-the-badge&logo=github)![Forks](https://img.shields.io/github/forks/new92/InstaTools?style=for-the-badge&logo=github)![Watchers](https://img.shields.io/github/watchers/new92/InstaTools?style=for-the-badge&logo=github)![Language count](https://img.shields.io/github/languages/count/new92/InstaTools?style=for-the-badge&logo=github)![Top language used](https://img.shields.io/github/languages/top/new92/InstaTools?style=for-the-badge&logo=python&logoColor=white)
+
 InstaTools is a variety of tools intended for Instagram. Each one of them automates actions which manually would take a huge amount of time (Especially if the target user has a big amount of followers). These tools can also be used for researching purposes (like when you want to know how many users follow verified accounts). But keep in mind that using InstaTools too often can get your account suspended (or even blocked !). So avoid using it too often.
 
 > If you like this repository feel free to star and/or fork it. It helps me to continue uploading these types of repositories.
@@ -66,38 +68,6 @@ python3 <THE NAME OF THE SCRIPT. Example: python3 Mutuals.py>.py
 cd <path_to_script>/InstaTools
 git pull
 ```
-
-## Badges 📛
-
-![Codacy grade](https://img.shields.io/codacy/grade/187dba28735848868b7f8615e0e45597?style=for-the-badge&logo=codacy)
-
-![GitHub issues](https://img.shields.io/github/issues/new92/InstaTools?style=for-the-badge&logo=github)
-
-![GitHub closed issues](https://img.shields.io/github/issues-closed/new92/InstaTools?style=for-the-badge&logo=github)
-
-![GitHub pull requests](https://img.shields.io/github/issues-pr/new92/InstaTools?style=for-the-badge&logo=github)
-
-![GitHub closed pull requests](https://img.shields.io/github/issues-pr-closed/new92/InstaTools?style=for-the-badge&logo=github)
-
-![GitHub Discussions](https://img.shields.io/github/discussions/new92/InstaTools?style=for-the-badge&logo=github)
-
-![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/new92/InstaTools?style=for-the-badge&logo=github)
-
-![GitHub repo file count (file type)](https://img.shields.io/github/directory-file-count/new92/InstaTools?style=for-the-badge&logo=github)
-
-![GitHub repo size](https://img.shields.io/github/repo-size/new92/InstaTools?style=for-the-badge&logo=github)
-
-![GitHub followers](https://img.shields.io/github/followers/new92?style=for-the-badge&logo=github)
-
-![GitHub Repo stars](https://img.shields.io/github/stars/new92/InstaTools?style=for-the-badge&logo=github)
-
-![GitHub forks](https://img.shields.io/github/forks/new92/InstaTools?style=for-the-badge&logo=github)
-
-![GitHub watchers](https://img.shields.io/github/watchers/new92/InstaTools?style=for-the-badge&logo=github)
-
-![GitHub language count](https://img.shields.io/github/languages/count/new92/InstaTools?style=for-the-badge&logo=github)
-
-![GitHub top language](https://img.shields.io/github/languages/top/new92/InstaTools?style=for-the-badge&logo=python&logoColor=white)
 
 ## Contributing 🤝
 
