@@ -79,6 +79,8 @@ Please adhere to this project's `code of conduct`. For more info please check th
 
 ## Special thanks to 🫡
 
+https://www.github.com/new92/InstaTools/graphs/contributors
+
 - <a href='https://www.github.com/itsfizziks'>@itsfizziks</a>
 
 - <a href='https://www.github.com/ProgramR4732'>@ProgramR4732</a>
