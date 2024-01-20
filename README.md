@@ -79,7 +79,11 @@ Please adhere to this project's `code of conduct`. For more info please check th
 
 ## Special thanks to 🫡
 
-https://www.github.com/new92/InstaTools/graphs/contributors
+<p align="center">
+<a href="https://github.com/new92/InstaTools/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=new92/InstaTools">
+</a>
+</p>
 
 - <a href='https://www.github.com/itsfizziks'>@itsfizziks</a>
 
