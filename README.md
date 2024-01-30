@@ -95,7 +95,7 @@ If you are reporting a bug or making a suggestion please make sure your report/s
 
 ## Features 🆕
 
-- [ ] More tools / scripts
+- [ ] Add more tools / scripts
 - [ ] Fix bugs
 
 ## FAQ 🤔
