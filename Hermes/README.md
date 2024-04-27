@@ -33,3 +33,6 @@ python3 hermes.py -u <your_username> -p <posts_shortcode> -s <path_to_session_fi
 
 ## Photos 📸
 
+![menu](https://github.com/new92/InstaTools/assets/94779840/8bd81157-37ef-4256-857a-13da83043aaf)
+
+![output](https://github.com/new92/InstaTools/assets/94779840/f3207703-e76a-46e3-8e27-867076616014)
