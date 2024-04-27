@@ -32,3 +32,6 @@ python3 poirot.py -u <target_username>
 
 ## Photos 📸
 
+![menu](https://github.com/new92/InstaTools/assets/94779840/02bf61c9-3676-47d3-8852-49b9432fe631)
+
+![output](https://github.com/new92/InstaTools/assets/94779840/934689c9-5bd0-458c-bed7-9fc27171c5e1)
