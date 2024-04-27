@@ -36,3 +36,7 @@ python3 tracker.py -u <your_username> -t <target_username> -s <path_to_session_f
 
 ## Photos 📸
 
+![menu](https://github.com/new92/InstaTools/assets/94779840/313c2dd2-b327-4323-969d-8cb10d3fbb51)
+
+![output](https://github.com/new92/InstaTools/assets/94779840/6d8246fd-4043-4231-bc5a-0e8933e56402)
+
