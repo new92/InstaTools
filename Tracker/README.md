@@ -1,7 +1,17 @@
 # Tracker 👻
+
 Tracker is a Python script designed to monitor and maintain a record of a user's Instagram followers and followings. With Tracker, you can effortlessly keep tabs on changes in your Instagram network over time, making it a valuable tool for social media enthusiasts, influencers, and businesses looking to manage their online presence. **Works for both public and private accounts**
 
 > If you like this repository feel free to star and/or fork it. It really helps me to continue creating repos like these.
+
+## Set up and run Tracker 🚀
+
+```bash
+python3 cookies.py
+python3 update.py # if you want to check for updates else skip it.
+cd Tracker
+python3 tracker.py -u <your_username> -t <target_username> -s <path_to_session_file>
+```
 
 ## Why Tracker ? 🤔
 1. **Follower and Following Tracking:** Tracker allows users to keep a record of their Instagram followers and the accounts they are following. It continuously monitors changes in the user's follower and following lists.
@@ -12,16 +22,17 @@ Tracker is a Python script designed to monitor and maintain a record of a user's
 6. **User-Friendly Interface:** Tracker offers a user-friendly interface or report that displays follower and following data in an organized and easily digestible format.
 7. **Exporting Data:** Tracker allows users to export their follower and following data for further analysis or reporting.
 
-## Features 🎈
+## Features 🪄
 
-- The user will have the option to enter their email or phone number in order to:
-  1) Get the results wherever they are
-  2) Have continuous update about the progress of the script
-- GUI
-- Better appearance
+- ~~Colored~~ ✅
+- ~~Fixed bugs~~ ✅
+- ~~Data storage~~ ✅
 
-## Expected files 📁
-The files expected to be created are:
-  1) `trackerResults.txt`
-  2) `cons.txt`
-  3) `tracker.csv`
+## Expected files 📂
+
+1) `TrackerLog.txt`
+2) `Tracker.csv`
+3) `consent.txt`
+
+## Photos 📸
+

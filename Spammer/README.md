@@ -1,20 +1,38 @@
 # Spammer 🧨
-Spammer is a python script which helps the user spam messages (bomb the inbox) of another user on Instagram. **Works for both public and private acconts**.
 
-> If you like this repository please feel free to star and/or fork it. It really helps me to continue creating repos like these.
+Spammer is a Python script designed to automate the sending of multiple messages to another user's inbox on Instagram. While the tool technically allows users to 'bomb' another user's inbox with messages, it's essential to recognize the ethical implications and potential consequences of such actions. While it may be used for various purposes, including testing security measures or studying automated messaging systems, it's crucial to ensure that any use of Spammer complies with Instagram's terms of service and respects the privacy and consent of others. Additionally, it's important to consider the impact on the recipient and the potential for harassment or abuse. As with any tool, responsible and ethical use is paramount. **Works for both public and private accounts**.
 
-## Why Spammer 🫣
-There are plenty of reasons for using Spammer. Some of them are:
-  - Easy installation and usage
-  - Doesn't require additional info (user-agent, browser, os etc.)
-  - Sends messages until interruption by the user.
+> If you find value in this repository, please consider giving it a star and/or forking it. Your support greatly encourages me to create more repositories like InstaTools.
 
-## Expected files 📁
-The files expected to be created are:
-  1) `cons.txt`
-  2) `replies.txt`
+## Set up and run Spammer 🚀
 
-## Disclaimer ⚠️
+```bash
+python3 cookies.py
+python3 update.py # if you want to check for updates else skip it.
+cd Spammer
+python3 spammer.py -u <your_username> -p <your_password>
+```
+
+## Why Spammer 🤔
+
+1. **Testing Security Measures:** Users may consider using Spammer to test the security measures of messaging systems on Instagram or to identify vulnerabilities. However, it's important to note that unauthorized testing without explicit permission may be unethical and could result in account suspension or legal consequences.
+2. **Educational Purposes:** Some users might use Spammer for educational purposes, such as studying automated messaging systems or learning about programming techniques. However, it's essential to ensure that such activities are conducted in a controlled environment and do not infringe upon the rights or privacy of others.
+3. **Automating Messaging Tasks:**  In some cases, users may be tempted to use Spammer to automate repetitive messaging tasks, such as sending notifications or reminders. However, it's crucial to consider the potential for spamming and the impact on the recipient, as well as ensuring that any automated messaging complies with Instagram's terms of service and community guidelines.
+
+## Features 🪄
+
+- ~~Colored~~ ✅
+- ~~Fixed bugs~~ ✅
+
+## Expected files 📂
+
+1) `consent.txt`
+
+## Photos 📸
+
+
+
+## ⚠️ Disclaimer ⚠️
 This script is intended solely for ethical and lawful purposes. It must not be used for any unethical, illegal, or harmful activities. Always obtain explicit consent from any individuals or users targeted by this script before utilizing it in any way.
 Please be aware that this script is not designed for use in advertising, campaigns, or any activities that may infringe upon the privacy or rights of others. Any misuse of this script is strictly prohibited, and the responsibility for its usage lies solely with the user.
 By using this script, you agree to adhere to all applicable laws, regulations, and ethical guidelines. The developer and distributor of this script shall not be held responsible for any misuse, damage, or consequences arising from its improper or unethical use.

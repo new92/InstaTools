@@ -1,24 +1,34 @@
-# Poirot 🤺
-Poirot is a Python script designed to elegantly extract data from Instagram accounts. With its sophisticated algorithms, Poirot allows users to effortlessly gather valuable insights and information from Instagram profiles, empowering businesses and individuals to make data-driven decisions and enhance their online strategies. **Works for both public & private accounts**
+# Poirot 🕵️
+
+Poirot is a Python script designed to elegantly extract data from Instagram accounts. With its sophisticated algorithms, Poirot allows users to effortlessly gather valuable insights and information from Instagram profiles, empowering businesses and individuals to make data-driven decisions and enhance their online strategies. **Works for both public & private accounts without requiring any form of login or verification !**
 
 > If you like this repository feel free to star and/or fork it. It really helps me to continue creating repos like these.
 
-## Why Poirot ? 🤔
+## Set up and run Poirot 🚀
 
-Poirot provides many features such as:
+```bash
+python3 cookies.py
+python3 update.py // if you want to check for updates else skip it.
+cd Poirot
+python3 poirot.py -u <target_username>
+```
 
-- **No login or extra information is required just the username of the target user**
+## Why Poirot ? 🧐
+
+- **No login or additional information is required for the information gathering process.**
 - Anonymity
-- Quick extraction
-- Valuable data (email, telephone)
-- Data extraction
+- Fast results
+- Poirot extracts valuable data (such as: emails, telephones, addresses etc.)
 
-## Features 🪄
+## Features 🚀
 
-- ~~Log file~~
-- ~~Colored~~
-- GUI
+- ~~Log file~~ ✅
+- ~~Colored~~ ✅
+- ~~Pretty output~~ ✅
 
-## Expected files 📁
-The files expected to be created are the following:
-  1. `poirotLog.txt`
+## Expected files 📂
+
+1) `poirotLog.txt`
+
+## Photos 📸
+

@@ -1,10 +1,19 @@
 # ToolZ 🕵
 
-Toolz is a handy Python script designed to help you stay informed about your Instagram network. With Toolz, you can effortlessly monitor and track users who have unfollowed you on Instagram, ensuring you're always up-to-date with your social media connections. Maintain a clear view of your follower base and manage your online presence effectively with this user-friendly script. **Works for both public and private accounts**
+Toolz is a handy Python script designed to help you stay informed about your Instagram network. With Toolz, you can effortlessly monitor and track users who have unfollowed you on Instagram, ensuring you're always up-to-date with your social media connections. Maintain a clear view of your follower base and manage your online presence effectively with this user-friendly script. **Works for both public and private accounts.**
 
-> If you like this repository feel free to star and/or fork it. It really helps me to continue creating repos like these.
+> If you find value in this repository, please consider giving it a star and/or forking it. Your support greatly encourages me to create more repositories like InstaTools.
 
-## Why ToolZ ? 😄
+## Set up and run ToolZ 🚀
+
+```bash
+python3 cookies.py
+python3 update.py # if you want to check for updates else skip it.
+cd ToolZ
+python3 toolz.py -u <your_username> -t <target_username> -s <path_to_session_file>
+```
+
+## Why ToolZ ? 🤔
 1. **Unfollower Tracking:** Toolz allows users to track and identify accounts that have unfollowed them on Instagram. It keeps a record of users who were previously following but have since decided to stop.
 2. **Real-Time Notifications:** The script may provide real-time notifications to users whenever someone unfollows them on Instagram, ensuring they are promptly informed of any changes in their follower count.
 3. **Historical Data:** Toolz maintains a history of unfollowers over time, allowing users to view past unfollowers and track patterns in their follower base.
@@ -16,10 +25,14 @@ Toolz is a handy Python script designed to help you stay informed about your Ins
 
 - The user will have the option to track a specific user
 - Data visualization
-- GUI (perhaps) 
-- Automatic login (or no login at all)
+- ~~Fixed bugs~~ ✅
+- ~~Data storage~~ ✅
+- ~~Colored~~ ✅
 
-## Expected files 📁
-The files expected to be created are:
-  1. `ToolZLog.txt`
-  2. `cons.txt`
+## Expected files 📂
+
+1) `ToolZLog.txt`
+2) `consent.txt`
+
+## Photos 📸
+

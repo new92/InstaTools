@@ -4,7 +4,16 @@ Zeus is a specialized Python script tailored for Instagram, dedicated to reveali
 
 > If you like this repository feel free to star and/or fork it. It really helps me to continue creating repos like these.
 
-## Why Zeus 👈
+## Set up and run Zeus 🚀
+
+```bash
+python3 cookies.py
+python3 update.py # if you want to check for updates else skip it.
+cd Zeus
+python3 zeus.py -u <your_username> -s <path_to_session_file>
+```
+
+## Why Zeus 😶‍🌫️
 
 1. **Audience insight:** Zeus extracts and organizes data on mutual likers, commenters, and comments from Instagram posts. This insight helps users analyze audience behavior and engagement metrics, stored conveniently in a CSV file for further examination.
 
@@ -22,4 +31,7 @@ Zeus is a specialized Python script tailored for Instagram, dedicated to reveali
 ## Expected files 📂
 
 1) `Zeus.csv`
-2) `cons.txt`
+2) `consent.txt`
+
+## Photos 📸
+

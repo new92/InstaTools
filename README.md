@@ -1,9 +1,10 @@
-# 🚨⚠️ ACTIVE POLL --> <a href="https://github.com/new92/InstaTools/discussions/23">HERE</a> ⚠️🚨
-
 ![logo](https://github.com/new92/InstaTools/assets/94779840/bdfbb09f-37ec-4ef7-a2a7-2dce756bb7aa)
 
 
 # InstaTools 🧰
+
+[![Codacy grade](https://img.shields.io/codacy/grade/187dba28735848868b7f8615e0e45597?style=for-the-badge&logo=codacy)](https://img.shields.io/codacy/grade/187dba28735848868b7f8615e0e45597?style=for-the-badge&logo=codacy) [![Open issues](https://img.shields.io/github/issues/new92/InstaTools?style=for-the-badge&logo=github)](https://img.shields.io/github/issues/new92/InstaTools?style=for-the-badge&logo=github) [![Closed issues](https://img.shields.io/github/issues-closed/new92/InstaTools?style=for-the-badge&logo=github)](https://img.shields.io/github/issues-closed/new92/InstaTools?style=for-the-badge&logo=github) [![Open pull requests](https://img.shields.io/github/issues-pr/new92/InstaTools?style=for-the-badge&logo=github)](https://img.shields.io/github/issues-pr/new92/InstaTools?style=for-the-badge&logo=github) [![Closed pull requests](https://img.shields.io/github/issues-pr-closed/new92/InstaTools?style=for-the-badge&logo=github)](https://img.shields.io/github/issues-pr-closed/new92/InstaTools?style=for-the-badge&logo=github) [![Discussions](https://img.shields.io/github/discussions/new92/InstaTools?style=for-the-badge&logo=github)](https://img.shields.io/github/discussions/new92/InstaTools?style=for-the-badge&logo=github) [![Code size in bytes](https://img.shields.io/github/languages/code-size/new92/InstaTools?style=for-the-badge&logo=github)](https://img.shields.io/github/languages/code-size/new92/InstaTools?style=for-the-badge&logo=github) [![File count](https://img.shields.io/github/directory-file-count/new92/InstaTools?style=for-the-badge&logo=github)](https://img.shields.io/github/directory-file-count/new92/InstaTools?style=for-the-badge&logo=github) [![Repo size](https://img.shields.io/github/repo-size/new92/InstaTools?style=for-the-badge&logo=github)](https://img.shields.io/github/repo-size/new92/InstaTools?style=for-the-badge&logo=github) [![Followers](https://img.shields.io/github/followers/new92?style=for-the-badge&logo=github)](https://img.shields.io/github/followers/new92?style=for-the-badge&logo=github) [![Stars](https://img.shields.io/github/stars/new92/InstaTools?style=for-the-badge&logo=github)](https://img.shields.io/github/stars/new92/InstaTools?style=for-the-badge&logo=github) [![Forks](https://img.shields.io/github/forks/new92/InstaTools?style=for-the-badge&logo=github)](https://img.shields.io/github/forks/new92/InstaTools?style=for-the-badge&logo=github) [![Watchers](https://img.shields.io/github/watchers/new92/InstaTools?style=for-the-badge&logo=github)](https://img.shields.io/github/watchers/new92/InstaTools?style=for-the-badge&logo=github) [![Language count](https://img.shields.io/github/languages/count/new92/InstaTools?style=for-the-badge&logo=github)](https://img.shields.io/github/languages/count/new92/InstaTools?style=for-the-badge&logo=github) [![Top language used](https://img.shields.io/github/languages/top/new92/InstaTools?style=for-the-badge&logo=python&logoColor=white)](https://img.shields.io/github/languages/top/new92/InstaTools?style=for-the-badge&logo=python&logoColor=white)
+
 
 InstaTools is a variety of tools intended for Instagram. Each one of them automates actions which manually would take a huge amount of time (Especially if the target user has a big amount of followers). These tools can also be used for researching purposes (like when you want to know how many users follow verified accounts). But keep in mind that using InstaTools too often can get your account suspended (or even blocked !). So avoid using it too often.
 
@@ -18,9 +19,24 @@ Any type of feedback is welcome and appreciated. (Please do not use any vulgar v
 - [Code of conduct](https://github.com/new92/InstaTools/blob/main/CODE_OF_CONDUCT.md)
 - [You may also find interesting](https://github.com/new92?tab=repositories)
 
-## Authors ✍️
+## Author(s) ✍️
 
 - [@new92](https://www.github.com/new92)
+
+## What's new 🚀
+
+- Added more tools (Chronos, Delta, Hunter, Kratos, Sphinx, Spider)
+
+- Fixed bugs
+
+- Fixed README.md files
+
+- Enhanced UI
+
+- Added the "save to CSV" option to most of the scripts
+
+- Enhanced the output appearance for each script
+
 
 ## Installation 📥
 
@@ -33,7 +49,7 @@ cd InstaTools
 sudo pip install -r requirements.txt
 python3 cookies.py
 cd <THE FOLDER IN WHICH IS LOCATED THE SCRIPT YOU WANT TO USE. Example: cd Mutuals>
-python3 <THE NAME OF THE SCRIPT. Example: python3 Mutuals.py>.py
+python3 <THE NAME OF THE SCRIPT. Example: python3 mutuals.py>.py <additional parameters>
 ```
 
 ### Windows 🪟
@@ -44,58 +60,26 @@ cd InstaTools
 pip install -r requirements.txt
 python3 cookies.py
 cd <THE FOLDER IN WHICH IS LOCATED THE SCRIPT YOU WANT TO USE. Example: cd Mutuals>
-python3 <THE NAME OF THE SCRIPT. Example: python3 Mutuals.py>.py
+python3 <THE NAME OF THE SCRIPT. Example: python3 mutuals.py>.py
 ```
 
 ### MacOS 🍎
 
 ```bash
+sudo su
 git clone https://github.com/new92/InstaTools
 cd InstaTools
 python -m pip install -r requirements.txt
 python3 cookies.py
 cd <THE FOLDER IN WHICH IS LOCATED THE SCRIPT YOU WANT TO USE. Example: cd Mutuals>
-python3 <THE NAME OF THE SCRIPT. Example: python3 Mutuals.py>.py
+python3 <THE NAME OF THE SCRIPT. Example: python3 mutuals.py>.py
 ```
 
 ## Update 🔄️
 
 ```bash
-cd <path_to_script>/InstaTools
-git pull
+python3 update.py
 ```
-
-## Badges 📛
-
-![Codacy grade](https://img.shields.io/codacy/grade/187dba28735848868b7f8615e0e45597?style=for-the-badge&logo=codacy)
-
-![GitHub issues](https://img.shields.io/github/issues/new92/InstaTools?style=for-the-badge&logo=github)
-
-![GitHub closed issues](https://img.shields.io/github/issues-closed/new92/InstaTools?style=for-the-badge&logo=github)
-
-![GitHub pull requests](https://img.shields.io/github/issues-pr/new92/InstaTools?style=for-the-badge&logo=github)
-
-![GitHub closed pull requests](https://img.shields.io/github/issues-pr-closed/new92/InstaTools?style=for-the-badge&logo=github)
-
-![GitHub Discussions](https://img.shields.io/github/discussions/new92/InstaTools?style=for-the-badge&logo=github)
-
-![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/new92/InstaTools?style=for-the-badge&logo=github)
-
-![GitHub repo file count (file type)](https://img.shields.io/github/directory-file-count/new92/InstaTools?style=for-the-badge&logo=github)
-
-![GitHub repo size](https://img.shields.io/github/repo-size/new92/InstaTools?style=for-the-badge&logo=github)
-
-![GitHub followers](https://img.shields.io/github/followers/new92?style=for-the-badge&logo=github)
-
-![GitHub Repo stars](https://img.shields.io/github/stars/new92/InstaTools?style=for-the-badge&logo=github)
-
-![GitHub forks](https://img.shields.io/github/forks/new92/InstaTools?style=for-the-badge&logo=github)
-
-![GitHub watchers](https://img.shields.io/github/watchers/new92/InstaTools?style=for-the-badge&logo=github)
-
-![GitHub language count](https://img.shields.io/github/languages/count/new92/InstaTools?style=for-the-badge&logo=github)
-
-![GitHub top language](https://img.shields.io/github/languages/top/new92/InstaTools?style=for-the-badge&logo=python&logoColor=white)
 
 ## Contributing 🤝
 
@@ -107,9 +91,11 @@ Please adhere to this project's `code of conduct`. For more info please check th
 
 ## Special thanks to 🫡
 
-- <a href='https://www.github.com/itsfizziks'>@itsfizziks</a>
-
-- <a href='https://www.github.com/ProgramR4732'>@ProgramR4732</a>
+<p align="center">
+<a href="https://github.com/new92/InstaTools/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=new92/InstaTools">
+</a>
+</p>
 
 ## Feedback 💭
 
@@ -121,28 +107,24 @@ If you are reporting a bug or making a suggestion please make sure your report/s
 
 ## Features 🆕
 
-- [ ] More tools / scripts
-- [ ] Fix bugs
-
-## Next update 🔄
-
-- 2 more scripts added
-- Option for updating the scripts
+- [x] Add more tools
+- [x] Fix bugs
+- [x] Enhanced UI
 
 
 ## FAQ 🤔
 
 #### Question 1
 
-- Will my account get blocked by using these scripts ?
+- Could my account get blocked by using InstaTools ?
 
-Answer ➡️ Absolutely not. These tools are using publicly available information which can be accesed by any user and they're not being used for illegal purpose so No your account can't get suspended / blocked.
+Answer ➡️ Absolutely not. InstaTools strictly adheres to Instagram's guidelines, and it does not violate any privacy-related rules. Therefore, there is no reason for Instagram to block the account of an InstaTools user.
 
 #### Question 2
 
-- Geting error while trying to log in ?
+- Encountering error while attempting to log in ?
 
-Answer ➡️ This error can be resolved by simply logging in to your account, do the Instagram verification tests and run again the script.
+Answer ➡️ This error can be resolved by simply logging in to your account from your browser, completing Instagram's verification tests and executing the script again.
     
 ## License 📜
 
@@ -150,5 +132,5 @@ Answer ➡️ This error can be resolved by simply logging in to your account, d
 
 ## Screenshots 📸
 
-**Photos of the script can be found at the `Photos` folder inside every directory**
+**Photos of the preview for each script can be found at the `Photos` folder inside each tool directory.**
 
