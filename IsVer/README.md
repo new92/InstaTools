@@ -35,3 +35,8 @@ python3 isver.py -u <username> -t <target_username> -s <path_to_session_file>
 
 ## Photos 📸
 
+![menu](https://github.com/new92/InstaTools/assets/94779840/8bcb5040-4b87-4293-9be5-2ca0683ecc50)
+
+![output](https://github.com/new92/InstaTools/assets/94779840/9b2a0a9a-3848-489a-9c7e-0d2f6324a9a5)
+
+![output_](https://github.com/new92/InstaTools/assets/94779840/6788b6b9-1d5f-4dde-9aa6-0db99c96b596)
