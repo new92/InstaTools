@@ -36,3 +36,6 @@ python3 toolz.py -u <your_username> -t <target_username> -s <path_to_session_fil
 
 ## Photos 📸
 
+![menu](https://github.com/new92/InstaTools/assets/94779840/877d9ce1-47b7-446d-8e93-ef0dc1fde5b0)
+
+![output](https://github.com/new92/InstaTools/assets/94779840/88749078-e957-4f00-a87f-a22389fc84fb)
