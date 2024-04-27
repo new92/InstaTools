@@ -1,4 +1,4 @@
-# Researcher 🔍
+![menu](https://github.com/new92/InstaTools/assets/94779840/056b0562-cde6-43b2-80af-0a42297ba2c1)# Researcher 🔍
 
 Researcher is an innovative Python script designed to uncover the possible geographic locations of a user's Instagram followers. With Researcher, you can gain valuable insights into the global reach of your Instagram audience. Whether you're a marketer, influencer, or simply curious about your followers' demographics, this script simplifies the process of researching and visualizing the potential locations of your Instagram fanbase.
 **Works for both public and private accounts**.
@@ -32,4 +32,8 @@ Researcher offers **high speed**, **data storage**, **automatic uninstallation**
 3) `Researcher.csv`
 
 ## Photos 📸
+
+![menu](https://github.com/new92/InstaTools/assets/94779840/25a97fc9-d462-453a-893b-d54333f5f877)
+
+![output](https://github.com/new92/InstaTools/assets/94779840/094c2fb9-0c81-4c06-b34c-659c71eab532)
 
