@@ -29,4 +29,6 @@ python3 chronos.py -u <your_username> -t <target> -s <path_to_session_file>
 
 ## Photos 📸
 
+![menu](https://github.com/new92/InstaTools/assets/94779840/8261999d-152a-4be0-88d1-df01243083ce)
+
 ![output](https://github.com/new92/InstaTools/assets/94779840/86c27637-5f25-4a30-aff7-2302116d2f09)
