@@ -35,3 +35,7 @@ python3 hunter.py -u <your_username> -s <path_to_session_file>
 
 ## Photos 📸
 
+![menu](https://github.com/new92/InstaTools/assets/94779840/38d96388-6bd2-4a44-b2ab-354b38213d7c)
+
+![output](https://github.com/new92/InstaTools/assets/94779840/0cb5d58e-5ac3-41f5-9672-08eddde691d5)
+
