@@ -31,3 +31,8 @@ python3 delta.py -u <your_username> -s <path_to_session_file>
 
 ## Photos 📸
 
+![menu](https://github.com/new92/InstaTools/assets/94779840/da0a585a-7643-4f2f-bf52-dc1422b5cb8a)
+
+![output](https://github.com/new92/InstaTools/assets/94779840/4294e6b2-ab64-4865-9c7b-8804336a34ef)
+
+
