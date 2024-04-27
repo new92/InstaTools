@@ -30,6 +30,7 @@ python3 spammer.py -u <your_username> -p <your_password>
 
 ## Photos 📸
 
+![menu](https://github.com/new92/InstaTools/assets/94779840/62cb1ea0-1d99-4846-ba8c-dfa76821ae16)
 
 
 ## ⚠️ Disclaimer ⚠️
