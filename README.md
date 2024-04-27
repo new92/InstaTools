@@ -107,15 +107,9 @@ If you are reporting a bug or making a suggestion please make sure your report/s
 
 ## Features 🆕
 
-<<<<<<< HEAD
 - [x] Add more tools
 - [x] Fix bugs
 - [x] Enhanced UI
-
-=======
-- [ ] Add more tools / scripts
-- [ ] Fix bugs
->>>>>>> 4abbd6b9e9fcc9a70c996ac6c7075deaaf1d58bb
 
 ## FAQ 🤔
 
