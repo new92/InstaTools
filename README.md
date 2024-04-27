@@ -1,10 +1,3 @@
-<<<<<<< HEAD
-=======
-# 🚨⚠️ INSTATOOLS IS UNDER MAINTENANCE. PLEASE AVOID USING IT DURING THIS PERIOD. EXCUSE US FOR THE INCONVENIENCE⚠️🚨
-
-# 🚨⚠️ ACTIVE POLL --> <a href="https://github.com/new92/InstaTools/discussions/23">HERE</a> ⚠️🚨
-
->>>>>>> 4abbd6b9e9fcc9a70c996ac6c7075deaaf1d58bb
 ![logo](https://github.com/new92/InstaTools/assets/94779840/bdfbb09f-37ec-4ef7-a2a7-2dce756bb7aa)
 
 
