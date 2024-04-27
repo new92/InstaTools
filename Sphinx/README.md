@@ -35,3 +35,7 @@ python3 sphinx.py -u <username> -s <path_to_session_file>
 
 ## Photos 📸
 
+![menu](https://github.com/new92/InstaTools/assets/94779840/1a4af4e5-2049-4812-a43d-228c8da6f7c6)
+
+![output](https://github.com/new92/InstaTools/assets/94779840/efbaf0e3-ff63-45db-b190-0f95a0baedbd)
+
