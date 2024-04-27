@@ -35,3 +35,7 @@ python3 zeus.py -u <your_username> -s <path_to_session_file>
 
 ## Photos 📸
 
+![menu](https://github.com/new92/InstaTools/assets/94779840/b6a5b2fd-3895-431f-a63a-7dc39d46f742)
+
+![output](https://github.com/new92/InstaTools/assets/94779840/e3a7d44d-2d5d-4cac-a346-66b182bac4f9)
+
