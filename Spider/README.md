@@ -34,3 +34,6 @@ python3 spider.py -u <your_username> -s <path_to_session_file> -c <number_of_url
 
 ## Photos 📸
 
+![menu](https://github.com/new92/InstaTools/assets/94779840/d75dbf3f-f3e5-4289-b773-d0c1b51be6a2)
+
+![output](https://github.com/new92/InstaTools/assets/94779840/9f1173a6-58bf-45db-886a-042b715e6caa)
