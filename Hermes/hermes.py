@@ -207,7 +207,7 @@ def main(username: str, session: str, code: str):
         for row in TABLE:
             table.add_row(*row)
     print("\n")
-    console.print("[bold yellow][+] Use Hermes to analyze a post and categorise its interactors (likers / commenters).[/]")
+    console.print("[bold yellow][+] Use Hermes to analyze a post and categorise its likers.[/]")
     print("\n")
     console.print("[bold yellow][1] Analyze post[/]")
     console.print("[bold yellow][2] Show Hermes's info[/]")
