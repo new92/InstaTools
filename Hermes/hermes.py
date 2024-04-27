@@ -6,7 +6,7 @@ Leetcode: @new92
 PyPI: @new92
 Contributors: [@Itsfizziks, @ProgramR4732]
 
-Hermes is a python script which analyzes and returns data about the likers of a post.
+Hermes is a python script which analyzes a post and categorises its likers.
 
 For short code example >>> ./Photos/short_code_example.png
 
@@ -431,7 +431,7 @@ try:
     if __name__ == '__main__':
         sleep(2)
         clear()
-        parser = argparse.ArgumentParser(description='Hermes is a python script which analyzes and returns data about the likers of a post.')
+        parser = argparse.ArgumentParser(description='Hermes is a python script which analyzes a post and categorises its likers.')
         parser.add_argument('-u', '--username', help='Your instagram username.')
         parser.add_argument('-p', '--code', help='The shortcode of the post to use. For exampe >> /Hermes/Photos/short_code_example.png')
         parser.add_argument('-s', '--session', help='The session file to use. To generate it >> python3 cookies.py')
