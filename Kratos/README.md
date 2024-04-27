@@ -33,3 +33,6 @@ python3 kratos.py -u <your_username> -c <integer> -s <path_to_session_file>
 
 ## Photos 📸
 
+![menu](https://github.com/new92/InstaTools/assets/94779840/7b9e9faf-424d-414e-841d-c90f6c8d5fad)
+
+![output](https://github.com/new92/InstaTools/assets/94779840/aab9847d-cd44-409b-a522-b64b0292c501)
