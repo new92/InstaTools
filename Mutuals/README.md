@@ -36,3 +36,9 @@ python3 mutuals.py -u <username> -u1 <user_1> -u2 <user_2> -s <path_to_session_f
 
 ## Photos 📸
 
+![menu](https://github.com/new92/InstaTools/assets/94779840/57a03890-bd3e-4699-a2a0-6f88a00294a2)
+
+![output](https://github.com/new92/InstaTools/assets/94779840/e82c5c25-c256-470f-8408-de5341a552f3)
+
+![output_](https://github.com/new92/InstaTools/assets/94779840/7e5195e5-d116-4ab7-84f4-171bcef9581f)
+
