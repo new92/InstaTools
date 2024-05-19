@@ -25,7 +25,7 @@ Any type of feedback is welcome and appreciated. (Please do not use any vulgar v
 
 ## What's new 🚀
 
-- Added more tools (Chronos, Delta, Hunter, Kratos, Sphinx, Spider)
+- Added more tools (<a href="https://github.com/new92/InstaTools/tree/main/Chronos">Chronos</a>, <a href="https://github.com/new92/InstaTools/tree/main/Delta">Delta</a>, <a href="https://github.com/new92/InstaTools/tree/main/Hunter">Hunter</a>, <a href="https://github.com/new92/InstaTools/tree/main/Kratos">Kratos</a>, <a href="https://github.com/new92/InstaTools/tree/main/Sphinx">Sphinx</a>, <a href="https://github.com/new92/InstaTools/tree/main/Spider">Spider</a>)
 
 - Fixed bugs
 
