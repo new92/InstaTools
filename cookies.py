@@ -7,7 +7,7 @@ from sqlite3 import OperationalError, connect
 try:
     from instaloader import ConnectionException, Instaloader
 except ModuleNotFoundError:
-    raise SystemExit("Instaloader not found.\n  pip install [--user] instaloader")
+    raise SystemExit("Instaloader not found.\n  Run: pip install instaloader")
 
 
 def get_cookiefile():
