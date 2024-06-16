@@ -4,6 +4,8 @@ Chronos is a Python tool crafted to analyze a user's post frequency. It offers a
 
 > If you find value in this repository, please consider giving it a star and/or forking it. Your support greatly encourages me to create more repositories like InstaTools.
 
+**Simple description:** Chronos is a Python tool designed to analyze and optimize Instagram posting frequency for enhanced engagement and strategic online presence.
+
 ## Set up and run Chronos 🚀
 
 ```bash
