@@ -10,7 +10,7 @@
 
 ```bash
 python3 cookies.py
-python3 update.py // if you want to check for updates else skip it.
+python3 update.py # if you want to check for updates else skip it.
 cd Poirot
 python3 poirot.py -u <target_username>
 ```
