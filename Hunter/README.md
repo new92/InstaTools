@@ -1,8 +1,10 @@
 # Hunter 🔫
 
-Hunter is a multifunctional Python script primarily designed for Instagram users. It serves as a tool for tracking ghost followers on Instagram accounts. Ghost followers are those who follow an account but don't engage with its content, such as liking or commenting. **Hunter works well with small accounts (500 followers or lower) but when dealing with larger numbers the execution time might increase.**
+**Long description:** Hunter is a multifunctional Python script primarily designed for Instagram users. It serves as a tool for tracking ghost followers on Instagram accounts. Ghost followers are those who follow an account but don't engage with its content, such as liking or commenting. **Hunter works well with small accounts (500 followers or lower) but when dealing with larger numbers the execution time might increase.**
 
 > If you find value in this repository, please consider giving it a star and/or forking it. Your support greatly encourages me to create more repositories like InstaTools.
+
+**Short description:** Hunter tracks ghost followers on Instagram accounts, identifying users who follow but don't engage with content.
 
 ## Set up and run Hunter 🚀
 
