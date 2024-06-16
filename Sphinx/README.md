@@ -4,7 +4,7 @@
 
 > If you find value in this repository, please consider giving it a star and/or forking it. Your support greatly encourages me to create more repositories like InstaTools.
 
-**Short description:** Sphinx swiftly identifies and extracts offensive comments from Instagram posts using advanced algorithms, facilitating efficient moderation of online discourse
+**Short description:** Sphinx swiftly identifies and extracts offensive comments from Instagram posts using advanced algorithms, facilitating efficient moderation of online discourse.
 
 ## Set up and run Sphinx 🚀
 
