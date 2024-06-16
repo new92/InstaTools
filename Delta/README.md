@@ -1,8 +1,10 @@
 # Delta 📡
 
-Delta is a powerful Python tool designed specifically for extracting reels from Instagram accounts with ease and efficiency. With its intuitive interface and robust functionality, Delta simplifies the process of gathering reels, making it an invaluable resource for content creators, marketers, and social media enthusiasts alike. By inputting the shortcodes of the desired Instagram posts contained within a text file, Delta swiftly retrieves and extracts reels, providing users with a comprehensive collection for further analysis or repurposing. Whether you're looking to stay updated on industry trends, gather inspiration for your own content, or monitor competitor activity, Delta streamlines the process, saving you time and effort. **Delta works for both public and private profiles (for private accounts its a requirement that the user follows them).**
+**Long description:** Delta is a powerful Python tool designed specifically for extracting reels from Instagram accounts with ease and efficiency. With its intuitive interface and robust functionality, Delta simplifies the process of gathering reels, making it an invaluable resource for content creators, marketers, and social media enthusiasts alike. By inputting the shortcodes of the desired Instagram posts contained within a text file, Delta swiftly retrieves and extracts reels, providing users with a comprehensive collection for further analysis or repurposing. Whether you're looking to stay updated on industry trends, gather inspiration for your own content, or monitor competitor activity, Delta streamlines the process, saving you time and effort. **Delta works for both public and private profiles (for private accounts its a requirement that the user follows them).**
 
 > If you find value in this repository, please consider giving it a star and/or forking it. Your support greatly encourages me to create more repositories like InstaTools.
+
+**Short description:** Delta efficiently extracts reels from Instagram accounts, simplifying content gathering for creators, marketers, and enthusiasts by using post shortcodes from a text file.
 
 ## Set up and run Delta 🚀
 
