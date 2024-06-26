@@ -1,10 +1,10 @@
 # Sphinx 🔬
 
+**Short description:** Sphinx swiftly identifies and extracts offensive comments from Instagram posts using advanced algorithms, facilitating efficient moderation of online discourse.
+
 **Long description:** Sphinx is a Python tool crafted to locate and extract offensive comments from Instagram posts. Leveraging its advanced algorithms, Sphinx swiftly identifies and isolates comments containing offensive language or content, providing users with a streamlined approach to moderating online discourse. With its intuitive interface, users can easily input the URL of the desired Instagram post, and Sphinx will efficiently scan through the comments section, flagging any potentially harmful content for review. Whether you're a social media manager striving to maintain a positive online environment, an influencer protecting your community from toxicity, or an organization ensuring compliance with content guidelines, Sphinx offers a reliable solution. By enabling proactive moderation, Sphinx empowers users to promote a safer and more inclusive online space on Instagram. **Sphinx performs well with small numbers of posts, but it may take longer to display results when handling a larger volume of data.**
 
 > If you find value in this repository, please consider giving it a star and/or forking it. Your support greatly encourages me to create more repositories like InstaTools.
-
-**Short description:** Sphinx swiftly identifies and extracts offensive comments from Instagram posts using advanced algorithms, facilitating efficient moderation of online discourse.
 
 ## Set up and run Sphinx 🚀
 
