@@ -1,10 +1,10 @@
 # Hermes 🪽
 
+**Short description:** Hermes analyzes Instagram likes for a specific post, extracting and analyzing user profiles based on their engagement.
+
 **Long description:** Hermes is a powerful Python script designed to delve into the world of Instagram likes and provide insightful data about the users who have engaged with a specific post. This script takes an Instagram post URL as input and extracts information about the likers, offering a comprehensive analysis of their profiles. **Hermes functions well with posts from verified accounts, but when dealing with a large number of likes, the execution time may be prolonged.**
 
 > If you find value in this repository, please consider giving it a star and/or forking it. Your support greatly encourages me to create more repositories like InstaTools.
-
-**Short description:** Hermes analyzes Instagram likes for a specific post, extracting and analyzing user profiles based on their engagement.
 
 ## Set up and run Hermes 🚀
 
