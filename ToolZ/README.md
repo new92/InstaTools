@@ -1,10 +1,10 @@
 # ToolZ 🕵
 
+**Short description:** Toolz helps monitor Instagram unfollowers, keeping users informed about changes in their follower base for effective online presence management.
+
 **Long description:** Toolz is a handy Python script designed to help you stay informed about your Instagram network. With Toolz, you can effortlessly monitor and track users who have unfollowed you on Instagram, ensuring you're always up-to-date with your social media connections. Maintain a clear view of your follower base and manage your online presence effectively with this user-friendly script. **Works for both public and private accounts.**
 
 > If you find value in this repository, please consider giving it a star and/or forking it. Your support greatly encourages me to create more repositories like InstaTools.
-
-**Short description:** Toolz helps monitor Instagram unfollowers, keeping users informed about changes in their follower base for effective online presence management.
 
 ## Set up and run ToolZ 🚀
 
