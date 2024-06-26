@@ -1,10 +1,10 @@
 # Spammer 🧨
 
+**Short description:** Spammer automates sending multiple messages to another user's Instagram inbox, emphasizing the ethical considerations and potential consequences of its use.
+
 **Long description:** Spammer is a Python script designed to automate the sending of multiple messages to another user's inbox on Instagram. While the tool technically allows users to 'bomb' another user's inbox with messages, it's essential to recognize the ethical implications and potential consequences of such actions. While it may be used for various purposes, including testing security measures or studying automated messaging systems, it's crucial to ensure that any use of Spammer complies with Instagram's terms of service and respects the privacy and consent of others. Additionally, it's important to consider the impact on the recipient and the potential for harassment or abuse. As with any tool, responsible and ethical use is paramount. **Works for both public and private accounts**.
 
 > If you find value in this repository, please consider giving it a star and/or forking it. Your support greatly encourages me to create more repositories like InstaTools.
-
-**Short description:** Spammer automates sending multiple messages to another user's Instagram inbox, emphasizing the ethical considerations and potential consequences of its use.
 
 ## Set up and run Spammer 🚀
 
