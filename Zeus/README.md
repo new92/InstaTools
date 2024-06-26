@@ -1,10 +1,10 @@
 # Zeus ⚡
 
+**Short description:** Zeus identifies mutual likers, commenters, and comments across specified Instagram posts, enhancing social media analysis with precise insights into user engagement patterns.
+
 **Long description:** Zeus is a specialized Python script tailored for Instagram, dedicated to revealing mutual likers, commenters, and comments across a specified set of posts. This targeted tool streamlines social media analysis, offering valuable insights into user engagement patterns on the Instagram platform. By focusing on Instagram, Zeus provides a precise and efficient solution for users seeking to understand and leverage interactions within this specific social media environment.
 
 > If you find value in this repository, please consider giving it a star and/or forking it. Your support greatly encourages me to create more repositories like InstaTools.
-
-**Short description:** Zeus identifies mutual likers, commenters, and comments across specified Instagram posts, enhancing social media analysis with precise insights into user engagement patterns.
 
 ## Set up and run Zeus 🚀
 
