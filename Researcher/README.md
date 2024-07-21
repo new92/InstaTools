@@ -1,6 +1,6 @@
 # Researcher 🔍
 
-**Short description:** Researcher uncovers geographic locations of Instagram followers, providing valuable insights into audience demographics for marketers, influencers, and curious users.
+**Short description:** Researcher uncovers the possible geographic locations of a user's followers on Instagram, providing valuable insights into audience demographics for marketers, influencers, and curious users.
 
 **Long description:** Researcher is an innovative Python script designed to uncover the possible geographic locations of a user's Instagram followers. With Researcher, you can gain valuable insights into the global reach of your Instagram audience. Whether you're a marketer, influencer, or simply curious about your followers' demographics, this script simplifies the process of researching and visualizing the potential locations of your Instagram fanbase.
 **Works for both public and private accounts**.
