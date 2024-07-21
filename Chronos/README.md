@@ -1,6 +1,6 @@
 # Chronos ⌛
 
-**Short description:** Chronos is a tool that analyzes how often you post on Instagram, helping you optimize your posting schedule for better engagement, whether you're a marketer, influencer, or casual user.
+**Short description:** Chronos is a tool that analyzes how often a user posts on Instagram.
 
 **Long description:** Chronos is a Python tool crafted to analyze a user's post frequency. It offers a straightforward way to understand posting habits on the platform, ideal for marketers, influencers, and curious users alike. With its intuitive interface and powerful functionality, Chronos empowers users to make informed decisions about their posting schedule to maximize engagement and reach. Whether you're a social media enthusiast or a data-driven strategist, Chronos provides the tools to unlock the secrets of Instagram posting frequency and optimize your online presence effectively. **Chronos works perfectly with both public & private accounts.**
 
