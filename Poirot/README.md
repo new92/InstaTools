@@ -1,6 +1,6 @@
 # Poirot 🕵️
 
-**Short description:** Poirot elegantly extracts valuable insights from Instagram profiles using sophisticated algorithms, enabling data-driven decisions for businesses and individuals alike.
+**Short description:** Poirot elegantly extracts valuable information from Instagram accounts using Instagram's GraphQL data query language.
 
 **Long description:** Poirot is a Python script designed to elegantly extract data from Instagram accounts. With its sophisticated algorithms, Poirot allows users to effortlessly gather valuable insights and information from Instagram profiles, empowering businesses and individuals to make data-driven decisions and enhance their online strategies. **Works for both public & private accounts without requiring any form of login or verification !**
 
