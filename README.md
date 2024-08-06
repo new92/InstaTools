@@ -32,8 +32,6 @@ Any type of feedback is welcome and appreciated. (Please do not use any vulgar v
 
 - Added the "save to CSV" option to most of the scripts
 
-- Enhanced the output appearance for each script
-
 
 ## Installation 📥
 
