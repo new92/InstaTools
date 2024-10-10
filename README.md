@@ -124,7 +124,6 @@ Answer ➡️ This error can be resolved by simply logging in to your account fr
 
 [![License](https://img.shields.io/github/license/new92/IGFollowersIncreaser?style=for-the-badge)](https://github.com/new92/IGFollowersIncreaser/blob/main/LICENSE.md)
 
-## Screenshots 📸
+## Star History
 
-**Photos of the preview for each script can be found at the `Photos` folder inside each tool directory.**
-
+[![Star History Chart](https://api.star-history.com/svg?repos=new92/InstaTools&type=Date)](https://star-history.com/#new92/InstaTools&Date)
